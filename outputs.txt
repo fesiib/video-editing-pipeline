@@ -1,0 +1,4 @@
+{
+  "role": "assistant",
+  "content": "{\n    \"temporal\": [\"6:07\", \"24:03\", \"32:57\"],\n    \"spatial\": [\"N/A\"],\n    \"edit\": [\"Cut\"]\n}"
+}
