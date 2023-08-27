@@ -1,4 +1,4 @@
 {
   "role": "assistant",
-  "content": "{\n    \"temporal\": [\"N/A\"],\n    \"spatial\": [\"N/A\"],\n    \"edit\": [\"Insert textbox\"]\n}"
+  "content": "{\n    \"temporal\": [\"whenever the person puts the chicken in the oven\"],\n    \"spatial\": [\"oven\"],\n    \"edit\": [\"zoom\"]\n}"
 }
