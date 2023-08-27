@@ -1,0 +1,42 @@
+{
+"time": 00:00:00 
+"caption": a laptop that is turned on,screen of the laptop,black wristwatch with silver loop,a hand holding a phone,a laptop,blue cord on the table,black keyboard on laptop,hand with a watch,the hand of a person,blue cord on the desk,hand is holding a phone.
+a laptop computer,a black wristwatch,a person is using a laptop,screen of the laptop,blue cord on desk,black keyboard on laptop,a hand is holding a cell phone,blue cord on the desk,hand holding a black device.
+"tag": ['man sitting at a desk with his hands on the keyboard of a laptop computer.']
+}
+
+00:00:05
+{
+caption: black and white laptop computer,a silver apple laptop,person wearing black shirt,a blue laptop computer,a laptop is open on the desk,a wooden desk,black computer monitor,a white wii controller,a blue and white bag,a white and blue laptop,a wicker basket next to the desk,person wearing black shirt,a man working at a desk,black cords on the desk.
+tag: ['a man holding a knife in his hand in front of a desk with a laptop in his hands.']
+}
+
+00:00:10
+{
+caption: a black computer monitor,a man playing the wii,a silver laptop computer,white logo on the shirt,a black shirt with white writing,the head of a man,a man playing a video game,a shelf on a wall,a group of people in the background,the ear of a man.
+tag: ['young man holding a tablet looking at a computer']
+}
+
+00:00:15
+{
+caption: a man playing wii,the shirt is blue,a computer monitor,a black and red tv,a group of people sitting on the floor,a man with brown hair.
+tag: ['a young man standing in front of a computer in a room with a laptop computer and tablet on the table in front of the screen.']
+}
+
+00:00:20
+{
+caption: a black framed computer monitor,a man playing the wii,a white paper in a mans hand,a black tshirt with white design,white logo on the shirt,man playing wii,the man has brown hair,a pile of clothes,the ear of a man,a beige shelf on the wall,a white telephone,white logo on the shirt.
+tag: ['a person holding a tablet in front of a screen.']
+}
+
+00:00:25
+{
+caption: a computer monitor on the desk,man with brown hair,the man is wearing a blue shirt,the man has short hair,a tan shelf on the wall,the ear of a man,the man has short hair,a black stereo system,white letters on the mans shirt,the mouth of a man.
+tag: ['young man sitting in front of a large computer screen looking at the screen.']
+}
+
+00:00:30
+{
+caption: person wearing a black shirt,the base of the computer,white box under the cat,power cord on the desk,black laptop on the desk,a black wrist watch,blue and white sticker on the computer,black laptop on desk,black cords on the desk,the hand of a man,blue sticker on the computer.
+tag: ['a man holding an empty wallet in his hands in front of a laptop on a desk.']
+}

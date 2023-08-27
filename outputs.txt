@@ -1,4 +1,4 @@
 {
   "role": "assistant",
-  "content": "{\n    \"temporal\": [\"6:07\", \"24:03\", \"32:57\"],\n    \"spatial\": [\"N/A\"],\n    \"edit\": [\"Cut\"]\n}"
+  "content": "{\n    \"temporal\": [\"whenever the person puts the chicken in the oven\"],\n    \"spatial\": [\"oven\"],\n    \"edit\": [\"zoom\"]\n}"
 }

@@ -1,0 +1,4 @@
+{
+  "role": "assistant",
+  "content": "{\n    \"temporal\": [\"31:48\"],\n    \"spatial\": [\"next to his head\"],\n    \"edit\": [\"insert textbox\"],\n    \"text\": [\"caffeine\", \"'saw palmetto(?)'\"]\n}"
+}
