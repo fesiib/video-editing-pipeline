@@ -4,13 +4,13 @@ import sys
 import argparse
 import openai
 import ast
-from transcript_parser import *
-from helpers import Timecode
-from operations import *
+from .transcript_parser import *
+from .helpers import Timecode
+from .operations import *
 
 class IntentParser():
-    self.ranges = []
     def __init__(self) -> None:
+        self.ranges = []
         self.input = "" 
         self.outputs = []
         openai.organization = "org-z6QgACarPepyUdyAq45DMSiB"
@@ -31,13 +31,14 @@ class IntentParser():
         return completion.choices[0].message
 
     def process_message(self, msg):
+        # edit_request = msg
         edit_request = msg["requestParameters"]["text"]
 
-        file_path = "../prompts/prompt.txt"
+        file_path = "./prompts/prompt.txt"
         
         with open(file_path, 'r') as f:
             context = f.read()
-        completion = self.completion_endpoint(context, msg) 
+        completion = self.completion_endpoint(context, edit_request) 
 
         # with open("outputs.txt", 'w') as f:
         #     f.write(str(completion.choices[0].message))
@@ -64,7 +65,7 @@ class IntentParser():
             output += json.dumps(item) + '\n'
         return output
 
-    def process_temporal(self, metadata_filename="../prompts/metadata_split.txt", temporal_disambiguation_prompt="../prompts/temporal.txt"):
+    def process_temporal(self, metadata_filename="./prompts/metadata_split.txt", temporal_disambiguation_prompt="./prompts/temporal.txt"):
         '''
             Process video metadata retrieved from BLIP2 image captioning + InternVideo Action recognition
         '''
@@ -80,17 +81,17 @@ class IntentParser():
         
         # split video data into chunks
         CHUNK_SIZE = 20 
-        for i in range(0, len(video_data), CHUNK_SIZE):
+        for i in range(0, len(video_data[0:CHUNK_SIZE * 2]), CHUNK_SIZE):
             for item in self.temporal:
                 print(item)
                 request = self.convert_json_list_to_text(video_data[i:i+CHUNK_SIZE]) + "\n User Request: " + item
                 response = self.completion_endpoint(prompt, request)
                 print(response)
                 try:
-                    ranges += ast.literal_eval(response["content"])
+                    self.ranges += ast.literal_eval(response["content"])
                 except:
                     print("Incorrect format returned by GPT")
-        self.ranges = merge_ranges(ranges)
+        self.ranges = merge_ranges(self.ranges)
         return 
 
     def process_spatial(self):
@@ -102,12 +103,10 @@ class IntentParser():
     # If any fields results in N/A, ask clarifying question to resolve ambiguity
     def clarify_message():
         return
-    
-    def construct_response_msg(self):
 
 def main():
     intent_parser = IntentParser()
-    intent_parser.process_message("whenever the person mentions the surface go only around 11:40, emphasize the screen response time") 
+    intent_parser.process_message("whenever the person mentions the surface go, emphasize the screen response time") 
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify  
 from flask_cors import CORS
-from backend.intent_parser import IntentParser
+from backend.intent_parser import *
 import json
 app = Flask(__name__)
 CORS(app)
@@ -15,13 +15,11 @@ Input:
 '''
 @app.route("/intent", methods=['GET', 'POST'])
 def parse_intent():
-    data = request.json
-    data = json.loads()
-    
-    edit_response = intent_parser.process_message(data)
+    edit_request = request.json
+    edit_response = intent_parser.process_message(edit_request)
 
     response = "User Request: {} \n \n Edit Disambiguation: {}".format(edit_request, edit_response)
-    return jsonify(msg)
+    return jsonify(edit_response)
 
 '''
 Summary of the edit description

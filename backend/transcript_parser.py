@@ -1,6 +1,6 @@
 import os
 import re
-from helpers import Timecode
+from .helpers import Timecode
 
 TIMECODED_TRANSCRIPT = []
 
