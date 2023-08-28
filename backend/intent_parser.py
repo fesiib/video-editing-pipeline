@@ -1,11 +1,15 @@
 import os
+import json
 import sys
 import argparse
 import openai
 import ast
+from transcript_parser import *
 from helpers import Timecode
+from operations import *
 
 class IntentParser():
+    self.ranges = []
     def __init__(self) -> None:
         self.input = "" 
         self.outputs = []
@@ -16,7 +20,7 @@ class IntentParser():
         self.spatial = {"Frame": "None", "Object": "None"}
         self.edit_operation = {}
 
-    def completion_endpoint(self, prompt, msg, model="gpt-3.5-turbo"):
+    def completion_endpoint(self, prompt, msg, model="gpt-4"):
         completion = openai.ChatCompletion.create(
         model=model,
         messages=[
@@ -27,15 +31,17 @@ class IntentParser():
         return completion.choices[0].message
 
     def process_message(self, msg):
-        file_path = "prompt.txt"
+        edit_request = msg["requestParameters"]["text"]
+
+        file_path = "../prompts/prompt.txt"
         
         with open(file_path, 'r') as f:
             context = f.read()
         completion = self.completion_endpoint(context, msg) 
 
-        with open("outputs.txt", 'w') as f:
-            f.write(str(completion.choices[0].message))
-        completion = ast.literal_eval(completion.choices[0].message["content"])
+        # with open("outputs.txt", 'w') as f:
+        #     f.write(str(completion.choices[0].message))
+        completion = ast.literal_eval(completion["content"])
         
         self.temporal = completion["temporal"]
         self.spatial = completion["spatial"]
@@ -43,40 +49,65 @@ class IntentParser():
         
         self.process_temporal()
         # self.process_spatial()
-        self.process_edit_operation()
+        # self.process_edit_operation()
+        edits = []
+        for interval in self.ranges:
+            edits.append(get_timecoded_edit_instance(interval))
+        
+        msg["edits"] = edits
+        msg["requestParameters"]["editOperation"] = self.edit_operation[0]
+        return msg
 
-    def process_temporal(filename="video_metadata.txt"):
+    def convert_json_list_to_text(self, json_list):
+        output = ""
+        for item in json_list:
+            output += json.dumps(item) + '\n'
+        return output
+
+    def process_temporal(self, metadata_filename="../prompts/metadata_split.txt", temporal_disambiguation_prompt="../prompts/temporal.txt"):
         '''
             Process video metadata retrieved from BLIP2 image captioning + InternVideo Action recognition
         '''
-        with open(filename, 'r') as file:
-            entries = file.read().split('\n')
+        with open(temporal_disambiguation_prompt, 'r') as f:
+            prompt = f.read()
+        
+        video_data = []
+        with open(metadata_filename) as metadata:
+            for line in metadata:
+                interval = ast.literal_eval(line.rstrip())
+                interval['dense_caption'] = ""
+                video_data.append(interval)
+        
+        # split video data into chunks
+        CHUNK_SIZE = 20 
+        for i in range(0, len(video_data), CHUNK_SIZE):
+            for item in self.temporal:
+                print(item)
+                request = self.convert_json_list_to_text(video_data[i:i+CHUNK_SIZE]) + "\n User Request: " + item
+                response = self.completion_endpoint(prompt, request)
+                print(response)
+                try:
+                    ranges += ast.literal_eval(response["content"])
+                except:
+                    print("Incorrect format returned by GPT")
+        self.ranges = merge_ranges(ranges)
+        return 
 
-        timecoded_metadata = {}
-        for entry in entries:
-            data = json.loads(entry)
-            time = Timecode(data["timecode"])
-            content = {
-                "caption": data["caption"],
-                "tag": data["tag"],
-            }
-            timecoded_metadata[time] = content
-
+    def process_spatial(self):
+        # image_processor = ImageProcessor()
         return
-    def process_spatial():
-        return
-    def process_edit_operation():
-
+    def process_edit_operation(self):
         return
 
     # If any fields results in N/A, ask clarifying question to resolve ambiguity
     def clarify_message():
         return
-        
+    
+    def construct_response_msg(self):
 
 def main():
     intent_parser = IntentParser()
-    intent_parser.process_message("When the man gives specific examples in his answer, show the key items/nouns as text next to his head. For example, at 31:48, he mentions caffeine and ‘saw palmetto(?)’ so show these words as text for a brief moment") 
+    intent_parser.process_message("whenever the person mentions the surface go only around 11:40, emphasize the screen response time") 
 
 if __name__ == "__main__":
     main()

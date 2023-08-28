@@ -1,3 +1,5 @@
+from helpers import *
+
 textParameters = {
     "content": "HELLO",
     "style": {
@@ -80,15 +82,34 @@ parseData = {
         "editOperation": "text"
     }
 }
+edit_instance = {
+        "textParameters": textParameters,
+        "imageParameters": imageParameters,
+        "shapeParameters": shapeParameters,
+        "zoomParameters": zoomParameters,
+        "cropParameters": cropParameters,
+        "cutParameters": cutParameters,
+        "blurParameters": blurParameters,
+        "spatialParameters": {
+            "x": 0,
+            "y": 0,
+            "width": 200,
+            "height": 200,
+            "rotation": 0
+        },
+        "temporalParameters": {
+            "start": 0,
+            "finish": 10,
+            "duration": 10
+        }
+    }
 
-def map_operation_to_parameters(operation):
-    editOperations = ["text","image","shape","cut","crop","zoom","blur"]
-    if operation == "text":
-    elif operation == "image":
-    # elif operation == "shape":
-    # elif operation == "cut":
-    # elif operation == "crop":
-    # elif operation == "zoom":
-    # elif operation == "blur":
-    # else:
-    #     return "Invalid operation"
+def get_timecoded_edit_instance(interval)
+    start = interval["start"].convert_timecode_to_sec()
+    end = interval["end"].convert_timecode_to_sec()
+    duration = end - start
+    edit_instance["temporalParameters"]["start"] = start
+    edit_instance["temporalParameters"]["end"] = end
+    edit_instance["temporalParameters"]["duration"] = duration
+    return edit_instance
+

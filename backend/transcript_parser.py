@@ -10,7 +10,6 @@ def extract_words(s):
     
     # Flatten the list of tuples and remove empty strings
     result = [word for tup in words for word in tup if word]
-    
     return result
 
 def format_transcript(transcript_file, output_file):
@@ -47,23 +46,30 @@ def format_transcript(transcript_file, output_file):
                 print("No timecodes found.")
     with open(output_file, 'w') as o:
         o.write(output)
+    return TIMECODED_TRANSCRIPT
 
 def extract_range(start_timecode, end_timecode, transcript):
     transcript_snippet = {"start": None, "end": None, "text": ""}
     for i, timecode in enumerate(transcript):
-        if timecode["start"] > start_timecode and transcript_snippet["start"] is None:
+        if timecode["start"] > start_timecode and transcript_snippet["start"] is None and timecode["start"] < end_timecode:
             if i - 1 >=0: transcript_snippet["start"] = transcript[i - 1]["start"]
             else: transcript_snippet["start"] = transcript[i]["start"]
         if transcript_snippet["start"] is not None:
             if timecode["text"][0] != ' ': transcript_snippet["text"] += ' '
             transcript_snippet["text"] += timecode["text"] 
-        if timecode["end"] > end_timecode:
+        if timecode["end"] > end_timecode and transcript_snippet["start"] is not None:
             transcript_snippet["end"] = transcript[i]["end"]
             return transcript_snippet
-    transcript_snippet["end"] = transcript[-1]["end"]
+    if transcript_snippet["start"] is not None:
+        transcript_snippet["end"] = transcript[-1]["end"]
     return transcript_snippet 
 
 def merge_ranges(timecodes):
+    # run through all timecodes and convert then to Timecode format
+    for item in timecodes:
+        item["end"] = Timecode(item["end"])
+        item["start"] = Timecode(item["start"])
+
     # return merged_timecodes
     double_pass = False
     while not double_pass:
@@ -71,13 +77,21 @@ def merge_ranges(timecodes):
         double_pass = True
         while idx < len(timecodes) - 1:
             if timecodes[idx]["end"] == timecodes[idx+1]["start"]:
-                timecodes[idx]["end"] == timecodes[idx+1]["end"]
+                timecodes[idx]["end"] = timecodes[idx+1]["end"]
                 timecodes.pop(idx+1)
                 double_pass = False
             idx += 1
+
+    # run through all timecodes and convert then to Timecode format
+    # for item in timecodes:
+    #     item["end"] = str(item["end"])
+    #     item["start"] = str(item["start"])
+
     return timecodes
 
         
 if __name__=="__main__":
     format_transcript("transcript.txt", "filtered_transcript.txt")
     print(extract_range(Timecode('00:00:10'), Timecode('00:00:30'), TIMECODED_TRANSCRIPT))
+    timecodes = merge_ranges([{'start': '00:00:40', 'end': '00:00:45'}, {'start': '00:00:45', 'end': '00:00:55'}])
+    print(timecodes)

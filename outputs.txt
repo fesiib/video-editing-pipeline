@@ -1,4 +1,0 @@
-{
-  "role": "assistant",
-  "content": "{\n    \"temporal\": [\"whenever the person puts the chicken in the oven\"],\n    \"spatial\": [\"oven\"],\n    \"edit\": [\"zoom\"]\n}"
-}

@@ -21,6 +21,19 @@ class Timecode:
             "minutes": minutes,
             "seconds": seconds
         }
+    
+    @classmethod
+    def convert_sec_to_timecode(cls, seconds):
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        secs = seconds % 60
+        return "{:02d}:{:02d}:{:02d}".format(hours, minutes, secs)
+    
+    def convert_timecode_to_sec(self):
+        return self.time["hours"] * 3600 + self.time["minutes"] * 60 + self.time["seconds"] 
+
+    def __str__(self):
+        return "{:02d}:{:02d}:{:02d}".format(int(self.time["hours"]), int(self.time["minutes"]), int(self.time["seconds"]))
     '''
     Method to approximate the frame id of the provided timecode
     '''
