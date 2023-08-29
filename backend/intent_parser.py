@@ -9,7 +9,8 @@ from .helpers import Timecode
 from .operations import *
 
 class IntentParser():
-    def __init__(self) -> None:
+    def __init__(self, chunk_size = 20) -> None:
+        self.chunk_size = chunk_size
         self.ranges = []
         self.input = "" 
         self.outputs = []
@@ -19,6 +20,11 @@ class IntentParser():
         self.temporal = {"Time Code": "00:00:00", "Transcript": "None", "Action": "None"}
         self.spatial = {"Frame": "None", "Object": "None"}
         self.edit_operation = {}
+
+    def reset(self):
+        self.ranges = []
+        self.input = "" 
+        self.outputs = []
 
     def completion_endpoint(self, prompt, msg, model="gpt-4"):
         completion = openai.ChatCompletion.create(
@@ -80,7 +86,7 @@ class IntentParser():
                 video_data.append(interval)
         
         # split video data into chunks
-        CHUNK_SIZE = 20 
+        CHUNK_SIZE = self.chunk_size 
         for i in range(0, len(video_data[0:CHUNK_SIZE * 2]), CHUNK_SIZE):
             for item in self.temporal:
                 print(item)
@@ -103,6 +109,12 @@ class IntentParser():
     # If any fields results in N/A, ask clarifying question to resolve ambiguity
     def clarify_message():
         return
+    
+    def get_summary(self, input):
+        summary_request = "Generate a several word caption to summarize the purpose of the following video edit request."
+        response = self.completion_endpoint(summary_request, input)
+        completion = ast.literal_eval(response["content"])
+        return completion
 
 def main():
     intent_parser = IntentParser()
