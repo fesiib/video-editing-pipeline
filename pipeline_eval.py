@@ -11,7 +11,8 @@ def main():
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point,
-        pipeline_runner = run_pipeline
+        pipeline_runner = run_pipeline,
+        indexes = [0]
     )
 
     if (len(result["dataset"]) == 0):
