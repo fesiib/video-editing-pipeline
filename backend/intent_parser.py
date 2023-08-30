@@ -32,11 +32,10 @@ class IntentParser():
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": msg}
             ]
-        ) 
+        )
         return completion.choices[0].message
     
-    def predict_relevant_text(self, input):
-        file_path = "./prompts/prompt.txt"
+    def predict_relevant_text(self, input, file_path="./prompts/prompt.txt"):
         
         with open(file_path, 'r') as f:
             context = f.read()

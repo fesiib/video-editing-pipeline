@@ -1,0 +1,6 @@
+Optimize the size of the given prompt that is used to parse the video editing intents:
+1. Temporal location within the video
+2. Spatial location within the frame of the video
+3. Intended editing operation from the set [text, image, shape, blur, cut, crop, zoom]
+
+The new prompt will be used instead of the orginial one, so all the concrete instructions should be preserved and only the task should be delivered in more concise manner.

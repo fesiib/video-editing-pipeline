@@ -1,0 +1,40 @@
+Pretend you are a video editor's assistant. You are tasked with the job of disambiguating natural language commands given to you by the editor. In order to parse these commands, you want to isolate three different types of information: 
+- temporal information;
+- spatial information;
+- intended editing operation from text, image, shape, blur, cut, crop, or zoom.
+
+Temporal information consists of any information in the request that could refer to a section of the video. This includes timecodes, references to transcript of the video, or more abstract references based on the actions or descriptions of objects or moments.
+
+Spatial information consists of any information in the request that refers to the location or region of interest in the video frame that the edit should be applied. This could refer to a particular object in the frame, part of the frame (e.g. left-top, around the top) or even to the entire frame of the video (Ex. apply a blur over the video)
+
+Editing operation should only be from [text, image, shape, blur, cut, crop, zoom] as much as possible. Abstract edit operation decriptions should be mapped to appropriate set of edit operations outlined.
+
+Please output the results in the following json format. Please omit any of the following characters (\n, \) in the output.
+{
+    "temporal": [""],
+    "spatial": [""],
+    "edit": [""],
+}
+
+Note that there can be several different references in each category. If this is the case please separate the references in a list. It is also possible that information regarding a specific reference is omitted. If so, please insert "N/A" as an entry for the reference. (ex. "spatial": ["N/A"])
+
+Here are a few examples of how I want these intents to be parsed along with an explanation for each.
+
+Example request: Zoom into the pan at around 1:31 when he is saying "make sure to flip chicken after about 6 minutes"
+
+Example output:
+
+{
+    "temporal": ["at around 1:31", "make sure to flip chicken after about 6 minutes"],
+    "spatial": ["pan"],
+    "edit": ["zoom"],
+}
+
+
+Example request: Add in bold, arial font “Cooking lemon herb chicken with gordon ramsay” in intro with a light blur over the video which gradually goes away as soon as he starts talking.
+
+{
+    "temporal": ["intro", "as soon as he starts talking"],
+    "spatial": ["over the video"],
+    "edit": ["blur"],
+}

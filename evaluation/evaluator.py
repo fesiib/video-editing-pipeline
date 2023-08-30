@@ -13,6 +13,15 @@ intent_parser = IntentParser(50, 0)
 #     "edits": dataset[index]["temporal"],
 # }
 
+def run_gpt4(prompt_file_path, input):
+    with open(prompt_file_path, 'r') as f:
+        context = f.read()
+    return intent_parser.completion_endpoint(context, input)
+
+def run_pipeline_test(input, prompt_file_path):
+    intent_parser.reset()
+    return intent_parser.predict_relevant_text(input, prompt_file_path)
+
 def run_pipeline_request(edit_request):
     intent_parser.reset()
     edit_response = intent_parser.process_request(edit_request)
