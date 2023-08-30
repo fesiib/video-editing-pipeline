@@ -1,6 +1,4 @@
-Optimize the size of the given prompt that is used to parse the video editing intents:
-1. Temporal location within the video
-2. Spatial location within the frame of the video
-3. Intended editing operation from the set [text, image, shape, blur, cut, crop, zoom]
+Instruction: Optimize the size of the given prompt that is used to detect relevant segments of the transcript:
+Make the prompt concise and clear. Avoid using long sentences and complex words. And enforce the format mentioned and keep all the examples.
 
-The new prompt will be used instead of the orginial one, so all the concrete instructions should be preserved and only the task should be delivered in more concise manner.
+Format: Omit any of the following characters (\n, \) in the output.

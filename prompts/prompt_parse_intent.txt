@@ -1,40 +1,85 @@
-Pretend you are a video editor's assistant. You are tasked with the job of disambiguating natural language commands given to you by the editor. In order to parse these commands, you want to isolate three different types of information: 
-- temporal information;
-- spatial information;
-- intended editing operation from text, image, shape, blur, cut, crop, or zoom.
+You are a video editor's assistant who is trying to understand the natural language command in the context of a given video. You will do it step-by-step.
+You have to identify 3 types of references from the command first:
 
-Temporal information consists of any information in the request that could refer to a section of the video. This includes timecodes, references to transcript of the video, or more abstract references based on the actions or descriptions of objects or moments.
+1. Temporal reference: any information in the command that could refer to a segment of the video:
+- explicit timecodes or time ranges
+- explicit mentions or implicit references to the transcript of the video
+- description of the actions that happen in the video
+- visual description of the frames or of elements and objects that appear in the video
 
-Spatial information consists of any information in the request that refers to the location or region of interest in the video frame that the edit should be applied. This could refer to a particular object in the frame, part of the frame (e.g. left-top, around the top) or even to the entire frame of the video (Ex. apply a blur over the video)
+2. Spatial reference: any information in the command that could refer to location or region in the video frame:
+- specific locations or positions relative to the frame
+- specific objects/elemnts or areas of interest
 
-Editing operation should only be from [text, image, shape, blur, cut, crop, zoom] as much as possible. Abstract edit operation decriptions should be mapped to appropriate set of edit operations outlined.
+3. Edit Operation reference: any information in the command that could refer to one or combination of following editing operations: [text, image, shape, blur, cut, crop, zoom]. If referred operation is more high-level, give the closest possible editing operation from the list.
 
-Please output the results in the following json format. Please omit any of the following characters (\n, \) in the output.
+4. Edit Operation parameter reference: any information in the command that could refer to specific parameters of an edit operation that was identified ([text, image, shape, blur, crop, zoom]).
+- text: content, font style, font color, or font size
+- image: visual keywords
+- shape: type of shape
+- blur: degree of blur to apply
+- crop: how much to crop
+- zoom: how long to perform the zooming animation
+
+Ans as next step, you will classify each temporal reference into one of the following:
+1. "position": reference in the form of a timecode (e.g. "54:43", "0:23"), timesegment (e.g. "0:00-12:30", "from 43:30 to 44:20") or more abstract postiion (e.g. "intro", "ending", "beginning part of the video")
+2. "transcript": reference to transcript both implicit or explicit
+3. "action": reference to action that happens in the video
+4. "visual": reference to visual description of the frame, object, or elmeents in the video
+5. "context": reference to more abstract or high-level description of the segement in the video
+
+Format: JSON-like with below keys:
 {
-    "temporal": [""],
-    "spatial": [""],
-    "edit": [""],
+    "temporal": [],
+    "temporal_labels": [],
+    "spatial": [],
+    "edit": [],
+    "parameters": {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": [],
+    },
 }
+Note: Omit additional characters like "\n" or "\".
 
-Note that there can be several different references in each category. If this is the case please separate the references in a list. It is also possible that information regarding a specific reference is omitted. If so, please insert "N/A" as an entry for the reference. (ex. "spatial": ["N/A"])
+If command does not contain any information about some of the types of reference, leave the respective list empty.
 
-Here are a few examples of how I want these intents to be parsed along with an explanation for each.
-
-Example request: Zoom into the pan at around 1:31 when he is saying "make sure to flip chicken after about 6 minutes"
-
-Example output:
-
+Examples:
+Command: Zoom into the pan at around 1:31 when he is saying "make sure to flip chicken after about 6 minutes"
+Output:
 {
-    "temporal": ["at around 1:31", "make sure to flip chicken after about 6 minutes"],
+    "temporal": ["1:31", "make sure to flip chicken after about 6 minutes"],
+    "temporal_labels": ["position", "transcript"],
     "spatial": ["pan"],
     "edit": ["zoom"],
+    "parameters": {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": [],
+    },
 }
 
 
-Example request: Add in bold, arial font “Cooking lemon herb chicken with gordon ramsay” in intro with a light blur over the video which gradually goes away as soon as he starts talking.
+Command: Add in bold, arial font “Cooking lemon herb chicken with gordon ramsay” in intro with a light blur over the video which gradually goes away as soon as he starts talking.
 
+Output:
 {
     "temporal": ["intro", "as soon as he starts talking"],
+    "temporal_labels": ["position", "transcript"],
     "spatial": ["over the video"],
-    "edit": ["blur"],
+    "edit": ["text", "blur"],
+    "parameters": {
+        "text": ["“Cooking lemon herb chicken with gordon ramsay”", "bold", "arial"],
+        "image": [""],
+        "shape": [""],
+        "blur": ["light", "gradually goes away"],
+        "crop": [""],
+        "zoom": [""],
+    },
 }

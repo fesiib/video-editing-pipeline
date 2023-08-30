@@ -76,24 +76,36 @@ def merge_ranges(input_timecodes):
         #item["end"] = Timecode(item["end"])
         #item["start"] = Timecode(item["start"])
 
-    # return merged_timecodes
-    double_pass = False
-    while not double_pass:
-        idx = 0
-        double_pass = True
-        while idx < len(timecodes) - 1:
-            if timecodes[idx]["end"] == timecodes[idx+1]["start"]:
-                timecodes[idx]["end"] = timecodes[idx+1]["end"]
-                timecodes.pop(idx+1)
-                double_pass = False
-            idx += 1
+    timecodes.sort(key=lambda x: x["start"])
+
+    merged_timecodes = []
+    for item in timecodes:
+        if len(merged_timecodes) == 0:
+            merged_timecodes.append(item)
+        else:
+            if item["start"] < merged_timecodes[-1]["end"] or item["start"] == merged_timecodes[-1]["end"]:
+                merged_timecodes[-1]["end"] = item["end"]
+            else:
+                merged_timecodes.append(item)
+
+    # # return merged_timecodes
+    # double_pass = False
+    # while not double_pass:
+    #     idx = 0
+    #     double_pass = True
+    #     while idx < len(timecodes) - 1:
+    #         if timecodes[idx]["end"] == timecodes[idx+1]["start"]:
+    #             timecodes[idx]["end"] = timecodes[idx+1]["end"]
+    #             timecodes.pop(idx+1)
+    #             double_pass = False
+    #         idx += 1
 
     # run through all timecodes and convert then to Timecode format
     # for item in timecodes:
     #     item["end"] = str(item["end"])
     #     item["start"] = str(item["start"])
 
-    return timecodes
+    return merged_timecodes
 
         
 if __name__=="__main__":

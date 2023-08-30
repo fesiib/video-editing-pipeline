@@ -1,0 +1,1 @@
+Give an entire list of summarized unique dense captions and ask which ones are relevant

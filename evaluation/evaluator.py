@@ -6,7 +6,7 @@ from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 
 # Using all metadata
-intent_parser = IntentParser(50, 0)
+intent_parser = IntentParser(50, 50)
 
 # ground_truth = {
 #     "editOperations": dataset[index]["edit_text"],
@@ -40,11 +40,11 @@ def run_pipeline_request(edit_request):
     }
     return response
 
-def run_pipeline(input):
+def run_pipeline(input, prompt_file_path="./prompts/prompt.txt"):
     intent_parser.reset()
-    relevant_text = intent_parser.predict_relevant_text(input)
+    relevant_text = intent_parser.predict_relevant_text(input, prompt_file_path)
     # run temporal parsing
-    edits = intent_parser.predict_temporal_segments(relevant_text["temporal"])
+    edits = intent_parser.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"])
     edits_temporal = []
     for edit in edits:
         edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"]])
@@ -56,7 +56,12 @@ def run_pipeline(input):
     }
     return response
 
-def run_evaluation_for_task(task_id = 6, data_point_getter = get_data_point_as_request, pipeline_runner = run_pipeline_request, indexes = []):
+def run_evaluation_for_task(
+    task_id = 6,
+    data_point_getter = get_data_point_as_request,
+    pipeline_runner = run_pipeline_request,
+    indexes = []
+):
     dataset = get_dataset_for_task(task_id)
 
     average_temporal_f1 = 0

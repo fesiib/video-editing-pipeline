@@ -1,0 +1,261 @@
+Every time any quality of Surface go is mentioned
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [[70.0, 75.0], [100.0, 105.0], [110.0, 115.0], [140.0, 150.0], [195.0, 200.0], [210.0, 215.0], [235.0, 240.0]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'temporal_labels': ['transcript'], 'spatial': ['on the screen'], 'edit': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[81.0, 85.0], [84.0, 88.0], [88.0, 92.0], [92.0, 96.0], [97.0, 101.0], [146.0, 150.0], [157.0, 161.0], [255.0, 259.0], [264.0, 268.0], [283.0, 287.0], [472.0, 476.0], [1004.0, 1008.0]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'spatial': ['on the screen'], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.11363636363636363 traditional:  0.047021943573667714
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "Every time any quality of Surface go is mentioned",
+  "sentence2": "Every time any quality of Surface go is mentioned",
+  "score": 1.0
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  [[1.0]]
+!!!(spatial)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "on the screen",
+  "sentence2": "on the screen",
+  "score": 1.0
+ }
+]
+--------------------
+Whenever the quality/price/battery/accessories of the two devices are compared
+--------------------
+!!!prediction!!!:  {'editOperation': 'shape', 'edits': [[10.0, 25.0], [65.0, 75.0], [105.0, 110.0], [75.0, 80.0], [115.0, 125.0], [130.0, 150.0], [215.0, 250.0]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'temporal_labels': ['context'], 'spatial': ['small light colored box', 'on the bottom of the screen'], 'edit': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small', 'light colored box'], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['shape'], 'edits': [[758.0, 762.0], [108.0, 112.0], [120.0, 124.0], [134.0, 138.0], [135.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'spatial': ['Bottom of the screen'], 'edit': ['shape']}}
+!!!temporal evaluation!!!:  f1-score:  0.2903225806451613 traditional:  0.15789473684210525
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0000001192092896]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "Whenever the quality/price/battery/accessories of the two devices are compared",
+  "sentence2": "Whenever the quality/price/battery/accessories of the two devices are compared",
+  "score": 1.0000001192092896
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  [[0.2037530541419983], [0.8323197364807129]]
+!!!(spatial)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "on the bottom of the screen",
+  "sentence2": "Bottom of the screen",
+  "score": 0.8323197364807129
+ },
+ {
+  "sentence1": "small light colored box",
+  "sentence2": "Bottom of the screen",
+  "score": 0.2037530541419983
+ }
+]
+--------------------
+When entering the wifi password
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [], 'relevant_text': {'temporal': ['When entering the wifi password'], 'temporal_labels': ['action'], 'spatial': [], 'edit': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[334.0, 338.0]], 'relevant_text': {'temporal': ['When entering the wifi password'], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "When entering the wifi password",
+  "sentence2": "When entering the wifi password",
+  "score": 1.0
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+6:04
+7:48
+8:09
+9:20
+10:06
+10:29
+11:16
+15:35
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [], 'relevant_text': {'temporal': ['6:04', '7:48', '8:09', '9:20', '10:06', '10:29', '11:16', '15:35'], 'temporal_labels': ['position', 'position', 'position', 'position', 'position', 'position', 'position', 'position'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text', 'frame'], 'edits': [[362.0, 366.0], [466.0, 470.0], [487.0, 491.0], [558.0, 562.0], [604.0, 608.0], [627.0, 631.0], [674.0, 678.0], [933.0, 937.0]], 'relevant_text': {'temporal': ['6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display'], 'spatial': [], 'edit': ['text', 'frame']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.3579969108104706], [0.23679892718791962], [0.2368800938129425], [0.19319239258766174], [0.22728249430656433], [0.21480868756771088], [0.16529080271720886], [0.13264325261116028]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "6:04",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.3579969108104706
+ },
+ {
+  "sentence1": "8:09",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.2368800938129425
+ },
+ {
+  "sentence1": "7:48",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.23679892718791962
+ },
+ {
+  "sentence1": "10:06",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.22728249430656433
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+once the video starts
+there is no introduction part
+--------------------
+!!!prediction!!!:  {'editOperation': 'image', 'edits': [[0.0, 5.0]], 'relevant_text': {'temporal': ['once the video starts', 'there is no introduction part'], 'temporal_labels': ['position', 'context'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small', 'description'], 'image': ['thumbnail'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['image'], 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['image']}}
+!!!temporal evaluation!!!:  f1-score:  0.5714285714285714 traditional:  0.28571428571428575
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0], [0.256125807762146]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "once the video starts",
+  "sentence2": "once the video starts",
+  "score": 1.0
+ },
+ {
+  "sentence1": "there is no introduction part",
+  "sentence2": "once the video starts",
+  "score": 0.256125807762146
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+once the video starts
+there is no introduction part
+--------------------
+!!!prediction!!!:  {'editOperation': 'image', 'edits': [[0.0, 5.0]], 'relevant_text': {'temporal': ['once the video starts', 'there is no introduction part'], 'temporal_labels': ['position', 'context'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small', 'description'], 'image': ['thumbnail'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.5714285714285714 traditional:  0.28571428571428575
+!!!edit_op evaluation!!!:  0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0], [0.256125807762146]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "once the video starts",
+  "sentence2": "once the video starts",
+  "score": 1.0
+ },
+ {
+  "sentence1": "there is no introduction part",
+  "sentence2": "once the video starts",
+  "score": 0.256125807762146
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+compare the MS surface go’s spec with gpd pocket 2 apple’s spec
+Incorrect format returned by GPT
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [], 'relevant_text': {'temporal': ['compare the MS surface go’s spec with gpd pocket 2 apple’s spec'], 'temporal_labels': ['action'], 'spatial': ['spec of gdp pocket 2'], 'edit': ['text'], 'parameters': {'text': ['highlight'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[102.0, 106.0], [108.0, 112.0], [120.0, 124.0], [134.0, 138.0], [135.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+when he holds it
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [[15.0, 25.0], [30.0, 35.0], [80.0, 85.0], [95.0, 100.0], [105.0, 110.0], [120.0, 125.0], [180.0, 185.0], [205.0, 210.0], [235.0, 245.0]], 'relevant_text': {'temporal': ['when he holds it'], 'temporal_labels': ['action'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': [], 'edits': [[98.0, 102.0], [1177.0, 1181.0]], 'relevant_text': {'temporal': ['when he holds it.'], 'spatial': ['{object}'], 'edit': []}}
+!!!temporal evaluation!!!:  f1-score:  0.06349206349206349 traditional:  0.03773584905660377
+!!!edit_op evaluation!!!:  0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.9828856587409973]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "when he holds it",
+  "sentence2": "when he holds it.",
+  "score": 0.9828856587409973
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+the ones on the right and the left
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [], 'relevant_text': {'temporal': ['the ones on the right and the left'], 'temporal_labels': ['context'], 'spatial': ['the ones on the right and the left'], 'edit': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[131.0, 135.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+--------------------
+!!!prediction!!!:  {'editOperation': 'text', 'edits': [], 'relevant_text': {'temporal': [], 'temporal_labels': [], 'spatial': ['below the prize barcode'], 'edit': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'edits': [[410.0, 414.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+7:20 to 7:40
+where he opens the box
+says there is a manual
+--------------------
+!!!prediction!!!:  {'editOperation': 'cut', 'edits': [[0.0, 5.0], [15.0, 25.0], [30.0, 35.0], [40.0, 45.0], [105.0, 110.0], [185.0, 190.0], [195.0, 200.0], [210.0, 215.0], [240.0, 245.0]], 'relevant_text': {'temporal': ['7:20 to 7:40', 'where he opens the box', 'says there is a manual'], 'temporal_labels': ['position', 'action', 'transcript'], 'spatial': [], 'edit': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['cut'], 'edits': [[440.0, 460.0]], 'relevant_text': {'temporal': ['7:20 to 7:40, where he opens the box and says there is a manua'], 'spatial': [], 'edit': ['cut']}}
+!!!temporal evaluation!!!:  f1-score:  0.0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.5360498428344727], [0.5296680331230164], [0.2648094892501831]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "7:20 to 7:40",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.5360498428344727
+ },
+ {
+  "sentence1": "where he opens the box",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.5296680331230164
+ },
+ {
+  "sentence1": "says there is a manual",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.2648094892501831
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Summary:
+Video Info:  (declarative visual) "Microsoft Surface Go - Classic LIVE Unboxing" - https://www.youtube.com/live/4LdIvyfzoGY?feature=share
+--------------------
+--------------------
+Temporal F1:  0.146  -->  [0.113, 0.29, 0.0, 0.0, 0.571, 0.571, 0.0, 0.063, 0.0, 0.0, 0.0]
+Temporal Trad F1:  0.074  -->  [0.047, 0.157, 0.0, 0.0, 0.285, 0.285, 0.0, 0.037, 0.0, 0.0, 0.0]
+Edit Operation:  0.818  -->  [1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0]

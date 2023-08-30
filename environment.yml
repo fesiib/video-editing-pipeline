@@ -1,4 +1,4 @@
-name: starlab
+name: bekzat-starlab-pipeline
 channels:
   - defaults
 dependencies:
@@ -84,4 +84,3 @@ dependencies:
     - werkzeug==2.3.7
     - yarl==1.9.2
     - zipp==3.16.2
-prefix: /home/bekzat/.conda/envs/starlab

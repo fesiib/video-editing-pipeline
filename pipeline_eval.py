@@ -6,14 +6,18 @@ import json
 def round_number(number):
     return math.floor(number * 1000) / 1000
 
+def run_pipeline_with_file(input):
+    prompt_file_path = "./prompts/prompt_parse_intent.txt"
+    return run_pipeline(input, prompt_file_path)
+
 def main():
     # result = run_evaluation_for_task()
 
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point,
-        pipeline_runner = run_pipeline,
-        indexes = [0]
+        pipeline_runner = run_pipeline_with_file,
+        indexes = [0, 10]
     )
 
     if (len(result["dataset"]) == 0):
@@ -42,7 +46,15 @@ def summarize_prompt(target_prompt_file_path):
         meta_promp_file_path,
         input
     )
-    print(result)
+    print(result["content"])
+
+def combine_dicts(dict1, dict2):
+    result = {}
+    for key in dict1:
+        result[key] = [dict1[key]]
+    for key in dict2:
+        result[key] += [dict2[key]]
+    return result
 
 def test():
 
@@ -67,14 +79,16 @@ def test():
     for index in indexes:
         input, gt = get_data_point(dataset, index)
         result_gen = run_pipeline_test(input, "./prompts/prompt_parse_intent.txt")
-        #result = run_pipeline_test(input, "./prompts/prompt.txt")
-        print("predicted (gen):     ", result_gen)
-        #print("predicted (normal):  ", result)
-        print("ground truth:        ", gt["relevant_text"])
+        # result = run_pipeline_test(input, "./prompts/generated_prompt.txt")
+        # print("predicted (normal):     ", json.dumps(result_gen))
+        # print("predicted (gen):  ", json.dumps(result))
+        # print("predicted_combined   ", json.dumps(combine_dicts(result_gen, result)))
+        # print("ground truth:        ", gt["relevant_text"])
+        print("predicted & gt:      ", json.dumps(combine_dicts(result_gen, gt["relevant_text"]), indent=4))
         print("--------------------")
 
 if __name__ == "__main__":
-    #main()
-    test()
+    main()
+    #test()
 
-    #summarize_prompt("./prompts/prompt_parse_intent.txt")
+    #summarize_prompt("./prompts/temporal_transcript.txt")
