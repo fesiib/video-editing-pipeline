@@ -5,9 +5,19 @@ class Timecode:
         self.timecode = timecode
         self.split()
 
+    def get_parts(self):
+        if isinstance(self.timecode, str):
+            parts = self.timecode.split(':')
+            while len(parts) < 3:
+                parts = ['0'] + parts
+            return parts
+        else:
+            return [0, 0, 0]
+
     def split(self):
-        parts = self.timecode.split(':')
-        print(parts)
+        #print("time -> ", self.timecode)
+        parts = self.get_parts() 
+        #parts = self.timecode.split(':')
         hours, minutes, seconds = 0, 0, 0
 
         if len(parts) == 3:
@@ -51,6 +61,14 @@ class Timecode:
     
     def __eq__(self, other): return self.total_seconds() == other.total_seconds()
 
+    def is_timecode(timecode):
+        return (re.match(r'^\d{2}:\d{2}:\d{2}$', timecode) is not None
+            or re.match(r'^\d{1}:\d{2}:\d{2}$', timecode) is not None 
+            or re.match(r'^\d{2}:\d{2}$', timecode) is not None 
+            or re.match(r'^\d{1}:\d{2}$', timecode) is not None 
+            or re.match(r'^\d{2}$', timecode) is not None
+            or re.match(r'^\d{1}$', timecode) is not None
+        )
 
 
         

@@ -10,7 +10,7 @@ CORS(app, origins = ["http://localhost:3000"])
 '''
 Server side for video editing pipline 
 '''
-intent_parser = IntentParser(40)
+intent_parser = IntentParser(40, 80)
 '''
 Input:
     Video Reference: youtube link
@@ -21,7 +21,7 @@ def parse_intent():
     edit_request = request.json
     
     intent_parser.reset()
-    edit_response = intent_parser.process_message(edit_request)
+    edit_response = intent_parser.process_request(edit_request)
     
     response = "User Request: {} \n \n Edit Disambiguation: {}".format(edit_request, edit_response)
 
@@ -44,14 +44,14 @@ def launch_server():
 
 def test(edit_request):
     intent_parser.reset()
-    # print("!!!response!!!", json.dumps(intent_parser.process_message({
-    #     "requestParameters": {
-    #         "text": edit_request,
-    #         "editOperation": "text",
-    #     },
-    #     "edits": [],
-    # }), indent=1))
+    print("!!!response!!!", json.dumps(intent_parser.process_request({
+        "requestParameters": {
+            "text": edit_request,
+            "editOperation": "text",
+        },
+        "edits": [],
+    }), indent=1))
 
 if __name__ == "__main__":
-    launch_server()
-    #test("whenever the person mentions the surface go, emphasize the screen response time")
+    #launch_server()
+    test("whenever the person mentions the surface go, emphasize the screen response time")

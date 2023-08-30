@@ -84,9 +84,9 @@ def get_timecoded_edit_instance(interval):
     edit = EditInstance()
     edit_instance = edit.get_edit_params()
     start = interval["start"].convert_timecode_to_sec()
-    end = interval["end"].convert_timecode_to_sec()
-    duration = end - start
+    finish = interval["end"].convert_timecode_to_sec()
+    duration = finish - start
     edit_instance["temporalParameters"]["start"] = start
-    edit_instance["temporalParameters"]["end"] = end
+    edit_instance["temporalParameters"]["finish"] = finish
     edit_instance["temporalParameters"]["duration"] = duration
     return edit_instance

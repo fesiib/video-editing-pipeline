@@ -1,6 +1,7 @@
 import os
 import re
 from .helpers import Timecode
+import json
 
 TIMECODED_TRANSCRIPT = []
 
@@ -64,11 +65,16 @@ def extract_range(start_timecode, end_timecode, transcript):
         transcript_snippet["end"] = transcript[-1]["end"]
     return transcript_snippet 
 
-def merge_ranges(timecodes):
+def merge_ranges(input_timecodes):
+    #print(input_timecodes, "input timecodes")
     # run through all timecodes and convert then to Timecode format
-    for item in timecodes:
-        item["end"] = Timecode(item["end"])
-        item["start"] = Timecode(item["start"])
+    timecodes = []
+    for item in input_timecodes:
+        timecodeEnd = Timecode(item["end"])
+        timecodeStart = Timecode(item["start"])
+        timecodes.append({"end": timecodeEnd, "start": timecodeStart})
+        #item["end"] = Timecode(item["end"])
+        #item["start"] = Timecode(item["start"])
 
     # return merged_timecodes
     double_pass = False
