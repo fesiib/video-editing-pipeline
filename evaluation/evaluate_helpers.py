@@ -112,7 +112,7 @@ def __get_single_edit_operation_evaluation(prediction, ground_truth):
     return 0
 
 def get_dataset():
-    filename = "./data/parsed_gt.json"
+    filename = "./data/parsed_gt_v0.json"
     with open(filename, "r") as f:
         dataset = json.load(f)
         return dataset

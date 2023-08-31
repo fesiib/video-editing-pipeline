@@ -207,10 +207,14 @@ class DataPoint():
             if (isinstance(__value, str) == True):
                 if (is_timestamp(__value)):
                     timestamp = parse_timestamp(__value)
-                    self.temporal.append([max(timestamp - 2, 0), timestamp + 2])
+                    self.temporal.append([timestamp - 2, timestamp + 2])
                 elif (is_range(__value)):
                     timestamps_str = __value.split('-')
-                    self.temporal.append([parse_timestamp(timestamps_str[0]), parse_timestamp(timestamps_str[1])])
+                    timestamp_1 = parse_timestamp(timestamps_str[0])
+                    timestamp_2 = parse_timestamp(timestamps_str[1])
+                    if (timestamp_1 > timestamp_2):
+                        timestamp_1, timestamp_2 = timestamp_2, timestamp_1
+                    self.temporal.append([timestamp_1, timestamp_2])
             elif (isinstance(__value, list) == True):
                 self.temporal.append(__value)
         if (__name == column_mapping.get(COLUMN_SPATIAL)):
@@ -241,6 +245,14 @@ class DataPoint():
                 self.set_attr(attr, val)
             # else:
             #     print(f"Warning: {key} is not a valid column name and its value is {dict[key]}")
+        self.temporal = sorted(self.temporal, key=lambda x: x[0])
+        new_temporal = [[0, 0]]
+        for segement in self.temporal:
+            if segement[0] <= new_temporal[-1][1]:
+                new_temporal[-1][1] = max(segement[1], new_temporal[-1][1])
+            else:
+                new_temporal.append(segement)
+        self.temporal = [segment for segment in new_temporal if segment[1] - segment[0] > 0]
 
     def evaluate(self, response):
         scores = {
@@ -264,8 +276,8 @@ def main(args):
         data_point.consume_dict(dict)
         data_points.append(data_point)
 
-    with open("./data/parsed_gt.json", 'w') as f:
-        f.write(json.dumps([data_point.__dict__ for data_point in data_points], indent=4))
+    with open("./data/parsed_gt_v0.json", 'w') as f:
+        f.write(json.dumps([data_point.__dict__ for data_point in data_points], indent=2))
 
 if __name__ == "__main__":
     import argparse

@@ -24,11 +24,10 @@ You have to identify 3 types of references from the command first:
 - zoom: how long to perform the zooming animation
 
 As a next step, you will classify each temporal reference into one of the following:
-1. "position": reference in the form of a timecode (e.g. "54:43", "0:23"), time segment (e.g. "0:00-12:30", "from 43:30 to 44:20") or more abstract position (e.g. "intro", "ending", "beginning part of the video")
+1. "position": reference in the form of a timecode (e.g. "54:43", "0:23"), time segment (e.g. "0:00-12:30", "from 43:30 to 44:20") or more abstract temporal position (e.g. "intro", "ending", "beginning part of the video")
 2. "transcript": reference to transcript both implicit or explicit
-3. "action": reference to action that happens in the video
-4. "visual": reference to a visual description of the frame, object, or elements in the video
-5. "context": reference to the more abstract or high-level description of the segment in the video
+3. "video": reference to specific action in the video or visual description of the frame, object, or elements
+4. "other": reference to other temporal information that does not fall into the above categories
 
 Format: JSON-like with the below keys:
 {
@@ -68,20 +67,19 @@ Output:
 }
 
 
-Command: Add in bold, arial font “Cooking lemon herb chicken with gordon ramsay” in the intro with a light blur over the video which gradually goes away as soon as he starts talking.
-
+Command: 27:32 - start video where he is talking about the chicken again - end the cut when he puts chicken into the oven.
 Output:
 {
-    "temporal": ["intro", "as soon as he starts talking"],
-    "temporal_labels": ["position", "transcript"],
-    "spatial": ["over the video"],
-    "edit": ["text", "blur"],
+    "temporal": ["27:32", "talking about the chicken again", "puts the chicken into the oven"],
+    "temporal_labels": ["position", "transcript", "video"],
+    "spatial": [],
+    "edit": ["cut"],
     "parameters": {
-        "text": ["“Cooking lemon herb chicken with gordon ramsay”", "bold", "arial"],
-        "image": [""],
-        "shape": [""],
-        "blur": ["light", "gradually goes away"],
-        "crop": [""],
-        "zoom": [""],
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": [],
     },
 }

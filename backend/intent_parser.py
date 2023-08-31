@@ -4,9 +4,24 @@ import sys
 import argparse
 import openai
 import ast
+
 from .transcript_parser import *
 from .helpers import Timecode
 from .operations import *
+from evaluation.sentence_embedder import get_cosine_similarity_score
+
+# OLD_METADATA_FILENAME = "./metadata/metadata.txt"
+METADATA_FILENAME = "./metadata/4LdIvyfzoGY_10.txt"
+METADATA_SPLIT_FILENAME = "./metadata/metadata_split.txt"
+PROMPT_PARSER_FILENAME = "./prompts/prompt_parse_intent.txt"
+PROMPT_TEMPORAL_POSITION_FILENAME = "./prompts/temporal_position.txt"
+#PROMPT_TEMPORAL_TRANSCRIPT_FILENAME = "./prompts/temporal_transcript.txt"
+PROMPT_TEMPORAL_TRANSCRIPT_FILENAME = "./prompts/temporal_transcript_trunc.txt"
+PROMPT_TEMPORAL_ACTION_FILENAME = "./prompts/temporal_action.txt"
+PROMPT_TEMPORAL_VISUAL_FILENAME = "./prompts/temporal_visual.txt"
+PROMPT_TEMPORAL_FILENAME = "./prompts/temporal.txt"
+PROMPT_SPATIAL_FILENAME = "./prompts/spatial.txt"
+PROMPT_PARAMETERS_FILENAME = "./prompts/parameters.txt"
 
 class IntentParser():
     def __init__(self, chunk_size = 20, limit = 40) -> None:
@@ -15,36 +30,56 @@ class IntentParser():
         openai.organization = "org-z6QgACarPepyUdyAq45DMSiB"
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
-        # self.temporal = {"Time Code": "00:00:00", "Transcript": "None", "Action": "None"}
-        # self.spatial = {"Frame": "None", "Object": "None"}
-        # self.edit_operation = {}
+        self.metadata_filename = METADATA_FILENAME
+        self.prompt_parse_filename = PROMPT_PARSER_FILENAME
+        self.prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME
+        self.prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME
+        self.prompt_temporal_action_filename = PROMPT_TEMPORAL_ACTION_FILENAME
+        self.prompt_temporal_visual_filename = PROMPT_TEMPORAL_VISUAL_FILENAME
+        self.prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME
+        self.prompt_spatial_filename = PROMPT_SPATIAL_FILENAME
+        self.prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME
 
-    def reset(self):
-        # self.temporal = {"Time Code": "00:00:00", "Transcript": "None", "Action": "None"}
-        # self.spatial = {"Frame": "None", "Object": "None"}
-        # self.edit_operation = {}
-        pass
-
+    def reset(self,
+        metadata_filename = METADATA_FILENAME,
+        prompt_parse_filename = PROMPT_PARSER_FILENAME,
+        prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME,
+        prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME,
+        prompt_temporal_action_filename = PROMPT_TEMPORAL_ACTION_FILENAME,
+        prompt_temporal_visual_filename = PROMPT_TEMPORAL_VISUAL_FILENAME,
+        prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME,
+        prompt_spatial_filename = PROMPT_SPATIAL_FILENAME,
+        prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME          
+    ):
+        self.metadata_filename = metadata_filename
+        self.prompt_parse_filename = prompt_parse_filename
+        self.prompt_temporal_position_filename = prompt_temporal_position_filename
+        self.prompt_temporal_transcript_filename = prompt_temporal_transcript_filename
+        self.prompt_temporal_action_filename = prompt_temporal_action_filename
+        self.prompt_temporal_visual_filename = prompt_temporal_visual_filename
+        self.prompt_temporal_filename = prompt_temporal_filename
+        self.prompt_spatial_filename = prompt_spatial_filename
+        self.prompt_parameters_filename = prompt_parameters_filename
+    # model="gpt-4"
+    # model="gpt-3.5-turbo-16k-0613"
     def completion_endpoint(self, prompt, msg, model="gpt-4"):
         completion = openai.ChatCompletion.create(
-        model=model,
-        messages=[
+            model=model,
+            messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": msg}
-            ]
+            ],
+            temperature=0.1,
         )
+        print("Usage Info:", json.dumps(completion.usage, indent=2))
         return completion.choices[0].message
     
-    def predict_relevant_text(self, input, file_path="./prompts/prompt.txt"):
-        
-        with open(file_path, 'r') as f:
+    def predict_relevant_text(self, input):
+        print("calling: ", self.prompt_parse_filename)
+        with open(self.prompt_parse_filename, 'r') as f:
             context = f.read()
         completion = self.completion_endpoint(context, input) 
-
-        # with open("outputs.txt", 'w') as f:
-        #     f.write(str(completion.choices[0].message))
         completion = ast.literal_eval(completion["content"])
-        
         return {
             "temporal": completion["temporal"],
             "temporal_labels": completion["temporal_labels"],
@@ -82,47 +117,27 @@ class IntentParser():
             if label == "visual":
                 all_visual.append(segment)
         
-        # ranges_position = self.process_temporal_position(all_position, all_context, "./prompts/temporal_position.txt")
-        ranges_transcript = self.process_temporal_transcript(all_transcript, all_context, "./prompts/temporal_transcript.txt", "./metadata/metadata.txt")
-        # ranges_action = self.process_temporal_action(all_action, all_context, "./prompts/temporal_action.txt", "./metadata/metadata.txt")
-        # ranges_visual = self.process_temporal_visual(all_visual, all_context, "./prompts/temporal_visual.txt", "./metadata/metadata.txt")
+        # ranges_position = self.process_temporal_position(all_position, all_context)
+        # ranges_transcript = self.process_temporal_transcript(all_transcript, all_context)
+        # ranges_transcript = self.process_temporal_transcript_cosine_similarity(all_transcript, all_context)
+        ranges_action = self.process_temporal_action(all_action, all_context)
+        # ranges_visual = self.process_temporal_visual(all_visual, all_context)
         # ranges = merge_ranges(ranges_position + ranges_transcript + ranges_action + ranges_visual)
 
-        #ranges = self.process_temporal_metadata(temporal_segments, "./metadata/metadata_split.txt", "./prompts/temporal.txt")
-        ranges = ranges_transcript
+        # ranges = self.process_temporal_metadata(temporal_segments)
+
+        ranges = ranges_action
         edits = []
         for interval in ranges:
             edits.append(get_timecoded_edit_instance(interval))
-        
         return edits
 
-    def convert_list_to_text(self, input_list, separator='\n'):
-        if (len(input_list) == 0):
-            return ""
-        output = ""
-        for item in input_list[0:-1]:
-            output += item + separator
-        output += input_list[-1]
-        return output
-
-    def convert_json_list_to_text(self, json_list, separator='\n'):
-        if (len(json_list) == 0):
-            return ""
-        output = ""
-        for item in json_list[0:-1]:
-            output += json.dumps(item) + separator
-        output += json.dumps(json_list[-1])
-        return output
-
-    def process_temporal_metadata(self, input_texts, metadata_filename="./prompts/metadata_split.txt", temporal_disambiguation_prompt="./prompts/temporal.txt"):
-        '''
-            Process video metadata retrieved from BLIP2 image captioning + InternVideo Action recognition
-        '''
-        with open(temporal_disambiguation_prompt, 'r') as f:
+    def process_temporal_metadata(self, input_texts):
+        with open(self.prompt_temporal_filename, 'r') as f:
             prompt = f.read()
         
         video_data = []
-        with open(metadata_filename) as metadata:
+        with open(METADATA_SPLIT_FILENAME) as metadata:
             for line in metadata:
                 interval = ast.literal_eval(line.rstrip())
                 interval['dense_caption'] = ""
@@ -161,16 +176,17 @@ class IntentParser():
                     print("Incorrect format returned by GPT")
         return merge_ranges(ranges)
     
-    def process_temporal_position(self, input_texts, context_texts, prompt_filename):
-        return self.__process_temporal_specific(input_texts, context_texts, prompt_filename, [])
+    def process_temporal_position(self, input_texts, context_texts):
+        return self.__process_temporal_specific_segments(
+            input_texts, context_texts, self.prompt_temporal_position_filename, [])
     
-    def process_temporal_transcript(self, input_texts, context_texts, prompt_filename, metadata_filename):
+    def process_temporal_transcript(self, input_texts, context_texts):
         # TODO: merge input_texts and context_texts
-        with open(prompt_filename, 'r') as f:
-            prompt = f.read()
+        if (len(input_texts) == 0):
+            return []
         timecoded_transcript = []
         transcript = []
-        with open(metadata_filename) as f:
+        with open(self.metadata_filename) as f:
             for line in f:
                 interval = ast.literal_eval(line.rstrip())
                 transcript.append(interval["transcript"])
@@ -179,54 +195,97 @@ class IntentParser():
                     "end": interval["end"],
                     "transcript": interval["transcript"],
                 })
-        relevant_transcript = []
+        relevant_transcript_indexes = self.__process_temporal_specific_indexes(
+            "Transcript", input_texts, context_texts,
+            self.prompt_temporal_transcript_filename, transcript
+        )
+        ranges = []
+        
+        for index in relevant_transcript_indexes:
+            if (index >= len(timecoded_transcript) or index < 0):
+                print("ERROR: Transcript segment not found in metadata", index)
+            else:
+                ranges.append({
+                    "start": timecoded_transcript[index]["start"],
+                    "end": timecoded_transcript[index]["end"],
+                })
+        return merge_ranges(ranges)
+    
+    def process_temporal_transcript_cosine_similarity(
+        self, input_texts, context_texts,
+        threshold=0.5
+    ):
+        if (len(input_texts) == 0):
+            return []
+        # TODO: merge input_texts and context_texts
+        timecoded_transcript = []
+        with open(self.metadata_filename) as f:
+            for line in f:
+                interval = ast.literal_eval(line.rstrip())
+                timecoded_transcript.append({
+                    "start": interval["start"],
+                    "end": interval["end"],
+                    "transcript": interval["transcript"],
+                })
         # for i, item in enumerate(transcript):
         #     print(json.dumps(i), json.dumps(item))
         
-        text_transcript = self.convert_json_list_to_text(transcript, ", ") 
-        
-        request = ("Context: [" + self.convert_json_list_to_text(context_texts, ", ") + "]"
-                    + "\nTranscript: [" + text_transcript + "]"
-                    + "\nUser Request: [" + self.convert_json_list_to_text(input_texts, ", ") + "]")
-        response = self.completion_endpoint(prompt, request)
-
-        try:
-            relevant_transcript = ast.literal_eval(response["content"])
-        except:
-            print("Incorrect format returned by GPT")
-
         ranges = []
-        for transcript_segment in relevant_transcript:
+
+        for input in input_texts:
             found = False
             for item in timecoded_transcript:
-                if (transcript_segment == item["transcript"]):
+                if (get_cosine_similarity_score(input, item["transcript"]) > threshold):
                     ranges.append({
                         "start": item["start"],
                         "end": item["end"],
                     })
                     found = True
-                    break
             if (not found):
-                print("ERROR: Transcript segment not found in metadata", transcript_segment)
+                print("ERROR: Transcript segment not found in metadata", input)
         return merge_ranges(ranges)
-        #return self.__process_temporal_specific(input_texts, context_texts, prompt_filename, metadata)
     
-    def process_temporal_action(self, input_texts, context_texts, prompt_filename, metadata_filename):
+    def process_temporal_action(self, input_texts, context_texts):
+        if (len(input_texts) == 0):
+            return []
+        timecoded_metadata = []
         metadata = []
-        with open(metadata_filename) as f:
+        with open(self.metadata_filename) as f:
             for line in f:
                 interval = ast.literal_eval(line.rstrip())
                 metadata.append({
+                    "action": interval["action_pred"],
+                    "caption": interval["synth_caption"],
+                })
+                timecoded_metadata.append({
                     "start": interval["start"],
                     "end": interval["end"],
                     "action": interval["action_pred"],
                     "caption": interval["synth_caption"],
                 })
-        return self.__process_temporal_specific(input_texts, context_texts, prompt_filename, metadata)
+        relevant_indexes = self.__process_temporal_specific_indexes(
+            "Metadata", 
+            input_texts, context_texts,
+            self.prompt_temporal_action_filename, metadata
+        )
+        ranges = []
+        
+        for index in relevant_indexes:
+            if (index >= len(timecoded_metadata) or index < 0):
+                print("ERROR: Transcript segment not found in metadata", index)
+            else:
+                ranges.append({
+                    "start": timecoded_metadata[index]["start"],
+                    "end": timecoded_metadata[index]["end"],
+                })
+        return merge_ranges(ranges)
+
     
-    def process_temporal_visual(self, input_texts, context_texts, prompt_filename, metadata_filename):
+    def process_temporal_visual(self, input_texts, context_texts):
+        if (len(input_texts) == 0):
+            return []
         metadata = []
-        with open(metadata_filename) as f:
+        with open(self.metadata_filename) as f:
             for line in f:
                 interval = ast.literal_eval(line.rstrip())
                 metadata.append({
@@ -235,9 +294,12 @@ class IntentParser():
                     #"visual_description": interval["dense_caption"],
                     "caption": interval["synth_caption"],
                 })
-        return self.__process_temporal_specific(input_texts, context_texts, prompt_filename, metadata)
+        return self.__process_temporal_specific_segments(
+            input_texts, context_texts, self.prompt_temporal_visual_filename, metadata)
     
-    def __process_temporal_specific(self, input_texts, context_texts, prompt_filename, metadata):
+    def __process_temporal_specific_segments(self, input_texts, context_texts, prompt_filename, metadata):
+        if (len(input_texts) == 0):
+            return []
         # TODO: merge input_texts and context_texts
         with open(prompt_filename, 'r') as f:
             prompt = f.read()
@@ -276,6 +338,37 @@ class IntentParser():
                     print("Incorrect format returned by GPT")
         return merge_ranges(ranges)
 
+    def __process_temporal_specific_indexes(
+        self,
+        metadata_name,
+        input_texts, context_texts,
+        prompt_filename, metadata
+    ):
+        if (len(input_texts) == 0):
+            return []
+        with open(prompt_filename, 'r') as f:
+            prompt = f.read()
+        
+        for i, item in enumerate(metadata):
+            print(json.dumps(i), json.dumps(item))
+        
+        text_metadata = self.convert_json_list_to_text(metadata, ", ") 
+        
+        request = ("Context: [" + self.convert_json_list_to_text(context_texts, ", ") + "]"
+                    + "\n" + metadata_name + ": [" + text_metadata + "]"
+                    + "\nUser Request: [" + self.convert_json_list_to_text(input_texts, ", ") + "]")
+        print("REQ: ", request)
+        response = self.completion_endpoint(prompt, request)
+        response_content = response["content"].replace('\"', "'").replace('\'', "'")
+        print("RESP: ", json.dumps(response_content))
+        indexes = []
+        try:
+            indexes = ast.literal_eval(response_content)
+        except:
+            print("Incorrect format returned by GPT")
+        print(json.dumps(indexes))
+        return [int(index) for index in indexes]
+
     def process_spatial(self, input_texts, temporal_segments):
         # image_processor = ImageProcessor()
         return
@@ -291,6 +384,24 @@ class IntentParser():
         response = self.completion_endpoint(summary_request, input)
         completion = ast.literal_eval(response["content"])
         return completion
+    
+    def convert_list_to_text(self, input_list, separator='\n'):
+        if (len(input_list) == 0):
+            return ""
+        output = ""
+        for item in input_list[0:-1]:
+            output += item + separator
+        output += input_list[-1]
+        return output
+
+    def convert_json_list_to_text(self, json_list, separator='\n'):
+        if (len(json_list) == 0):
+            return ""
+        output = ""
+        for item in json_list[0:-1]:
+            output += json.dumps(item) + separator
+        output += json.dumps(json_list[-1])
+        return output
 
 def main():
     intent_parser = IntentParser()

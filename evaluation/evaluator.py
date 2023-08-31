@@ -1,4 +1,5 @@
 import json
+import ast
 
 from backend.intent_parser import IntentParser
 from evaluation.evaluate_helpers import *
@@ -13,17 +14,31 @@ intent_parser = IntentParser(50, 50)
 #     "edits": dataset[index]["temporal"],
 # }
 
+def reset_intent_parser(**props):
+    intent_parser.reset(**props)
+
 def run_gpt4(prompt_file_path, input):
     with open(prompt_file_path, 'r') as f:
         context = f.read()
     return intent_parser.completion_endpoint(context, input)
 
-def run_pipeline_test(input, prompt_file_path):
-    intent_parser.reset()
-    return intent_parser.predict_relevant_text(input, prompt_file_path)
+def run_pipeline_test_parser(input):
+    return intent_parser.predict_relevant_text(input)
+
+def run_pipeline_test_temporal(relevant_text):
+    edits = intent_parser.predict_temporal_segments(
+        relevant_text["temporal"], relevant_text["temporal_labels"])
+    edits_temporal = []
+    for edit in edits:
+        edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"]])
+    
+    response = {
+        "edits": edits_temporal,
+        "relevant_text": relevant_text,
+    }
+    return response
 
 def run_pipeline_request(edit_request):
-    intent_parser.reset()
     edit_response = intent_parser.process_request(edit_request)
     edits_temporal = []
     for edit in edit_response["edits"]:
@@ -40,11 +55,11 @@ def run_pipeline_request(edit_request):
     }
     return response
 
-def run_pipeline(input, prompt_file_path="./prompts/prompt.txt"):
-    intent_parser.reset()
-    relevant_text = intent_parser.predict_relevant_text(input, prompt_file_path)
+def run_pipeline(input):
+    relevant_text = intent_parser.predict_relevant_text(input)
     # run temporal parsing
-    edits = intent_parser.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"])
+    edits = intent_parser.predict_temporal_segments(
+        relevant_text["temporal"], relevant_text["temporal_labels"])
     edits_temporal = []
     for edit in edits:
         edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"]])

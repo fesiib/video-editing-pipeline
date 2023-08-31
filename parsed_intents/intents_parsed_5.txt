@@ -1,0 +1,1498 @@
+INPUT:  Remove all sections throughout the video that aren’t directed at questions. For example, things like “Please like the video”, “Thank you” etc. at 6:07, 24:03, 32:57. The whole video should only contain questions and answers.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 926,
+  "completion_tokens": 120,
+  "total_tokens": 1046
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 869,
+  "completion_tokens": 105,
+  "total_tokens": 974
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "6:07",
+        "24:03",
+        "32:57",
+        "Please like the video",
+        "Thank you"
+      ]
+    ],
+    [
+      [
+        "throughout the video",
+        "6:07",
+        "24:03",
+        "32:57",
+        "aren\u2019t directed at questions",
+        "The whole video should only contain questions and answers"
+      ]
+    ],
+    [
+      [
+        "all sections throughout the video that aren\u2019t directed at questions. For example, things like \u201cPlease like the video\u201d, \u201cThank you\u201d etc. at 6:07, 24:03, 32:57."
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position",
+        "position",
+        "position",
+        "transcript",
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "position",
+        "position",
+        "position",
+        "position",
+        "context",
+        "context"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      []
+    ],
+    [
+      []
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Whenever the man’s pauses or filler words are too long in his answers, cut them out.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 889,
+  "completion_tokens": 82,
+  "total_tokens": 971
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 832,
+  "completion_tokens": 86,
+  "total_tokens": 918
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "man\u2019s pauses",
+        "filler words are too long in his answers"
+      ]
+    ],
+    [
+      [
+        "Whenever the man\u2019s pauses or filler words are too long in his answers"
+      ]
+    ],
+    [
+      [
+        "whenever the man's pauses or filler words are too long in his answers"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "video",
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "action"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      []
+    ],
+    [
+      []
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Make a circular progress bar at the top right side of the screen that starts at 0% when the man starts answering the question, and gradually increases to 100% once he is done, so that users can know how much of the answer is left.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 922,
+  "completion_tokens": 112,
+  "total_tokens": 1034
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 865,
+  "completion_tokens": 110,
+  "total_tokens": 975
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "when the man starts answering the question",
+        "once he is done"
+      ]
+    ],
+    [
+      [
+        "when the man starts answering the question",
+        "once he is done"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "video",
+        "video"
+      ]
+    ],
+    [
+      [
+        "action",
+        "action"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "top right side of the screen"
+      ]
+    ],
+    [
+      [
+        "at the top right side of the screen"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "shape"
+      ]
+    ],
+    [
+      [
+        "shape"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [
+          "circular progress bar",
+          "starts at 0%",
+          "increases to 100%"
+        ],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [
+          "circular progress bar",
+          "starts at 0%",
+          "increases to 100%"
+        ],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  At 3:56, when the man refers to his instagram account, put an instagram icon and his instagram id on the right side of the screen, with a small description saying “check recent eyebrow case”
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 912,
+  "completion_tokens": 112,
+  "total_tokens": 1024
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 855,
+  "completion_tokens": 102,
+  "total_tokens": 957
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "3:56",
+        "when the man refers to his instagram account"
+      ]
+    ],
+    [
+      [
+        "3:56",
+        "when the man refers to his instagram account"
+      ]
+    ],
+    [
+      [
+        "at 3:56, when the man refers to his instagram account"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position",
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "position",
+        "transcript"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "right side of the screen"
+      ]
+    ],
+    [
+      [
+        "right side of the screen"
+      ]
+    ],
+    [
+      [
+        "right side of the screen"
+      ]
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "image",
+        "text"
+      ]
+    ],
+    [
+      [
+        "image",
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "check recent eyebrow case"
+        ],
+        "image": [
+          "instagram icon"
+        ],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "his instagram id",
+          "small description saying \u201ccheck recent eyebrow case\u201d"
+        ],
+        "image": [
+          "instagram icon"
+        ],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  At 3:56, when the man refers to his instagram account, put an instagram icon and his instagram id on the right side of the screen, with a small description saying “check recent eyebrow case”
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 912,
+  "completion_tokens": 112,
+  "total_tokens": 1024
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 855,
+  "completion_tokens": 111,
+  "total_tokens": 966
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "3:56",
+        "when the man refers to his instagram account"
+      ]
+    ],
+    [
+      [
+        "3:56",
+        "when the man refers to his instagram account"
+      ]
+    ],
+    [
+      [
+        "at 3:56, when the man refers to his instagram account"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position",
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "position",
+        "transcript"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "right side of the screen"
+      ]
+    ],
+    [
+      [
+        "right side of the screen"
+      ]
+    ],
+    [
+      [
+        "right side of the screen"
+      ]
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text",
+        "image"
+      ]
+    ],
+    [
+      [
+        "image",
+        "text"
+      ]
+    ],
+    [
+      [
+        "image"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "instagram id",
+          "small description saying \u201ccheck recent eyebrow case\u201d"
+        ],
+        "image": [
+          "instagram icon"
+        ],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "his instagram id",
+          "small description saying \u201ccheck recent eyebrow case\u201d"
+        ],
+        "image": [
+          "instagram icon"
+        ],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  When the man gives specific examples in his answer, show the key items/nouns as text next to his head. For example, at 31:48, he mentions caffeine and ‘saw palmetto(?)’ so show these words as text for a brief moment
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 925,
+  "completion_tokens": 115,
+  "total_tokens": 1040
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 868,
+  "completion_tokens": 101,
+  "total_tokens": 969
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "31:48",
+        "when the man gives specific examples in his answer"
+      ]
+    ],
+    [
+      [
+        "When the man gives specific examples in his answer",
+        "at 31:48",
+        "for a brief moment"
+      ]
+    ],
+    [
+      [
+        "when the man gives specific examples in his answer"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position",
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "context",
+        "position",
+        "position"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "next to his head"
+      ]
+    ],
+    [
+      [
+        "next to his head"
+      ]
+    ],
+    [
+      [
+        "next to his head"
+      ]
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "caffeine",
+          "saw palmetto"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "caffeine",
+          "\u2018saw palmetto(?)\u2019"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Right at the beginning of the video, make a frame where all the questions are listed in order. There should be the tile of each category, and also the timestamp of each question. If they don’t all fit in one frame, divide them into multiple (maybe one category per frame)
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 928,
+  "completion_tokens": 93,
+  "total_tokens": 1021
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 871,
+  "completion_tokens": 91,
+  "total_tokens": 962
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "beginning of the video"
+      ]
+    ],
+    [
+      [
+        "Right at the beginning of the video"
+      ]
+    ],
+    [
+      [
+        "Right at the beginning of the video"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position"
+      ]
+    ],
+    [
+      [
+        "position"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "frame"
+      ]
+    ],
+    [
+      [
+        "frame"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text",
+        "frame"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "all the questions",
+          "tile of each category",
+          "timestamp of each question"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "all the questions",
+          "tile of each category",
+          "timestamp of each question"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Whenever the man refers to his YouTube channel or a specific YouTube video or another channel, put a text on the right side of the screen with a YouTube icon and the Channel name
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 905,
+  "completion_tokens": 102,
+  "total_tokens": 1007
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 848,
+  "completion_tokens": 98,
+  "total_tokens": 946
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "Whenever the man refers to his YouTube channel or a specific YouTube video or another channel"
+      ]
+    ],
+    [
+      [
+        "Whenever the man refers to his YouTube channel or a specific YouTube video or another channel"
+      ]
+    ],
+    [
+      [
+        "Whenever the man refers to his Youtube channel or a specific Youtube video or another channel"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "transcript"
+      ]
+    ],
+    [
+      [
+        "transcript"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "right side of the screen"
+      ]
+    ],
+    [
+      [
+        "on the right side of the screen"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text",
+        "image"
+      ]
+    ],
+    [
+      [
+        "text",
+        "image"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "YouTube icon",
+          "Channel name"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "Channel name"
+        ],
+        "image": [
+          "YouTube icon"
+        ],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Take out all “thank you for your donation” and “thank you for your comment” parts - essentially these that are outside of the questions+answers (excluding the opening and final ment).
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 908,
+  "completion_tokens": 108,
+  "total_tokens": 1016
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 851,
+  "completion_tokens": 107,
+  "total_tokens": 958
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "thank you for your donation",
+        "thank you for your comment",
+        "outside of the questions+answers",
+        "excluding the opening and final ment"
+      ]
+    ],
+    [
+      [
+        "all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts",
+        "outside of the questions+answers",
+        "excluding the opening and final ment"
+      ]
+    ],
+    [
+      [
+        "all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "transcript",
+        "transcript",
+        "other",
+        "other"
+      ]
+    ],
+    [
+      [
+        "transcript",
+        "context",
+        "position"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      []
+    ],
+    [
+      []
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  For each question that is being read out and included in the video, show it clearly on the screen, preferably in the form of comment box.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 899,
+  "completion_tokens": 97,
+  "total_tokens": 996
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 842,
+  "completion_tokens": 98,
+  "total_tokens": 940
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "each question that is being read out and included in the video"
+      ]
+    ],
+    [
+      [
+        "For each question that is being read out and included in the video"
+      ]
+    ],
+    [
+      [
+        "For each question that is being read out and included in the video"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "video"
+      ]
+    ],
+    [
+      [
+        "action"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "on the screen"
+      ]
+    ],
+    [
+      [
+        "on the screen"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "show it clearly",
+          "preferably in the form of comment box"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "show it clearly",
+          "in the form of comment box"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  For each question that is being read out and included in the video, show it clearly on the screen, preferably in the form of comment box.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 899,
+  "completion_tokens": 95,
+  "total_tokens": 994
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 842,
+  "completion_tokens": 96,
+  "total_tokens": 938
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "each question that is being read out and included in the video"
+      ]
+    ],
+    [
+      [
+        "For each question that is being read out and included in the video"
+      ]
+    ],
+    [
+      [
+        "For each question that is being read out and included in the video"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "video"
+      ]
+    ],
+    [
+      [
+        "action"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      [
+        "on the screen"
+      ]
+    ],
+    [
+      [
+        "on the screen"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text",
+        "shape"
+      ]
+    ],
+    [
+      [
+        "shape"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "show it clearly",
+          "in the form of comment box"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "show it clearly"
+        ],
+        "image": [],
+        "shape": [
+          "comment box"
+        ],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Timestamp -> 4:00
+When talking about the personal ig account, include the @doctor_gary (or whatever the instagram account is)
+
+I’d prefer white, slightly rounded letters, and add dynamic motion to it - appearing from left to right. 
+
+Keep it for around 5 seconds on the screen.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 933,
+  "completion_tokens": 123,
+  "total_tokens": 1056
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 876,
+  "completion_tokens": 119,
+  "total_tokens": 995
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "4:00",
+        "talking about the personal ig account",
+        "around 5 seconds"
+      ]
+    ],
+    [
+      [
+        "4:00",
+        "When talking about the personal ig account",
+        "Keep it for around 5 seconds on the screen"
+      ]
+    ],
+    [
+      [
+        "Timestamp -> 4:00 When talking about the personal ig account"
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "position",
+        "transcript",
+        "other"
+      ]
+    ],
+    [
+      [
+        "position",
+        "transcript",
+        "context"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      []
+    ],
+    [
+      [
+        "appearing from left to right"
+      ]
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ],
+    [
+      [
+        "text"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [
+          "@doctor_gary",
+          "white",
+          "slightly rounded letters",
+          "dynamic motion",
+          "appearing from left to right"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [
+          "@doctor_gary",
+          "white",
+          "slightly rounded",
+          "dynamic motion"
+        ],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
+INPUT:  Take out moments of pause between questions (i.e. the moments where doctor Gary  braces himself to read out the next question). The goal is to make the video more concise - the answers are already extensive, so we would like to shorten the part before reading out the question as much as possible.
+calling:  ./prompts/prompt_parse_intent.txt
+Usage Info: {
+  "prompt_tokens": 930,
+  "completion_tokens": 104,
+  "total_tokens": 1034
+}
+calling:  ./prompts/prompt_parse_intent_3.txt
+Usage Info: {
+  "prompt_tokens": 873,
+  "completion_tokens": 92,
+  "total_tokens": 965
+}
+new, old, gt {
+  "temporal": [
+    [
+      [
+        "moments of pause between questions",
+        "the moments where doctor Gary braces himself to read out the next question"
+      ]
+    ],
+    [
+      [
+        "moments of pause between questions",
+        "the moments where doctor Gary braces himself to read out the next question",
+        "the part before reading out the question"
+      ]
+    ],
+    [
+      [
+        "moments of pause between questions (i.e. the moments where doctor Gary braces himself to read out the next question)."
+      ]
+    ]
+  ],
+  "temporal_labels": [
+    [
+      [
+        "video",
+        "video"
+      ]
+    ],
+    [
+      [
+        "action",
+        "action",
+        "context"
+      ]
+    ],
+    [
+      null
+    ]
+  ],
+  "spatial": [
+    [
+      []
+    ],
+    [
+      []
+    ],
+    [
+      []
+    ]
+  ],
+  "edit": [
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ],
+    [
+      [
+        "cut"
+      ]
+    ]
+  ],
+  "parameters": [
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      {
+        "text": [],
+        "image": [],
+        "shape": [],
+        "blur": [],
+        "crop": [],
+        "zoom": []
+      }
+    ],
+    [
+      null
+    ]
+  ]
+}
+--------------------
