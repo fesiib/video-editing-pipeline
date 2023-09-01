@@ -15,11 +15,12 @@ You have to identify 3 types of references from the command first:
 - [text, image, shape, blur, cut, crop, zoom]
 - edit operations must be only among the above list
 
-4. Edit Parameter reference: any information in the command that could refer to specific parameters of an edit operation that was identified ([text, image, shape, blur, crop, zoom]).
+4. Edit Parameter reference: any information in the command that could refer to specific parameters of an edit operation that was identified ([text, image, shape, blur, cut, crop, zoom]).
 - text: content, font style, font color, or font size
 - image: visual keywords
 - shape: type of shape
 - blur: degree of blur to apply
+- cut: no parameters
 - crop: how much to crop
 - zoom: how long to perform the zooming animation
 

@@ -15,14 +15,14 @@ METADATA_FILENAME = "./metadata/4LdIvyfzoGY_10.txt"
 PROMPT_PARSER_FILENAME = "./prompts/prompt_parse_intent_3.txt"
 PROMPT_TEMPORAL_POSITION_FILENAME = "./prompts/temporal_position.txt"
 PROMPT_TEMPORAL_TRANSCRIPT_FILENAME = "./prompts/temporal_transcript_exp.txt"
-PROMPT_TEMPORAL_ACTION_FILENAME = "./prompts/temporal_action.txt"
-PROMPT_TEMPORAL_VISUAL_FILENAME = "./prompts/temporal_visual.txt"
+PROMPT_TEMPORAL_VIDEO_FILENAME = "./prompts/temporal_video_exp.txt"
 PROMPT_TEMPORAL_FILENAME = "./prompts/temporal.txt"
 PROMPT_SPATIAL_FILENAME = "./prompts/spatial.txt"
 PROMPT_PARAMETERS_FILENAME = "./prompts/parameters.txt"
 
-class IntentParser():
+class Pipeline():
     def __init__(self, chunk_size = 20, limit = 40) -> None:
+        self.top_k = 10
         self.chunk_size = chunk_size
         self.limit = limit
         openai.organization = "org-z6QgACarPepyUdyAq45DMSiB"
@@ -32,8 +32,7 @@ class IntentParser():
         self.prompt_parse_filename = PROMPT_PARSER_FILENAME
         self.prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME
         self.prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME
-        self.prompt_temporal_action_filename = PROMPT_TEMPORAL_ACTION_FILENAME
-        self.prompt_temporal_visual_filename = PROMPT_TEMPORAL_VISUAL_FILENAME
+        self.prompt_temporal_video_filename = PROMPT_TEMPORAL_VIDEO_FILENAME
         self.prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME
         self.prompt_spatial_filename = PROMPT_SPATIAL_FILENAME
         self.prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME
@@ -43,8 +42,7 @@ class IntentParser():
         prompt_parse_filename = PROMPT_PARSER_FILENAME,
         prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME,
         prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME,
-        prompt_temporal_action_filename = PROMPT_TEMPORAL_ACTION_FILENAME,
-        prompt_temporal_visual_filename = PROMPT_TEMPORAL_VISUAL_FILENAME,
+        prompt_temporal_video_filename = PROMPT_TEMPORAL_VIDEO_FILENAME,
         prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME,
         prompt_spatial_filename = PROMPT_SPATIAL_FILENAME,
         prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME          
@@ -53,8 +51,7 @@ class IntentParser():
         self.prompt_parse_filename = prompt_parse_filename
         self.prompt_temporal_position_filename = prompt_temporal_position_filename
         self.prompt_temporal_transcript_filename = prompt_temporal_transcript_filename
-        self.prompt_temporal_action_filename = prompt_temporal_action_filename
-        self.prompt_temporal_visual_filename = prompt_temporal_visual_filename
+        self.prompt_temporal_video_filename = prompt_temporal_video_filename
         self.prompt_temporal_filename = prompt_temporal_filename
         self.prompt_spatial_filename = prompt_spatial_filename
         self.prompt_parameters_filename = prompt_parameters_filename
@@ -73,7 +70,6 @@ class IntentParser():
         return completion.choices[0].message
     
     def predict_relevant_text(self, input):
-        print("calling: ", self.prompt_parse_filename)
         with open(self.prompt_parse_filename, 'r') as f:
             context = f.read()
         completion = self.completion_endpoint(context, input) 
@@ -87,135 +83,136 @@ class IntentParser():
         }
 
     def process_request(self, msg):
-        # edit_request = msg
         edit_request = msg["requestParameters"]["text"]
+        consider_edits = msg["requestParameters"]["considerEdits"]
+        skipped_segments = []
+        if (consider_edits):
+            for edit in msg["edits"]:
+                skipped_segments.append({
+                    "start": edit["temporalParameters"]["start"],
+                    "finish": edit["temporalParameters"]["finish"],
+                })
+        ### maybe obtain skipped segments from edits????
         relevant_text = self.predict_relevant_text(edit_request)
-        edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"])
+        edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], skipped_segments)
         msg["edits"] = edits
-        msg["requestParameters"]["editOperation"] = relevant_text["edit"][0]
+        msg["requestParameters"]["editOperations"] = relevant_text["edit"]
+        msg["requestParameters"]["parameters"] = relevant_text["parameters"]
         return msg
     
-    def predict_temporal_segments(self, temporal_segments, temporal_labels):
+    def predict_temporal_segments(self, temporal_segments, temporal_labels, skipped_segments=[]):
         ranges = []
-        all_context = ["Duration of the video: 00:00:00 - 00:20:20"]
+        all_other = ["Duration of the video: 00:00:00 - 00:20:20"]
         all_position = []
         all_transcript = []
-        all_action = []
-        all_visual = []
+        all_video = []
 
         for (segment, label) in zip(temporal_segments, temporal_labels):
-            if label == "context":
-                all_context.append(segment)
+            if label == "other":
+                all_other.append(segment)
             if label == "position":
                 all_position.append(segment)
             if label == "transcript":
                 all_transcript.append(segment)
-            if label == "action":
-                all_action.append(segment)
-            if label == "visual":
-                all_visual.append(segment)
+            if label == "video":
+                all_video.append(segment)
         
-        # ranges_position = self.process_temporal_position(all_position, all_context)
-        # ranges_transcript = self.process_temporal_transcript(all_transcript, all_context)
-        # ranges_transcript = self.process_temporal_transcript_cosine_similarity(all_transcript, all_context)
-        ranges_action = self.process_temporal_action(all_action, all_context)
-        # ranges_visual = self.process_temporal_visual(all_visual, all_context)
-        # ranges = merge_ranges(ranges_position + ranges_transcript + ranges_action + ranges_visual)
+        ranges_position = self.process_temporal_position(all_position, all_other)
+        ranges_transcript = self.process_temporal_transcript(all_transcript, all_other, skipped_segments)
+        # ranges_transcript = self.process_temporal_transcript_cosine_similarity(all_transcript, all_other, skipped_segments)
+        ranges_video = self.process_temporal_video(all_video, all_other, skipped_segments)
+        
+        for interval in ranges_position:
+            print("position:", interval["start"], interval["end"], interval["info"])
+        for interval in ranges_transcript:
+            print("transcript:", interval["start"], interval["end"], interval["info"])
+        for interval in ranges_video:
+            print("video:", interval["start"], interval["end"], interval["info"])
+        
+        ranges = merge_timecodes(ranges_position + ranges_transcript + ranges_video)
 
-        # ranges = self.process_temporal_metadata(temporal_segments)
+        for interval in ranges:
+            print("final:", interval["start"], interval["end"], interval["info"])
 
-        ranges = ranges_action
         edits = []
         for interval in ranges:
-            edits.append(get_timecoded_edit_instance(interval))
+            new_edit = get_timecoded_edit_instance(interval)
+            new_edit["temporalParameters"]["info"] = interval["info"]
+            edits.append(new_edit)
         return edits
 
-    def process_temporal_metadata(self, input_texts):
-        with open(self.prompt_temporal_filename, 'r') as f:
-            prompt = f.read()
-        
-        video_data = []
-        with open(METADATA_SPLIT_FILENAME) as metadata:
-            for line in metadata:
-                interval = ast.literal_eval(line.rstrip())
-                interval['dense_caption'] = ""
-                video_data.append(interval)
-        
-        # split video data into chunks
-        CHUNK_SIZE = self.chunk_size 
-        LIMIT = min(self.limit, len(video_data))
-        if (LIMIT == 0):
-            LIMIT = len(video_data)
-
-        ranges = []
-
-        for i in range(0, len(video_data[0:LIMIT]), CHUNK_SIZE):
-            for item in input_texts:
-                print(item)
-                if (Timecode.is_timecode(item)):
-                    timecode = Timecode(item)
-                    start_timecode = Timecode(video_data[i]["start"])
-                    end_timecode = Timecode(video_data[min(i+CHUNK_SIZE-1, len(video_data) - 1)]["end"])
-                    if (start_timecode > timecode or end_timecode < timecode):
-                        continue
-                    cur_time = int(timecode.convert_timecode_to_sec())
-                    cur_range = [{
-                        "start": Timecode.convert_sec_to_timecode(max(cur_time - 2, 0)),
-                        "end": Timecode.convert_sec_to_timecode(cur_time + 2),
-                    }]
-                    ranges += cur_range
-                    continue
-                request = self.convert_json_list_to_text(video_data[i:i+CHUNK_SIZE]) + "\nUser Request: " + item
-                response = self.completion_endpoint(prompt, request)
-                #print(response)
-                try:
-                    ranges += ast.literal_eval(response["content"])
-                except:
-                    print("Incorrect format returned by GPT")
-        return merge_ranges(ranges)
-    
-    def process_temporal_position(self, input_texts, context_texts):
+    def process_temporal_position(self, input_texts, other_texts):
         return self.__process_temporal_specific_segments(
-            input_texts, context_texts, self.prompt_temporal_position_filename, [])
+            input_texts, other_texts, self.prompt_temporal_position_filename, [])
     
-    def process_temporal_transcript(self, input_texts, context_texts):
-        # TODO: merge input_texts and context_texts
+    ### TODO: try cosine similarity with metadata and input only top-k (that do not overlap with existing edits)
+    def process_temporal_transcript(self, input_texts, other_texts, skipped_segments):
         if (len(input_texts) == 0):
             return []
-        timecoded_transcript = []
-        transcript = []
+        all_timecoded_transcript = []
         with open(self.metadata_filename) as f:
             for line in f:
                 interval = ast.literal_eval(line.rstrip())
-                transcript.append(interval["transcript"])
-                timecoded_transcript.append({
+                all_timecoded_transcript.append({
                     "start": interval["start"],
                     "end": interval["end"],
                     "transcript": interval["transcript"],
                 })
-        relevant_transcript_indexes = self.__process_temporal_specific_indexes(
-            "Transcript", input_texts, context_texts,
+        timecoded_transcript = []
+        # remove transcript segments that are in the skipped segments
+        for item in all_timecoded_transcript:
+            start = Timecode(item["start"])
+            end = Timecode(item["end"])
+            skip = False
+            for segment in skipped_segments:
+                skipped_start = Timecode(segment["start"])
+                skipped_end = Timecode(segment["finish"])        
+                if ((start > skipped_start or start == skipped_start)
+                    and (end < skipped_end or end == skipped_end)):
+                    skip = True
+                    break
+            if (not skip):
+                item["score"] = 0
+                for input in input_texts:
+                    item["score"] = max(get_cosine_similarity_score(input, item["transcript"]), item["score"])
+                timecoded_transcript.append(item)
+                
+        timecoded_transcript.sort(key=lambda x: x["score"], reverse=True)
+        # for item in timecoded_transcript:
+        #     print(item["score"], item["transcript"])
+        
+        timecoded_transcript = timecoded_transcript[0:min(len(timecoded_transcript), self.top_k)]
+        timecoded_transcript.sort(key=lambda x: x["start"])
+        transcript = []
+        for item in timecoded_transcript:
+            transcript.append(item["transcript"])
+
+        response = self.__process_temporal_specific_indexes(
+            "Transcript", input_texts, other_texts,
             self.prompt_temporal_transcript_filename, transcript
         )
         ranges = []
         
-        for index in relevant_transcript_indexes:
+        for item in response:
+            index = int(item["index"])
+            explanation = item["explanation"]
             if (index >= len(timecoded_transcript) or index < 0):
                 print("ERROR: Transcript segment not found in metadata", index)
             else:
                 ranges.append({
                     "start": timecoded_transcript[index]["start"],
                     "end": timecoded_transcript[index]["end"],
+                    "info": [explanation],
                 })
         return merge_ranges(ranges)
     
     def process_temporal_transcript_cosine_similarity(
-        self, input_texts, context_texts,
+        self, input_texts, other_texts, skipped_segments,
         threshold=0.5
     ):
+        input_texts += other_texts
         if (len(input_texts) == 0):
             return []
-        # TODO: merge input_texts and context_texts
         timecoded_transcript = []
         with open(self.metadata_filename) as f:
             for line in f:
@@ -225,8 +222,6 @@ class IntentParser():
                     "end": interval["end"],
                     "transcript": interval["transcript"],
                 })
-        # for i, item in enumerate(transcript):
-        #     print(json.dumps(i), json.dumps(item))
         
         ranges = []
 
@@ -237,65 +232,82 @@ class IntentParser():
                     ranges.append({
                         "start": item["start"],
                         "end": item["end"],
+                        "info": [],
                     })
                     found = True
             if (not found):
                 print("ERROR: Transcript segment not found in metadata", input)
         return merge_ranges(ranges)
     
-    def process_temporal_action(self, input_texts, context_texts):
+    ### TODO: try cosine similarity with metadata and input only top-k (that do not overlap with existing edits)
+    def process_temporal_video(self, input_texts, other_texts, skipped_segments):
         if (len(input_texts) == 0):
             return []
-        timecoded_metadata = []
-        metadata = []
+        all_timecoded_metadata = []
         with open(self.metadata_filename) as f:
             for line in f:
                 interval = ast.literal_eval(line.rstrip())
-                metadata.append({
-                    "action": interval["action_pred"],
-                    "caption": interval["synth_caption"],
-                })
-                timecoded_metadata.append({
+                all_timecoded_metadata.append({
                     "start": interval["start"],
                     "end": interval["end"],
                     "action": interval["action_pred"],
-                    "caption": interval["synth_caption"],
+                    "caption": interval["synth_caption"].strip(),
                 })
-        relevant_indexes = self.__process_temporal_specific_indexes(
+        
+        timecoded_metadata = []
+        # remove transcript segments that are in the skipped segments
+        for item in all_timecoded_metadata:
+            start = Timecode(item["start"])
+            end = Timecode(item["end"])
+            skip = False
+            for segment in skipped_segments:
+                skipped_start = Timecode(segment["start"])
+                skipped_end = Timecode(segment["finish"])        
+                if ((start > skipped_start or start == skipped_start)
+                    and (end < skipped_end or end == skipped_end)):
+                    skip = True
+                    break
+            if (not skip):
+                item["score"] = 0
+                cur_metadata = item["action"] + ", " + item["caption"]
+                for input in input_texts:
+                    item["score"] = max(get_cosine_similarity_score(input, cur_metadata), item["score"])
+                timecoded_metadata.append(item)
+                
+        timecoded_metadata.sort(key=lambda x: x["score"], reverse=True)
+        # for item in timecoded_metadata:
+        #     cur_metadata = item["action"] + ", " + item["caption"]
+        #     print(item["score"], cur_metadata)
+        timecoded_metadata = timecoded_metadata[0:min(len(timecoded_metadata), self.top_k)]
+        timecoded_metadata.sort(key=lambda x: x["start"])
+        metadata = []
+        for item in timecoded_metadata:
+            metadata.append({
+                "action": item["action"],
+                "caption": item["caption"],
+            })
+        
+        response = self.__process_temporal_specific_indexes(
             "Metadata", 
-            input_texts, context_texts,
-            self.prompt_temporal_action_filename, metadata
+            input_texts, other_texts,
+            self.prompt_temporal_video_filename, metadata
         )
         ranges = []
         
-        for index in relevant_indexes:
+        for item in response:
+            index = int(item["index"])
+            explanation = item["explanation"]
             if (index >= len(timecoded_metadata) or index < 0):
                 print("ERROR: Transcript segment not found in metadata", index)
             else:
                 ranges.append({
                     "start": timecoded_metadata[index]["start"],
                     "end": timecoded_metadata[index]["end"],
+                    "info": [explanation],
                 })
         return merge_ranges(ranges)
-
     
-    def process_temporal_visual(self, input_texts, context_texts):
-        if (len(input_texts) == 0):
-            return []
-        metadata = []
-        with open(self.metadata_filename) as f:
-            for line in f:
-                interval = ast.literal_eval(line.rstrip())
-                metadata.append({
-                    "start": interval["start"],
-                    "end": interval["end"],
-                    #"visual_description": interval["dense_caption"],
-                    "caption": interval["synth_caption"],
-                })
-        return self.__process_temporal_specific_segments(
-            input_texts, context_texts, self.prompt_temporal_visual_filename, metadata)
-    
-    def __process_temporal_specific_segments(self, input_texts, context_texts, prompt_filename, metadata):
+    def __process_temporal_specific_segments(self, input_texts, other_texts, prompt_filename, metadata):
         if (len(input_texts) == 0):
             return []
         # TODO: merge input_texts and context_texts
@@ -312,12 +324,14 @@ class IntentParser():
 
         if (len(metadata) == 0):
             for item in input_texts:
-                request = ("Context: [" + self.convert_json_list_to_text(context_texts, ", ") + "]"
-                           + "\nUser Request: " + item)
+                request = ("User Request: " + item)
                 response = self.completion_endpoint(prompt, request)
                 #print(response)
                 try:
-                    ranges += ast.literal_eval(response["content"])
+                    cur_ranges = ast.literal_eval(response["content"])
+                    for interval in cur_ranges:
+                        interval["info"] = [item] 
+                    ranges += cur_ranges
                 except:
                     print("RESPONSE: ", response["content"])
                     print("Incorrect format returned by GPT")
@@ -325,7 +339,7 @@ class IntentParser():
 
         for i in range(0, len(metadata[0:LIMIT]), CHUNK_SIZE):
             for item in input_texts:
-                request = ("Context: [" + self.convert_json_list_to_text(context_texts, ", ") + "]"
+                request = ("Context: [" + self.convert_json_list_to_text(other_texts, ", ") + "]"
                            + "\nMetadata: " + self.convert_json_list_to_text(metadata[i:i+CHUNK_SIZE], ", ") 
                            + "\nUser Request: " + item)
                 response = self.completion_endpoint(prompt, request)
@@ -334,12 +348,14 @@ class IntentParser():
                     ranges += ast.literal_eval(response["content"])
                 except:
                     print("Incorrect format returned by GPT")
+        for interval in ranges:
+            interval["info"] = []
         return merge_ranges(ranges)
 
     def __process_temporal_specific_indexes(
         self,
         metadata_name,
-        input_texts, context_texts,
+        input_texts, other_texts,
         prompt_filename, metadata
     ):
         if (len(input_texts) == 0):
@@ -347,35 +363,26 @@ class IntentParser():
         with open(prompt_filename, 'r') as f:
             prompt = f.read()
         
-        for i, item in enumerate(metadata):
-            print(json.dumps(i), json.dumps(item))
+        # for i, item in enumerate(metadata):
+        #     print(json.dumps(i), json.dumps(item))
         
         text_metadata = self.convert_json_list_to_text(metadata, ", ") 
         
-        request = ("Context: [" + self.convert_json_list_to_text(context_texts, ", ") + "]"
-                    + "\n" + metadata_name + ": [" + text_metadata + "]"
+        request = (metadata_name + ": [" + text_metadata + "]"
                     + "\nUser Request: [" + self.convert_json_list_to_text(input_texts, ", ") + "]")
-        print("REQ: ", request)
-        response = self.completion_endpoint(prompt, request)
-        response_content = response["content"].replace('\"', "'").replace('\'', "'")
-        print("RESP: ", json.dumps(response_content))
-        indexes = []
+
+        # completion = self.completion_endpoint(prompt, request, model="gpt-3.5-turbo-16k-0613")
+        completion = self.completion_endpoint(prompt, request, model="gpt-4")
+        
+        response = completion["content"].replace('\"', "'").replace('\'', "'")
+        print("RESP: ", json.dumps(response))
+        result = []
         try:
-            indexes = ast.literal_eval(response_content)
+            result = ast.literal_eval(response)
         except:
             print("Incorrect format returned by GPT")
-        print(json.dumps(indexes))
-        return [int(index) for index in indexes]
-
-    def process_spatial(self, input_texts, temporal_segments):
-        # image_processor = ImageProcessor()
-        return
-    def process_edit_operation(self, input_texts):
-        return
-
-    # If any fields results in N/A, ask clarifying question to resolve ambiguity
-    def clarify_message():
-        return
+        print("PARSED", json.dumps(result))
+        return result
     
     def get_summary(self, input):
         summary_request = "Generate a several word caption to summarize the purpose of the following video edit request."
@@ -402,14 +409,14 @@ class IntentParser():
         return output
 
 def main():
-    intent_parser = IntentParser()
-    intent_parser.process_request({
+    pipeline = Pipeline(20, 20)
+    pipeline.process_request({
          "requestParameters": {
             "text": "whenever the person mentions the surface go, emphasize the screen response time",
             "editOperation": "",
         },
         "edits": [],
-    }) 
+    })
 
 if __name__ == "__main__":
     main()

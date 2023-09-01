@@ -1,0 +1,510 @@
+Usage Info: {
+  "prompt_tokens": 836,
+  "completion_tokens": 81,
+  "total_tokens": 917
+}
+Usage Info: {
+  "prompt_tokens": 1357,
+  "completion_tokens": 182,
+  "total_tokens": 1539
+}
+RESP:  "[{'index': '0', 'explanation': 'comparison of surface go with other devices'}, {'index': '2', 'explanation': 'mention of the processor of surface go'}, {'index': '3', 'explanation': 'mention of the pricing, ram and storage of surface go'}, {'index': '4', 'explanation': 'mention of the finish and webcam of surface go'}, {'index': '5', 'explanation': 'mention of the display of surface go'}, {'index': '6', 'explanation': 'mention of the type cover of surface go'}, {'index': '7', 'explanation': 'mention of the build quality of surface go'}, {'index': '8', 'explanation': 'mention of the pricing of surface go'}, {'index': '9', 'explanation': 'mention of the storage options of surface go'}]"
+PARSED [{"index": "0", "explanation": "comparison of surface go with other devices"}, {"index": "2", "explanation": "mention of the processor of surface go"}, {"index": "3", "explanation": "mention of the pricing, ram and storage of surface go"}, {"index": "4", "explanation": "mention of the finish and webcam of surface go"}, {"index": "5", "explanation": "mention of the display of surface go"}, {"index": "6", "explanation": "mention of the type cover of surface go"}, {"index": "7", "explanation": "mention of the build quality of surface go"}, {"index": "8", "explanation": "mention of the pricing of surface go"}, {"index": "9", "explanation": "mention of the storage options of surface go"}]
+00:00:50 00:00:40
+00:01:20 00:01:10
+00:02:30 00:02:20
+00:04:40 00:04:30
+00:15:40 00:15:30
+00:16:40 00:16:30
+00:19:30 00:19:20
+00:19:50 00:19:40
+00:20:10 00:20:00
+transcript: 00:00:40 00:00:50 ['comparison of surface go with other devices']
+transcript: 00:01:10 00:01:20 ['mention of the processor of surface go']
+transcript: 00:02:20 00:02:30 ['mention of the pricing, ram and storage of surface go']
+transcript: 00:04:30 00:04:40 ['mention of the finish and webcam of surface go']
+transcript: 00:15:30 00:15:40 ['mention of the display of surface go']
+transcript: 00:16:30 00:16:40 ['mention of the type cover of surface go']
+transcript: 00:19:20 00:19:30 ['mention of the build quality of surface go']
+transcript: 00:19:40 00:19:50 ['mention of the pricing of surface go']
+transcript: 00:20:00 00:20:10 ['mention of the storage options of surface go']
+final: 00:00:40 00:00:50 ['comparison of surface go with other devices']
+final: 00:01:10 00:01:20 ['mention of the processor of surface go']
+final: 00:02:20 00:02:30 ['mention of the pricing, ram and storage of surface go']
+final: 00:04:30 00:04:40 ['mention of the finish and webcam of surface go']
+final: 00:15:30 00:15:40 ['mention of the display of surface go']
+final: 00:16:30 00:16:40 ['mention of the type cover of surface go']
+final: 00:19:20 00:19:30 ['mention of the build quality of surface go']
+final: 00:19:40 00:19:50 ['mention of the pricing of surface go']
+final: 00:20:00 00:20:10 ['mention of the storage options of surface go']
+--------------------
+!!!input!!!:  Every time any quality of Surface go is mentioned, show it on the screen
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['comparison of surface go with other devices']], [70.0, 80.0, ['mention of the processor of surface go']], [140.0, 150.0, ['mention of the pricing, ram and storage of surface go']], [270.0, 280.0, ['mention of the finish and webcam of surface go']], [930.0, 940.0, ['mention of the display of surface go']], [990.0, 1000.0, ['mention of the type cover of surface go']], [1160.0, 1170.0, ['mention of the build quality of surface go']], [1180.0, 1190.0, ['mention of the pricing of surface go']], [1200.0, 1210.0, ['mention of the storage options of surface go']]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'temporal_labels': ['transcript'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[81.0, 96.0], [97.0, 101.0], [146.0, 150.0], [157.0, 161.0], [255.0, 259.0], [264.0, 268.0], [283.0, 287.0], [472.0, 476.0], [1004.0, 1008.0]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'spatial': ['on the screen'], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.1111111111111111 traditional:  0.4444444444444444
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "Every time any quality of Surface go is mentioned",
+  "sentence2": "Every time any quality of Surface go is mentioned",
+  "score": 1.0
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 858,
+  "completion_tokens": 94,
+  "total_tokens": 952
+}
+Usage Info: {
+  "prompt_tokens": 1378,
+  "completion_tokens": 82,
+  "total_tokens": 1460
+}
+RESP:  "[{'index': '0', 'explanation': 'compares the two devices in general'}, {'index': '3', 'explanation': 'compares the specs of the two devices'}, {'index': '4', 'explanation': 'compares the pricing of the two devices'}, {'index': '8', 'explanation': 'compares the build quality of the two devices'}]"
+PARSED [{"index": "0", "explanation": "compares the two devices in general"}, {"index": "3", "explanation": "compares the specs of the two devices"}, {"index": "4", "explanation": "compares the pricing of the two devices"}, {"index": "8", "explanation": "compares the build quality of the two devices"}]
+00:00:50 00:00:40
+00:01:50 00:01:40
+00:02:30 00:02:20
+00:19:30 00:19:20
+transcript: 00:00:40 00:00:50 ['compares the two devices in general']
+transcript: 00:01:40 00:01:50 ['compares the specs of the two devices']
+transcript: 00:02:20 00:02:30 ['compares the pricing of the two devices']
+transcript: 00:19:20 00:19:30 ['compares the build quality of the two devices']
+final: 00:00:40 00:00:50 ['compares the two devices in general']
+final: 00:01:40 00:01:50 ['compares the specs of the two devices']
+final: 00:02:20 00:02:30 ['compares the pricing of the two devices']
+final: 00:19:20 00:19:30 ['compares the build quality of the two devices']
+--------------------
+!!!input!!!:  Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them
+!!!prediction!!!:  {'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['compares the two devices in general']], [100.0, 110.0, ['compares the specs of the two devices']], [140.0, 150.0, ['compares the pricing of the two devices']], [1160.0, 1170.0, ['compares the build quality of the two devices']]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'temporal_labels': ['transcript'], 'spatial': ['bottom of the screen'], 'edit': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['shape'], 'parameters': {}, 'edits': [[108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0], [758.0, 762.0]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'spatial': ['Bottom of the screen'], 'edit': ['shape']}}
+!!!temporal evaluation!!!:  f1-score:  0.4444444444444445 traditional:  0.4444444444444445
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0000001192092896]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "Whenever the quality/price/battery/accessories of the two devices are compared",
+  "sentence2": "Whenever the quality/price/battery/accessories of the two devices are compared",
+  "score": 1.0000001192092896
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  [[1.0]]
+!!!(spatial)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "bottom of the screen",
+  "sentence2": "Bottom of the screen",
+  "score": 1.0
+ }
+]
+--------------------
+Usage Info: {
+  "prompt_tokens": 857,
+  "completion_tokens": 92,
+  "total_tokens": 949
+}
+Usage Info: {
+  "prompt_tokens": 1051,
+  "completion_tokens": 1,
+  "total_tokens": 1052
+}
+RESP:  "[]"
+PARSED []
+--------------------
+!!!input!!!:  When entering the wifi password, place a screen that shows what he’s entering. Show the first half of the password and put stars for the rest. E.g. admin12****
+!!!prediction!!!:  {'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': ['entering the wifi password', 'first half of the password'], 'temporal_labels': ['video', 'video'], 'spatial': [], 'edit': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[334.0, 338.0]], 'relevant_text': {'temporal': ['When entering the wifi password'], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
+!!!edit_op evaluation!!!:  0.5
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.9497944116592407], [0.4802290201187134]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "entering the wifi password",
+  "sentence2": "When entering the wifi password",
+  "score": 0.9497944116592407
+ },
+ {
+  "sentence1": "first half of the password",
+  "sentence2": "When entering the wifi password",
+  "score": 0.4802290201187134
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 897,
+  "completion_tokens": 161,
+  "total_tokens": 1058
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+00:06:05 00:06:00
+00:07:48 00:07:43
+00:08:09 00:08:04
+00:09:20 00:09:15
+00:10:06 00:10:01
+00:10:29 00:10:24
+00:11:16 00:11:11
+00:15:35 00:15:30
+position: 00:06:00 00:06:05 ['6:04']
+position: 00:07:43 00:07:48 ['7:48']
+position: 00:08:04 00:08:09 ['8:09']
+position: 00:09:15 00:09:20 ['9:20']
+position: 00:10:01 00:10:06 ['10:06']
+position: 00:10:24 00:10:29 ['10:29']
+position: 00:11:11 00:11:16 ['11:16']
+position: 00:15:30 00:15:35 ['15:35']
+final: 00:06:00 00:06:05 ['6:04']
+final: 00:07:43 00:07:48 ['7:48']
+final: 00:08:04 00:08:09 ['8:09']
+final: 00:09:15 00:09:20 ['9:20']
+final: 00:10:01 00:10:06 ['10:06']
+final: 00:10:24 00:10:29 ['10:29']
+final: 00:11:11 00:11:16 ['11:16']
+final: 00:15:30 00:15:35 ['15:35']
+--------------------
+!!!input!!!:  At the following moments put a very quick transitional frame which describes what the speaker is about to talk about:
+6:04 - Accessories
+7:48 - Power adapter
+8:09 - Surface Connect Connector
+9:20 - I/O
+10:06 - Webcam
+10:29 - Signature type cover
+11:16 - Magnetic docking mechanism
+15:35 - Display
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[360.0, 365.0, ['6:04']], [463.0, 468.0, ['7:48']], [484.0, 489.0, ['8:09']], [555.0, 560.0, ['9:20']], [601.0, 606.0, ['10:06']], [624.0, 629.0, ['10:29']], [671.0, 676.0, ['11:16']], [930.0, 935.0, ['15:35']]], 'relevant_text': {'temporal': ['6:04', '7:48', '8:09', '9:20', '10:06', '10:29', '11:16', '15:35'], 'temporal_labels': ['position', 'position', 'position', 'position', 'position', 'position', 'position', 'position'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text', 'frame'], 'parameters': {}, 'edits': [[362.0, 366.0], [466.0, 470.0], [487.0, 491.0], [558.0, 562.0], [604.0, 608.0], [627.0, 631.0], [674.0, 678.0], [933.0, 937.0]], 'relevant_text': {'temporal': ['6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display'], 'spatial': [], 'edit': ['text', 'frame']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.3579969108104706], [0.23679892718791962], [0.2368800938129425], [0.19319239258766174], [0.22728249430656433], [0.21480868756771088], [0.16529080271720886], [0.13264325261116028]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "6:04",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.3579969108104706
+ },
+ {
+  "sentence1": "8:09",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.2368800938129425
+ },
+ {
+  "sentence1": "7:48",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.23679892718791962
+ },
+ {
+  "sentence1": "10:06",
+  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
+  "score": 0.22728249430656433
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 843,
+  "completion_tokens": 91,
+  "total_tokens": 934
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 332,
+  "completion_tokens": 1,
+  "total_tokens": 333
+}
+00:00:05 00:00:00
+position: 00:00:00 00:00:05 ['once the video starts']
+final: 00:00:00 00:00:05 ['once the video starts']
+--------------------
+!!!input!!!:  Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part
+!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, ['once the video starts']]], 'relevant_text': {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['image'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['image']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  0.5
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0], [0.2782602906227112]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "once the video starts",
+  "sentence2": "once the video starts",
+  "score": 1.0
+ },
+ {
+  "sentence1": "no introduction part",
+  "sentence2": "once the video starts",
+  "score": 0.2782602906227112
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 843,
+  "completion_tokens": 91,
+  "total_tokens": 934
+}
+Usage Info: {
+  "prompt_tokens": 333,
+  "completion_tokens": 22,
+  "total_tokens": 355
+}
+Usage Info: {
+  "prompt_tokens": 332,
+  "completion_tokens": 1,
+  "total_tokens": 333
+}
+00:00:05 00:00:00
+position: 00:00:00 00:00:05 ['once the video starts']
+final: 00:00:00 00:00:05 ['once the video starts']
+--------------------
+!!!input!!!:  Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part
+!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, ['once the video starts']]], 'relevant_text': {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  0.5
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[1.0], [0.2782602906227112]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "once the video starts",
+  "sentence2": "once the video starts",
+  "score": 1.0
+ },
+ {
+  "sentence1": "no introduction part",
+  "sentence2": "once the video starts",
+  "score": 0.2782602906227112
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 848,
+  "completion_tokens": 108,
+  "total_tokens": 956
+}
+Usage Info: {
+  "prompt_tokens": 1425,
+  "completion_tokens": 54,
+  "total_tokens": 1479
+}
+RESP:  "[{'index': '1', 'explanation': 'mentions both devices'}, {'index': '3', 'explanation': 'mentions the specs of both devices'}, {'index': '0', 'explanation': 'mentions the gpd pocket 2'}]"
+PARSED [{"index": "1", "explanation": "mentions both devices"}, {"index": "3", "explanation": "mentions the specs of both devices"}, {"index": "0", "explanation": "mentions the gpd pocket 2"}]
+00:00:50 00:00:40
+00:01:50 00:01:40
+00:00:30 00:00:20
+transcript: 00:00:20 00:00:30 ['mentions the gpd pocket 2']
+transcript: 00:00:40 00:00:50 ['mentions both devices']
+transcript: 00:01:40 00:01:50 ['mentions the specs of both devices']
+final: 00:00:20 00:00:30 ['mentions the gpd pocket 2']
+final: 00:00:40 00:00:50 ['mentions both devices']
+final: 00:01:40 00:01:50 ['mentions the specs of both devices']
+--------------------
+!!!input!!!:  To compare the MS surface go’s spec with gpd pocket 2 apple’s spec, highlight the spec of gdp pocket 2
+!!!prediction!!!:  {'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[20.0, 30.0, ['mentions the gpd pocket 2']], [40.0, 50.0, ['mentions both devices']], [100.0, 110.0, ['mentions the specs of both devices']]], 'relevant_text': {'temporal': ['compare the MS surface go’s spec with gpd pocket 2 apple’s spec', 'highlight the spec of gdp pocket 2'], 'temporal_labels': ['transcript', 'transcript'], 'spatial': ['spec of gdp pocket 2'], 'edit': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[102.0, 106.0], [108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.25 traditional:  0.25
+!!!edit_op evaluation!!!:  0.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 840,
+  "completion_tokens": 70,
+  "total_tokens": 910
+}
+Usage Info: {
+  "prompt_tokens": 1025,
+  "completion_tokens": 131,
+  "total_tokens": 1156
+}
+RESP:  "Direct reference\n[{'index': '0', 'explanation': 'matching actions: holding a laptop'}, {'index': '2', 'explanation': 'matching actions: holding a laptop'}, {'index': '3', 'explanation': 'matching actions: holding a laptop'}, {'index': '4', 'explanation': 'matching actions: holding a laptop'}, {'index': '5', 'explanation': 'matching actions: holding a laptop'}, {'index': '7', 'explanation': 'matching actions: holding a laptop'}, {'index': '9', 'explanation': 'matching actions: holding a laptop'}]"
+Incorrect format returned by GPT
+PARSED []
+--------------------
+!!!input!!!:  It looks lightweight when he holds it. It would be good to add an emphasis for this.
+!!!prediction!!!:  {'editOperations': [], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': ['when he holds it'], 'temporal_labels': ['video'], 'spatial': [], 'edit': [], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': [], 'parameters': {}, 'edits': [[98.0, 102.0], [1177.0, 1181.0]], 'relevant_text': {'temporal': ['when he holds it.'], 'spatial': ['{object}'], 'edit': []}}
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
+!!!edit_op evaluation!!!:  1
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.9828856587409973]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "when he holds it",
+  "sentence2": "when he holds it.",
+  "score": 0.9828856587409973
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 852,
+  "completion_tokens": 76,
+  "total_tokens": 928
+}
+--------------------
+!!!input!!!:  It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'temporal_labels': [], 'spatial': ['right', 'left'], 'edit': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[131.0, 135.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 845,
+  "completion_tokens": 91,
+  "total_tokens": 936
+}
+Usage Info: {
+  "prompt_tokens": 1074,
+  "completion_tokens": 1,
+  "total_tokens": 1075
+}
+RESP:  "[]"
+PARSED []
+--------------------
+!!!input!!!:  I added a text below the prize barcode that says “Please take a photo, it’s first come, first served.”
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': ['below the prize barcode'], 'temporal_labels': ['video'], 'spatial': ['below the prize barcode'], 'edit': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[410.0, 414.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 844,
+  "completion_tokens": 97,
+  "total_tokens": 941
+}
+Usage Info: {
+  "prompt_tokens": 338,
+  "completion_tokens": 22,
+  "total_tokens": 360
+}
+00:07:40 00:07:20
+Usage Info: {
+  "prompt_tokens": 1370,
+  "completion_tokens": 1,
+  "total_tokens": 1371
+}
+RESP:  "[]"
+PARSED []
+Usage Info: {
+  "prompt_tokens": 1058,
+  "completion_tokens": 1,
+  "total_tokens": 1059
+}
+RESP:  "[]\n"
+PARSED []
+position: 00:07:20 00:07:40 ['7:20 to 7:40']
+final: 00:07:20 00:07:40 ['7:20 to 7:40']
+--------------------
+!!!input!!!:  Trim from 7:20 to 7:40 where he opens the box and says there is a manua
+!!!prediction!!!:  {'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[440.0, 460.0, ['7:20 to 7:40']]], 'relevant_text': {'temporal': ['7:20 to 7:40', 'opens the box', 'says there is a manual'], 'temporal_labels': ['position', 'video', 'transcript'], 'spatial': ['box'], 'edit': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!ground_truth!!!:  {'editOperations': ['cut'], 'parameters': {}, 'edits': [[440.0, 460.0]], 'relevant_text': {'temporal': ['7:20 to 7:40, where he opens the box and says there is a manua'], 'spatial': [], 'edit': ['cut']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  1.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  [[0.5360498428344727], [0.33780062198638916], [0.2648094892501831]]
+!!!(temporal)top_4_cosine_similarity!!!:  [
+ {
+  "sentence1": "7:20 to 7:40",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.5360498428344727
+ },
+ {
+  "sentence1": "opens the box",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.33780062198638916
+ },
+ {
+  "sentence1": "says there is a manual",
+  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
+  "score": 0.2648094892501831
+ }
+]
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Summary:
+Video Info:  (declarative visual) "Microsoft Surface Go - Classic LIVE Unboxing" - https://www.youtube.com/live/4LdIvyfzoGY?feature=share
+--------------------
+--------------------
+Temporal (margin = 0 seconds):  0.436  -->  [0.111, 0.444, 0.0, 1.0, 1.0, 1.0, 0.25, 0.0, 0.0, 0.0, 1.0]
+Temporal (margin = 5 seconds):  0.467  -->  [0.444, 0.444, 0.0, 1.0, 1.0, 1.0, 0.25, 0.0, 0.0, 0.0, 1.0]
+Edit Operation:  0.772  -->  [1.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.0, 1.0, 1.0, 1.0, 1.0]

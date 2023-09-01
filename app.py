@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify  
 from flask_cors import CORS
-from backend.intent_parser import *
+#from backend.intent_parser import *
+from backend.pipeline import Pipeline
 import json
 
 app = Flask(__name__)
@@ -10,7 +11,8 @@ CORS(app, origins = ["http://localhost:3000"])
 '''
 Server side for video editing pipline 
 '''
-intent_parser = IntentParser(40, 80)
+#intent_parser = IntentParser(40, 80)
+pipeline = Pipeline(30, 0)
 '''
 Input:
     Video Reference: youtube link
@@ -20,8 +22,8 @@ Input:
 def parse_intent():
     edit_request = request.json
     
-    intent_parser.reset()
-    edit_response = intent_parser.process_request(edit_request)
+    pipeline.reset()
+    edit_response = pipeline.process_request(edit_request)
     
     response = "User Request: {} \n \n Edit Disambiguation: {}".format(edit_request, edit_response)
 
@@ -34,8 +36,8 @@ Summary of the edit description
 def fetch_summary():
     data = request.json
 
-    intent_parser.reset()
-    response = intent_parser.get_summary(data.get("input"))
+    pipeline.reset()
+    response = pipeline.get_summary(data.get("input"))
 
     return jsonify({"summary": response})
 
@@ -43,13 +45,18 @@ def launch_server():
     app.run(host="0.0.0.0", port=9888)
 
 def test(edit_request):
-    intent_parser.reset()
-    print("!!!response!!!", json.dumps(intent_parser.process_request({
+    pipeline.reset()
+    print("!!!response!!!", json.dumps(pipeline.process_request({
         "requestParameters": {
             "text": edit_request,
             "editOperation": "text",
         },
-        "edits": [],
+        "edits": [{
+            "temporalParameters": {
+                "start": "0:00",
+                "finish": "5:00",
+            }
+        }],
     }), indent=1))
 
 if __name__ == "__main__":

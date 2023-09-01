@@ -65,45 +65,33 @@ def extract_range(start_timecode, end_timecode, transcript):
         transcript_snippet["end"] = transcript[-1]["end"]
     return transcript_snippet 
 
-def merge_ranges(input_timecodes):
+def merge_ranges(timecodes):
     #print(input_timecodes, "input timecodes")
     # run through all timecodes and convert then to Timecode format
-    timecodes = []
-    for item in input_timecodes:
+    for i in range(len(timecodes)):
+        item = timecodes[i]
         timecodeEnd = Timecode(item["end"])
         timecodeStart = Timecode(item["start"])
-        timecodes.append({"end": timecodeEnd, "start": timecodeStart})
+        print(timecodeEnd, timecodeStart)
+        timecodes[i]["end"] = timecodeEnd
+        timecodes[i]["start"] = timecodeStart
         #item["end"] = Timecode(item["end"])
         #item["start"] = Timecode(item["start"])
+    return merge_timecodes(timecodes)
 
-    timecodes.sort(key=lambda x: x["start"])
-
+def merge_timecodes(timecodes):
+    timecodes.sort(key=lambda x: x["start"].convert_timecode_to_sec())
+    
     merged_timecodes = []
     for item in timecodes:
         if len(merged_timecodes) == 0:
             merged_timecodes.append(item)
         else:
             if item["start"] < merged_timecodes[-1]["end"] or item["start"] == merged_timecodes[-1]["end"]:
-                merged_timecodes[-1]["end"] = item["end"]
+                merged_timecodes[-1]["end"] = max(item["end"], merged_timecodes[-1]["end"])
+                merged_timecodes[-1]["info"] += item["info"]
             else:
                 merged_timecodes.append(item)
-
-    # # return merged_timecodes
-    # double_pass = False
-    # while not double_pass:
-    #     idx = 0
-    #     double_pass = True
-    #     while idx < len(timecodes) - 1:
-    #         if timecodes[idx]["end"] == timecodes[idx+1]["start"]:
-    #             timecodes[idx]["end"] = timecodes[idx+1]["end"]
-    #             timecodes.pop(idx+1)
-    #             double_pass = False
-    #         idx += 1
-
-    # run through all timecodes and convert then to Timecode format
-    # for item in timecodes:
-    #     item["end"] = str(item["end"])
-    #     item["start"] = str(item["start"])
 
     return merged_timecodes
 

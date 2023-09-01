@@ -2,12 +2,14 @@ import json
 import ast
 
 from backend.intent_parser import IntentParser
+from backend.pipeline import Pipeline
 from evaluation.evaluate_helpers import *
 from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 
 # Using all metadata
 intent_parser = IntentParser(50, 50)
+pipeline = Pipeline(30, 0)
 
 # ground_truth = {
 #     "editOperations": dataset[index]["edit_text"],
@@ -45,12 +47,13 @@ def run_pipeline_request(edit_request):
         edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"]])
     
     response = {
-        "editOperation": edit_response["requestParameters"]["editOperation"],
+        "editOperations": edit_response["requestParameters"]["editOperations"],
+        "parameters": edit_response["requestParameters"]["parameters"],
         "edits": edits_temporal,
         "relevant_text": {
             "temporal": [],
             "spatial": [],
-            "edit": [edit_response["requestParameters"]["editOperation"]],
+            "edit": edit_response["requestParameters"]["editOperations"],
         },
     }
     return response
@@ -65,9 +68,54 @@ def run_pipeline(input):
         edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"]])
     
     response = {
-        "editOperation": relevant_text["edit"][0],
+        "editOperations": relevant_text["edit"],
+        "parameters": relevant_text["parameters"],
         "edits": edits_temporal,
         "relevant_text": relevant_text,
+    }
+    return response
+
+def run_pipeline_new(input):
+    relevant_text = pipeline.predict_relevant_text(input)
+    edits = pipeline.predict_temporal_segments(
+        relevant_text["temporal"], relevant_text["temporal_labels"], [
+            {
+                "start": "7:00",
+                "finish": "9:00",
+            },
+            {
+                "start": "10:00",
+                "finish": "15:00",
+            }
+        ]
+    )
+    edits_temporal = []
+    for edit in edits:
+        edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"], edit["temporalParameters"]["info"]])
+    
+    response = {
+        "editOperations": relevant_text["edit"],
+        "parameters": relevant_text["parameters"],
+        "edits": edits_temporal,
+        "relevant_text": relevant_text,
+    }
+    return response
+
+def run_pipeline_request_new(edit_request):
+    edit_response = pipeline.process_request(edit_request)
+    edits_temporal = []
+    for edit in edit_response["edits"]:
+        edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"], edit["temporalParameters"]["info"]])
+    
+    response = {
+        "editOperations": edit_response["requestParameters"]["editOperations"],
+        "parameters": edit_response["requestParameters"]["parameters"],
+        "edits": edits_temporal,
+        "relevant_text": {
+            "temporal": [],
+            "spatial": [],
+            "edit": edit_response["requestParameters"]["editOperations"],
+        },
     }
     return response
 
@@ -133,7 +181,7 @@ def run_evaluation_for_task(
         all_cosine_similarity_temporal.append(cosine_scores_temporal)
 
         (f1, traditional) = get_temporal_evaluation(prediction["edits"], ground_truth["edits"])
-        edit_operation = get_edit_operation_evaluation(prediction["editOperation"], ground_truth["editOperations"])
+        edit_operation = get_edit_operation_evaluation(prediction["editOperations"], ground_truth["editOperations"])
 
         average_temporal_f1 += f1
         average_temporal_traditional += traditional
@@ -144,6 +192,7 @@ def run_evaluation_for_task(
         all_edit_operation.append(edit_operation)
 
         print("--------------------")
+        print("!!!input!!!: ", input)
         print("!!!prediction!!!: ", prediction)
         print("!!!ground_truth!!!: ", ground_truth)
         print("!!!temporal evaluation!!!: ", "f1-score: ", f1, "traditional: ", traditional)

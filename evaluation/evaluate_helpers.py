@@ -45,6 +45,31 @@ VIDEO_DATABASE = {
     },
 }
 
+def __get_temporal_evaluation_margin(prediction, groun_truth, margin = 5):
+    ground_truth_covered = [False for _ in groun_truth]
+    prediction_covered = [False for _ in prediction]
+
+    for i, prediction_segment in enumerate(prediction):
+        prediction_left = prediction_segment[0]
+        prediction_right = prediction_segment[1]
+        for j, ground_truth_segment in enumerate(groun_truth):
+            ground_truth_left = max(0, ground_truth_segment[0] - margin)
+            ground_truth_right = ground_truth_segment[1] + margin
+            intersection = max(0, min(prediction_right, ground_truth_right) - max(prediction_left, ground_truth_left))
+            if intersection > 0:
+                prediction_covered[i] = True
+                ground_truth_covered[j] = True
+                break
+    
+    precision = sum(prediction_covered) / max(1, len(prediction))
+    recall = sum(ground_truth_covered) / max(1, len(groun_truth))
+
+    f1_score = 0
+    if precision + recall > 0:
+        f1_score = 2 * precision * recall / (precision + recall)
+    return f1_score
+
+
 def __get_temporal_evaluation_f1(prediction, ground_truth):
     # prediction: list [start, end], ground_truth: list [start, end]
     # start - end: float (seconds)
@@ -152,11 +177,13 @@ def get_data_point_as_request(dataset, index):
         "requestParameters": {
             "text": dataset[index]["description"],
             "editOperation": "",
+            "considerEdits": True,
         },
         "edits": [],
     }
     ground_truth = {
         "editOperations": dataset[index]["edit_text"],
+        "parameters": {},
         "edits": dataset[index]["temporal"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
@@ -173,6 +200,7 @@ def get_data_point(dataset, index):
 
     ground_truth = {
         "editOperations": dataset[index]["edit_text"],
+        "parameters": {},
         "edits": dataset[index]["temporal"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
@@ -195,8 +223,10 @@ def get_temporal_evaluation(prediction, ground_truth):
     # prediction: list [start, end], ground_truth: list [start, end]
     # start - end: float (seconds)
     # temporal
-    f1 = __get_temporal_evaluation_f1(prediction, ground_truth)
-    traditional = __get_temporal_evaluation_traditional(prediction, ground_truth)
+    #f1 = __get_temporal_evaluation_f1(prediction, ground_truth)
+    f1 = __get_temporal_evaluation_margin(prediction, ground_truth, margin=0)
+    #traditional = __get_temporal_evaluation_traditional(prediction, ground_truth)
+    traditional = __get_temporal_evaluation_margin(prediction, ground_truth, margin=10)
     return f1, traditional
 
 
@@ -206,6 +236,8 @@ def get_spatial_evaluation():
 
 def get_edit_operation_evaluation(prediction, ground_truth):
     if isinstance(prediction, list):
+        if len(prediction) == 0:
+            return (1 if len(ground_truth) == 0 else 0)
         total = 0
         for single_prediction in prediction:
             result = __get_single_edit_operation_evaluation(single_prediction, ground_truth)

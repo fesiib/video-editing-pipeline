@@ -73,7 +73,9 @@ class EditInstance:
                 "considerEdits": True,
                 "hasText": True,
                 "hasSketch": True,
-                "editOperation": "text"
+                "editOperation": "text",
+                "editOperations": [],
+                "parameters": {},
             }
         }
 

@@ -94,7 +94,8 @@ class IntentParser():
         relevant_text = self.predict_relevant_text(edit_request)
         edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"])
         msg["edits"] = edits
-        msg["requestParameters"]["editOperation"] = relevant_text["edit"][0]
+        msg["requestParameters"]["editOperations"] = relevant_text["edit"]
+        msg["requestParameters"]["parameters"] = relevant_text["parameters"]
         return msg
     
     def predict_temporal_segments(self, temporal_segments, temporal_labels):

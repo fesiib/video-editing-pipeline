@@ -6,14 +6,39 @@ import json
 def round_number(number):
     return math.floor(number * 1000) / 1000
 
-def main():
+def main_test_request():
+    result = run_evaluation_for_task(
+        task_id = 6,
+        data_point_getter = get_data_point_as_request,
+        pipeline_runner = run_pipeline_request_new,
+        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+    )
+
+    if (len(result["dataset"]) == 0):
+        return
+    info = get_data_point_info(result["dataset"], 0)
+    
+    print("Summary:")
+    print("Video Info: ", "(" + info["videoKnowledge"], info["videoChannel"] + ")", '"' + info["videoTitle"] + '"', "-", info["videoUrl"])
+
+    print("--------------------")
+    # all_cosine_similarity": all_cosine_similarity,
+    # "all_top_10_cosine_similarity": all_top_10_cosine_similarity,")
+    print("--------------------")
+
+    print("Temporal F1: ", round_number(result["temporal_f1"]), " --> ", [round_number(x) for x in result["all_temporal_f1"]])
+    print("Temporal Trad F1: ", round_number(result["temporal_traditional"]), " --> ", [round_number(x) for x in result["all_temporal_traditional"]])
+    print("Edit Operation: ", round_number(result["edit_operation"]), " --> ", [round_number(x) for x in result["all_edit_operation"]])
+    pass
+
+def main_evaluate():
     # result = run_evaluation_for_task()
 
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point,
-        pipeline_runner = run_pipeline,
-        indexes = [1, 2, 7]
+        pipeline_runner = run_pipeline_new,
+        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
     )
 
     if (len(result["dataset"]) == 0):
@@ -137,8 +162,9 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    # main()
-    test()
+    #main_evaluate()
+    main_test_request()
+    # test()
 
     #summarize_prompt("./prompts/temporal_transcript.txt")
     #summarize_captions("./metadata/4LdIvyfzoGY_10.txt")
