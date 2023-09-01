@@ -72,7 +72,6 @@ def merge_ranges(timecodes):
         item = timecodes[i]
         timecodeEnd = Timecode(item["end"])
         timecodeStart = Timecode(item["start"])
-        print(timecodeEnd, timecodeStart)
         timecodes[i]["end"] = timecodeEnd
         timecodes[i]["start"] = timecodeStart
         #item["end"] = Timecode(item["end"])

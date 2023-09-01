@@ -50,6 +50,7 @@ def test(edit_request):
         "requestParameters": {
             "text": edit_request,
             "editOperation": "text",
+            "considerEdits": False,
         },
         "edits": [{
             "temporalParameters": {
@@ -60,5 +61,5 @@ def test(edit_request):
     }), indent=1))
 
 if __name__ == "__main__":
-    #launch_server()
-    test("whenever the person mentions the surface go, emphasize the screen response time")
+    launch_server()
+    # test("whenever the person mentions the surface go, emphasize the screen response time")

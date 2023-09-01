@@ -84,8 +84,14 @@ class Pipeline():
 
     def process_request(self, msg):
         edit_request = msg["requestParameters"]["text"]
-        consider_edits = msg["requestParameters"]["considerEdits"]
+        consider_edits = msg["requestParameters"]["considerEdits"] == "True"
         skipped_segments = []
+        if ("skippedSegments" in msg and isinstance(msg["skippedSegments"], list) == True):
+            for skipped in msg["skippedSegments"]:
+                skipped_segments.append({
+                    "start": skipped["temporalParameters"]["start"],
+                    "finish": skipped["temporalParameters"]["finish"],
+                })
         if (consider_edits):
             for edit in msg["edits"]:
                 skipped_segments.append({
@@ -122,12 +128,12 @@ class Pipeline():
         # ranges_transcript = self.process_temporal_transcript_cosine_similarity(all_transcript, all_other, skipped_segments)
         ranges_video = self.process_temporal_video(all_video, all_other, skipped_segments)
         
-        for interval in ranges_position:
-            print("position:", interval["start"], interval["end"], interval["info"])
-        for interval in ranges_transcript:
-            print("transcript:", interval["start"], interval["end"], interval["info"])
-        for interval in ranges_video:
-            print("video:", interval["start"], interval["end"], interval["info"])
+        # for interval in ranges_position:
+        #     print("position:", interval["start"], interval["end"], interval["info"])
+        # for interval in ranges_transcript:
+        #     print("transcript:", interval["start"], interval["end"], interval["info"])
+        # for interval in ranges_video:
+        #     print("video:", interval["start"], interval["end"], interval["info"])
         
         ranges = merge_timecodes(ranges_position + ranges_transcript + ranges_video)
 
@@ -347,6 +353,7 @@ class Pipeline():
                 try:
                     ranges += ast.literal_eval(response["content"])
                 except:
+                    print("RESPONSE: ", response["content"])
                     print("Incorrect format returned by GPT")
         for interval in ranges:
             interval["info"] = []
@@ -375,13 +382,12 @@ class Pipeline():
         completion = self.completion_endpoint(prompt, request, model="gpt-4")
         
         response = completion["content"].replace('\"', "'").replace('\'', "'")
-        print("RESP: ", json.dumps(response))
         result = []
         try:
             result = ast.literal_eval(response)
         except:
+            print("RESP: ", json.dumps(response))
             print("Incorrect format returned by GPT")
-        print("PARSED", json.dumps(result))
         return result
     
     def get_summary(self, input):
