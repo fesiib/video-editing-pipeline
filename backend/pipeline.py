@@ -5,8 +5,10 @@ import argparse
 import openai
 import ast
 
+from .image_processor import *
 from .transcript_parser import *
 from .helpers import Timecode
+from .image_processor
 from .operations import *
 from evaluation.sentence_embedder import get_cosine_similarity_score
 
@@ -18,7 +20,7 @@ PROMPT_TEMPORAL_TRANSCRIPT_FILENAME = "./prompts/temporal_transcript_exp.txt"
 PROMPT_TEMPORAL_VIDEO_FILENAME = "./prompts/temporal_video_exp.txt"
 PROMPT_TEMPORAL_FILENAME = "./prompts/temporal.txt"
 PROMPT_SPATIAL_FILENAME = "./prompts/spatial.txt"
-PROMPT_PARAMETERS_FILENAME = "./prompts/parameters_interpret.txt"
+PROMPT_PARAMETERS_FILENAME = "./prompts/parameters.txt"
 
 class Pipeline():
     def __init__(self, chunk_size = 20, limit = 40) -> None:
@@ -36,7 +38,6 @@ class Pipeline():
         self.prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME
         self.prompt_spatial_filename = PROMPT_SPATIAL_FILENAME
         self.prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME
-        self.parameters_of_interest = ["text", "shape", "blur", "crop", "zoom"]
 
     def reset(self,
         metadata_filename = METADATA_FILENAME,
@@ -101,24 +102,21 @@ class Pipeline():
                     "start": edit["temporalParameters"]["start"],
                     "finish": edit["temporalParameters"]["finish"],
                 })
-        
-        if from_scratch == False and add_more == False and adjust_selected == False:
-            print("ERROR: Invalid processing mode")
-            msg["edits"] = []
+        ### maybe obtain skipped segments from edits????
+        if (from_scratch or add_more):
+            self.relevant_text = self.predict_relevant_text(edit_request)
+            print("relevant_text", self.relevant_text)
+            edits = self.predict_temporal_segments(self.relevant_text["temporal"], self.relevant_text["temporal_labels"], skipped_segments)
+            msg["edits"] = edits
+            msg["requestParameters"]["editOperations"] = self.relevant_text["edit"]
+            msg["requestParameters"]["parameters"] = self.relevant_text["parameters"]
+        elif (adjust_selected):
             msg["requestParameters"]["editOperations"] = [msg["requestParameters"]["editOperation"]]
             msg["requestParameters"]["parameters"] = {}
-            return msg
-        ### maybe obtain skipped segments from edits????
-        relevant_text = self.predict_relevant_text(edit_request)
-        print("relevant_text", relevant_text)
-        edits = msg["edits"]
-        if (from_scratch or add_more):
-            edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], skipped_segments)  
-        msg["requestParameters"]["editOperations"] = relevant_text["edit"]
-        edits = self.predict_spatial_regions(relevant_text["spatial"], edits)
-        edits = self.predict_parameters(relevant_text["parameters"], relevant_text["edit"], edits, adjust_selected)
-        msg["requestParameters"]["parameters"] = relevant_text["parameters"]
-        msg["edits"] = edits
+        else:
+            print("ERROR: Invalid processing mode")
+            msg["requestParameters"]["editOperations"] = [msg["requestParameters"]["editOperation"]]
+            msg["requestParameters"]["parameters"] = {}
         return msg
     
     def predict_temporal_segments(self, temporal_segments, temporal_labels, skipped_segments=[]):
@@ -139,16 +137,9 @@ class Pipeline():
                 all_video.append(segment)
         
         ranges_position = self.process_temporal_position(all_position, all_other)
-        ranges_transcript = []
-        for reference in all_transcript:
-            cur_ranges = self.process_temporal_transcript([reference], all_other, skipped_segments)
-            ranges_transcript += cur_ranges
+        ranges_transcript = self.process_temporal_transcript(all_transcript, all_other, skipped_segments)
         # ranges_transcript = self.process_temporal_transcript_cosine_similarity(all_transcript, all_other, skipped_segments)
-        ranges_video = []
-
-        for reference in all_video:
-            cur_ranges = self.process_temporal_video([reference], all_other, skipped_segments)
-            ranges_video += cur_ranges
+        ranges_video = self.process_temporal_video(all_video, all_other, skipped_segments)
         
         # for interval in ranges_position:
         #     print("position:", interval["start"], interval["end"], interval["info"])
@@ -160,13 +151,21 @@ class Pipeline():
         ranges = merge_timecodes(ranges_position + ranges_transcript + ranges_video)
 
         for interval in ranges:
-            print("final:", interval["start"], interval["end"], interval["info"], interval["source"])
+            print("final:", interval["start"], interval["end"], interval["info"])
 
         edits = []
         for interval in ranges:
             new_edit = get_timecoded_edit_instance(interval)
             new_edit["temporalParameters"]["info"] = interval["info"]
-            new_edit["temporalParameters"]["source"] = interval["source"]
+            if self.relevant_text["spatial"]:
+                bbox = self.process_spatial(self.relevant_text["spatial"][0], interval)
+                new_edit["spatialParameters"] = {
+                    "x": bbox[0], 
+                    "y": bbox[1], 
+                    "width": bbox[2], 
+                    "height": bbox[3], 
+                    "rotation": 0
+                }
             edits.append(new_edit)
         return edits
 
@@ -174,10 +173,7 @@ class Pipeline():
         return self.__process_temporal_specific_segments(
             input_texts, other_texts, self.prompt_temporal_position_filename, [])
     
-    ### TODO: Play with the amount of context
-    ### 1. top_k
-    ### 2. cosine_similarity
-    ### 3. give prev & next N snippets
+    ### TODO: try cosine similarity with metadata and input only top-k (that do not overlap with existing edits)
     def process_temporal_transcript(self, input_texts, other_texts, skipped_segments):
         if (len(input_texts) == 0):
             return []
@@ -228,7 +224,6 @@ class Pipeline():
         for item in response:
             index = int(item["index"])
             explanation = item["explanation"]
-            source = item["source"]
             if (index >= len(timecoded_transcript) or index < 0):
                 print("ERROR: Transcript segment not found in metadata", index)
             else:
@@ -236,7 +231,6 @@ class Pipeline():
                     "start": timecoded_transcript[index]["start"],
                     "end": timecoded_transcript[index]["end"],
                     "info": [explanation],
-                    "source": source,
                 })
         return merge_ranges(ranges)
     
@@ -267,19 +261,13 @@ class Pipeline():
                         "start": item["start"],
                         "end": item["end"],
                         "info": [],
-                        "source": [input]
                     })
                     found = True
             if (not found):
                 print("ERROR: Transcript segment not found in metadata", input)
         return merge_ranges(ranges)
     
-    ### TODO: Play with the amount of context
-    ### 1. top_k
-    ### 2. cosine_similarity
-    ### 3. summarize metadata
-    ### 4. reformat metadata: object -> description (action, caption, dense caption)
-    ### 5. give prev & next N snippets
+    ### TODO: try cosine similarity with metadata and input only top-k (that do not overlap with existing edits)
     def process_temporal_video(self, input_texts, other_texts, skipped_segments):
         if (len(input_texts) == 0):
             return []
@@ -339,7 +327,6 @@ class Pipeline():
         for item in response:
             index = int(item["index"])
             explanation = item["explanation"]
-            source = item["source"]
             if (index >= len(timecoded_metadata) or index < 0):
                 print("ERROR: Transcript segment not found in metadata", index)
             else:
@@ -347,7 +334,6 @@ class Pipeline():
                     "start": timecoded_metadata[index]["start"],
                     "end": timecoded_metadata[index]["end"],
                     "info": [explanation],
-                    "source": source,
                 })
         return merge_ranges(ranges)
     
@@ -374,8 +360,7 @@ class Pipeline():
                 try:
                     cur_ranges = ast.literal_eval(response["content"])
                     for interval in cur_ranges:
-                        interval["info"] = []
-                        interval["source"] = [item] 
+                        interval["info"] = [item] 
                     ranges += cur_ranges
                 except:
                     print("RESPONSE: ", response["content"])
@@ -396,7 +381,6 @@ class Pipeline():
                     print("Incorrect format returned by GPT")
         for interval in ranges:
             interval["info"] = []
-            interval["source"] = []
         return merge_ranges(ranges)
 
     def __process_temporal_specific_indexes(
@@ -420,80 +404,20 @@ class Pipeline():
 
         # completion = self.completion_endpoint(prompt, request, model="gpt-3.5-turbo-16k-0613")
         completion = self.completion_endpoint(prompt, request, model="gpt-4")
-        response = completion["content"]
-        # response = completion["content"].replace('\"', "'").replace('\'', "'")
+        
+        response = completion["content"].replace('\"', "'").replace('\'', "'")
         result = []
         try:
             result = ast.literal_eval(response)
         except:
             print("RESP: ", json.dumps(response))
             print("Incorrect format returned by GPT")
-        for interval in result:
-            interval["source"] = input_texts
         return result
-    
-    def predict_spatial_regions(self, input_text, edits):
-        return edits
-    
-    ### TODO: post-processing:
-    ### 1. "content" -> disambiguate
-    ### 2. "source" -> do image search
-    ### 3. "intent-references" -> find the id
-    ### 4. "edit-references" -> find the id
-    def predict_parameters(self, parameters, edit_operations, edits, adjust):
-        total_cnt_requests = 0
-        for parameter_key in parameters:
-            if (parameter_key not in self.parameters_of_interest):
-                continue
-            total_cnt_requests += len(parameters[parameter_key])
-        if (total_cnt_requests == 0 or len(edits) == 0):
-            return edits
-        with open(self.prompt_parameters_filename, 'r') as f:
-            prompt = f.read()
-        
-        changes_to_apply = []
-        results = []
 
-        parameter_keys = []
-        for parameter_key in parameters:
-            if (parameter_key not in self.parameters_of_interest):
-                continue
-            parameter_keys.append(parameter_key)
-
-        for i, edit in enumerate(edits):
-            which_result = len(results)
-            for j in range(0, i):
-                if (self.are_equal_edits(edit, edits[j], [key + "Parameters" for key in parameter_keys])):
-                    which_result = j
-                    break
-            changes_to_apply.append(which_result)
-            if which_result < len(results):
-                continue
-            request_parameters = {}
-            for parameter_key in parameter_keys:
-                request_parameters[parameter_key] = parameters[parameter_key]
-            inital_parameters = {}
-            for parameter_key in self.parameters_of_interest:
-                initial_parameter_key = parameter_key + "Parameters"
-                if (initial_parameter_key in edit):
-                    inital_parameters[parameter_key] = edit[initial_parameter_key]
-            request = ("Initial Edit Parameters: " + json.dumps(inital_parameters)
-                    + "\n User Request: " + json.dumps(request_parameters))
-            completion = self.completion_endpoint(prompt, request, model="gpt-4")
-            response = completion["content"]
-            #response = completion["content"].replace('\"', "'").replace('\'', "'")
-            try:
-                results.append(ast.literal_eval(response))
-            except:
-                results.append({})
-                print("RESP: ", json.dumps(response))
-                print("Incorrect format returned by GPT")
-        print("changes_to_apply", changes_to_apply, "results", results)
-        for i, edit in enumerate(edits):
-            result = results[changes_to_apply[i]]
-            for parameter_key in result:
-                edit[parameter_key + "Parameters"] = result[parameter_key]
-        return edits
+    def process_spatial(self, spatial_intent, frame_range):
+        image_processor = ImageProcessor()
+        input_images, input_bboxes, frame_id = image_processor.extract_candidate_frame_masks(frame_range)
+        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id)
 
     def get_summary(self, input):
         summary_request = "Generate a several word caption to summarize the purpose of the following video edit request."
@@ -518,19 +442,6 @@ class Pipeline():
             output += json.dumps(item) + separator
         output += json.dumps(json_list[-1])
         return output
-    
-    def are_equal_edits(self, edit1, edit2, keys):
-        for key in keys:
-            if (key not in edit1 and key not in edit2):
-                continue
-            if (key not in edit1 or key not in edit2):
-                return False
-            if (isinstance(edit1[key], dict) == True and isinstance(edit2[key], dict) == True):
-                if (self.are_equal_edits(edit1[key], edit2[key], edit1[key].keys()) == False):
-                    return False
-            elif (edit1[key] != edit2[key]):
-                return False
-        return True
 
 def main():
     pipeline = Pipeline(20, 20)

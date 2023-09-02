@@ -11,22 +11,23 @@ import sys
 import numpy as np
 from PIL import Image
 from pycocotools import mask as mask_utils
-from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
-from helpers import Timecode
+# from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+from .helpers import Timecode
+
 class ImageProcessor:
     def __init__(self):
-        sam_checkpoint = "/mnt/c/Users/indue/Downloads/sam_vit_h_4b8939.pth"
-        model_type = "vit_h"
+        # sam_checkpoint = "/mnt/c/Users/indue/Downloads/sam_vit_h_4b8939.pth"
+        # model_type = "vit_h"
 
-        device = "cuda"
+        # device = "cuda"
 
-        sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-        sam.to(device=device)
+        # sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+        # sam.to(device=device)
 
         self.model, self.preprocess = clip.load("ViT-B/32")
         self.preprocess
 
-        self.mask_generator = SamAutomaticMaskGenerator(sam)
+        # self.mask_generator = SamAutomaticMaskGenerator(sam)
     def show_anns(anns):
         if len(anns) == 0:
             return
