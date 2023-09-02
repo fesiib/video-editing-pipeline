@@ -1,3 +1,4 @@
+import clip
 import torch
 import requests
 import os
@@ -20,6 +21,9 @@ class ImageProcessor:
         
         sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
         sam.to(device=device)
+        
+        self.model, self.preprocess = clip.load("ViT-B/32")
+        self.preprocess
         
         self.mask_generator = SamAutomaticMaskGenerator(sam)
     def show_anns(anns):
@@ -69,15 +73,48 @@ class ImageProcessor:
             images.append(preprocess(masked_image_pil))
         return images
     
-    def create_candidate_masks(self, frame_range):
+    def extract_candidate_frame_masks(self, frame_range):
         start_frame = frame_range["start"]
         end_frame = frame_range["end"]
+        
+        candidate_frame = (end_frame.convert_timecode_to_sec() - start_frame.convert_timecode_to_sec()) // 2 
+        FRAME_DIR = os.path.join("Segmentations", "Frame.{}.0".format(candidate_frame))
 
-        candidate_frame = (end_frame - start_frame) // 2 
-        image = cv2.imread(f'frame_{candidate_frame}')
+        MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
+        IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")
+        
+        # load image + bboxes
+        image = cv2.imread(MASK_METADATA_FILE)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-        self.create_masked_images(image, f'frame_{candidate_frame}_masks', self.mask_generator)
+        with open(MASK_METADATA_FILE, 'r') as f:
+            mask_data = json.loads(f)
+
+        input_images = []
+        input_bboxes = []
+
+        for annotation in mask_data:
+            crop = self.extract_bbox(image, annotation['bbox'])
+            
+            input_images.append(np.array(crop))
+            input_bboxes.append(annotation['bbox'])            
+
+        return input_images, input_bboxes 
+
+    def extract_related_crop(self, input_text, input_bboxes, input_images, frame_id):
+        images = torch.tensor(np.stack(input_images)).cuda()
+        text = clip.tokenize(input_text).cuda()
+
+        with torch.no_grad():
+            image_features = model.encode_image(images).float()
+            text_features = model.encode_text(text).float()
+
+        image_features /= image_features.norm(dim=-1, keepdim=True)
+        text_features /= text_features.norm(dim=-1, keepdim=True)
+        similarity = text_features.cpu().numpy() @ image_features.cpu().numpy().T
+
+        ind = np.unravel_index(np.argmax(similarity), similarity.shape)
+        return input_bboxes[ind]
 
     def extract_bbox(self, img, bbox):
         x, y, w, h = bbox[0], bbox[1], bbox[2], bbox[3]
