@@ -110,19 +110,19 @@ class Pipeline():
             msg["requestParameters"]["parameters"] = {}
             return msg
         ### maybe obtain skipped segments from edits????
-        self.relevant_text = self.predict_relevant_text(edit_request)
-        print("relevant_text", self.relevant_text)
+        relevant_text = self.predict_relevant_text(edit_request)
+        print("relevant_text", relevant_text)
         edits = msg["edits"]
         if (from_scratch or add_more):
-            edits = self.predict_temporal_segments(self.relevant_text["temporal"], self.relevant_text["temporal_labels"], skipped_segments)  
-        msg["requestParameters"]["editOperations"] = self.relevant_text["edit"]
-        edits = self.predict_spatial_regions(self.relevant_text["spatial"], edits)
-        edits = self.predict_parameters(self.relevant_text["parameters"], self.relevant_text["edit"], edits, adjust_selected)
-        msg["requestParameters"]["parameters"] = self.relevant_text["parameters"]
+            edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], relevant_text["spatial"], skipped_segments)  
+        msg["requestParameters"]["editOperations"] = relevant_text["edit"]
+        edits = self.predict_spatial_regions(relevant_text["spatial"], edits)
+        edits = self.predict_parameters(relevant_text["parameters"], relevant_text["edit"], edits, adjust_selected)
+        msg["requestParameters"]["parameters"] = relevant_text["parameters"]
         msg["edits"] = edits
         return msg
     
-    def predict_temporal_segments(self, temporal_segments, temporal_labels, skipped_segments=[]):
+    def predict_temporal_segments(self, temporal_segments, temporal_labels, spatial_intent, skipped_segments=[]):
         ranges = []
         all_other = ["Duration of the video: 00:00:00 - 00:20:20"]
         all_position = []
@@ -168,8 +168,8 @@ class Pipeline():
             new_edit = get_timecoded_edit_instance(interval)
             new_edit["temporalParameters"]["info"] = interval["info"]
             new_edit["temporalParameters"]["source"] = interval["source"]
-            if self.relevant_text["spatial"]:
-                bbox = self.process_spatial(self.relevant_text["spatial"][0], interval)
+            if spatial_intent:
+                bbox = self.process_spatial(spatial_intent[0], interval)
                 new_edit["spatialParameters"] = {
                     "x": bbox[0], 
                     "y": bbox[1], 
