@@ -177,7 +177,7 @@ def get_data_point_as_request(dataset, index):
         "requestParameters": {
             "text": dataset[index]["description"],
             "editOperation": "",
-            "considerEdits": True,
+            "processingMode": "from-scratch",
         },
         "edits": [],
     }

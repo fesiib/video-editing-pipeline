@@ -84,7 +84,9 @@ class Pipeline():
 
     def process_request(self, msg):
         edit_request = msg["requestParameters"]["text"]
-        consider_edits = msg["requestParameters"]["considerEdits"] == "True"
+        from_scratch = msg["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = msg["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = msg["requestParameters"]["processingMode"] == "adjust-selected"
         skipped_segments = []
         if ("skippedSegments" in msg and isinstance(msg["skippedSegments"], list) == True):
             for skipped in msg["skippedSegments"]:
@@ -92,19 +94,27 @@ class Pipeline():
                     "start": skipped["temporalParameters"]["start"],
                     "finish": skipped["temporalParameters"]["finish"],
                 })
-        if (consider_edits):
+        if (from_scratch == False):
             for edit in msg["edits"]:
                 skipped_segments.append({
                     "start": edit["temporalParameters"]["start"],
                     "finish": edit["temporalParameters"]["finish"],
                 })
         ### maybe obtain skipped segments from edits????
-        relevant_text = self.predict_relevant_text(edit_request)
-        print("relevant_text", relevant_text)
-        edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], skipped_segments)
-        msg["edits"] = edits
-        msg["requestParameters"]["editOperations"] = relevant_text["edit"]
-        msg["requestParameters"]["parameters"] = relevant_text["parameters"]
+        if (from_scratch or add_more):
+            relevant_text = self.predict_relevant_text(edit_request)
+            print("relevant_text", relevant_text)
+            edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], skipped_segments)
+            msg["edits"] = edits
+            msg["requestParameters"]["editOperations"] = relevant_text["edit"]
+            msg["requestParameters"]["parameters"] = relevant_text["parameters"]
+        elif (adjust_selected):
+            msg["requestParameters"]["editOperations"] = [msg["requestParameters"]["editOperation"]]
+            msg["requestParameters"]["parameters"] = {}
+        else:
+            print("ERROR: Invalid processing mode")
+            msg["requestParameters"]["editOperations"] = [msg["requestParameters"]["editOperation"]]
+            msg["requestParameters"]["parameters"] = {}
         return msg
     
     def predict_temporal_segments(self, temporal_segments, temporal_labels, skipped_segments=[]):

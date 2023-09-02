@@ -104,7 +104,7 @@ def test(edit_request):
         "requestParameters": {
             "text": edit_request,
             "editOperation": "text",
-            "considerEdits": False,
+            "processingMode": "from-scratch",
         },
         "edits": [{
             "temporalParameters": {

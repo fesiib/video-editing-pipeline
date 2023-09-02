@@ -70,7 +70,7 @@ class EditInstance:
             "projectId": "test",
             "edits": [self.edit],
             "requestParameters": {
-                "considerEdits": True,
+                "processingMode": "from-scratch",
                 "hasText": True,
                 "hasSketch": True,
                 "editOperation": "text",
