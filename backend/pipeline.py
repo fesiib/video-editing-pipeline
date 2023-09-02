@@ -100,6 +100,7 @@ class Pipeline():
                 })
         ### maybe obtain skipped segments from edits????
         relevant_text = self.predict_relevant_text(edit_request)
+        print("relevant_text", relevant_text)
         edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], skipped_segments)
         msg["edits"] = edits
         msg["requestParameters"]["editOperations"] = relevant_text["edit"]
@@ -258,6 +259,7 @@ class Pipeline():
                     "end": interval["end"],
                     "action": interval["action_pred"],
                     "caption": interval["synth_caption"].strip(),
+                    "dense_caption": interval["dense_caption"].strip(),
                 })
         
         timecoded_metadata = []
@@ -275,7 +277,7 @@ class Pipeline():
                     break
             if (not skip):
                 item["score"] = 0
-                cur_metadata = item["action"] + ", " + item["caption"]
+                cur_metadata = item["action"] + ", " + item["caption"] + ", " + item["dense_caption"]
                 for input in input_texts:
                     item["score"] = max(get_cosine_similarity_score(input, cur_metadata), item["score"])
                 timecoded_metadata.append(item)
@@ -291,6 +293,7 @@ class Pipeline():
             metadata.append({
                 "action": item["action"],
                 "caption": item["caption"],
+                "dense_caption": item["dense_caption"],
             })
         
         response = self.__process_temporal_specific_indexes(
