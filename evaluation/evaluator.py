@@ -9,7 +9,7 @@ from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 # Using all metadata
 intent_parser = IntentParser(50, 50)
-pipeline = Pipeline(30, 0)
+pipeline = Pipeline(50, 0)
 
 # ground_truth = {
 #     "editOperations": dataset[index]["edit_text"],
@@ -91,7 +91,14 @@ def run_pipeline_new(input):
     )
     edits_temporal = []
     for edit in edits:
-        edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"], edit["temporalParameters"]["info"]])
+        edits_temporal.append(
+            [
+                edit["temporalParameters"]["start"],
+                edit["temporalParameters"]["finish"],
+                edit["temporalParameters"]["info"],
+                edit["temporalParameters"]["source"],
+            ]
+        )
     
     response = {
         "editOperations": relevant_text["edit"],
@@ -105,7 +112,12 @@ def run_pipeline_request_new(edit_request):
     edit_response = pipeline.process_request(edit_request)
     edits_temporal = []
     for edit in edit_response["edits"]:
-        edits_temporal.append([edit["temporalParameters"]["start"], edit["temporalParameters"]["finish"], edit["temporalParameters"]["info"]])
+        edits_temporal.append([
+            edit["temporalParameters"]["start"],
+            edit["temporalParameters"]["finish"],
+            edit["temporalParameters"]["info"],
+            edit["temporalParameters"]["source"],
+        ])
     
     response = {
         "editOperations": edit_response["requestParameters"]["editOperations"],

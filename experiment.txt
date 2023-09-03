@@ -1,306 +1,162 @@
 Usage Info: {
-  "prompt_tokens": 836,
-  "completion_tokens": 83,
-  "total_tokens": 919
+  "prompt_tokens": 851,
+  "completion_tokens": 86,
+  "total_tokens": 937
 }
+relevant_text {'temporal': ['Every time any quality of Surface go is mentioned'], 'temporal_labels': ['transcript'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
-  "prompt_tokens": 1357,
-  "completion_tokens": 156,
-  "total_tokens": 1513
+  "prompt_tokens": 1384,
+  "completion_tokens": 135,
+  "total_tokens": 1519
 }
-final: 00:00:40 00:00:50 ['comparison of surface go with other devices']
-final: 00:01:10 00:01:20 ['processor of surface go']
-final: 00:02:20 00:02:30 ['pricing and specs of surface go']
-final: 00:04:30 00:04:40 ['physical features of surface go']
-final: 00:15:30 00:15:40 ['display quality of surface go']
-final: 00:16:30 00:16:40 ['type cover of surface go']
-final: 00:19:20 00:19:30 ['build quality of surface go']
-final: 00:19:40 00:19:50 ['pricing of surface go']
-final: 00:20:00 00:20:10 ['storage options of surface go']
+final: 00:00:40 00:00:50 ['comparison of surface go with other devices'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+final: 00:04:30 00:04:40 ['description of the finish and webcam of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+final: 00:11:20 00:11:30 ['quality of the surface device'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+final: 00:11:40 00:12:00 ['comparison of surface go with surface rt', 'feel of the surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+final: 00:16:30 00:16:40 ['mention of the type cover of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+final: 00:19:20 00:19:30 ['mention of the build quality of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
+Usage Info: {
+  "prompt_tokens": 1233,
+  "completion_tokens": 190,
+  "total_tokens": 1423
+}
+changes_to_apply [0, 0, 0, 0, 0, 0] results [{'text': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
 --------------------
-!!!input!!!:  Every time any quality of Surface go is mentioned, show it on the screen
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['quality of Surface go'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['comparison of surface go with other devices']], [70.0, 80.0, ['processor of surface go']], [140.0, 150.0, ['pricing and specs of surface go']], [270.0, 280.0, ['physical features of surface go']], [930.0, 940.0, ['display quality of surface go']], [990.0, 1000.0, ['type cover of surface go']], [1160.0, 1170.0, ['build quality of surface go']], [1180.0, 1190.0, ['pricing of surface go']], [1200.0, 1210.0, ['storage options of surface go']]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'temporal_labels': ['transcript'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['quality of Surface go'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'Every time any quality of Surface go is mentioned, show it on the screen', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 40.0, 'finish': 50.0, 'duration': 10.0, 'info': ['comparison of surface go with other devices'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 270.0, 'finish': 280.0, 'duration': 10.0, 'info': ['description of the finish and webcam of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 680.0, 'finish': 690.0, 'duration': 10.0, 'info': ['quality of the surface device'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 700.0, 'finish': 720.0, 'duration': 20.0, 'info': ['comparison of surface go with surface rt', 'feel of the surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 990.0, 'finish': 1000.0, 'duration': 10.0, 'info': ['mention of the type cover of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 1160.0, 'finish': 1170.0, 'duration': 10.0, 'info': ['mention of the build quality of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}]}
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['comparison of surface go with other devices'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [270.0, 280.0, ['description of the finish and webcam of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [680.0, 690.0, ['quality of the surface device'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [700.0, 720.0, ['comparison of surface go with surface rt', 'feel of the surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [990.0, 1000.0, ['mention of the type cover of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [1160.0, 1170.0, ['mention of the build quality of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
 !!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[81.0, 96.0], [97.0, 101.0], [146.0, 150.0], [157.0, 161.0], [255.0, 259.0], [264.0, 268.0], [283.0, 287.0], [472.0, 476.0], [1004.0, 1008.0]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'spatial': ['on the screen'], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0.1111111111111111 traditional:  0.4444444444444444
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0.26666666666666666
 !!!edit_op evaluation!!!:  1.0
 --------------------
-!!!(temporal)cosine_similarity!!!:  [[1.0]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "Every time any quality of Surface go is mentioned",
-  "sentence2": "Every time any quality of Surface go is mentioned",
-  "score": 1.0
- }
-]
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
 --------------------
 !!!(spatial)cosine_similarity!!!:  []
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 858,
-  "completion_tokens": 94,
-  "total_tokens": 952
+  "prompt_tokens": 873,
+  "completion_tokens": 99,
+  "total_tokens": 972
 }
+relevant_text {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'temporal_labels': ['transcript'], 'spatial': ['bottom of the screen'], 'edit': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
-  "prompt_tokens": 1378,
-  "completion_tokens": 82,
-  "total_tokens": 1460
+  "prompt_tokens": 1382,
+  "completion_tokens": 104,
+  "total_tokens": 1486
 }
-final: 00:00:40 00:00:50 ['compares the two devices in general']
-final: 00:01:40 00:01:50 ['compares the specs of the two devices']
-final: 00:02:20 00:02:30 ['compares the pricing of the two devices']
-final: 00:19:20 00:19:30 ['compares the build quality of the two devices']
+final: 00:00:40 00:00:50 ['compares the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+final: 00:01:30 00:01:40 ['compares the storage and battery life of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+final: 00:02:20 00:02:30 ['compares the pricing of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+final: 00:15:50 00:16:00 ['compares the cost of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+final: 00:19:30 00:19:40 ['compares the advertised starting price of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+Usage Info: {
+  "prompt_tokens": 1235,
+  "completion_tokens": 192,
+  "total_tokens": 1427
+}
+changes_to_apply [0, 0, 0, 0, 0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
 --------------------
-!!!input!!!:  Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them
-!!!prediction!!!:  {'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['compares the two devices in general']], [100.0, 110.0, ['compares the specs of the two devices']], [140.0, 150.0, ['compares the pricing of the two devices']], [1160.0, 1170.0, ['compares the build quality of the two devices']]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'temporal_labels': ['transcript'], 'spatial': ['bottom of the screen'], 'edit': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 40.0, 'finish': 50.0, 'duration': 10.0, 'info': ['compares the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 90.0, 'finish': 100.0, 'duration': 10.0, 'info': ['compares the storage and battery life of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 140.0, 'finish': 150.0, 'duration': 10.0, 'info': ['compares the pricing of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 950.0, 'finish': 960.0, 'duration': 10.0, 'info': ['compares the cost of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 1170.0, 'finish': 1180.0, 'duration': 10.0, 'info': ['compares the advertised starting price of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}]}
+!!!prediction!!!:  {'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['compares the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [90.0, 100.0, ['compares the storage and battery life of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [140.0, 150.0, ['compares the pricing of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [950.0, 960.0, ['compares the cost of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [1170.0, 1180.0, ['compares the advertised starting price of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['shape']}}
 !!!ground_truth!!!:  {'editOperations': ['shape'], 'parameters': {}, 'edits': [[108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0], [758.0, 762.0]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'spatial': ['Bottom of the screen'], 'edit': ['shape']}}
-!!!temporal evaluation!!!:  f1-score:  0.4444444444444445 traditional:  0.4444444444444445
+!!!temporal evaluation!!!:  f1-score:  0.20000000000000004 traditional:  0.4000000000000001
 !!!edit_op evaluation!!!:  1.0
 --------------------
-!!!(temporal)cosine_similarity!!!:  [[1.0000001192092896]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "Whenever the quality/price/battery/accessories of the two devices are compared",
-  "sentence2": "Whenever the quality/price/battery/accessories of the two devices are compared",
-  "score": 1.0000001192092896
- }
-]
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
 --------------------
-!!!(spatial)cosine_similarity!!!:  [[1.0]]
-!!!(spatial)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "bottom of the screen",
-  "sentence2": "Bottom of the screen",
-  "score": 1.0
- }
-]
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 857,
-  "completion_tokens": 92,
-  "total_tokens": 949
+  "prompt_tokens": 872,
+  "completion_tokens": 97,
+  "total_tokens": 969
 }
+relevant_text {'temporal': ['entering the wifi password', 'first half of the password'], 'temporal_labels': ['video', 'video'], 'spatial': [], 'edit': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
-  "prompt_tokens": 1631,
+  "prompt_tokens": 1671,
   "completion_tokens": 1,
-  "total_tokens": 1632
+  "total_tokens": 1672
+}
+Usage Info: {
+  "prompt_tokens": 1581,
+  "completion_tokens": 1,
+  "total_tokens": 1582
 }
 --------------------
-!!!input!!!:  When entering the wifi password, place a screen that shows what he’s entering. Show the first half of the password and put stars for the rest. E.g. admin12****
-!!!prediction!!!:  {'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': ['entering the wifi password', 'first half of the password'], 'temporal_labels': ['video', 'video'], 'spatial': [], 'edit': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'When entering the wifi password, place a screen that shows what he’s entering. Show the first half of the password and put stars for the rest. E.g. admin12****', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
+!!!prediction!!!:  {'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text', 'image']}}
 !!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[334.0, 338.0]], 'relevant_text': {'temporal': ['When entering the wifi password'], 'spatial': [], 'edit': ['text']}}
 !!!temporal evaluation!!!:  f1-score:  0 traditional:  0
 !!!edit_op evaluation!!!:  0.5
 --------------------
-!!!(temporal)cosine_similarity!!!:  [[0.9497944116592407], [0.4802290201187134]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "entering the wifi password",
-  "sentence2": "When entering the wifi password",
-  "score": 0.9497944116592407
- },
- {
-  "sentence1": "first half of the password",
-  "sentence2": "When entering the wifi password",
-  "score": 0.4802290201187134
- }
-]
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
 --------------------
 !!!(spatial)cosine_similarity!!!:  []
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 897,
-  "completion_tokens": 161,
-  "total_tokens": 1058
+  "prompt_tokens": 912,
+  "completion_tokens": 166,
+  "total_tokens": 1078
+}
+relevant_text {'temporal': ['6:04', '7:48', '8:09', '9:20', '10:06', '10:29', '11:16', '15:35'], 'temporal_labels': ['position', 'position', 'position', 'position', 'position', 'position', 'position', 'position'], 'spatial': [], 'edit': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+Usage Info: {
+  "prompt_tokens": 316,
+  "completion_tokens": 22,
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 333,
+  "prompt_tokens": 316,
   "completion_tokens": 22,
-  "total_tokens": 355
+  "total_tokens": 338
 }
-Usage Info: {
-  "prompt_tokens": 333,
-  "completion_tokens": 22,
-  "total_tokens": 355
-}
-final: 00:06:01 00:06:06 ['6:04']
-final: 00:07:43 00:07:48 ['7:48']
-final: 00:08:04 00:08:09 ['8:09']
-final: 00:09:15 00:09:20 ['9:20']
-final: 00:10:01 00:10:06 ['10:06']
-final: 00:10:24 00:10:29 ['10:29']
-final: 00:11:11 00:11:16 ['11:16']
-final: 00:15:30 00:15:35 ['15:35']
+final: 00:06:01 00:06:06 [] ['6:04']
+final: 00:07:43 00:07:48 [] ['7:48']
+final: 00:08:04 00:08:09 [] ['8:09']
+final: 00:09:15 00:09:20 [] ['9:20']
+final: 00:10:01 00:10:06 [] ['10:06']
+final: 00:10:24 00:10:29 [] ['10:29']
+final: 00:11:11 00:11:16 [] ['11:16']
+final: 00:15:30 00:15:35 [] ['15:35']
 --------------------
-!!!input!!!:  At the following moments put a very quick transitional frame which describes what the speaker is about to talk about:
-6:04 - Accessories
-7:48 - Power adapter
-8:09 - Surface Connect Connector
-9:20 - I/O
-10:06 - Webcam
-10:29 - Signature type cover
-11:16 - Magnetic docking mechanism
-15:35 - Display
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[361.0, 366.0, ['6:04']], [463.0, 468.0, ['7:48']], [484.0, 489.0, ['8:09']], [555.0, 560.0, ['9:20']], [601.0, 606.0, ['10:06']], [624.0, 629.0, ['10:29']], [671.0, 676.0, ['11:16']], [930.0, 935.0, ['15:35']]], 'relevant_text': {'temporal': ['6:04', '7:48', '8:09', '9:20', '10:06', '10:29', '11:16', '15:35'], 'temporal_labels': ['position', 'position', 'position', 'position', 'position', 'position', 'position', 'position'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'At the following moments put a very quick transitional frame which describes what the speaker is about to talk about:\n6:04 - Accessories\n7:48 - Power adapter\n8:09 - Surface Connect Connector\n9:20 - I/O\n10:06 - Webcam\n10:29 - Signature type cover\n11:16 - Magnetic docking mechanism\n15:35 - Display', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 361.0, 'finish': 366.0, 'duration': 5.0, 'info': [], 'source': ['6:04']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 463.0, 'finish': 468.0, 'duration': 5.0, 'info': [], 'source': ['7:48']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 484.0, 'finish': 489.0, 'duration': 5.0, 'info': [], 'source': ['8:09']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 555.0, 'finish': 560.0, 'duration': 5.0, 'info': [], 'source': ['9:20']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 601.0, 'finish': 606.0, 'duration': 5.0, 'info': [], 'source': ['10:06']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 624.0, 'finish': 629.0, 'duration': 5.0, 'info': [], 'source': ['10:29']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 671.0, 'finish': 676.0, 'duration': 5.0, 'info': [], 'source': ['11:16']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 930.0, 'finish': 935.0, 'duration': 5.0, 'info': [], 'source': ['15:35']}}]}
+!!!prediction!!!:  {'editOperations': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[361.0, 366.0, [], ['6:04']], [463.0, 468.0, [], ['7:48']], [484.0, 489.0, [], ['8:09']], [555.0, 560.0, [], ['9:20']], [601.0, 606.0, [], ['10:06']], [624.0, 629.0, [], ['10:29']], [671.0, 676.0, [], ['11:16']], [930.0, 935.0, [], ['15:35']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image']}}
 !!!ground_truth!!!:  {'editOperations': ['text', 'frame'], 'parameters': {}, 'edits': [[362.0, 366.0], [466.0, 470.0], [487.0, 491.0], [558.0, 562.0], [604.0, 608.0], [627.0, 631.0], [674.0, 678.0], [933.0, 937.0]], 'relevant_text': {'temporal': ['6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display'], 'spatial': [], 'edit': ['text', 'frame']}}
 !!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  1.0
---------------------
-!!!(temporal)cosine_similarity!!!:  [[0.3579969108104706], [0.23679892718791962], [0.2368800938129425], [0.19319239258766174], [0.22728249430656433], [0.21480868756771088], [0.16529080271720886], [0.13264325261116028]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "6:04",
-  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
-  "score": 0.3579969108104706
- },
- {
-  "sentence1": "8:09",
-  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
-  "score": 0.2368800938129425
- },
- {
-  "sentence1": "7:48",
-  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
-  "score": 0.23679892718791962
- },
- {
-  "sentence1": "10:06",
-  "sentence2": "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display",
-  "score": 0.22728249430656433
- }
-]
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 843,
-  "completion_tokens": 91,
-  "total_tokens": 934
-}
-Usage Info: {
-  "prompt_tokens": 333,
-  "completion_tokens": 22,
-  "total_tokens": 355
-}
-Usage Info: {
-  "prompt_tokens": 332,
-  "completion_tokens": 22,
-  "total_tokens": 354
-}
-final: 00:00:00 00:00:30 ['once the video starts', 'no introduction part']
---------------------
-!!!input!!!:  Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part
-!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 30.0, ['once the video starts', 'no introduction part']]], 'relevant_text': {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
-!!!ground_truth!!!:  {'editOperations': ['image'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['image']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  0.5
---------------------
-!!!(temporal)cosine_similarity!!!:  [[1.0], [0.2782602906227112]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "once the video starts",
-  "sentence2": "once the video starts",
-  "score": 1.0
- },
- {
-  "sentence1": "no introduction part",
-  "sentence2": "once the video starts",
-  "score": 0.2782602906227112
- }
-]
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 843,
-  "completion_tokens": 91,
-  "total_tokens": 934
-}
-Usage Info: {
-  "prompt_tokens": 333,
-  "completion_tokens": 22,
-  "total_tokens": 355
-}
-Usage Info: {
-  "prompt_tokens": 332,
-  "completion_tokens": 22,
-  "total_tokens": 354
-}
-final: 00:00:00 00:00:30 ['once the video starts', 'no introduction part']
---------------------
-!!!input!!!:  Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part
-!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 30.0, ['once the video starts', 'no introduction part']]], 'relevant_text': {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  0.5
---------------------
-!!!(temporal)cosine_similarity!!!:  [[1.0], [0.2782602906227112]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "once the video starts",
-  "sentence2": "once the video starts",
-  "score": 1.0
- },
- {
-  "sentence1": "no introduction part",
-  "sentence2": "once the video starts",
-  "score": 0.2782602906227112
- }
-]
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 848,
-  "completion_tokens": 93,
-  "total_tokens": 941
-}
-Usage Info: {
-  "prompt_tokens": 1407,
-  "completion_tokens": 42,
-  "total_tokens": 1449
-}
-final: 00:00:40 00:00:50 ['comparison of surface go with another device']
-final: 00:01:40 00:01:50 ['comparison of specs of surface go with another device']
---------------------
-!!!input!!!:  To compare the MS surface go’s spec with gpd pocket 2 apple’s spec, highlight the spec of gdp pocket 2
-!!!prediction!!!:  {'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['comparison of surface go with another device']], [100.0, 110.0, ['comparison of specs of surface go with another device']]], 'relevant_text': {'temporal': ['compare the MS surface go’s spec with gpd pocket 2 apple’s spec'], 'temporal_labels': ['transcript'], 'spatial': ['spec of gdp pocket 2'], 'edit': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[102.0, 106.0], [108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0.28571428571428575 traditional:  0.28571428571428575
 !!!edit_op evaluation!!!:  0.0
 --------------------
 !!!(temporal)cosine_similarity!!!:  []
@@ -310,46 +166,153 @@ final: 00:01:40 00:01:50 ['comparison of specs of surface go with another device
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 840,
-  "completion_tokens": 70,
-  "total_tokens": 910
+  "prompt_tokens": 858,
+  "completion_tokens": 96,
+  "total_tokens": 954
+}
+relevant_text {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+Usage Info: {
+  "prompt_tokens": 316,
+  "completion_tokens": 22,
+  "total_tokens": 338
 }
 Usage Info: {
-  "prompt_tokens": 1597,
-  "completion_tokens": 93,
-  "total_tokens": 1690
+  "prompt_tokens": 315,
+  "completion_tokens": 1,
+  "total_tokens": 316
 }
-final: 00:01:40 00:01:50 ['matching actions: holding a blue card']
-final: 00:02:00 00:02:20 ['matching actions: holding a laptop', 'matching actions: holding a laptop']
-final: 00:05:00 00:05:10 ['matching actions: holding a laptop']
-final: 00:16:10 00:16:20 ['matching actions: holding a laptop']
+final: 00:00:00 00:00:05 [] ['once the video starts']
+Usage Info: {
+  "prompt_tokens": 1235,
+  "completion_tokens": 190,
+  "total_tokens": 1425
+}
+changes_to_apply [0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
 --------------------
-!!!input!!!:  It looks lightweight when he holds it. It would be good to add an emphasis for this.
-!!!prediction!!!:  {'editOperations': [], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[100.0, 110.0, ['matching actions: holding a blue card']], [120.0, 140.0, ['matching actions: holding a laptop', 'matching actions: holding a laptop']], [300.0, 310.0, ['matching actions: holding a laptop']], [970.0, 980.0, ['matching actions: holding a laptop']]], 'relevant_text': {'temporal': ['when he holds it'], 'temporal_labels': ['video'], 'spatial': [], 'edit': [], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
-!!!ground_truth!!!:  {'editOperations': [], 'parameters': {}, 'edits': [[98.0, 102.0], [1177.0, 1181.0]], 'relevant_text': {'temporal': ['when he holds it.'], 'spatial': ['{object}'], 'edit': []}}
-!!!temporal evaluation!!!:  f1-score:  0.3333333333333333 traditional:  0.3333333333333333
-!!!edit_op evaluation!!!:  1
+!!!input!!!:  {'requestParameters': {'text': 'Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 0.0, 'finish': 5.0, 'duration': 5.0, 'info': [], 'source': ['once the video starts']}}]}
+!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, [], ['once the video starts']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image', 'text']}}
+!!!ground_truth!!!:  {'editOperations': ['image'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['image']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  0.5
 --------------------
-!!!(temporal)cosine_similarity!!!:  [[0.9828856587409973]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "when he holds it",
-  "sentence2": "when he holds it.",
-  "score": 0.9828856587409973
- }
-]
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
 --------------------
 !!!(spatial)cosine_similarity!!!:  []
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 852,
-  "completion_tokens": 76,
-  "total_tokens": 928
+  "prompt_tokens": 858,
+  "completion_tokens": 96,
+  "total_tokens": 954
 }
+relevant_text {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+Usage Info: {
+  "prompt_tokens": 316,
+  "completion_tokens": 22,
+  "total_tokens": 338
+}
+Usage Info: {
+  "prompt_tokens": 315,
+  "completion_tokens": 1,
+  "total_tokens": 316
+}
+final: 00:00:00 00:00:05 [] ['once the video starts']
+Usage Info: {
+  "prompt_tokens": 1235,
+  "completion_tokens": 190,
+  "total_tokens": 1425
+}
+changes_to_apply [0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
 --------------------
-!!!input!!!:  It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'temporal_labels': [], 'spatial': ['right', 'left'], 'edit': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 0.0, 'finish': 5.0, 'duration': 5.0, 'info': [], 'source': ['once the video starts']}}]}
+!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, [], ['once the video starts']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image', 'text']}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
+!!!edit_op evaluation!!!:  0.5
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 863,
+  "completion_tokens": 101,
+  "total_tokens": 964
+}
+relevant_text {'temporal': ['MS surface go’s spec', 'gpd pocket 2 apple’s spec'], 'temporal_labels': ['transcript', 'transcript'], 'spatial': ['spec of gdp pocket 2'], 'edit': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+Usage Info: {
+  "prompt_tokens": 1375,
+  "completion_tokens": 104,
+  "total_tokens": 1479
+}
+Usage Info: {
+  "prompt_tokens": 1435,
+  "completion_tokens": 1,
+  "total_tokens": 1436
+}
+final: 00:01:10 00:01:20 ['mentions the processor of the surface go'] ['MS surface go’s spec']
+final: 00:02:20 00:02:30 ['mentions the pricing and storage of the surface go'] ['MS surface go’s spec']
+final: 00:04:30 00:04:40 ['mentions the finish and webcam of the surface go'] ['MS surface go’s spec']
+final: 00:07:50 00:08:00 ['mentions the charging type of the surface go'] ['MS surface go’s spec']
+final: 00:11:50 00:12:00 ['mentions the price and feel of the surface go'] ['MS surface go’s spec']
+--------------------
+!!!input!!!:  {'requestParameters': {'text': 'To compare the MS surface go’s spec with gpd pocket 2 apple’s spec, highlight the spec of gdp pocket 2', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 70.0, 'finish': 80.0, 'duration': 10.0, 'info': ['mentions the processor of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 140.0, 'finish': 150.0, 'duration': 10.0, 'info': ['mentions the pricing and storage of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 270.0, 'finish': 280.0, 'duration': 10.0, 'info': ['mentions the finish and webcam of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 470.0, 'finish': 480.0, 'duration': 10.0, 'info': ['mentions the charging type of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 710.0, 'finish': 720.0, 'duration': 10.0, 'info': ['mentions the price and feel of the surface go'], 'source': ['MS surface go’s spec']}}]}
+!!!prediction!!!:  {'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[70.0, 80.0, ['mentions the processor of the surface go'], ['MS surface go’s spec']], [140.0, 150.0, ['mentions the pricing and storage of the surface go'], ['MS surface go’s spec']], [270.0, 280.0, ['mentions the finish and webcam of the surface go'], ['MS surface go’s spec']], [470.0, 480.0, ['mentions the charging type of the surface go'], ['MS surface go’s spec']], [710.0, 720.0, ['mentions the price and feel of the surface go'], ['MS surface go’s spec']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['highlight']}}
+!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[102.0, 106.0], [108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!temporal evaluation!!!:  f1-score:  0.20000000000000004 traditional:  0.20000000000000004
+!!!edit_op evaluation!!!:  0.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 855,
+  "completion_tokens": 79,
+  "total_tokens": 934
+}
+relevant_text {'temporal': ['when he holds it'], 'temporal_labels': ['video'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+Usage Info: {
+  "prompt_tokens": 1502,
+  "completion_tokens": 74,
+  "total_tokens": 1576
+}
+final: 00:02:00 00:02:20 ['matching actions: holding a laptop', 'matching actions: holding a laptop'] ['when he holds it', 'when he holds it']
+final: 00:10:20 00:10:30 ['matching actions: holding a tablet'] ['when he holds it', 'when he holds it']
+final: 00:16:10 00:16:20 ['matching actions: holding a laptop'] ['when he holds it', 'when he holds it']
+Usage Info: {
+  "prompt_tokens": 1232,
+  "completion_tokens": 191,
+  "total_tokens": 1423
+}
+changes_to_apply [0, 0, 0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
+--------------------
+!!!input!!!:  {'requestParameters': {'text': 'It looks lightweight when he holds it. It would be good to add an emphasis for this.', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 120.0, 'finish': 140.0, 'duration': 20.0, 'info': ['matching actions: holding a laptop', 'matching actions: holding a laptop'], 'source': ['when he holds it', 'when he holds it']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 620.0, 'finish': 630.0, 'duration': 10.0, 'info': ['matching actions: holding a tablet'], 'source': ['when he holds it', 'when he holds it']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 970.0, 'finish': 980.0, 'duration': 10.0, 'info': ['matching actions: holding a laptop'], 'source': ['when he holds it', 'when he holds it']}}]}
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[120.0, 140.0, ['matching actions: holding a laptop', 'matching actions: holding a laptop'], ['when he holds it', 'when he holds it']], [620.0, 630.0, ['matching actions: holding a tablet'], ['when he holds it', 'when he holds it']], [970.0, 980.0, ['matching actions: holding a laptop'], ['when he holds it', 'when he holds it']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
+!!!ground_truth!!!:  {'editOperations': [], 'parameters': {}, 'edits': [[98.0, 102.0], [1177.0, 1181.0]], 'relevant_text': {'temporal': ['when he holds it.'], 'spatial': ['{object}'], 'edit': []}}
+!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
+!!!edit_op evaluation!!!:  0.0
+--------------------
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
+--------------------
+!!!(spatial)cosine_similarity!!!:  []
+!!!(spatial)top_4_cosine_similarity!!!:  []
+--------------------
+Usage Info: {
+  "prompt_tokens": 867,
+  "completion_tokens": 81,
+  "total_tokens": 948
+}
+relevant_text {'temporal': [], 'temporal_labels': [], 'spatial': ['right', 'left'], 'edit': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
+--------------------
+!!!input!!!:  {'requestParameters': {'text': 'It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
 !!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[131.0, 135.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
 !!!temporal evaluation!!!:  f1-score:  0 traditional:  0
 !!!edit_op evaluation!!!:  1.0
@@ -361,18 +324,19 @@ Usage Info: {
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 845,
-  "completion_tokens": 91,
-  "total_tokens": 936
+  "prompt_tokens": 860,
+  "completion_tokens": 96,
+  "total_tokens": 956
 }
+relevant_text {'temporal': ['below the prize barcode'], 'temporal_labels': ['video'], 'spatial': ['below the prize barcode'], 'edit': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
-  "prompt_tokens": 1750,
+  "prompt_tokens": 1700,
   "completion_tokens": 1,
-  "total_tokens": 1751
+  "total_tokens": 1701
 }
 --------------------
-!!!input!!!:  I added a text below the prize barcode that says “Please take a photo, it’s first come, first served.”
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': ['below the prize barcode'], 'temporal_labels': ['video'], 'spatial': ['below the prize barcode'], 'edit': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'I added a text below the prize barcode that says “Please take a photo, it’s first come, first served.”', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
+!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
 !!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[410.0, 414.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
 !!!temporal evaluation!!!:  f1-score:  0 traditional:  0
 !!!edit_op evaluation!!!:  1.0
@@ -384,51 +348,38 @@ Usage Info: {
 !!!(spatial)top_4_cosine_similarity!!!:  []
 --------------------
 Usage Info: {
-  "prompt_tokens": 844,
-  "completion_tokens": 97,
-  "total_tokens": 941
+  "prompt_tokens": 859,
+  "completion_tokens": 102,
+  "total_tokens": 961
 }
+relevant_text {'temporal': ['7:20 to 7:40', 'opens the box', 'says there is a manual'], 'temporal_labels': ['position', 'video', 'transcript'], 'spatial': ['box'], 'edit': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
-  "prompt_tokens": 338,
+  "prompt_tokens": 321,
   "completion_tokens": 22,
-  "total_tokens": 360
+  "total_tokens": 343
 }
 Usage Info: {
-  "prompt_tokens": 1370,
-  "completion_tokens": 1,
-  "total_tokens": 1371
+  "prompt_tokens": 1373,
+  "completion_tokens": 34,
+  "total_tokens": 1407
 }
 Usage Info: {
-  "prompt_tokens": 1691,
-  "completion_tokens": 1,
-  "total_tokens": 1692
+  "prompt_tokens": 1670,
+  "completion_tokens": 12,
+  "total_tokens": 1682
 }
-final: 00:07:20 00:07:40 ['7:20 to 7:40']
+RESP:  "Direct reference: None\n\nIndirect reference: None\n\n[]"
+Incorrect format returned by GPT
+final: 00:07:20 00:07:40 ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'] ['7:20 to 7:40', 'says there is a manual']
 --------------------
-!!!input!!!:  Trim from 7:20 to 7:40 where he opens the box and says there is a manua
-!!!prediction!!!:  {'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}, 'edits': [[440.0, 460.0, ['7:20 to 7:40']]], 'relevant_text': {'temporal': ['7:20 to 7:40', 'opens the box', 'says there is a manual'], 'temporal_labels': ['position', 'video', 'transcript'], 'spatial': ['box'], 'edit': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'crop': [], 'zoom': []}}}
+!!!input!!!:  {'requestParameters': {'text': 'Trim from 7:20 to 7:40 where he opens the box and says there is a manua', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 440.0, 'finish': 460.0, 'duration': 20.0, 'info': ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'], 'source': ['7:20 to 7:40', 'says there is a manual']}}]}
+!!!prediction!!!:  {'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[440.0, 460.0, ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'], ['7:20 to 7:40', 'says there is a manual']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['cut']}}
 !!!ground_truth!!!:  {'editOperations': ['cut'], 'parameters': {}, 'edits': [[440.0, 460.0]], 'relevant_text': {'temporal': ['7:20 to 7:40, where he opens the box and says there is a manua'], 'spatial': [], 'edit': ['cut']}}
 !!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
 !!!edit_op evaluation!!!:  1.0
 --------------------
-!!!(temporal)cosine_similarity!!!:  [[0.5360498428344727], [0.33780062198638916], [0.2648094892501831]]
-!!!(temporal)top_4_cosine_similarity!!!:  [
- {
-  "sentence1": "7:20 to 7:40",
-  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
-  "score": 0.5360498428344727
- },
- {
-  "sentence1": "opens the box",
-  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
-  "score": 0.33780062198638916
- },
- {
-  "sentence1": "says there is a manual",
-  "sentence2": "7:20 to 7:40, where he opens the box and says there is a manua",
-  "score": 0.2648094892501831
- }
-]
+!!!(temporal)cosine_similarity!!!:  []
+!!!(temporal)top_4_cosine_similarity!!!:  []
 --------------------
 !!!(spatial)cosine_similarity!!!:  []
 !!!(spatial)top_4_cosine_similarity!!!:  []
@@ -437,6 +388,6 @@ Summary:
 Video Info:  (declarative visual) "Microsoft Surface Go - Classic LIVE Unboxing" - https://www.youtube.com/live/4LdIvyfzoGY?feature=share
 --------------------
 --------------------
-Temporal F1:  0.47  -->  [0.111, 0.444, 0.0, 1.0, 1.0, 1.0, 0.285, 0.333, 0.0, 0.0, 1.0]
-Temporal Trad F1:  0.5  -->  [0.444, 0.444, 0.0, 1.0, 1.0, 1.0, 0.285, 0.333, 0.0, 0.0, 1.0]
-Edit Operation:  0.772  -->  [1.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.0, 1.0, 1.0, 1.0, 1.0]
+Temporal F1:  0.4  -->  [0.0, 0.2, 0.0, 1.0, 1.0, 1.0, 0.2, 0.0, 0.0, 0.0, 1.0]
+Temporal Trad F1:  0.442  -->  [0.266, 0.4, 0.0, 1.0, 1.0, 1.0, 0.2, 0.0, 0.0, 0.0, 1.0]
+Edit Operation:  0.59  -->  [1.0, 1.0, 0.5, 0.0, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0]

@@ -29,6 +29,7 @@ def main_test_request():
     print("Temporal F1: ", round_number(result["temporal_f1"]), " --> ", [round_number(x) for x in result["all_temporal_f1"]])
     print("Temporal Trad F1: ", round_number(result["temporal_traditional"]), " --> ", [round_number(x) for x in result["all_temporal_traditional"]])
     print("Edit Operation: ", round_number(result["edit_operation"]), " --> ", [round_number(x) for x in result["all_edit_operation"]])
+    #print("Parameters: ", result["parameters"])
     pass
 
 def main_evaluate():
@@ -38,7 +39,7 @@ def main_evaluate():
         task_id = 6,
         data_point_getter = get_data_point,
         pipeline_runner = run_pipeline_new,
-        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        indexes = [0, 1] #[10] - video #[4] - position
     )
 
     if (len(result["dataset"]) == 0):
@@ -82,9 +83,9 @@ def combine_dicts(*dicts):
                 result[key].append([None])
     return result
 
-def test():
+def parsing_results(task_id):
 
-    dataset = get_dataset_for_task(5)
+    dataset = get_dataset_for_task(task_id)
     # 0 -> transcript
     # 1 -> visual, action, transcript
     # 2 -> transcript, action
@@ -162,9 +163,10 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    main_evaluate()
-    #main_test_request()
-    # test()
+    # main_evaluate()
+    main_test_request()
+    # parsing_results(6)
+    # main_evaluate()
 
     #summarize_prompt("./prompts/temporal_transcript.txt")
     #summarize_captions("./metadata/4LdIvyfzoGY_10.txt")

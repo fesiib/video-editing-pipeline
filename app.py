@@ -17,7 +17,7 @@ CORS(app, origins=["http://localhost:7777", "http://internal.kixlab.org:7777"])
 Server side for video editing pipline 
 '''
 #intent_parser = IntentParser(40, 80)
-pipeline = Pipeline(30, 0)
+pipeline = Pipeline(50, 0)
 '''
 Input:
     Video Reference: youtube link

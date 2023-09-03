@@ -89,6 +89,7 @@ def merge_timecodes(timecodes):
             if item["start"] < merged_timecodes[-1]["end"] or item["start"] == merged_timecodes[-1]["end"]:
                 merged_timecodes[-1]["end"] = max(item["end"], merged_timecodes[-1]["end"])
                 merged_timecodes[-1]["info"] += item["info"]
+                merged_timecodes[-1]["source"] += item["source"]
             else:
                 merged_timecodes.append(item)
 
