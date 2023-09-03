@@ -79,32 +79,32 @@ class ImageProcessor:
         start_frame = frame_range["start"]
         end_frame = frame_range["end"]
 
-        candidate_frame = (end_frame.convert_timecode_to_sec() + start_frame.convert_timecode_to_sec()) // 2
+        candidate_frame = (end_frame + start_frame) // 2
         FRAME_DIR = os.path.join("Data", "Frame.{}.0".format(int(candidate_frame)))
 
         MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
         IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")
         # load image + bboxes
         image = cv2.imread(IMAGE_FILE)
-        print(image.shape)
+        # print(image.shape)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
         with open(MASK_METADATA_FILE, 'r') as f:
             data = f.read()
             mask_data = data.strip().split("\n")
             mask_data = [json.loads(mask) for mask in mask_data]
-            print(mask_data[0])
 
         input_images = []
         input_bboxes = []
 
         for annotation in mask_data:
+            # print(annotation)
             crop = self.extract_bbox(image, annotation['bbox'])
             masked_image_pil = Image.fromarray(crop)
             input_images.append(self.preprocess(masked_image_pil))
             input_bboxes.append(annotation['bbox'])
 
-        return input_images, input_bboxes, candidate_frame
+        return image.shape, input_images, input_bboxes, candidate_frame
 
     def extract_related_crop(self, input_text, input_bboxes, input_images, frame_id):
         images = torch.tensor(np.stack(input_images)).cuda()

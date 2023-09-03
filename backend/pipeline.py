@@ -114,15 +114,58 @@ class Pipeline():
         print("relevant_text", relevant_text)
         edits = msg["edits"]
         if (from_scratch or add_more):
-            edits = self.predict_temporal_segments(relevant_text["temporal"], relevant_text["temporal_labels"], relevant_text["spatial"], skipped_segments)  
+            edits = self.predict_temporal_segments(
+                relevant_text["temporal"],
+                relevant_text["temporal_labels"],
+                [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]],
+                skipped_segments
+            )  
         msg["requestParameters"]["editOperations"] = relevant_text["edit"]
-        edits = self.predict_spatial_regions(relevant_text["spatial"], edits)
-        edits = self.predict_parameters(relevant_text["parameters"], relevant_text["edit"], edits, adjust_selected)
+        
+        edits = self.predict_spatial_regions(
+            relevant_text["spatial"],
+            edits,
+            [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]]
+        )
+        
+        edits = self.predict_parameters(
+            relevant_text["parameters"],
+            relevant_text["edit"],
+            edits,
+            [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]]
+        )
+        
         msg["requestParameters"]["parameters"] = relevant_text["parameters"]
         msg["edits"] = edits
         return msg
     
-    def predict_temporal_segments(self, temporal_segments, temporal_labels, spatial_intent, skipped_segments=[]):
+    def predict_spatial_regions(self, input_text, edits, video_shape):
+        if (len(input_text) == 0):
+            return edits
+        single_input = input_text[0]
+        for edit in edits:
+            frame_range = {
+                "start": edit["temporalParameters"]["start"],
+                "end": edit["temporalParameters"]["finish"],
+            }
+            bbox, image_shape = self.process_spatial(single_input, frame_range)
+            print(bbox, image_shape, video_shape)
+            edit["spatialParameters"] = {
+                "x": bbox[0] / image_shape[1] * video_shape[1], 
+                "y": bbox[1] / image_shape[0] * video_shape[0], 
+                "width": bbox[2] / image_shape[1] * video_shape[1], 
+                "height": bbox[3] / image_shape[0] * video_shape[0], 
+                "rotation": 0,
+                "source": [single_input],
+            }
+        return edits
+
+    def process_spatial(self, spatial_intent, frame_range):
+        image_processor = ImageProcessor()
+        image_shape, input_images, input_bboxes, frame_id = image_processor.extract_candidate_frame_masks(frame_range)
+        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id), image_shape
+
+    def predict_temporal_segments(self, temporal_segments, temporal_labels, video_shape, skipped_segments=[]):
         ranges = []
         all_other = ["Duration of the video: 00:00:00 - 00:20:20"]
         all_position = []
@@ -165,24 +208,16 @@ class Pipeline():
 
         edits = []
         for interval in ranges:
-            new_edit = get_timecoded_edit_instance(interval)
+            new_edit = get_timecoded_edit_instance(interval, video_shape)
             new_edit["temporalParameters"]["info"] = interval["info"]
             new_edit["temporalParameters"]["source"] = interval["source"]
-            if spatial_intent:
-                bbox = self.process_spatial(spatial_intent[0], interval)
-                new_edit["spatialParameters"] = {
-                    "x": bbox[0], 
-                    "y": bbox[1], 
-                    "width": bbox[2], 
-                    "height": bbox[3], 
-                    "rotation": 0
-                }
             edits.append(new_edit)
         return edits
 
     def process_temporal_position(self, input_texts, other_texts):
         return self.__process_temporal_specific_segments(
-            input_texts, other_texts, self.prompt_temporal_position_filename, [])
+            input_texts, [other_texts[0]],
+            self.prompt_temporal_position_filename, [])
     
     ### TODO: Play with the amount of context
     ### 1. top_k
@@ -378,9 +413,11 @@ class Pipeline():
 
         if (len(metadata) == 0):
             for item in input_texts:
-                request = ("User Request: " + item)
+                request = ("Context: [" + self.convert_json_list_to_text(other_texts, ", ")
+                    + "]\nUser Request: " + item)
                 response = self.completion_endpoint(prompt, request)
-                #print(response)
+                # print("REQUEST: ", request)
+                # print("RESPONSE: ", response["content"])
                 try:
                     cur_ranges = ast.literal_eval(response["content"])
                     for interval in cur_ranges:
@@ -388,7 +425,6 @@ class Pipeline():
                         interval["source"] = [item] 
                     ranges += cur_ranges
                 except:
-                    print("RESPONSE: ", response["content"])
                     print("Incorrect format returned by GPT")
             return merge_ranges(ranges)
 
@@ -442,15 +478,12 @@ class Pipeline():
             interval["source"] = input_texts
         return result
     
-    def predict_spatial_regions(self, input_text, edits):
-        return edits
-    
     ### TODO: post-processing:
     ### 1. "content" -> disambiguate
     ### 2. "source" -> do image search
     ### 3. "intent-references" -> find the id
     ### 4. "edit-references" -> find the id
-    def predict_parameters(self, parameters, edit_operations, edits, adjust):
+    def predict_parameters(self, parameters, edit_operations, edits, video_shape):
         total_cnt_requests = 0
         for parameter_key in parameters:
             if (parameter_key not in self.parameters_of_interest):
@@ -487,8 +520,11 @@ class Pipeline():
                 initial_parameter_key = parameter_key + "Parameters"
                 if (initial_parameter_key in edit):
                     inital_parameters[parameter_key] = edit[initial_parameter_key]
-            request = ("Initial Edit Parameters: " + json.dumps(inital_parameters)
-                    + "\n User Request: " + json.dumps(request_parameters))
+            request = ("Context: [\"Video Height = " + str(video_shape[0]) + "\", \"Video Width = " + str(video_shape[1]) + "\"]"
+                + "\nInitial Edit Parameters: " + json.dumps(inital_parameters)
+                + "\nUser Request: " + json.dumps(request_parameters)
+            )
+            print("REQUEST: ", request)
             completion = self.completion_endpoint(prompt, request, model="gpt-4")
             response = completion["content"]
             #response = completion["content"].replace('\"', "'").replace('\'', "'")
@@ -505,16 +541,16 @@ class Pipeline():
                 edit[parameter_key + "Parameters"] = result[parameter_key]
         return edits
 
-    def process_spatial(self, spatial_intent, frame_range):
-        image_processor = ImageProcessor()
-        input_images, input_bboxes, frame_id = image_processor.extract_candidate_frame_masks(frame_range)
-        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id)
-
     def get_summary(self, input):
         summary_request = "Generate a several word caption to summarize the purpose of the following video edit request."
         response = self.completion_endpoint(summary_request, input)
-        completion = ast.literal_eval(response["content"])
-        return completion
+        try:
+            summary = ast.literal_eval(response["content"])
+            return summary
+        except:
+            print("RESP: ", json.dumps(response))
+            print("Incorrect format returned by GPT")
+            return ""
     
     def convert_list_to_text(self, input_list, separator='\n'):
         if (len(input_list) == 0):

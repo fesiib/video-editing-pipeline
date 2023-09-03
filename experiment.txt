@@ -1,40 +1,4 @@
 Usage Info: {
-  "prompt_tokens": 851,
-  "completion_tokens": 86,
-  "total_tokens": 937
-}
-relevant_text {'temporal': ['Every time any quality of Surface go is mentioned'], 'temporal_labels': ['transcript'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 1384,
-  "completion_tokens": 135,
-  "total_tokens": 1519
-}
-final: 00:00:40 00:00:50 ['comparison of surface go with other devices'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-final: 00:04:30 00:04:40 ['description of the finish and webcam of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-final: 00:11:20 00:11:30 ['quality of the surface device'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-final: 00:11:40 00:12:00 ['comparison of surface go with surface rt', 'feel of the surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-final: 00:16:30 00:16:40 ['mention of the type cover of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-final: 00:19:20 00:19:30 ['mention of the build quality of surface go'] ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']
-Usage Info: {
-  "prompt_tokens": 1233,
-  "completion_tokens": 190,
-  "total_tokens": 1423
-}
-changes_to_apply [0, 0, 0, 0, 0, 0] results [{'text': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'Every time any quality of Surface go is mentioned, show it on the screen', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 40.0, 'finish': 50.0, 'duration': 10.0, 'info': ['comparison of surface go with other devices'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 270.0, 'finish': 280.0, 'duration': 10.0, 'info': ['description of the finish and webcam of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 680.0, 'finish': 690.0, 'duration': 10.0, 'info': ['quality of the surface device'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 700.0, 'finish': 720.0, 'duration': 20.0, 'info': ['comparison of surface go with surface rt', 'feel of the surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 990.0, 'finish': 1000.0, 'duration': 10.0, 'info': ['mention of the type cover of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}, {'textParameters': {'content': 'Surface go', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 1160.0, 'finish': 1170.0, 'duration': 10.0, 'info': ['mention of the build quality of surface go'], 'source': ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']}}]}
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Surface go'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['comparison of surface go with other devices'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [270.0, 280.0, ['description of the finish and webcam of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [680.0, 690.0, ['quality of the surface device'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [700.0, 720.0, ['comparison of surface go with surface rt', 'feel of the surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [990.0, 1000.0, ['mention of the type cover of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']], [1160.0, 1170.0, ['mention of the build quality of surface go'], ['Every time any quality of Surface go is mentioned', 'Every time any quality of Surface go is mentioned']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[81.0, 96.0], [97.0, 101.0], [146.0, 150.0], [157.0, 161.0], [255.0, 259.0], [264.0, 268.0], [283.0, 287.0], [472.0, 476.0], [1004.0, 1008.0]], 'relevant_text': {'temporal': ['Every time any quality of Surface go is mentioned'], 'spatial': ['on the screen'], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0 traditional:  0.26666666666666666
-!!!edit_op evaluation!!!:  1.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
   "prompt_tokens": 873,
   "completion_tokens": 99,
   "total_tokens": 972
@@ -42,14 +6,325 @@ Usage Info: {
 relevant_text {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'temporal_labels': ['transcript'], 'spatial': ['bottom of the screen'], 'edit': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
 Usage Info: {
   "prompt_tokens": 1382,
-  "completion_tokens": 104,
-  "total_tokens": 1486
+  "completion_tokens": 103,
+  "total_tokens": 1485
 }
 final: 00:00:40 00:00:50 ['compares the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
 final: 00:01:30 00:01:40 ['compares the storage and battery life of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
 final: 00:02:20 00:02:30 ['compares the pricing of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
 final: 00:15:50 00:16:00 ['compares the cost of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
-final: 00:19:30 00:19:40 ['compares the advertised starting price of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+final: 00:19:30 00:19:40 ['compares the starting price of the two devices'] ['Whenever the quality/price/battery/accessories of the two devices are compared']
+(720, 1280, 3)
+{'segmentation': [], 'area': 137511, 'bbox': [306, 102, 519, 488], 'predicted_iou': 1.0150885581970215, 'point_coords': [[660.0, 326.25]], 'stability_score': 0.9893524646759033, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 127344, 'bbox': [0, 0, 532, 303], 'predicted_iou': 1.0142446756362915, 'point_coords': [[180.0, 56.25]], 'stability_score': 0.9812871813774109, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 209776, 'bbox': [528, 0, 751, 554], 'predicted_iou': 1.0140366554260254, 'point_coords': [[780.0, 78.75]], 'stability_score': 0.9870408177375793, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 205748, 'bbox': [58, 395, 1221, 321], 'predicted_iou': 1.002869963645935, 'point_coords': [[1140.0, 573.75]], 'stability_score': 0.9598968029022217, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 37747, 'bbox': [0, 437, 220, 281], 'predicted_iou': 1.0015957355499268, 'point_coords': [[100.0, 708.75]], 'stability_score': 0.981574296951294, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3697, 'bbox': [1179, 0, 96, 49], 'predicted_iou': 1.001313328742981, 'point_coords': [[1220.0, 33.75]], 'stability_score': 0.9857641458511353, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 20985, 'bbox': [744, 477, 275, 144], 'predicted_iou': 0.9967939257621765, 'point_coords': [[860.0, 483.75]], 'stability_score': 0.9808472394943237, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 36005, 'bbox': [1029, 0, 250, 182], 'predicted_iou': 0.9895040392875671, 'point_coords': [[1180.0, 11.25]], 'stability_score': 0.9806424975395203, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4911, 'bbox': [352, 454, 143, 69], 'predicted_iou': 0.9891685247421265, 'point_coords': [[380.0, 483.75]], 'stability_score': 0.9812538027763367, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 127827, 'bbox': [0, 0, 532, 673], 'predicted_iou': 0.9851561784744263, 'point_coords': [[260.0, 213.75]], 'stability_score': 0.9708006978034973, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 11780, 'bbox': [952, 0, 78, 174], 'predicted_iou': 0.9846770167350769, 'point_coords': [[1020.0, 101.25]], 'stability_score': 0.9825772047042847, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 30779, 'bbox': [389, 211, 308, 205], 'predicted_iou': 0.9841141104698181, 'point_coords': [[540.0, 281.25]], 'stability_score': 0.9807735681533813, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6679, 'bbox': [64, 417, 142, 77], 'predicted_iou': 0.9798634648323059, 'point_coords': [[180.0, 438.75]], 'stability_score': 0.9816023707389832, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 64371, 'bbox': [951, 0, 328, 217], 'predicted_iou': 0.9757810831069946, 'point_coords': [[1220.0, 146.25]], 'stability_score': 0.9841983318328857, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 14326, 'bbox': [184, 302, 176, 191], 'predicted_iou': 0.9737298488616943, 'point_coords': [[220.0, 416.25]], 'stability_score': 0.9654509425163269, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 17270, 'bbox': [564, 264, 262, 329], 'predicted_iou': 0.9715645909309387, 'point_coords': [[620.0, 551.25]], 'stability_score': 0.9750128388404846, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13046, 'bbox': [225, 246, 190, 143], 'predicted_iou': 0.9706742763519287, 'point_coords': [[300.0, 371.25]], 'stability_score': 0.9759236574172974, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1286, 'bbox': [1231, 0, 44, 47], 'predicted_iou': 0.9671871066093445, 'point_coords': [[1260.0, 11.25]], 'stability_score': 0.9692307710647583, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 9907, 'bbox': [188, 397, 173, 97], 'predicted_iou': 0.9664022326469421, 'point_coords': [[220.0, 416.25]], 'stability_score': 0.9797162413597107, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5805, 'bbox': [475, 360, 104, 116], 'predicted_iou': 0.9662819504737854, 'point_coords': [[500.0, 438.75]], 'stability_score': 0.9644730091094971, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2132, 'bbox': [355, 187, 53, 60], 'predicted_iou': 0.9626306295394897, 'point_coords': [[380.0, 236.25]], 'stability_score': 0.9732101559638977, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 38560, 'bbox': [0, 307, 227, 411], 'predicted_iou': 0.9607633352279663, 'point_coords': [[220.0, 708.75]], 'stability_score': 0.9760416150093079, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 416561, 'bbox': [63, 0, 1216, 715], 'predicted_iou': 0.9580789804458618, 'point_coords': [[980.0, 708.75]], 'stability_score': 0.9576694369316101, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 35194, 'bbox': [0, 247, 415, 186], 'predicted_iou': 0.9580433368682861, 'point_coords': [[180.0, 393.75]], 'stability_score': 0.9625062942504883, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2378, 'bbox': [1179, 0, 68, 48], 'predicted_iou': 0.9539072513580322, 'point_coords': [[1220.0, 33.75]], 'stability_score': 0.973399817943573, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4335, 'bbox': [184, 309, 74, 93], 'predicted_iou': 0.9518262147903442, 'point_coords': [[220.0, 393.75]], 'stability_score': 0.9760328531265259, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 715, 'bbox': [289, 96, 45, 16], 'predicted_iou': 0.949440062046051, 'point_coords': [[300.0, 101.25]], 'stability_score': 0.9681440591812134, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2444, 'bbox': [1067, 483, 212, 121], 'predicted_iou': 0.9473314881324768, 'point_coords': [[1140.0, 506.25]], 'stability_score': 0.9717400074005127, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15003, 'bbox': [64, 538, 156, 180], 'predicted_iou': 0.9410093426704407, 'point_coords': [[100.0, 686.25]], 'stability_score': 0.9563261866569519, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1377, 'bbox': [17, 672, 39, 47], 'predicted_iou': 0.9408470988273621, 'point_coords': [[20.0, 686.25]], 'stability_score': 0.9700214266777039, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2313, 'bbox': [0, 600, 22, 119], 'predicted_iou': 0.9405089020729065, 'point_coords': [[20.0, 641.25]], 'stability_score': 0.9573299288749695, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 775, 'bbox': [1247, 552, 32, 38], 'predicted_iou': 0.9387658834457397, 'point_coords': [[1260.0, 573.75]], 'stability_score': 0.9632911682128906, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1925, 'bbox': [491, 282, 75, 53], 'predicted_iou': 0.931719958782196, 'point_coords': [[500.0, 326.25]], 'stability_score': 0.9683834910392761, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 586, 'bbox': [282, 422, 26, 32], 'predicted_iou': 0.9278822541236877, 'point_coords': [[300.0, 438.75]], 'stability_score': 0.9831649661064148, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 14837, 'bbox': [92, 302, 269, 192], 'predicted_iou': 0.9267946481704712, 'point_coords': [[300.0, 483.75]], 'stability_score': 0.9506700038909912, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3560, 'bbox': [0, 600, 54, 119], 'predicted_iou': 0.9216099977493286, 'point_coords': [[20.0, 708.75]], 'stability_score': 0.9675378203392029, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 22542, 'bbox': [0, 299, 201, 136], 'predicted_iou': 0.921366274356842, 'point_coords': [[140.0, 371.25]], 'stability_score': 0.9747833013534546, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 424, 'bbox': [886, 482, 31, 18], 'predicted_iou': 0.9088547229766846, 'point_coords': [[900.0, 483.75]], 'stability_score': 0.9654377698898315, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 846, 'bbox': [923, 479, 70, 59], 'predicted_iou': 0.9019046425819397, 'point_coords': [[940.0, 483.75]], 'stability_score': 0.9743589758872986, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 775, 'bbox': [125, 423, 33, 32], 'predicted_iou': 0.8979917764663696, 'point_coords': [[140.0, 438.75]], 'stability_score': 0.9633375406265259, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1190, 'bbox': [1028, 476, 92, 72], 'predicted_iou': 0.8968732357025146, 'point_coords': [[1100.0, 528.75]], 'stability_score': 0.9710744023323059, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1452, 'bbox': [16, 440, 21, 132], 'predicted_iou': 0.8892616629600525, 'point_coords': [[20.0, 506.25]], 'stability_score': 0.9661704897880554, 'crop_box': [0, 0, 1280, 720]}
+[306, 102, 519, 488] (720, 1280, 3) [480, 854]
+(720, 1280, 3)
+{'segmentation': [], 'area': 199870, 'bbox': [581, 51, 698, 664], 'predicted_iou': 1.0314937829971313, 'point_coords': [[820.0, 168.75]], 'stability_score': 0.984359622001648, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 66846, 'bbox': [807, 0, 472, 264], 'predicted_iou': 1.0079861879348755, 'point_coords': [[1260.0, 236.25]], 'stability_score': 0.988337516784668, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26107, 'bbox': [797, 155, 292, 159], 'predicted_iou': 1.0079073905944824, 'point_coords': [[980.0, 281.25]], 'stability_score': 0.9874743223190308, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 249689, 'bbox': [156, 51, 1123, 665], 'predicted_iou': 1.0042558908462524, 'point_coords': [[660.0, 213.75]], 'stability_score': 0.9644843935966492, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 21411, 'bbox': [510, 0, 257, 99], 'predicted_iou': 0.9990523457527161, 'point_coords': [[700.0, 78.75]], 'stability_score': 0.9869202375411987, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 47714, 'bbox': [586, 236, 345, 270], 'predicted_iou': 0.9950749278068542, 'point_coords': [[660.0, 438.75]], 'stability_score': 0.9738253355026245, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13460, 'bbox': [622, 466, 218, 126], 'predicted_iou': 0.9950510263442993, 'point_coords': [[740.0, 506.25]], 'stability_score': 0.9783966541290283, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 47796, 'bbox': [585, 235, 498, 271], 'predicted_iou': 0.9949087500572205, 'point_coords': [[620.0, 416.25]], 'stability_score': 0.9743382930755615, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 21959, 'bbox': [505, 463, 226, 226], 'predicted_iou': 0.9948607087135315, 'point_coords': [[580.0, 573.75]], 'stability_score': 0.9825447797775269, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2274, 'bbox': [859, 682, 113, 36], 'predicted_iou': 0.994199812412262, 'point_coords': [[940.0, 708.75]], 'stability_score': 0.9925601482391357, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 37067, 'bbox': [510, 0, 263, 208], 'predicted_iou': 0.9930006265640259, 'point_coords': [[700.0, 78.75]], 'stability_score': 0.982494592666626, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 53094, 'bbox': [379, 234, 552, 272], 'predicted_iou': 0.9912189245223999, 'point_coords': [[700.0, 281.25]], 'stability_score': 0.971009373664856, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 11918, 'bbox': [212, 535, 91, 183], 'predicted_iou': 0.9895387887954712, 'point_coords': [[260.0, 641.25]], 'stability_score': 0.971057653427124, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 9741, 'bbox': [249, 0, 265, 58], 'predicted_iou': 0.9851257801055908, 'point_coords': [[300.0, 11.25]], 'stability_score': 0.9716857075691223, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26592, 'bbox': [125, 0, 214, 200], 'predicted_iou': 0.9829667210578918, 'point_coords': [[140.0, 56.25]], 'stability_score': 0.9820442199707031, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3730, 'bbox': [423, 0, 91, 59], 'predicted_iou': 0.9774602651596069, 'point_coords': [[460.0, 11.25]], 'stability_score': 0.9906616806983948, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 140410, 'bbox': [0, 3, 619, 582], 'predicted_iou': 0.9772862195968628, 'point_coords': [[100.0, 393.75]], 'stability_score': 0.9607309103012085, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 98015, 'bbox': [469, 452, 572, 264], 'predicted_iou': 0.9748414754867554, 'point_coords': [[660.0, 708.75]], 'stability_score': 0.9536576271057129, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 65114, 'bbox': [0, 0, 203, 393], 'predicted_iou': 0.9736161231994629, 'point_coords': [[140.0, 326.25]], 'stability_score': 0.9838977456092834, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5059, 'bbox': [934, 625, 113, 92], 'predicted_iou': 0.9725868105888367, 'point_coords': [[940.0, 663.75]], 'stability_score': 0.9666536450386047, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 103126, 'bbox': [461, 257, 584, 460], 'predicted_iou': 0.9716184139251709, 'point_coords': [[780.0, 573.75]], 'stability_score': 0.9511828422546387, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15102, 'bbox': [417, 83, 268, 112], 'predicted_iou': 0.9715391397476196, 'point_coords': [[500.0, 123.75]], 'stability_score': 0.9724453091621399, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15356, 'bbox': [401, 31, 285, 164], 'predicted_iou': 0.9696202278137207, 'point_coords': [[540.0, 146.25]], 'stability_score': 0.9611805081367493, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 16309, 'bbox': [701, 618, 346, 99], 'predicted_iou': 0.96949303150177, 'point_coords': [[900.0, 641.25]], 'stability_score': 0.9604232907295227, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2154, 'bbox': [274, 233, 94, 44], 'predicted_iou': 0.9678638577461243, 'point_coords': [[340.0, 258.75]], 'stability_score': 0.9802480340003967, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1739, 'bbox': [772, 0, 46, 50], 'predicted_iou': 0.9676344990730286, 'point_coords': [[780.0, 11.25]], 'stability_score': 0.9783845543861389, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15302, 'bbox': [328, 519, 164, 198], 'predicted_iou': 0.9673073887825012, 'point_coords': [[380.0, 641.25]], 'stability_score': 0.9700289964675903, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 82504, 'bbox': [0, 342, 617, 244], 'predicted_iou': 0.9646510481834412, 'point_coords': [[460.0, 393.75]], 'stability_score': 0.9686340689659119, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 43933, 'bbox': [0, 0, 153, 317], 'predicted_iou': 0.9611864686012268, 'point_coords': [[20.0, 258.75]], 'stability_score': 0.9658587574958801, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4001, 'bbox': [307, 52, 104, 76], 'predicted_iou': 0.9590353965759277, 'point_coords': [[380.0, 101.25]], 'stability_score': 0.9506082534790039, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15338, 'bbox': [108, 553, 133, 165], 'predicted_iou': 0.9554587006568909, 'point_coords': [[180.0, 596.25]], 'stability_score': 0.9613946676254272, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15303, 'bbox': [328, 519, 235, 198], 'predicted_iou': 0.9552786946296692, 'point_coords': [[380.0, 573.75]], 'stability_score': 0.9668703675270081, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25903, 'bbox': [211, 386, 191, 332], 'predicted_iou': 0.9551289081573486, 'point_coords': [[260.0, 573.75]], 'stability_score': 0.9607124328613281, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8594, 'bbox': [301, 110, 147, 146], 'predicted_iou': 0.9541308879852295, 'point_coords': [[340.0, 213.75]], 'stability_score': 0.9597949981689453, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25868, 'bbox': [211, 530, 191, 188], 'predicted_iou': 0.9537405967712402, 'point_coords': [[260.0, 596.25]], 'stability_score': 0.9705926775932312, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1425, 'bbox': [972, 259, 111, 44], 'predicted_iou': 0.9523653388023376, 'point_coords': [[1020.0, 281.25]], 'stability_score': 0.9770674109458923, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2290, 'bbox': [232, 174, 70, 57], 'predicted_iou': 0.9505972862243652, 'point_coords': [[260.0, 191.25]], 'stability_score': 0.9606501460075378, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 273, 'bbox': [530, 9, 31, 10], 'predicted_iou': 0.948275089263916, 'point_coords': [[540.0, 11.25]], 'stability_score': 0.97826087474823, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26532, 'bbox': [797, 155, 425, 160], 'predicted_iou': 0.9480032324790955, 'point_coords': [[940.0, 303.75]], 'stability_score': 0.9777231216430664, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5379, 'bbox': [378, 266, 178, 109], 'predicted_iou': 0.9479076266288757, 'point_coords': [[500.0, 326.25]], 'stability_score': 0.9531420469284058, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 14568, 'bbox': [519, 56, 245, 152], 'predicted_iou': 0.947868824005127, 'point_coords': [[700.0, 146.25]], 'stability_score': 0.9564721584320068, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1289, 'bbox': [1150, 175, 129, 58], 'predicted_iou': 0.9456461071968079, 'point_coords': [[1220.0, 191.25]], 'stability_score': 0.9830377697944641, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3786, 'bbox': [151, 128, 82, 86], 'predicted_iou': 0.9435370564460754, 'point_coords': [[220.0, 191.25]], 'stability_score': 0.9682869911193848, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 12483, 'bbox': [205, 175, 173, 148], 'predicted_iou': 0.9425169229507446, 'point_coords': [[260.0, 281.25]], 'stability_score': 0.9629046320915222, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5211, 'bbox': [186, 275, 79, 128], 'predicted_iou': 0.9419472217559814, 'point_coords': [[260.0, 393.75]], 'stability_score': 0.9663833975791931, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 120, 'bbox': [651, 188, 15, 9], 'predicted_iou': 0.9410629868507385, 'point_coords': [[660.0, 191.25]], 'stability_score': 0.9586777091026306, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 32494, 'bbox': [346, 169, 275, 174], 'predicted_iou': 0.9402931332588196, 'point_coords': [[380.0, 258.75]], 'stability_score': 0.9595816731452942, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1798, 'bbox': [1216, 446, 63, 39], 'predicted_iou': 0.9351832270622253, 'point_coords': [[1220.0, 461.25]], 'stability_score': 0.9671412706375122, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 30730, 'bbox': [329, 317, 249, 400], 'predicted_iou': 0.9343624114990234, 'point_coords': [[540.0, 708.75]], 'stability_score': 0.9596520662307739, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 10874, 'bbox': [704, 620, 232, 97], 'predicted_iou': 0.9325072169303894, 'point_coords': [[900.0, 641.25]], 'stability_score': 0.968684732913971, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 829, 'bbox': [575, 538, 44, 22], 'predicted_iou': 0.9306480288505554, 'point_coords': [[580.0, 551.25]], 'stability_score': 0.9693396091461182, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 937, 'bbox': [412, 0, 23, 78], 'predicted_iou': 0.9285003542900085, 'point_coords': [[420.0, 56.25]], 'stability_score': 0.9746031761169434, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5368, 'bbox': [302, 121, 83, 125], 'predicted_iou': 0.9258947968482971, 'point_coords': [[340.0, 146.25]], 'stability_score': 0.95115727186203, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 36053, 'bbox': [504, 464, 337, 225], 'predicted_iou': 0.9251054525375366, 'point_coords': [[820.0, 528.75]], 'stability_score': 0.9549681544303894, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 68344, 'bbox': [482, 0, 797, 265], 'predicted_iou': 0.9234333038330078, 'point_coords': [[1180.0, 101.25]], 'stability_score': 0.9521915912628174, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 303, 'bbox': [411, 0, 13, 29], 'predicted_iou': 0.9173611998558044, 'point_coords': [[420.0, 11.25]], 'stability_score': 0.9612902998924255, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 401, 'bbox': [188, 348, 45, 16], 'predicted_iou': 0.9073403477668762, 'point_coords': [[220.0, 348.75]], 'stability_score': 0.9704433679580688, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 58530, 'bbox': [0, 302, 400, 416], 'predicted_iou': 0.9053789377212524, 'point_coords': [[20.0, 708.75]], 'stability_score': 0.9680695533752441, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 756, 'bbox': [1151, 184, 63, 68], 'predicted_iou': 0.9025182127952576, 'point_coords': [[1180.0, 213.75]], 'stability_score': 0.9726918339729309, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13648, 'bbox': [271, 534, 132, 184], 'predicted_iou': 0.9002546668052673, 'point_coords': [[300.0, 618.75]], 'stability_score': 0.9566900730133057, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 17391, 'bbox': [0, 555, 232, 163], 'predicted_iou': 0.8981671929359436, 'point_coords': [[60.0, 663.75]], 'stability_score': 0.9519526362419128, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1350, 'bbox': [337, 33, 54, 36], 'predicted_iou': 0.8980284333229065, 'point_coords': [[380.0, 56.25]], 'stability_score': 0.9586657285690308, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6036, 'bbox': [416, 89, 102, 82], 'predicted_iou': 0.8922117948532104, 'point_coords': [[460.0, 123.75]], 'stability_score': 0.9502423405647278, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8719, 'bbox': [338, 21, 168, 104], 'predicted_iou': 0.8910715579986572, 'point_coords': [[460.0, 78.75]], 'stability_score': 0.9536342024803162, 'crop_box': [0, 0, 1280, 720]}
+[581, 51, 698, 664] (720, 1280, 3) [480, 854]
+(720, 1280, 3)
+{'segmentation': [], 'area': 219931, 'bbox': [55, 0, 1224, 715], 'predicted_iou': 1.0188201665878296, 'point_coords': [[300.0, 641.25]], 'stability_score': 0.9732753038406372, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 92219, 'bbox': [0, 302, 299, 415], 'predicted_iou': 1.0167757272720337, 'point_coords': [[60.0, 663.75]], 'stability_score': 0.9936783909797668, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 126994, 'bbox': [0, 92, 300, 625], 'predicted_iou': 1.0040984153747559, 'point_coords': [[60.0, 663.75]], 'stability_score': 0.9801427721977234, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 143219, 'bbox': [401, 423, 878, 194], 'predicted_iou': 1.0002703666687012, 'point_coords': [[1180.0, 461.25]], 'stability_score': 0.9666915535926819, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 20529, 'bbox': [0, 92, 142, 185], 'predicted_iou': 0.9946349263191223, 'point_coords': [[60.0, 101.25]], 'stability_score': 0.990400493144989, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 7431, 'bbox': [0, 0, 85, 100], 'predicted_iou': 0.9928199052810669, 'point_coords': [[60.0, 11.25]], 'stability_score': 0.989825963973999, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2905, 'bbox': [1157, 549, 122, 29], 'predicted_iou': 0.9925137758255005, 'point_coords': [[1260.0, 573.75]], 'stability_score': 0.9839481115341187, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 44287, 'bbox': [408, 0, 871, 130], 'predicted_iou': 0.9903724193572998, 'point_coords': [[1220.0, 56.25]], 'stability_score': 0.9719861149787903, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1504, 'bbox': [493, 479, 47, 43], 'predicted_iou': 0.989028811454773, 'point_coords': [[500.0, 506.25]], 'stability_score': 0.9867987036705017, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8121, 'bbox': [184, 640, 111, 78], 'predicted_iou': 0.9885137677192688, 'point_coords': [[220.0, 708.75]], 'stability_score': 0.9847207069396973, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 217002, 'bbox': [407, 6, 872, 421], 'predicted_iou': 0.986431360244751, 'point_coords': [[900.0, 371.25]], 'stability_score': 0.9658269286155701, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8869, 'bbox': [796, 150, 146, 131], 'predicted_iou': 0.9861679673194885, 'point_coords': [[900.0, 213.75]], 'stability_score': 0.9849910140037537, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 49283, 'bbox': [794, 88, 320, 337], 'predicted_iou': 0.984839677810669, 'point_coords': [[1060.0, 191.25]], 'stability_score': 0.9562721848487854, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 61500, 'bbox': [1093, 56, 186, 370], 'predicted_iou': 0.9820502400398254, 'point_coords': [[1180.0, 101.25]], 'stability_score': 0.9784039258956909, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 544955, 'bbox': [366, 0, 913, 656], 'predicted_iou': 0.9760377407073975, 'point_coords': [[500.0, 236.25]], 'stability_score': 0.9528020620346069, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1616, 'bbox': [148, 649, 38, 70], 'predicted_iou': 0.9702240228652954, 'point_coords': [[180.0, 708.75]], 'stability_score': 0.9809582233428955, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2090, 'bbox': [852, 159, 50, 56], 'predicted_iou': 0.9630199074745178, 'point_coords': [[860.0, 191.25]], 'stability_score': 0.9833887219429016, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2456, 'bbox': [963, 73, 130, 31], 'predicted_iou': 0.9626038074493408, 'point_coords': [[980.0, 101.25]], 'stability_score': 0.9667999744415283, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 500, 'bbox': [729, 587, 28, 17], 'predicted_iou': 0.9613780975341797, 'point_coords': [[740.0, 596.25]], 'stability_score': 0.9900596141815186, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 906, 'bbox': [575, 459, 77, 13], 'predicted_iou': 0.9561377167701721, 'point_coords': [[620.0, 461.25]], 'stability_score': 0.9868420958518982, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 281, 'bbox': [685, 586, 20, 15], 'predicted_iou': 0.9549418091773987, 'point_coords': [[700.0, 596.25]], 'stability_score': 0.9929078221321106, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 233, 'bbox': [844, 224, 19, 15], 'predicted_iou': 0.9500788450241089, 'point_coords': [[860.0, 236.25]], 'stability_score': 0.9872340559959412, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 489, 'bbox': [612, 580, 26, 19], 'predicted_iou': 0.9458712935447693, 'point_coords': [[620.0, 596.25]], 'stability_score': 0.9898580312728882, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5672, 'bbox': [0, 239, 100, 88], 'predicted_iou': 0.9401496052742004, 'point_coords': [[20.0, 303.75]], 'stability_score': 0.9726671576499939, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 19732, 'bbox': [928, 89, 175, 139], 'predicted_iou': 0.9384962916374207, 'point_coords': [[940.0, 191.25]], 'stability_score': 0.9656307697296143, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6474, 'bbox': [1152, 468, 127, 65], 'predicted_iou': 0.9327523112297058, 'point_coords': [[1260.0, 506.25]], 'stability_score': 0.9675848484039307, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1074, 'bbox': [100, 244, 45, 47], 'predicted_iou': 0.9264947175979614, 'point_coords': [[140.0, 258.75]], 'stability_score': 0.9538461565971375, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 61167, 'bbox': [966, 57, 313, 370], 'predicted_iou': 0.9239932298660278, 'point_coords': [[1260.0, 416.25]], 'stability_score': 0.9699793457984924, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3105, 'bbox': [870, 88, 60, 78], 'predicted_iou': 0.921743631362915, 'point_coords': [[900.0, 101.25]], 'stability_score': 0.9735584855079651, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2750, 'bbox': [377, 568, 144, 29], 'predicted_iou': 0.9199961423873901, 'point_coords': [[460.0, 596.25]], 'stability_score': 0.9505338072776794, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5698, 'bbox': [870, 73, 224, 138], 'predicted_iou': 0.9158521890640259, 'point_coords': [[980.0, 101.25]], 'stability_score': 0.95428866147995, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 28462, 'bbox': [793, 223, 320, 202], 'predicted_iou': 0.9157076478004456, 'point_coords': [[1100.0, 258.75]], 'stability_score': 0.9593039155006409, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4288, 'bbox': [0, 655, 75, 62], 'predicted_iou': 0.9079335331916809, 'point_coords': [[20.0, 708.75]], 'stability_score': 0.964465856552124, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6867, 'bbox': [0, 239, 144, 89], 'predicted_iou': 0.9012457132339478, 'point_coords': [[140.0, 258.75]], 'stability_score': 0.9756659269332886, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 283, 'bbox': [758, 590, 20, 15], 'predicted_iou': 0.8893850445747375, 'point_coords': [[780.0, 596.25]], 'stability_score': 0.9720279574394226, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 16452, 'bbox': [796, 74, 297, 207], 'predicted_iou': 0.8848785161972046, 'point_coords': [[860.0, 258.75]], 'stability_score': 0.9532327055931091, 'crop_box': [0, 0, 1280, 720]}
+[55, 0, 1224, 715] (720, 1280, 3) [480, 854]
+(720, 1280, 3)
+{'segmentation': [], 'area': 87324, 'bbox': [30, 0, 472, 414], 'predicted_iou': 1.079083800315857, 'point_coords': [[340.0, 348.75]], 'stability_score': 0.9828014969825745, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 113483, 'bbox': [55, 436, 581, 281], 'predicted_iou': 1.0207582712173462, 'point_coords': [[580.0, 573.75]], 'stability_score': 0.9886243939399719, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 259306, 'bbox': [55, 30, 770, 688], 'predicted_iou': 1.0207219123840332, 'point_coords': [[500.0, 483.75]], 'stability_score': 0.9799613356590271, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8965, 'bbox': [1175, 618, 104, 101], 'predicted_iou': 1.0150604248046875, 'point_coords': [[1180.0, 708.75]], 'stability_score': 0.9900155067443848, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4790, 'bbox': [1209, 638, 70, 80], 'predicted_iou': 1.0115959644317627, 'point_coords': [[1220.0, 663.75]], 'stability_score': 0.9871289134025574, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 124385, 'bbox': [553, 0, 726, 199], 'predicted_iou': 1.0103904008865356, 'point_coords': [[660.0, 123.75]], 'stability_score': 0.9792222380638123, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 145330, 'bbox': [561, 211, 718, 294], 'predicted_iou': 1.0086454153060913, 'point_coords': [[700.0, 303.75]], 'stability_score': 0.9815959930419922, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 120436, 'bbox': [303, 102, 524, 536], 'predicted_iou': 1.0010926723480225, 'point_coords': [[380.0, 326.25]], 'stability_score': 0.9783480167388916, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 10335, 'bbox': [0, 0, 56, 254], 'predicted_iou': 0.9996353983879089, 'point_coords': [[20.0, 11.25]], 'stability_score': 0.987504780292511, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25244, 'bbox': [328, 21, 280, 232], 'predicted_iou': 0.998586893081665, 'point_coords': [[540.0, 56.25]], 'stability_score': 0.9806846976280212, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1794, 'bbox': [0, 678, 50, 41], 'predicted_iou': 0.9979316592216492, 'point_coords': [[20.0, 686.25]], 'stability_score': 0.9955530762672424, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 65053, 'bbox': [847, 477, 343, 240], 'predicted_iou': 0.9974709749221802, 'point_coords': [[1140.0, 528.75]], 'stability_score': 0.9866864085197449, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 32817, 'bbox': [54, 305, 256, 146], 'predicted_iou': 0.9914417266845703, 'point_coords': [[60.0, 371.25]], 'stability_score': 0.9802963137626648, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2269, 'bbox': [664, 55, 59, 55], 'predicted_iou': 0.9910223484039307, 'point_coords': [[700.0, 56.25]], 'stability_score': 0.9816833734512329, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 86368, 'bbox': [30, 0, 682, 409], 'predicted_iou': 0.9906300902366638, 'point_coords': [[140.0, 191.25]], 'stability_score': 0.9857505559921265, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 147980, 'bbox': [203, 210, 1076, 472], 'predicted_iou': 0.987523078918457, 'point_coords': [[660.0, 236.25]], 'stability_score': 0.9503703713417053, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5569, 'bbox': [793, 675, 219, 43], 'predicted_iou': 0.9850587248802185, 'point_coords': [[900.0, 686.25]], 'stability_score': 0.9743772149085999, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 230386, 'bbox': [33, 0, 1246, 504], 'predicted_iou': 0.9849950075149536, 'point_coords': [[820.0, 281.25]], 'stability_score': 0.9689195156097412, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 43914, 'bbox': [568, 450, 315, 267], 'predicted_iou': 0.9849532842636108, 'point_coords': [[620.0, 708.75]], 'stability_score': 0.977547824382782, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2710, 'bbox': [706, 365, 84, 52], 'predicted_iou': 0.9831731915473938, 'point_coords': [[780.0, 416.25]], 'stability_score': 0.9827901721000671, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6532, 'bbox': [1032, 627, 110, 83], 'predicted_iou': 0.9830705523490906, 'point_coords': [[1060.0, 663.75]], 'stability_score': 0.9654551148414612, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1266, 'bbox': [1215, 503, 64, 29], 'predicted_iou': 0.9801689386367798, 'point_coords': [[1260.0, 506.25]], 'stability_score': 0.9812206625938416, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1527, 'bbox': [504, 0, 47, 45], 'predicted_iou': 0.9785563349723816, 'point_coords': [[540.0, 33.75]], 'stability_score': 0.9831387996673584, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 262151, 'bbox': [55, 27, 1101, 691], 'predicted_iou': 0.9778017997741699, 'point_coords': [[60.0, 708.75]], 'stability_score': 0.979114294052124, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2872, 'bbox': [155, 462, 86, 61], 'predicted_iou': 0.9774560332298279, 'point_coords': [[220.0, 483.75]], 'stability_score': 0.9807361364364624, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 124664, 'bbox': [66, 0, 1213, 199], 'predicted_iou': 0.9710811376571655, 'point_coords': [[1220.0, 78.75]], 'stability_score': 0.9558113813400269, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3116, 'bbox': [897, 510, 258, 56], 'predicted_iou': 0.9690433144569397, 'point_coords': [[1060.0, 551.25]], 'stability_score': 0.9619736075401306, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6025, 'bbox': [1020, 184, 259, 27], 'predicted_iou': 0.968344509601593, 'point_coords': [[1140.0, 191.25]], 'stability_score': 0.9772205948829651, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1895, 'bbox': [1133, 641, 35, 77], 'predicted_iou': 0.9682021737098694, 'point_coords': [[1140.0, 686.25]], 'stability_score': 0.9765380620956421, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2001, 'bbox': [457, 673, 51, 45], 'predicted_iou': 0.9672799706459045, 'point_coords': [[460.0, 708.75]], 'stability_score': 0.9821958541870117, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1720, 'bbox': [763, 21, 99, 21], 'predicted_iou': 0.9652608633041382, 'point_coords': [[860.0, 33.75]], 'stability_score': 0.9867281913757324, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 438, 'bbox': [1000, 183, 22, 21], 'predicted_iou': 0.9646135568618774, 'point_coords': [[1020.0, 191.25]], 'stability_score': 0.9886363744735718, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 818, 'bbox': [813, 178, 34, 24], 'predicted_iou': 0.9643948078155518, 'point_coords': [[820.0, 191.25]], 'stability_score': 0.9902794361114502, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 816, 'bbox': [960, 182, 37, 22], 'predicted_iou': 0.9632978439331055, 'point_coords': [[980.0, 191.25]], 'stability_score': 0.9746682643890381, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1300, 'bbox': [1215, 503, 64, 45], 'predicted_iou': 0.9629857540130615, 'point_coords': [[1260.0, 506.25]], 'stability_score': 0.9741837382316589, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5230, 'bbox': [730, 258, 98, 90], 'predicted_iou': 0.9625086784362793, 'point_coords': [[780.0, 326.25]], 'stability_score': 0.9658023118972778, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4447, 'bbox': [0, 494, 112, 50], 'predicted_iou': 0.9603053331375122, 'point_coords': [[60.0, 506.25]], 'stability_score': 0.9522348642349243, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4804, 'bbox': [0, 573, 85, 65], 'predicted_iou': 0.9601356387138367, 'point_coords': [[20.0, 618.75]], 'stability_score': 0.9668236970901489, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 353, 'bbox': [848, 181, 20, 18], 'predicted_iou': 0.9588443040847778, 'point_coords': [[860.0, 191.25]], 'stability_score': 0.9859943985939026, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1152, 'bbox': [0, 422, 35, 39], 'predicted_iou': 0.9586402773857117, 'point_coords': [[20.0, 438.75]], 'stability_score': 0.980223536491394, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 11360, 'bbox': [686, 243, 142, 139], 'predicted_iou': 0.9564831256866455, 'point_coords': [[740.0, 326.25]], 'stability_score': 0.9812668561935425, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3405, 'bbox': [457, 619, 76, 99], 'predicted_iou': 0.9553879499435425, 'point_coords': [[500.0, 708.75]], 'stability_score': 0.9602420330047607, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 381, 'bbox': [699, 87, 24, 23], 'predicted_iou': 0.9488682150840759, 'point_coords': [[700.0, 101.25]], 'stability_score': 0.9713541865348816, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 451, 'bbox': [1202, 597, 30, 18], 'predicted_iou': 0.9471344947814941, 'point_coords': [[1220.0, 596.25]], 'stability_score': 0.9780219793319702, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4433, 'bbox': [0, 418, 76, 74], 'predicted_iou': 0.9453438520431519, 'point_coords': [[60.0, 461.25]], 'stability_score': 0.9726666808128357, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6212, 'bbox': [86, 263, 178, 48], 'predicted_iou': 0.9435009360313416, 'point_coords': [[100.0, 281.25]], 'stability_score': 0.9677829146385193, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13693, 'bbox': [551, 405, 363, 84], 'predicted_iou': 0.9427173137664795, 'point_coords': [[820.0, 438.75]], 'stability_score': 0.9567548036575317, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8153, 'bbox': [0, 574, 88, 114], 'predicted_iou': 0.9423079490661621, 'point_coords': [[20.0, 618.75]], 'stability_score': 0.9838101267814636, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 10149, 'bbox': [1163, 504, 116, 126], 'predicted_iou': 0.9420778751373291, 'point_coords': [[1260.0, 573.75]], 'stability_score': 0.9760007858276367, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 87239, 'bbox': [307, 102, 299, 423], 'predicted_iou': 0.9415645003318787, 'point_coords': [[500.0, 236.25]], 'stability_score': 0.9516552686691284, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 369, 'bbox': [446, 220, 24, 18], 'predicted_iou': 0.9407438039779663, 'point_coords': [[460.0, 236.25]], 'stability_score': 0.9785522818565369, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 21655, 'bbox': [580, 398, 188, 241], 'predicted_iou': 0.9399495720863342, 'point_coords': [[740.0, 416.25]], 'stability_score': 0.9795246720314026, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 27607, 'bbox': [0, 451, 241, 235], 'predicted_iou': 0.9373060464859009, 'point_coords': [[100.0, 483.75]], 'stability_score': 0.9709979295730591, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1812, 'bbox': [143, 274, 63, 36], 'predicted_iou': 0.9371607899665833, 'point_coords': [[180.0, 281.25]], 'stability_score': 0.9616837501525879, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 291, 'bbox': [937, 185, 19, 17], 'predicted_iou': 0.9370328187942505, 'point_coords': [[940.0, 191.25]], 'stability_score': 0.9796609878540039, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1708, 'bbox': [74, 557, 59, 52], 'predicted_iou': 0.9370279312133789, 'point_coords': [[100.0, 573.75]], 'stability_score': 0.9750580191612244, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1685, 'bbox': [551, 449, 59, 43], 'predicted_iou': 0.9366071224212646, 'point_coords': [[580.0, 461.25]], 'stability_score': 0.9685863852500916, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 439, 'bbox': [1244, 542, 35, 15], 'predicted_iou': 0.9364213347434998, 'point_coords': [[1260.0, 551.25]], 'stability_score': 0.9909090995788574, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 629, 'bbox': [821, 585, 41, 45], 'predicted_iou': 0.934115469455719, 'point_coords': [[820.0, 618.75]], 'stability_score': 0.9843013882637024, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 21528, 'bbox': [580, 247, 187, 392], 'predicted_iou': 0.934044361114502, 'point_coords': [[620.0, 596.25]], 'stability_score': 0.9676581621170044, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 87655, 'bbox': [306, 102, 450, 424], 'predicted_iou': 0.9338015913963318, 'point_coords': [[580.0, 213.75]], 'stability_score': 0.9710363745689392, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2676, 'bbox': [593, 449, 70, 70], 'predicted_iou': 0.9331271052360535, 'point_coords': [[620.0, 461.25]], 'stability_score': 0.9604830145835876, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 291, 'bbox': [0, 251, 21, 14], 'predicted_iou': 0.9316657185554504, 'point_coords': [[20.0, 258.75]], 'stability_score': 0.9830508232116699, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1453, 'bbox': [0, 653, 62, 36], 'predicted_iou': 0.9314886927604675, 'point_coords': [[20.0, 663.75]], 'stability_score': 0.9722222089767456, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 451, 'bbox': [12, 284, 19, 26], 'predicted_iou': 0.9239981770515442, 'point_coords': [[20.0, 303.75]], 'stability_score': 0.9933628439903259, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1366, 'bbox': [0, 395, 54, 30], 'predicted_iou': 0.9209353923797607, 'point_coords': [[20.0, 416.25]], 'stability_score': 0.964595377445221, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3279, 'bbox': [0, 634, 73, 55], 'predicted_iou': 0.9198799729347229, 'point_coords': [[20.0, 641.25]], 'stability_score': 0.9661169648170471, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1476, 'bbox': [612, 181, 87, 20], 'predicted_iou': 0.9177955985069275, 'point_coords': [[700.0, 191.25]], 'stability_score': 0.9686875343322754, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4653, 'bbox': [1160, 581, 119, 137], 'predicted_iou': 0.9176443815231323, 'point_coords': [[1180.0, 641.25]], 'stability_score': 0.9524009227752686, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 11817, 'bbox': [0, 0, 57, 419], 'predicted_iou': 0.9091414213180542, 'point_coords': [[20.0, 101.25]], 'stability_score': 0.9573009610176086, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3097, 'bbox': [1179, 580, 100, 52], 'predicted_iou': 0.9091020226478577, 'point_coords': [[1260.0, 618.75]], 'stability_score': 0.9619410037994385, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1830, 'bbox': [0, 574, 79, 29], 'predicted_iou': 0.9088459014892578, 'point_coords': [[60.0, 596.25]], 'stability_score': 0.9740680456161499, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1018, 'bbox': [763, 177, 49, 22], 'predicted_iou': 0.8992936611175537, 'point_coords': [[780.0, 191.25]], 'stability_score': 0.975704550743103, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1373, 'bbox': [1127, 493, 152, 19], 'predicted_iou': 0.8982107043266296, 'point_coords': [[1140.0, 506.25]], 'stability_score': 0.9509595036506653, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3450, 'bbox': [0, 330, 52, 68], 'predicted_iou': 0.8905544877052307, 'point_coords': [[20.0, 371.25]], 'stability_score': 0.9698795080184937, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8612, 'bbox': [0, 487, 112, 87], 'predicted_iou': 0.8856545686721802, 'point_coords': [[60.0, 551.25]], 'stability_score': 0.9524565935134888, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 17353, 'bbox': [302, 340, 232, 187], 'predicted_iou': 0.8816617131233215, 'point_coords': [[380.0, 393.75]], 'stability_score': 0.9561892151832581, 'crop_box': [0, 0, 1280, 720]}
+[30, 0, 472, 414] (720, 1280, 3) [480, 854]
+(720, 1280, 3)
+{'segmentation': [], 'area': 178595, 'bbox': [287, 46, 577, 671], 'predicted_iou': 1.0273736715316772, 'point_coords': [[540.0, 236.25]], 'stability_score': 0.9838982820510864, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 80293, 'bbox': [287, 264, 294, 453], 'predicted_iou': 1.015362024307251, 'point_coords': [[380.0, 483.75]], 'stability_score': 0.9873051047325134, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 73355, 'bbox': [401, 136, 399, 580], 'predicted_iou': 1.0147783756256104, 'point_coords': [[420.0, 528.75]], 'stability_score': 0.9704326391220093, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8437, 'bbox': [1031, 149, 142, 124], 'predicted_iou': 1.0087679624557495, 'point_coords': [[1100.0, 213.75]], 'stability_score': 0.9748538136482239, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 133064, 'bbox': [0, 143, 306, 560], 'predicted_iou': 1.005015254020691, 'point_coords': [[260.0, 191.25]], 'stability_score': 0.9905837774276733, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 160137, 'bbox': [0, 0, 393, 708], 'predicted_iou': 1.0048662424087524, 'point_coords': [[20.0, 326.25]], 'stability_score': 0.9838014841079712, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 132030, 'bbox': [678, 30, 601, 384], 'predicted_iou': 1.0030944347381592, 'point_coords': [[1100.0, 393.75]], 'stability_score': 0.9735785722732544, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25250, 'bbox': [458, 44, 229, 182], 'predicted_iou': 1.0016435384750366, 'point_coords': [[460.0, 168.75]], 'stability_score': 0.9823713898658752, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 72923, 'bbox': [673, 402, 606, 183], 'predicted_iou': 0.9959424734115601, 'point_coords': [[820.0, 461.25]], 'stability_score': 0.9847477674484253, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3863, 'bbox': [629, 684, 154, 35], 'predicted_iou': 0.9950470924377441, 'point_coords': [[660.0, 708.75]], 'stability_score': 0.987393856048584, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 202929, 'bbox': [674, 26, 605, 559], 'predicted_iou': 0.9923466444015503, 'point_coords': [[940.0, 393.75]], 'stability_score': 0.9558096528053284, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 55440, 'bbox': [670, 593, 609, 124], 'predicted_iou': 0.9910981059074402, 'point_coords': [[940.0, 618.75]], 'stability_score': 0.9776247143745422, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 20796, 'bbox': [0, 71, 404, 121], 'predicted_iou': 0.9906150102615356, 'point_coords': [[60.0, 146.25]], 'stability_score': 0.9851965308189392, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 11841, 'bbox': [637, 179, 41, 377], 'predicted_iou': 0.9862446188926697, 'point_coords': [[660.0, 213.75]], 'stability_score': 0.9747871160507202, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26532, 'bbox': [0, 0, 309, 117], 'predicted_iou': 0.9861972332000732, 'point_coords': [[260.0, 11.25]], 'stability_score': 0.9875651001930237, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 15905, 'bbox': [660, 0, 619, 105], 'predicted_iou': 0.9836131930351257, 'point_coords': [[820.0, 78.75]], 'stability_score': 0.9769971966743469, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25063, 'bbox': [428, 135, 239, 202], 'predicted_iou': 0.9831923842430115, 'point_coords': [[540.0, 236.25]], 'stability_score': 0.9815334677696228, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 62825, 'bbox': [306, 0, 874, 540], 'predicted_iou': 0.9814085364341736, 'point_coords': [[580.0, 33.75]], 'stability_score': 0.9591982960700989, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 25199, 'bbox': [682, 23, 597, 119], 'predicted_iou': 0.9804975390434265, 'point_coords': [[1060.0, 56.25]], 'stability_score': 0.9725797176361084, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 10298, 'bbox': [971, 564, 308, 62], 'predicted_iou': 0.9793210029602051, 'point_coords': [[1260.0, 596.25]], 'stability_score': 0.9692572355270386, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 29634, 'bbox': [1026, 92, 253, 321], 'predicted_iou': 0.9789727926254272, 'point_coords': [[1260.0, 101.25]], 'stability_score': 0.9736193418502808, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1395, 'bbox': [749, 454, 46, 40], 'predicted_iou': 0.9781167507171631, 'point_coords': [[780.0, 461.25]], 'stability_score': 0.9892933368682861, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 55840, 'bbox': [586, 557, 693, 160], 'predicted_iou': 0.9758235216140747, 'point_coords': [[900.0, 618.75]], 'stability_score': 0.9518631100654602, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 55335, 'bbox': [602, 466, 677, 251], 'predicted_iou': 0.9755522012710571, 'point_coords': [[820.0, 618.75]], 'stability_score': 0.9504061341285706, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 6264, 'bbox': [150, 0, 253, 51], 'predicted_iou': 0.9752797484397888, 'point_coords': [[220.0, 11.25]], 'stability_score': 0.9569019079208374, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26489, 'bbox': [0, 0, 309, 277], 'predicted_iou': 0.9738425016403198, 'point_coords': [[180.0, 11.25]], 'stability_score': 0.983333945274353, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 823, 'bbox': [73, 703, 57, 16], 'predicted_iou': 0.9732674956321716, 'point_coords': [[100.0, 708.75]], 'stability_score': 0.9891040921211243, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 14035, 'bbox': [263, 42, 154, 129], 'predicted_iou': 0.9727745056152344, 'point_coords': [[340.0, 101.25]], 'stability_score': 0.9750421643257141, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2316, 'bbox': [1193, 70, 86, 37], 'predicted_iou': 0.9723539352416992, 'point_coords': [[1220.0, 101.25]], 'stability_score': 0.9824260473251343, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 19050, 'bbox': [142, 565, 165, 153], 'predicted_iou': 0.9715324640274048, 'point_coords': [[220.0, 663.75]], 'stability_score': 0.9764968156814575, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 48154, 'bbox': [401, 486, 399, 230], 'predicted_iou': 0.9713215231895447, 'point_coords': [[420.0, 528.75]], 'stability_score': 0.9718771576881409, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5320, 'bbox': [191, 566, 98, 62], 'predicted_iou': 0.9706647396087646, 'point_coords': [[260.0, 596.25]], 'stability_score': 0.9716614484786987, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 464, 'bbox': [375, 82, 21, 32], 'predicted_iou': 0.969247043132782, 'point_coords': [[380.0, 101.25]], 'stability_score': 0.9914346933364868, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1692, 'bbox': [270, 0, 137, 19], 'predicted_iou': 0.968833327293396, 'point_coords': [[340.0, 11.25]], 'stability_score': 0.9835873246192932, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1921, 'bbox': [162, 669, 52, 47], 'predicted_iou': 0.9672475457191467, 'point_coords': [[180.0, 686.25]], 'stability_score': 0.9824561476707458, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 18335, 'bbox': [798, 442, 196, 166], 'predicted_iou': 0.9671421051025391, 'point_coords': [[940.0, 528.75]], 'stability_score': 0.9594284892082214, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1783, 'bbox': [742, 599, 53, 47], 'predicted_iou': 0.9658970236778259, 'point_coords': [[780.0, 641.25]], 'stability_score': 0.9877232313156128, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2115, 'bbox': [1239, 225, 40, 97], 'predicted_iou': 0.9643346667289734, 'point_coords': [[1260.0, 281.25]], 'stability_score': 0.9756782054901123, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 62044, 'bbox': [35, 0, 1149, 358], 'predicted_iou': 0.9641352295875549, 'point_coords': [[1100.0, 11.25]], 'stability_score': 0.9571096897125244, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 735, 'bbox': [535, 441, 23, 49], 'predicted_iou': 0.9632369875907898, 'point_coords': [[540.0, 461.25]], 'stability_score': 0.9824798107147217, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 520, 'bbox': [329, 119, 26, 22], 'predicted_iou': 0.9631964564323425, 'point_coords': [[340.0, 123.75]], 'stability_score': 0.9885495901107788, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 7947, 'bbox': [0, 612, 170, 106], 'predicted_iou': 0.962378203868866, 'point_coords': [[100.0, 663.75]], 'stability_score': 0.9661142826080322, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 471, 'bbox': [328, 43, 29, 18], 'predicted_iou': 0.9621197581291199, 'point_coords': [[340.0, 56.25]], 'stability_score': 0.9873949289321899, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3879, 'bbox': [0, 71, 215, 59], 'predicted_iou': 0.9612053632736206, 'point_coords': [[180.0, 123.75]], 'stability_score': 0.9575436115264893, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 78567, 'bbox': [371, 282, 908, 435], 'predicted_iou': 0.9587328433990479, 'point_coords': [[900.0, 641.25]], 'stability_score': 0.9518837332725525, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1974, 'bbox': [923, 546, 57, 69], 'predicted_iou': 0.9586753845214844, 'point_coords': [[940.0, 573.75]], 'stability_score': 0.9809332489967346, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 639, 'bbox': [292, 70, 20, 39], 'predicted_iou': 0.9579638838768005, 'point_coords': [[300.0, 101.25]], 'stability_score': 0.9751937985420227, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1959, 'bbox': [1086, 157, 49, 53], 'predicted_iou': 0.9571601748466492, 'point_coords': [[1100.0, 191.25]], 'stability_score': 0.9798081517219543, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4216, 'bbox': [216, 87, 109, 65], 'predicted_iou': 0.9566159248352051, 'point_coords': [[300.0, 123.75]], 'stability_score': 0.9749355912208557, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1227, 'bbox': [257, 581, 31, 45], 'predicted_iou': 0.9548728466033936, 'point_coords': [[260.0, 596.25]], 'stability_score': 0.975864827632904, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 26295, 'bbox': [744, 442, 250, 203], 'predicted_iou': 0.9518725872039795, 'point_coords': [[820.0, 528.75]], 'stability_score': 0.963564395904541, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2070, 'bbox': [1239, 226, 40, 178], 'predicted_iou': 0.9499862790107727, 'point_coords': [[1260.0, 258.75]], 'stability_score': 0.9620786309242249, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 393, 'bbox': [170, 604, 20, 22], 'predicted_iou': 0.9489850401878357, 'point_coords': [[180.0, 618.75]], 'stability_score': 0.9748110771179199, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13737, 'bbox': [1031, 73, 248, 201], 'predicted_iou': 0.9477096796035767, 'point_coords': [[1100.0, 236.25]], 'stability_score': 0.9539914131164551, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 761, 'bbox': [739, 350, 42, 21], 'predicted_iou': 0.947614848613739, 'point_coords': [[740.0, 371.25]], 'stability_score': 0.9628205299377441, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1309, 'bbox': [73, 698, 79, 21], 'predicted_iou': 0.9472142457962036, 'point_coords': [[140.0, 708.75]], 'stability_score': 0.9670165181159973, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3024, 'bbox': [758, 554, 144, 45], 'predicted_iou': 0.945417582988739, 'point_coords': [[820.0, 573.75]], 'stability_score': 0.9687703251838684, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 10454, 'bbox': [324, 43, 93, 128], 'predicted_iou': 0.943281352519989, 'point_coords': [[340.0, 101.25]], 'stability_score': 0.9724476337432861, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 521, 'bbox': [966, 558, 28, 20], 'predicted_iou': 0.9423322677612305, 'point_coords': [[980.0, 573.75]], 'stability_score': 0.9771863222122192, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 4846, 'bbox': [1007, 563, 272, 43], 'predicted_iou': 0.9369691014289856, 'point_coords': [[1260.0, 596.25]], 'stability_score': 0.9630981087684631, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 5130, 'bbox': [1086, 86, 82, 124], 'predicted_iou': 0.9351909160614014, 'point_coords': [[1100.0, 191.25]], 'stability_score': 0.9776363968849182, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 925, 'bbox': [217, 627, 67, 21], 'predicted_iou': 0.9333555698394775, 'point_coords': [[220.0, 641.25]], 'stability_score': 0.9732906222343445, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 709, 'bbox': [275, 688, 34, 30], 'predicted_iou': 0.9299583435058594, 'point_coords': [[300.0, 708.75]], 'stability_score': 0.9859943985939026, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 24470, 'bbox': [518, 277, 149, 331], 'predicted_iou': 0.923036515712738, 'point_coords': [[580.0, 416.25]], 'stability_score': 0.9639675617218018, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 634, 'bbox': [920, 591, 53, 128], 'predicted_iou': 0.9220396280288696, 'point_coords': [[940.0, 641.25]], 'stability_score': 0.9688957929611206, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 545, 'bbox': [124, 697, 29, 22], 'predicted_iou': 0.9212939143180847, 'point_coords': [[140.0, 708.75]], 'stability_score': 0.9602169990539551, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 8487, 'bbox': [1031, 88, 142, 186], 'predicted_iou': 0.9209935665130615, 'point_coords': [[1100.0, 213.75]], 'stability_score': 0.9596644639968872, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 3558, 'bbox': [262, 48, 66, 76], 'predicted_iou': 0.9196326732635498, 'point_coords': [[300.0, 56.25]], 'stability_score': 0.9528766870498657, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 248, 'bbox': [802, 548, 31, 15], 'predicted_iou': 0.9171331524848938, 'point_coords': [[820.0, 551.25]], 'stability_score': 0.9800000190734863, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 321, 'bbox': [243, 566, 36, 11], 'predicted_iou': 0.9169061779975891, 'point_coords': [[260.0, 573.75]], 'stability_score': 0.9784615635871887, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 12418, 'bbox': [1159, 93, 120, 126], 'predicted_iou': 0.9157818555831909, 'point_coords': [[1180.0, 191.25]], 'stability_score': 0.9580221772193909, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 981, 'bbox': [868, 498, 47, 48], 'predicted_iou': 0.9153565168380737, 'point_coords': [[900.0, 528.75]], 'stability_score': 0.9748995900154114, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 16679, 'bbox': [1025, 205, 254, 207], 'predicted_iou': 0.9139100909233093, 'point_coords': [[1180.0, 281.25]], 'stability_score': 0.952091634273529, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 12391, 'bbox': [1125, 93, 154, 184], 'predicted_iou': 0.9132893085479736, 'point_coords': [[1260.0, 123.75]], 'stability_score': 0.9621074199676514, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 951, 'bbox': [326, 138, 88, 22], 'predicted_iou': 0.9114102721214294, 'point_coords': [[380.0, 146.25]], 'stability_score': 0.978215754032135, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 188, 'bbox': [361, 47, 20, 12], 'predicted_iou': 0.9103503823280334, 'point_coords': [[380.0, 56.25]], 'stability_score': 0.9842105507850647, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 49097, 'bbox': [402, 321, 465, 395], 'predicted_iou': 0.907819390296936, 'point_coords': [[740.0, 528.75]], 'stability_score': 0.960877001285553, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 774, 'bbox': [966, 558, 43, 21], 'predicted_iou': 0.9047856330871582, 'point_coords': [[980.0, 573.75]], 'stability_score': 0.9695431590080261, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 20967, 'bbox': [0, 70, 404, 193], 'predicted_iou': 0.9003593921661377, 'point_coords': [[180.0, 123.75]], 'stability_score': 0.9537904858589172, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 2037, 'bbox': [215, 87, 52, 51], 'predicted_iou': 0.8996976017951965, 'point_coords': [[260.0, 123.75]], 'stability_score': 0.9557904601097107, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 13219, 'bbox': [149, 622, 158, 96], 'predicted_iou': 0.8994007110595703, 'point_coords': [[180.0, 663.75]], 'stability_score': 0.9648443460464478, 'crop_box': [0, 0, 1280, 720]}
+{'segmentation': [], 'area': 1396, 'bbox': [852, 498, 81, 56], 'predicted_iou': 0.8944921493530273, 'point_coords': [[900.0, 528.75]], 'stability_score': 0.9529494643211365, 'crop_box': [0, 0, 1280, 720]}
+[287, 46, 577, 671] (720, 1280, 3) [480, 854]
 Usage Info: {
   "prompt_tokens": 1235,
   "completion_tokens": 192,
@@ -57,325 +332,10 @@ Usage Info: {
 }
 changes_to_apply [0, 0, 0, 0, 0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
 --------------------
-!!!input!!!:  {'requestParameters': {'text': 'Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 40.0, 'finish': 50.0, 'duration': 10.0, 'info': ['compares the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 90.0, 'finish': 100.0, 'duration': 10.0, 'info': ['compares the storage and battery life of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 140.0, 'finish': 150.0, 'duration': 10.0, 'info': ['compares the pricing of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 950.0, 'finish': 960.0, 'duration': 10.0, 'info': ['compares the cost of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 1170.0, 'finish': 1180.0, 'duration': 10.0, 'info': ['compares the advertised starting price of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}]}
-!!!prediction!!!:  {'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['compares the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [90.0, 100.0, ['compares the storage and battery life of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [140.0, 150.0, ['compares the pricing of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [950.0, 960.0, ['compares the cost of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [1170.0, 1180.0, ['compares the advertised starting price of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['shape']}}
+!!!input!!!:  {'projectMetadata': {'width': 854, 'height': 480}, 'requestParameters': {'text': 'Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 204.159375, 'y': 68.0, 'width': 346.2703125, 'height': 325.33333333333337, 'rotation': 0}, 'temporalParameters': {'start': 40.0, 'finish': 50.0, 'duration': 10.0, 'info': ['compares the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 387.6359375, 'y': 34.0, 'width': 465.696875, 'height': 442.6666666666667, 'rotation': 0}, 'temporalParameters': {'start': 90.0, 'finish': 100.0, 'duration': 10.0, 'info': ['compares the storage and battery life of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 36.6953125, 'y': 0.0, 'width': 816.6375, 'height': 476.6666666666667, 'rotation': 0}, 'temporalParameters': {'start': 140.0, 'finish': 150.0, 'duration': 10.0, 'info': ['compares the pricing of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 20.015625, 'y': 0.0, 'width': 314.9125, 'height': 276.0, 'rotation': 0}, 'temporalParameters': {'start': 950.0, 'finish': 960.0, 'duration': 10.0, 'info': ['compares the cost of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 0.5}, 'stroke': {'width': 1, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 191.4828125, 'y': 30.666666666666664, 'width': 384.9671875, 'height': 447.33333333333337, 'rotation': 0}, 'temporalParameters': {'start': 1170.0, 'finish': 1180.0, 'duration': 10.0, 'info': ['compares the starting price of the two devices'], 'source': ['Whenever the quality/price/battery/accessories of the two devices are compared']}}]}
+!!!prediction!!!:  {'editOperations': ['shape'], 'parameters': {'text': [], 'image': [], 'shape': ['small light colored box'], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[40.0, 50.0, ['compares the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [90.0, 100.0, ['compares the storage and battery life of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [140.0, 150.0, ['compares the pricing of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [950.0, 960.0, ['compares the cost of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']], [1170.0, 1180.0, ['compares the starting price of the two devices'], ['Whenever the quality/price/battery/accessories of the two devices are compared']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['shape']}}
 !!!ground_truth!!!:  {'editOperations': ['shape'], 'parameters': {}, 'edits': [[108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0], [758.0, 762.0]], 'relevant_text': {'temporal': ['Whenever the quality/price/battery/accessories of the two devices are compared'], 'spatial': ['Bottom of the screen'], 'edit': ['shape']}}
 !!!temporal evaluation!!!:  f1-score:  0.20000000000000004 traditional:  0.4000000000000001
-!!!edit_op evaluation!!!:  1.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 872,
-  "completion_tokens": 97,
-  "total_tokens": 969
-}
-relevant_text {'temporal': ['entering the wifi password', 'first half of the password'], 'temporal_labels': ['video', 'video'], 'spatial': [], 'edit': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 1671,
-  "completion_tokens": 1,
-  "total_tokens": 1672
-}
-Usage Info: {
-  "prompt_tokens": 1581,
-  "completion_tokens": 1,
-  "total_tokens": 1582
-}
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'When entering the wifi password, place a screen that shows what he’s entering. Show the first half of the password and put stars for the rest. E.g. admin12****', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
-!!!prediction!!!:  {'editOperations': ['text', 'image'], 'parameters': {'text': ['admin12****'], 'image': ['screen'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text', 'image']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[334.0, 338.0]], 'relevant_text': {'temporal': ['When entering the wifi password'], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
-!!!edit_op evaluation!!!:  0.5
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 912,
-  "completion_tokens": 166,
-  "total_tokens": 1078
-}
-relevant_text {'temporal': ['6:04', '7:48', '8:09', '9:20', '10:06', '10:29', '11:16', '15:35'], 'temporal_labels': ['position', 'position', 'position', 'position', 'position', 'position', 'position', 'position'], 'spatial': [], 'edit': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-final: 00:06:01 00:06:06 [] ['6:04']
-final: 00:07:43 00:07:48 [] ['7:48']
-final: 00:08:04 00:08:09 [] ['8:09']
-final: 00:09:15 00:09:20 [] ['9:20']
-final: 00:10:01 00:10:06 [] ['10:06']
-final: 00:10:24 00:10:29 [] ['10:29']
-final: 00:11:11 00:11:16 [] ['11:16']
-final: 00:15:30 00:15:35 [] ['15:35']
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'At the following moments put a very quick transitional frame which describes what the speaker is about to talk about:\n6:04 - Accessories\n7:48 - Power adapter\n8:09 - Surface Connect Connector\n9:20 - I/O\n10:06 - Webcam\n10:29 - Signature type cover\n11:16 - Magnetic docking mechanism\n15:35 - Display', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 361.0, 'finish': 366.0, 'duration': 5.0, 'info': [], 'source': ['6:04']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 463.0, 'finish': 468.0, 'duration': 5.0, 'info': [], 'source': ['7:48']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 484.0, 'finish': 489.0, 'duration': 5.0, 'info': [], 'source': ['8:09']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 555.0, 'finish': 560.0, 'duration': 5.0, 'info': [], 'source': ['9:20']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 601.0, 'finish': 606.0, 'duration': 5.0, 'info': [], 'source': ['10:06']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 624.0, 'finish': 629.0, 'duration': 5.0, 'info': [], 'source': ['10:29']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 671.0, 'finish': 676.0, 'duration': 5.0, 'info': [], 'source': ['11:16']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 930.0, 'finish': 935.0, 'duration': 5.0, 'info': [], 'source': ['15:35']}}]}
-!!!prediction!!!:  {'editOperations': ['image'], 'parameters': {'text': [], 'image': ['Accessories', 'Power adapter', 'Surface Connect Connector', 'I/O', 'Webcam', 'Signature type cover', 'Magnetic docking mechanism', 'Display'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[361.0, 366.0, [], ['6:04']], [463.0, 468.0, [], ['7:48']], [484.0, 489.0, [], ['8:09']], [555.0, 560.0, [], ['9:20']], [601.0, 606.0, [], ['10:06']], [624.0, 629.0, [], ['10:29']], [671.0, 676.0, [], ['11:16']], [930.0, 935.0, [], ['15:35']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image']}}
-!!!ground_truth!!!:  {'editOperations': ['text', 'frame'], 'parameters': {}, 'edits': [[362.0, 366.0], [466.0, 470.0], [487.0, 491.0], [558.0, 562.0], [604.0, 608.0], [627.0, 631.0], [674.0, 678.0], [933.0, 937.0]], 'relevant_text': {'temporal': ['6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display'], 'spatial': [], 'edit': ['text', 'frame']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  0.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 858,
-  "completion_tokens": 96,
-  "total_tokens": 954
-}
-relevant_text {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 315,
-  "completion_tokens": 1,
-  "total_tokens": 316
-}
-final: 00:00:00 00:00:05 [] ['once the video starts']
-Usage Info: {
-  "prompt_tokens": 1235,
-  "completion_tokens": 190,
-  "total_tokens": 1425
-}
-changes_to_apply [0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 0.0, 'finish': 5.0, 'duration': 5.0, 'info': [], 'source': ['once the video starts']}}]}
-!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, [], ['once the video starts']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image', 'text']}}
-!!!ground_truth!!!:  {'editOperations': ['image'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['image']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  0.5
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 858,
-  "completion_tokens": 96,
-  "total_tokens": 954
-}
-relevant_text {'temporal': ['once the video starts', 'no introduction part'], 'temporal_labels': ['position', 'position'], 'spatial': [], 'edit': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 316,
-  "completion_tokens": 22,
-  "total_tokens": 338
-}
-Usage Info: {
-  "prompt_tokens": 315,
-  "completion_tokens": 1,
-  "total_tokens": 316
-}
-final: 00:00:00 00:00:05 [] ['once the video starts']
-Usage Info: {
-  "prompt_tokens": 1235,
-  "completion_tokens": 190,
-  "total_tokens": 1425
-}
-changes_to_apply [0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 10, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 0.0, 'finish': 5.0, 'duration': 5.0, 'info': [], 'source': ['once the video starts']}}]}
-!!!prediction!!!:  {'editOperations': ['image', 'text'], 'parameters': {'text': ['very small description text'], 'image': ['thumbnail picture'], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[0.0, 5.0, [], ['once the video starts']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['image', 'text']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[0, 2.0]], 'relevant_text': {'temporal': ['once the video starts'], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
-!!!edit_op evaluation!!!:  0.5
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 863,
-  "completion_tokens": 101,
-  "total_tokens": 964
-}
-relevant_text {'temporal': ['MS surface go’s spec', 'gpd pocket 2 apple’s spec'], 'temporal_labels': ['transcript', 'transcript'], 'spatial': ['spec of gdp pocket 2'], 'edit': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 1375,
-  "completion_tokens": 104,
-  "total_tokens": 1479
-}
-Usage Info: {
-  "prompt_tokens": 1435,
-  "completion_tokens": 1,
-  "total_tokens": 1436
-}
-final: 00:01:10 00:01:20 ['mentions the processor of the surface go'] ['MS surface go’s spec']
-final: 00:02:20 00:02:30 ['mentions the pricing and storage of the surface go'] ['MS surface go’s spec']
-final: 00:04:30 00:04:40 ['mentions the finish and webcam of the surface go'] ['MS surface go’s spec']
-final: 00:07:50 00:08:00 ['mentions the charging type of the surface go'] ['MS surface go’s spec']
-final: 00:11:50 00:12:00 ['mentions the price and feel of the surface go'] ['MS surface go’s spec']
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'To compare the MS surface go’s spec with gpd pocket 2 apple’s spec, highlight the spec of gdp pocket 2', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 70.0, 'finish': 80.0, 'duration': 10.0, 'info': ['mentions the processor of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 140.0, 'finish': 150.0, 'duration': 10.0, 'info': ['mentions the pricing and storage of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 270.0, 'finish': 280.0, 'duration': 10.0, 'info': ['mentions the finish and webcam of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 470.0, 'finish': 480.0, 'duration': 10.0, 'info': ['mentions the charging type of the surface go'], 'source': ['MS surface go’s spec']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 710.0, 'finish': 720.0, 'duration': 10.0, 'info': ['mentions the price and feel of the surface go'], 'source': ['MS surface go’s spec']}}]}
-!!!prediction!!!:  {'editOperations': ['highlight'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[70.0, 80.0, ['mentions the processor of the surface go'], ['MS surface go’s spec']], [140.0, 150.0, ['mentions the pricing and storage of the surface go'], ['MS surface go’s spec']], [270.0, 280.0, ['mentions the finish and webcam of the surface go'], ['MS surface go’s spec']], [470.0, 480.0, ['mentions the charging type of the surface go'], ['MS surface go’s spec']], [710.0, 720.0, ['mentions the price and feel of the surface go'], ['MS surface go’s spec']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['highlight']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[102.0, 106.0], [108.0, 112.0], [120.0, 124.0], [134.0, 139.0], [140.0, 144.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0.20000000000000004 traditional:  0.20000000000000004
-!!!edit_op evaluation!!!:  0.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 855,
-  "completion_tokens": 79,
-  "total_tokens": 934
-}
-relevant_text {'temporal': ['when he holds it'], 'temporal_labels': ['video'], 'spatial': [], 'edit': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 1502,
-  "completion_tokens": 74,
-  "total_tokens": 1576
-}
-final: 00:02:00 00:02:20 ['matching actions: holding a laptop', 'matching actions: holding a laptop'] ['when he holds it', 'when he holds it']
-final: 00:10:20 00:10:30 ['matching actions: holding a tablet'] ['when he holds it', 'when he holds it']
-final: 00:16:10 00:16:20 ['matching actions: holding a laptop'] ['when he holds it', 'when he holds it']
-Usage Info: {
-  "prompt_tokens": 1232,
-  "completion_tokens": 191,
-  "total_tokens": 1423
-}
-changes_to_apply [0, 0, 0] results [{'text': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'shape': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'blur': {'blur': 6}, 'crop': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'zoom': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}}]
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'It looks lightweight when he holds it. It would be good to add an emphasis for this.', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 120.0, 'finish': 140.0, 'duration': 20.0, 'info': ['matching actions: holding a laptop', 'matching actions: holding a laptop'], 'source': ['when he holds it', 'when he holds it']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 620.0, 'finish': 630.0, 'duration': 10.0, 'info': ['matching actions: holding a tablet'], 'source': ['when he holds it', 'when he holds it']}}, {'textParameters': {'content': 'HELLO', 'style': {'fill': '#ff0000', 'fontSize': 55, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 970.0, 'finish': 980.0, 'duration': 10.0, 'info': ['matching actions: holding a laptop'], 'source': ['when he holds it', 'when he holds it']}}]}
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasis'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[120.0, 140.0, ['matching actions: holding a laptop', 'matching actions: holding a laptop'], ['when he holds it', 'when he holds it']], [620.0, 630.0, ['matching actions: holding a tablet'], ['when he holds it', 'when he holds it']], [970.0, 980.0, ['matching actions: holding a laptop'], ['when he holds it', 'when he holds it']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!ground_truth!!!:  {'editOperations': [], 'parameters': {}, 'edits': [[98.0, 102.0], [1177.0, 1181.0]], 'relevant_text': {'temporal': ['when he holds it.'], 'spatial': ['{object}'], 'edit': []}}
-!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
-!!!edit_op evaluation!!!:  0.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 867,
-  "completion_tokens": 81,
-  "total_tokens": 948
-}
-relevant_text {'temporal': [], 'temporal_labels': [], 'spatial': ['right', 'left'], 'edit': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['emphasizes these differences'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[131.0, 135.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
-!!!edit_op evaluation!!!:  1.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 860,
-  "completion_tokens": 96,
-  "total_tokens": 956
-}
-relevant_text {'temporal': ['below the prize barcode'], 'temporal_labels': ['video'], 'spatial': ['below the prize barcode'], 'edit': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 1700,
-  "completion_tokens": 1,
-  "total_tokens": 1701
-}
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'I added a text below the prize barcode that says “Please take a photo, it’s first come, first served.”', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': []}
-!!!prediction!!!:  {'editOperations': ['text'], 'parameters': {'text': ['Please take a photo, it’s first come, first served.'], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!ground_truth!!!:  {'editOperations': ['text'], 'parameters': {}, 'edits': [[410.0, 414.0]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['text']}}
-!!!temporal evaluation!!!:  f1-score:  0 traditional:  0
-!!!edit_op evaluation!!!:  1.0
---------------------
-!!!(temporal)cosine_similarity!!!:  []
-!!!(temporal)top_4_cosine_similarity!!!:  []
---------------------
-!!!(spatial)cosine_similarity!!!:  []
-!!!(spatial)top_4_cosine_similarity!!!:  []
---------------------
-Usage Info: {
-  "prompt_tokens": 859,
-  "completion_tokens": 102,
-  "total_tokens": 961
-}
-relevant_text {'temporal': ['7:20 to 7:40', 'opens the box', 'says there is a manual'], 'temporal_labels': ['position', 'video', 'transcript'], 'spatial': ['box'], 'edit': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}
-Usage Info: {
-  "prompt_tokens": 321,
-  "completion_tokens": 22,
-  "total_tokens": 343
-}
-Usage Info: {
-  "prompt_tokens": 1373,
-  "completion_tokens": 34,
-  "total_tokens": 1407
-}
-Usage Info: {
-  "prompt_tokens": 1670,
-  "completion_tokens": 12,
-  "total_tokens": 1682
-}
-RESP:  "Direct reference: None\n\nIndirect reference: None\n\n[]"
-Incorrect format returned by GPT
-final: 00:07:20 00:07:40 ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'] ['7:20 to 7:40', 'says there is a manual']
---------------------
-!!!input!!!:  {'requestParameters': {'text': 'Trim from 7:20 to 7:40 where he opens the box and says there is a manua', 'editOperation': '', 'processingMode': 'from-scratch', 'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}}, 'edits': [{'textParameters': {'content': 'HELLO', 'style': {'fill': '#000000', 'fontSize': 50, 'fontFamily': 'Arial', 'align': 'center', 'verticalAlign': 'middle'}, 'background': {'fill': '#ffffff', 'alpha': 1}}, 'imageParameters': {'source': '/placeholder.jpg'}, 'shapeParameters': {'type': 'rectangle', 'background': {'fill': '#ffffff', 'alpha': 1}, 'stroke': {'width': 2, 'fill': '#000000', 'alpha': 1}}, 'zoomParameters': {'zoomDurationStart': 0, 'zoomDurationEnd': 0}, 'cropParameters': {'x': 0, 'y': 0, 'width': 0, 'height': 0, 'cropX': 0, 'cropY': 0, 'cropWidth': 0, 'cropHeight': 0}, 'cutParameters': {}, 'blurParameters': {'blur': 6}, 'spatialParameters': {'x': 0, 'y': 0, 'width': 200, 'height': 200, 'rotation': 0}, 'temporalParameters': {'start': 440.0, 'finish': 460.0, 'duration': 20.0, 'info': ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'], 'source': ['7:20 to 7:40', 'says there is a manual']}}]}
-!!!prediction!!!:  {'editOperations': ['cut'], 'parameters': {'text': [], 'image': [], 'shape': [], 'blur': [], 'cut': [], 'crop': [], 'zoom': []}, 'edits': [[440.0, 460.0, ['mentions about pieces of paper showing where the volume button is, which could be a part of the manual'], ['7:20 to 7:40', 'says there is a manual']]], 'relevant_text': {'temporal': [], 'spatial': [], 'edit': ['cut']}}
-!!!ground_truth!!!:  {'editOperations': ['cut'], 'parameters': {}, 'edits': [[440.0, 460.0]], 'relevant_text': {'temporal': ['7:20 to 7:40, where he opens the box and says there is a manua'], 'spatial': [], 'edit': ['cut']}}
-!!!temporal evaluation!!!:  f1-score:  1.0 traditional:  1.0
 !!!edit_op evaluation!!!:  1.0
 --------------------
 !!!(temporal)cosine_similarity!!!:  []
@@ -388,6 +348,6 @@ Summary:
 Video Info:  (declarative visual) "Microsoft Surface Go - Classic LIVE Unboxing" - https://www.youtube.com/live/4LdIvyfzoGY?feature=share
 --------------------
 --------------------
-Temporal F1:  0.4  -->  [0.0, 0.2, 0.0, 1.0, 1.0, 1.0, 0.2, 0.0, 0.0, 0.0, 1.0]
-Temporal Trad F1:  0.442  -->  [0.266, 0.4, 0.0, 1.0, 1.0, 1.0, 0.2, 0.0, 0.0, 0.0, 1.0]
-Edit Operation:  0.59  -->  [1.0, 1.0, 0.5, 0.0, 0.5, 0.5, 0.0, 0.0, 1.0, 1.0, 1.0]
+Temporal F1:  0.018  -->  [0.2]
+Temporal Trad F1:  0.036  -->  [0.4]
+Edit Operation:  0.09  -->  [1.0]

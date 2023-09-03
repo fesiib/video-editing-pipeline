@@ -277,13 +277,13 @@ def main(args):
         data_point.consume_dict(dict)
         data_points.append(data_point)
 
-    with open("./data/parsed_gt_v0.json", 'w') as f:
+    with open("./gt_data/parsed_gt_v0.json", 'w') as f:
         f.write(json.dumps([data_point.__dict__ for data_point in data_points], indent=2))
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--csv', type=str, default="./data/gt-v0.csv",
+    parser.add_argument('--csv', type=str, default="./gt_data/gt-v0.csv",
                         help='path to csv file')
     args = parser.parse_args()
     main(args)

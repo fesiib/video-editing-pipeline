@@ -137,7 +137,7 @@ def __get_single_edit_operation_evaluation(prediction, ground_truth):
     return 0
 
 def get_dataset():
-    filename = "./data/parsed_gt_v0.json"
+    filename = "./gt_data/parsed_gt_v0.json"
     with open(filename, "r") as f:
         dataset = json.load(f)
         return dataset
@@ -174,6 +174,10 @@ def get_data_point_as_request(dataset, index):
     if (index >= len(dataset) or index < 0):
         return None
     input = {
+        "projectMetadata": {
+            "width": 854,
+            "height": 480,
+        },
         "requestParameters": {
             "text": dataset[index]["description"],
             "editOperation": "",
