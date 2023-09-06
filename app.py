@@ -116,6 +116,13 @@ def test(edit_request):
 
 def launch_server():
     app.run(host="0.0.0.0", port=7778)
+
+def test_processor(video_link):
+    transcript, moments, metadata = process_video(video_link)
+    with open("transcript.json", "w") as f:
+        json.dump(transcript, f, indent=2)
+
 if __name__ == "__main__":
+    # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
     launch_server()
     # test("whenever the person mentions the surface go, emphasize the screen response time")

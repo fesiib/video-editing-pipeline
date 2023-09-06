@@ -4,6 +4,9 @@ import webvtt
 import os
 import re
 
+import whisper
+import difflib
+
 
 from yt_dlp import YoutubeDL
 
@@ -19,13 +22,21 @@ def get_video_by_filename(filename):
 
 def download_video(video_link):
     options = {
-		'format': 'mp4[height<=480]',
+        'format': 'best[height<=480][ext=mp4]',
+		#'format': 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=mp3]/best',
         'outtmpl': os.path.join(DATABASE, '%(id)s.%(ext)s'),
         'writesubtitles': True,
         'writeautomaticsub': True,
         'subtitleslangs': {'en'},  # Download English subtitles
         'subtitlesformat': '/vtt/g',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'keepvideo': True,
         'skip_download': False,
+
 
         # "paths": {
         #     "home": str(DATABASE)
@@ -52,6 +63,17 @@ def download_video(video_link):
         else:
             print(f"Video '{video_title}' already exists in the directory.")
         return metadata
+
+def get_alternative_transcript(audio_path):
+    output_path = audio_path.replace(".mp3", ".alt.json")
+    if os.path.exists(output_path):
+        with open(output_path, 'r') as f:
+            return json.load(f)
+    model = whisper.load_model("small.en")
+    transcript = model.transcribe(audio_path)
+    with open(output_path, 'w') as f:
+        json.dump(transcript, f, indent=2)
+    return transcript
 
 def extract_words(s):
     # Match words that are between >< or outside of any tags
@@ -136,6 +158,18 @@ def get_moments(stream):
         "type": "text caption",
     }]
 
+def git_difference(transcript, alternative_transcript):
+    file_1 = ""
+    file_2 = alternative_transcript["text"]
+    for line in transcript:
+        file_1 += line["text"] + " "
+    print(file_1)
+    print(file_2)
+    diff = difflib.ndiff(file_1, file_2)
+    print('\n'.join(diff))
+
+
+
 def process_video(video_link):
     print(f"Requested Link '{video_link}'")
     if (video_link not in video_library):
@@ -147,6 +181,7 @@ def process_video(video_link):
 
     video_path = os.path.join(DATABASE, f'{video_title}.mp4')
     subtitles_path = os.path.join(DATABASE, f'{video_title}.en.vtt')
+    audio_path = os.path.join(DATABASE, f'{video_title}.mp3')
     
     transcript = []
     moments = []
@@ -156,7 +191,11 @@ def process_video(video_link):
     video_cap.release()
     
     subtitles = webvtt.read(subtitles_path)
+    
     transcript = get_transcript(subtitles)
+    # alternative_transcript = get_alternative_transcript(audio_path)
+
+    # git_difference(transcript, alternative_transcript)
 
     # transcript = format_transcript(subtitles_path)
 

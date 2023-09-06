@@ -3,7 +3,7 @@ You are a video scene describer. I will give you a set of descriptions of the ob
 ONLY OUTPUT THE REQUESTED LIST OF OBJECTS, SCENE, OR HUMANS. DO NOT OUTPUT ANYTHING ELSE.
 
 Example 1:
-Request: 'person holding a cell phone,a brown leather wallet,a black and white box,a blue laptop computer,a white laptop on a desk,a black and silver cell phone\n'
+Request: 'person holding a cell phone,a brown leather wallet,a black and white box,a blue laptop computer,a white laptop on a desk,a black and silver cell phone, {synth_caption}'
 Response: [
     {
         "object": "cell phone",
@@ -34,5 +34,8 @@ Response: [
         "human": "person",
         "description": ["holding", "cell phone"],
         "confidence": 0.9,
+    },
+    {
+        "scene": 
     }
 ]

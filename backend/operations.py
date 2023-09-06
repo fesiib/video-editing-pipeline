@@ -19,7 +19,8 @@ class EditInstance:
 
         # Image Parameters
         self.imageParameters = {
-            "source": "/placeholder.jpg"
+            "source": "/placeholder.jpg",
+            "searchQuery": "",
         }
 
         # Shape Parameters

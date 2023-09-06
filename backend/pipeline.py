@@ -38,6 +38,7 @@ class Pipeline():
         self.prompt_temporal_filename = PROMPT_TEMPORAL_FILENAME
         self.prompt_spatial_filename = PROMPT_SPATIAL_FILENAME
         self.prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME
+        self.parameters_of_interest = ["text", "image", "shape", "blur", "crop", "zoom"]
 
     def reset(self,
         metadata_filename = METADATA_FILENAME,
@@ -530,8 +531,15 @@ class Pipeline():
         print("changes_to_apply", changes_to_apply, "results", results)
         for i, edit in enumerate(edits):
             result = results[changes_to_apply[i]]
+            
+            prev_image_source = edit["imageParameters"]["source"]
+
             for parameter_key in result:
                 edit[parameter_key + "Parameters"] = result[parameter_key]
+
+            ### image link must be preserved
+            edit["imageParameters"]["source"] = prev_image_source
+            
         return edits
 
     def get_summary(self, input):
