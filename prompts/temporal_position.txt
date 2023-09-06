@@ -5,19 +5,22 @@ First step: Identify the type of temporal reference based on the user's request.
 2. Time range: a range of time in the video
 3. More high level temporal reference: a reference to a generic event in the video (introduction, ending, etc.)
 
-Second step: Identify the timecode or time range in below JSON-like format.
+Second step: Identify the timecode or time range with additional context in below JSON-like format.
 {'start': 'HH:MM:SS', 'end': 'HH:MM:SS'}
-Note 1: If the temporal reference is just a timecode, output a any 5 second interval containing the timecode.
+Note 1: If the temporal reference is just a timecode, output any 5 second interval containing the timecode.
 Note 2: If there are more than one segment of video that matches the temporal reference, output all of them in a list.
 
 DO NOT RETURN ANY OTHER RESPONSE aside from an empty array [] or an array of ranges.
 
 Examples:
+Context: ['A video is 00:20:13 long.']
 User Request: '0:07'
 [{'start': '00:00:04', 'end': '00:00:09'}]
 
+Context: ['A video is 00:50:13 long.']
 User Request: 'intro'
 [{'start': '00:00:00', 'end': '00:00:30'}]
 
+Context: []
 User Request: 'between 5:10 and 5:20'
 [{'start': '00:05:10', 'end': '00:05:20'}]

@@ -11,7 +11,8 @@ def main_test_request():
         task_id = 6,
         data_point_getter = get_data_point_as_request,
         pipeline_runner = run_pipeline_request_new,
-        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        #indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        indexes = [1]
     )
 
     if (len(result["dataset"]) == 0):
@@ -39,7 +40,7 @@ def main_evaluate():
         task_id = 6,
         data_point_getter = get_data_point,
         pipeline_runner = run_pipeline_new,
-        indexes = [0, 1] #[10] - video #[4] - position
+        indexes = [1] #[10] - video #[4] - position
     )
 
     if (len(result["dataset"]) == 0):

@@ -41,8 +41,8 @@ class EditInstance:
         self.blurParameters = {"blur": 6}
         self.cutParameters = {}
         self.cropParameters = {
-            "x": 0, "y": 0, "width": 0, "height": 0,
-            "cropX": 0, "cropY": 0, "cropWidth": 0, "cropHeight": 0
+            "x": 0, "y": 0, "width": 720, "height": 1280,
+            "cropX": 0, "cropY": 0, "cropWidth": 200, "cropHeight": 200
         }
 
         # Spatial and Temporal Parameters
@@ -82,7 +82,7 @@ class EditInstance:
     def get_edit_params(self):
         return self.edit
 
-def get_timecoded_edit_instance(interval):
+def get_timecoded_edit_instance(interval, video_shape):
     edit = EditInstance()
     edit_instance = edit.get_edit_params()
     start = interval["start"].convert_timecode_to_sec()
@@ -91,4 +91,8 @@ def get_timecoded_edit_instance(interval):
     edit_instance["temporalParameters"]["start"] = start
     edit_instance["temporalParameters"]["finish"] = finish
     edit_instance["temporalParameters"]["duration"] = duration
+    edit_instance["cropParameters"] = {
+        "x": 0, "y": 0, "width": video_shape[1], "height": video_shape[0],
+        "cropX": 0, "cropY": 0, "cropWidth": video_shape[1], "cropHeight": video_shape[0]
+    }
     return edit_instance
