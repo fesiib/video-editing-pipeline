@@ -78,14 +78,14 @@ def run_pipeline(input):
 def run_pipeline_new(input):
     relevant_text = pipeline.predict_relevant_text(input)
     edits = pipeline.predict_temporal_segments(
-        relevant_text["temporal"], relevant_text["temporal_labels"], [
+        relevant_text["temporal"], relevant_text["temporal_labels"], [480, 854], [
             {
-                "start": "7:00",
-                "finish": "9:00",
+                "start": 0.234,
+                "finish": 60*10.2345,
             },
             {
-                "start": "10:00",
-                "finish": "15:00",
+                "start": [12, 23.3],
+                "finish": [0, 15, 0.3],
             }
         ]
     )

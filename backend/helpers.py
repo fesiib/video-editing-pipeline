@@ -11,6 +11,17 @@ class Timecode:
             while len(parts) < 3:
                 parts = ['0'] + parts
             return parts
+        elif isinstance(self.timecode, list):
+            parts = self.timecode
+            while len(parts) < 3:
+                parts = [0] + parts
+            return parts
+        elif isinstance(self.timecode, float):
+            return [self.timecode//3600, (self.timecode%3600)//60, self.timecode%60]
+        elif isinstance(self.timecode, int):
+            return [self.timecode//3600, (self.timecode%3600)//60, self.timecode%60]
+        elif isinstance(self.timecode, Timecode):
+            return [self.time["hours"], self.time["minutes"], self.time["seconds"]]
         else:
             return [0, 0, 0]
 

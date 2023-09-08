@@ -164,10 +164,9 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    # main_evaluate()
-    main_test_request()
+    main_evaluate()
+    # main_test_request()
     # parsing_results(6)
-    # main_evaluate()
 
     #summarize_prompt("./prompts/temporal_transcript.txt")
     #summarize_captions("./metadata/4LdIvyfzoGY_10.txt")

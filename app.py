@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 #from backend.intent_parser import *
 from backend.pipeline import Pipeline
+from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
 from video_host.processor import process_video, get_video_by_filename
 
@@ -46,6 +47,17 @@ def fetch_summary():
 
     return jsonify({"summary": response})
 
+@app.route("/ambiguous", methods=['POST'])
+def fetch_ambiguous():
+    data = request.json
+    input = data.get("input")
+    return jsonify({"ambiguousParts": extract_adverbs_of_space(input)})
+
+@app.route("/ambiguous-gpt", methods=['POST'])
+def fetch_ambiguous_gpt():
+    data = request.json
+    input = data.get("input")
+    return jsonify({"ambiguousParts": extract_adverbs_of_space_gpt3(input)})
 
 def fail_with(msg):
     return {

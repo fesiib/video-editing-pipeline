@@ -1,5 +1,7 @@
 import spacy
 
+from .pipeline import Pipeline
+
 ### This file contains functions for quickly parsing NL queries.
 ### Specifically, to recognize adverbs in the NL query.
 ### Each adverb should be classified as one of the following:
@@ -10,6 +12,11 @@ import spacy
 spacy.prefer_gpu()
 nlp = spacy.load("en_core_web_sm")
 
+pipeline = Pipeline()
+
+def extract_adverbs_of_space_gpt3(query):
+    response = pipeline.predict_relevant_text_real_time(query)
+    return response
 
 def extract_adverbs_of_space(query):
     tokens = nlp(query)
@@ -18,8 +25,17 @@ def extract_adverbs_of_space(query):
         print(token.text, token.pos_, token.dep_, token.head.dep_)
         # if token.pos_ == "ADV" and (token.dep_ in ("advmod", "prep", "pcomp") or token.head.dep_ in ("prep", "pcomp")):
         #     space_adverbs.append((token.text, token.idx))
-
-    return space_adverbs
+        if token.pos_ == "ADV" or token.pos_ == "ADP":
+            space_adverbs.append({
+                "text": token.text,
+                "offset": token.idx
+            })
+    return {
+        "temporal": [],
+        "spatial": space_adverbs,
+        "edit": [],
+        "parameters": [],
+    }
         
 
 def main():

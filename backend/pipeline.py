@@ -13,6 +13,7 @@ from evaluation.sentence_embedder import get_cosine_similarity_score
 
 # OLD_METADATA_FILENAME = "./metadata/metadata.txt"
 METADATA_FILENAME = "./metadata/4LdIvyfzoGY_10.txt"
+PROMPT_PARSER_SPATIAL_FILENAME = "./prompts/prompt_parse_spatial.txt"
 PROMPT_PARSER_FILENAME = "./prompts/prompt_parse_intent_3.txt"
 PROMPT_TEMPORAL_POSITION_FILENAME = "./prompts/temporal_position.txt"
 PROMPT_TEMPORAL_TRANSCRIPT_FILENAME = "./prompts/temporal_transcript_exp.txt"
@@ -30,6 +31,7 @@ class Pipeline():
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
         self.metadata_filename = METADATA_FILENAME
+        self.prompt_parse_spatial_filename = PROMPT_PARSER_SPATIAL_FILENAME
         self.prompt_parse_filename = PROMPT_PARSER_FILENAME
         self.prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME
         self.prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME
@@ -41,6 +43,7 @@ class Pipeline():
 
     def reset(self,
         metadata_filename = METADATA_FILENAME,
+        prompt_parse_spatial_filename = PROMPT_PARSER_SPATIAL_FILENAME,
         prompt_parse_filename = PROMPT_PARSER_FILENAME,
         prompt_temporal_position_filename = PROMPT_TEMPORAL_POSITION_FILENAME,
         prompt_temporal_transcript_filename = PROMPT_TEMPORAL_TRANSCRIPT_FILENAME,
@@ -50,6 +53,7 @@ class Pipeline():
         prompt_parameters_filename = PROMPT_PARAMETERS_FILENAME          
     ):
         self.metadata_filename = metadata_filename
+        self.prompt_parse_spatial_filename = prompt_parse_spatial_filename
         self.prompt_parse_filename = prompt_parse_filename
         self.prompt_temporal_position_filename = prompt_temporal_position_filename
         self.prompt_temporal_transcript_filename = prompt_temporal_transcript_filename
@@ -71,6 +75,19 @@ class Pipeline():
         print("Usage Info:", json.dumps(completion.usage, indent=2))
         return completion.choices[0].message
     
+    def predict_relevant_text_real_time(self, input):
+        with open(self.prompt_parse_spatial_filename, 'r') as f:
+            context = f.read()
+        completion = self.completion_endpoint(context, input, model="gpt-3.5-turbo-16k-0613") 
+        # completion = self.completion_endpoint(context, input, model="gpt-4") 
+        completion = ast.literal_eval(completion["content"])
+        return {
+            "temporal": completion["temporal"],
+            "spatial": completion["spatial"],
+            "edit": completion["edit"],
+            "parameters": completion["parameters"],
+        }
+
     def predict_relevant_text(self, input):
         with open(self.prompt_parse_filename, 'r') as f:
             context = f.read()
@@ -96,13 +113,26 @@ class Pipeline():
                     "start": skipped["temporalParameters"]["start"],
                     "finish": skipped["temporalParameters"]["finish"],
                 })
+        if ("segmentOfInterest" in msg):
+            segmentStart = msg["segmentOfInterest"]["start"]
+            segmentFinish = msg["segmentOfInterest"]["finish"]
+            if segmentStart > 0:
+                skipped_segments.append({
+                    "start": 0,
+                    "finish": segmentStart,
+                })
+            if segmentFinish < msg["projectMetadata"]["duration"]:
+                skipped_segments.append({
+                    "start": segmentFinish,
+                    "finish": msg["projectMetadata"]["duration"],
+                })
         if (from_scratch == False):
             for edit in msg["edits"]:
                 skipped_segments.append({
                     "start": edit["temporalParameters"]["start"],
                     "finish": edit["temporalParameters"]["finish"],
                 })
-        
+        print("Skipped", json.dumps(skipped_segments, indent=2))
         if from_scratch == False and add_more == False and adjust_selected == False:
             print("ERROR: Invalid processing mode")
             msg["edits"] = []
@@ -113,11 +143,12 @@ class Pipeline():
         relevant_text = self.predict_relevant_text(edit_request)
         print("relevant_text", relevant_text)
         edits = msg["edits"]
+        video_shape = [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]]
         if (from_scratch or add_more):
             edits = self.predict_temporal_segments(
                 relevant_text["temporal"],
                 relevant_text["temporal_labels"],
-                [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]],
+                video_shape,
                 skipped_segments
             )  
         msg["requestParameters"]["editOperations"] = relevant_text["edit"]
@@ -125,14 +156,14 @@ class Pipeline():
         edits = self.predict_spatial_regions(
             relevant_text["spatial"],
             edits,
-            [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]]
+            video_shape,
         )
         
         edits = self.predict_parameters(
             relevant_text["parameters"],
             relevant_text["edit"],
             edits,
-            [msg["projectMetadata"]["height"], msg["projectMetadata"]["width"]]
+            video_shape,
         )
         
         msg["requestParameters"]["parameters"] = relevant_text["parameters"]
@@ -241,11 +272,12 @@ class Pipeline():
             start = Timecode(item["start"])
             end = Timecode(item["end"])
             skip = False
-            for segment in skipped_segments:
+            for segment in skipped_segments: 
                 skipped_start = Timecode(segment["start"])
                 skipped_end = Timecode(segment["finish"])        
-                if ((start > skipped_start or start == skipped_start)
-                    and (end < skipped_end or end == skipped_end)):
+                intersection_start = max(start.convert_timecode_to_sec(), skipped_start.convert_timecode_to_sec())
+                intersection_end = min(end.convert_timecode_to_sec(), skipped_end.convert_timecode_to_sec())
+                if intersection_end > intersection_start:
                     skip = True
                     break
             if (not skip):
