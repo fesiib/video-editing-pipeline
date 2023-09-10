@@ -193,8 +193,8 @@ class Pipeline():
 
     def process_spatial(self, spatial_intent, frame_range):
         image_processor = ImageProcessor()
-        image_shape, input_images, input_bboxes, frame_id = image_processor.extract_candidate_frame_masks(frame_range)
-        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id), image_shape
+        image_shape, input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range)
+        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id, img), image_shape
 
     def predict_temporal_segments(self, temporal_segments, temporal_labels, video_shape, skipped_segments=[]):
         ranges = []
