@@ -4,7 +4,7 @@ import webvtt
 import os
 import re
 
-import whisper
+#import whisper
 import difflib
 
 
@@ -64,16 +64,16 @@ def download_video(video_link):
             print(f"Video '{video_title}' already exists in the directory.")
         return metadata
 
-def get_alternative_transcript(audio_path):
-    output_path = audio_path.replace(".mp3", ".alt.json")
-    if os.path.exists(output_path):
-        with open(output_path, 'r') as f:
-            return json.load(f)
-    model = whisper.load_model("small.en")
-    transcript = model.transcribe(audio_path)
-    with open(output_path, 'w') as f:
-        json.dump(transcript, f, indent=2)
-    return transcript
+# def get_alternative_transcript(audio_path):
+#     output_path = audio_path.replace(".mp3", ".alt.json")
+#     if os.path.exists(output_path):
+#         with open(output_path, 'r') as f:
+#             return json.load(f)
+#     model = whisper.load_model("small.en")
+#     transcript = model.transcribe(audio_path)
+#     with open(output_path, 'w') as f:
+#         json.dump(transcript, f, indent=2)
+#     return transcript
 
 def extract_words(s):
     # Match words that are between >< or outside of any tags

@@ -11,93 +11,93 @@ import sys
 import numpy as np
 from PIL import Image
 from pycocotools import mask as mask_utils
-from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
-from helpers import Timecode
+# from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
+from .helpers import Timecode
 
 class ImageProcessor:
     def __init__(self):
-        sam_checkpoint = "/mnt/c/Users/indue/Downloads/sam_vit_h_4b8939.pth"
-        model_type = "vit_h"
+        # sam_checkpoint = "/mnt/c/Users/indue/Downloads/sam_vit_h_4b8939.pth"
+        # model_type = "vit_h"
         
-        sam_kwargs = {
-            "points_per_side": 32,
-            "pred_iou_thresh": 0.86,
-            "stability_score_thresh": 0.92,
-            "crop_n_layers": 1,
-            "crop_n_points_downscale_factor": 2,
-            "min_mask_region_area": 100,
-        }
-        device = "cuda"
+        # sam_kwargs = {
+        #     "points_per_side": 32,
+        #     "pred_iou_thresh": 0.86,
+        #     "stability_score_thresh": 0.92,
+        #     "crop_n_layers": 1,
+        #     "crop_n_points_downscale_factor": 2,
+        #     "min_mask_region_area": 100,
+        # }
+        # device = "cuda"
         
-        sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
-        sam.to(device=device)
+        # sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
+        # sam.to(device=device)
         
         self.model, self.preprocess = clip.load("ViT-B/32")
-        self.mask_generator = SamAutomaticMaskGenerator(
-            model=sam,
-            points_per_side= sam_kwargs["points_per_side"],
-            pred_iou_thresh=sam_kwargs["pred_iou_thresh"],
-            stability_score_thresh=sam_kwargs["stability_score_thresh"],
-            crop_n_layers=sam_kwargs["crop_n_layers"],
-            crop_n_points_downscale_factor=sam_kwargs["crop_n_points_downscale_factor"],
-            min_mask_region_area=sam_kwargs["min_mask_region_area"],  # Requires open-cv to run post-processing
-        )
+        # self.mask_generator = SamAutomaticMaskGenerator(
+        #     model=sam,
+        #     points_per_side= sam_kwargs["points_per_side"],
+        #     pred_iou_thresh=sam_kwargs["pred_iou_thresh"],
+        #     stability_score_thresh=sam_kwargs["stability_score_thresh"],
+        #     crop_n_layers=sam_kwargs["crop_n_layers"],
+        #     crop_n_points_downscale_factor=sam_kwargs["crop_n_points_downscale_factor"],
+        #     min_mask_region_area=sam_kwargs["min_mask_region_area"],  # Requires open-cv to run post-processing
+        # )
 
-    def show_anns(self, anns, image):
-        if len(anns) == 0:
-            return
-        sorted_anns = sorted(anns, key=(lambda x: x['area']), reverse=True)
+    # def show_anns(self, anns, image):
+    #     if len(anns) == 0:
+    #         return
+    #     sorted_anns = sorted(anns, key=(lambda x: x['area']), reverse=True)
     
-        mask = np.ones((sorted_anns[0]['segmentation'].shape[0], sorted_anns[0]['segmentation'].shape[1], 4))
-        mask[:,:,3] = 0
-        for ann in sorted_anns:
-            m = ann['segmentation']
-            color_mask = np.concatenate([np.random.random(3), [0.35]])
-            mask[m] = color_mask
+    #     mask = np.ones((sorted_anns[0]['segmentation'].shape[0], sorted_anns[0]['segmentation'].shape[1], 4))
+    #     mask[:,:,3] = 0
+    #     for ann in sorted_anns:
+    #         m = ann['segmentation']
+    #         color_mask = np.concatenate([np.random.random(3), [0.35]])
+    #         mask[m] = color_mask
 
-        mask = (mask * 255).astype(np.uint8)
-        image_with_alpha = cv2.cvtColor(image, cv2.COLOR_BGR2BGRA)
+    #     mask = (mask * 255).astype(np.uint8)
+    #     image_with_alpha = cv2.cvtColor(image, cv2.COLOR_BGR2BGRA)
         
-        colored_image = cv2.addWeighted(image_with_alpha, 1, mask, 1, 0)
-        colored_image = (colored_image * 255).astype(np.uint8)
+    #     colored_image = cv2.addWeighted(image_with_alpha, 1, mask, 1, 0)
+    #     colored_image = (colored_image * 255).astype(np.uint8)
 
-        cv2.imwrite('highlighted_img.jpg', colored_image[:,:, :3])
+    #     cv2.imwrite('highlighted_img.jpg', colored_image[:,:, :3])
 
-    def create_masks(self, image):
-        masks = self.mask_generator.generate(image)
-        self.show_anns(masks, image)
+    # def create_masks(self, image):
+    #     masks = self.mask_generator.generate(image)
+    #     self.show_anns(masks, image)
 
-    def create_masked_images(self, image, output_dir):
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
-        # Generate the mask
-        images = []
-        masks = self.mask_generator.generate(image)
+    # def create_masked_images(self, image, output_dir):
+    #     if not os.path.exists(output_dir):
+    #         os.makedirs(output_dir)
+    #     # Generate the mask
+    #     images = []
+    #     masks = self.mask_generator.generate(image)
     
-        # Apply each mask on the image
-        for i, ann in enumerate(masks):
-            mask = ann['segmentation']
-            bbox = ann['bbox']
-            # print(ann['bbox'])
-            # Create an empty black image with the same size
-            bbox_image = self.extract_bbox(image, ann['bbox'])
-            print(bbox_image.shape)
-            masked_image = np.zeros_like(image)
+    #     # Apply each mask on the image
+    #     for i, ann in enumerate(masks):
+    #         mask = ann['segmentation']
+    #         bbox = ann['bbox']
+    #         # print(ann['bbox'])
+    #         # Create an empty black image with the same size
+    #         bbox_image = self.extract_bbox(image, ann['bbox'])
+    #         print(bbox_image.shape)
+    #         masked_image = np.zeros_like(image)
             
-            # Ensure the mask is binary
-            binary_mask = np.where(mask > 0, 1, 0)
+    #         # Ensure the mask is binary
+    #         binary_mask = np.where(mask > 0, 1, 0)
             
-            # Mask the image
-            for c in range(3):  # For each color channel
-                masked_image[:, :, c] = image[:, :, c] * binary_mask
-            filename = "mask_{}.png".format(i)
-            # Save the masked image to the output folder
-            output_path = os.path.join(output_dir, filename)
-            # masked_image_pil = Image.fromarray(masked_image)
-            masked_image_pil = Image.fromarray(bbox_image)
-            masked_image_pil.save(output_path)
-            images.append(transformers.preprocess(masked_image_pil))
-        return images
+    #         # Mask the image
+    #         for c in range(3):  # For each color channel
+    #             masked_image[:, :, c] = image[:, :, c] * binary_mask
+    #         filename = "mask_{}.png".format(i)
+    #         # Save the masked image to the output folder
+    #         output_path = os.path.join(output_dir, filename)
+    #         # masked_image_pil = Image.fromarray(masked_image)
+    #         masked_image_pil = Image.fromarray(bbox_image)
+    #         masked_image_pil.save(output_path)
+    #         images.append(transformers.preprocess(masked_image_pil))
+    #     return images
     
     def extract_candidate_frame_masks(self, frame_range):
         start_frame = frame_range["start"]

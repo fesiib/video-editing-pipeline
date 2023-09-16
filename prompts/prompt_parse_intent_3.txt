@@ -30,6 +30,8 @@ As a next step, you will classify each temporal reference into one of the follow
 3. "video": reference to specific action in the video or visual description of the frame, object, or elements
 4. "other": reference to other temporal information that does not fall into the above categories
 
+
+
 Format: JSON-like with the below keys:
 {
     "temporal": [],

@@ -153,12 +153,18 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
     meta_promp_file_path = "./prompts/summarize_caption.txt"
     for i in range(0, 1):
+        request_content = (
+            "dense caption: " + data[i]["dense"].strip() + "\n"
+            + "synthetic caption: " + data[i]["synth"].strip() + "\n"
+            + "action prediction: " + data[i]["action"].strip() + "\n"
+            + "transcript: " + data[i]["transcript"].strip() + "\n"
+        )
         result = run_gpt4(
             meta_promp_file_path,
-            data[i]["dense"].strip() + ", " + data[i]["synth"].strip()
+            request_content
         )
         summary = result["content"]
-        print(data[i]["dense"].strip() + ", " + data[i]["synth"].strip(), "\n --> ", summary)
+        print(request_content, "\n --> ", summary)
 
     #new_metadata_filename = metadata_filename.replace(".txt", "_summarized.txt")
 
@@ -169,4 +175,4 @@ if __name__ == "__main__":
     # parsing_results(6)
 
     #summarize_prompt("./prompts/temporal_transcript.txt")
-    #summarize_captions("./metadata/4LdIvyfzoGY_10.txt")
+    # summarize_captions("./metadata/4LdIvyfzoGY_10.txt")

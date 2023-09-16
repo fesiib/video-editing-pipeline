@@ -176,8 +176,8 @@ class Pipeline():
         single_input = input_text[0]
         for edit in edits:
             frame_range = {
-                "start": edit["temporalParameters"]["start"],
-                "end": edit["temporalParameters"]["finish"],
+                "start": Timecode(edit["temporalParameters"]["start"]),
+                "end": Timecode(edit["temporalParameters"]["finish"]),
             }
             bbox, image_shape = self.process_spatial(single_input, frame_range)
             print(bbox, image_shape, video_shape)
@@ -193,8 +193,14 @@ class Pipeline():
 
     def process_spatial(self, spatial_intent, frame_range):
         image_processor = ImageProcessor()
-        image_shape, input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range)
-        return image_processor.extract_related_crop(spatial_intent, input_bboxes, input_images, frame_id, img), image_shape
+        input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range)
+        return image_processor.extract_related_crop(
+            spatial_intent,
+            input_bboxes,
+            input_images,
+            frame_id,
+            img
+        ), img.shape
 
     def predict_temporal_segments(self, temporal_segments, temporal_labels, video_shape, skipped_segments=[]):
         ranges = []

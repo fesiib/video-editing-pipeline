@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 #from backend.intent_parser import *
 from backend.pipeline import Pipeline
+from LangChainPipeline import LangChainPipeline
 from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
 from video_host.processor import process_video, get_video_by_filename
@@ -19,6 +20,8 @@ Server side for video editing pipline
 '''
 #intent_parser = IntentParser(40, 80)
 pipeline = Pipeline(50, 0)
+#langchain_pipeline = LangChainPipeline()
+
 '''
 Input:
     Video Reference: youtube link
@@ -134,7 +137,15 @@ def test_processor(video_link):
     with open("transcript.json", "w") as f:
         json.dump(transcript, f, indent=2)
 
+def test_langchain_pipeline():
+    pipeline = LangChainPipeline(verbose=True)
+    command1 = "Put a textbox in the top middle with the text 'Hello world' at 00:00:00 until 00:00:10 or when the speaker says hello."
+    command2 = "Whenever a big screen can be seen, slightly zoom in to the person"
+    result = pipeline.run(command1)
+    print(result)
+
 if __name__ == "__main__":
     # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
-    launch_server()
+    # launch_server()
     # test("whenever the person mentions the surface go, emphasize the screen response time")
+    test_langchain_pipeline()
