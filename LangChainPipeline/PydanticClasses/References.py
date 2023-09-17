@@ -126,6 +126,17 @@ class References(BaseModel):
 
     def get_parameters(self):
         return {
+            "textParameters": self.textParameters,
+            "imageParameters": self.imageParameters,
+            "shapeParameters": self.shapeParameters,
+            "blurParameters": self.blurParameters,
+            "cutParameters": self.cutParameters,
+            "cropParameters": self.cropParameters,
+            "zoomParameters": self.zoomParameters,
+        }
+
+    def get_parameters_short(self):
+        return {
             "text": self.textParameters,
             "image": self.imageParameters,
             "shape": self.shapeParameters,

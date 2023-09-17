@@ -139,16 +139,66 @@ def test_processor(video_link):
 
 def test_langchain_pipeline():
     pipeline = LangChainPipeline(verbose=True)
+    
+    EXAMPLE_REQUEST = {
+        "projectId": "test",
+        "projectMetadata": {
+            "totalIntentCnt": 2,
+            "duration": 1218.53678,
+            "projectId": "tutorial",
+            "height": 480,
+            "fps": 25,
+            "width": 854,
+            "trackCnt": 1,
+            "title": "test"
+        },
+        "curPlayPosition": 100,
+        "edits": [],
+        "segmentOfInterest": {
+            "start": 0,
+            "finish": 1218.53678
+        },
+        "skippedSegments": [],
+        "requestParameters": {
+            "processingMode": "from-scratch",
+            "hasText": False,
+            "hasSketch": True,
+            "text": "",
+            "sketchRectangles": [
+                {
+                    "x": 222.14218431771891,
+                    "y": 83.49621553954651,
+                    "width": 231.3279022403259,
+                    "height": 189.60598945438687,
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "lineCap": "round",
+                    "lineJoin": "round"
+                },
+                {
+                    "x": 597.8326120162933,
+                    "y": 226.13558375293846,
+                    "width": 200.020366598778,
+                    "height": 182.64797149275802,
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "lineCap": "round",
+                    "lineJoin": "round"
+                }
+            ],
+            "sketchFrameTimestamp": 63.48,
+            "editOperation": ""
+        },
+    }
+
+    result = pipeline.process_request(
+        EXAMPLE_REQUEST
+    )
     # result = pipeline.predict_temporal_segments(
-    #     ["whenever surface go is mentioned"], ["transcript"],
+    #     ["talking about the chicken again"], ["transcript"],
     #     102, [480, 854],
     #     [{"start": 0, "finish": 100}, {"start": 107, "finish": 300}]
     # )
-    result = pipeline.predict_temporal_segments(
-        [], [],
-        102, [480, 854],
-        [{"start": 0, "finish": 100}, {"start": 107, "finish": 300}]
-    )
     print(result)
 
 if __name__ == "__main__":

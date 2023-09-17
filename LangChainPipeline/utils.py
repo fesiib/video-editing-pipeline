@@ -3,9 +3,11 @@ def timecode_to_seconds(timecode):
         return timecode
 
     timecode = timecode.split(":")
-    hours = int(timecode[0])
-    minutes = int(timecode[1])
-    seconds = int(timecode[2])
+    while len(timecode) < 3:
+        timecode = ["0"] + timecode
+    hours = float(timecode[0])
+    minutes = float(timecode[1])
+    seconds = float(timecode[2])
     return seconds + minutes * 60 + hours * 60 * 60
 
 def merge_segments(segments):

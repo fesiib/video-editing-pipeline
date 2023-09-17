@@ -34,6 +34,10 @@ class EditInstance:
                 "width": 2,
                 "fill": "#000000",
                 "alpha": 1
+            },
+            "star": {
+                "numPoints": 6,
+                "innerRadius": 100
             }
         }
 

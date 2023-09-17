@@ -241,7 +241,6 @@ class TemporalVisualChain():
         self.neighbors_right = neighbors_right
 
     def run(self, context, command, metadata):
-        print(metadata)
         filtered_metadata = filter_metadata_by_semantic_similarity(
             targets=command,
             candidates=metadata,

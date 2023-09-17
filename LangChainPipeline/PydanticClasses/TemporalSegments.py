@@ -14,8 +14,11 @@ class SingleSegment(BaseModel):
         description="End timecode of the segment",
     )
 
-    def __init__(self, **data):
-        super().__init__(**data)
+    def __init__(self, start="00:00:00", end="00:00:10"):
+        super().__init__(
+            start=start,
+            end=end,
+        )
 
     @validator("start")
     def start_must_be_valid_timecode(cls, v):
@@ -29,17 +32,23 @@ class SingleSegment(BaseModel):
 class TemporalSegments(BaseModel):
     segments: List[SingleSegment] = Field(
         ...,
-        title="List of temporal segments",
-        description="List of temporal segments",
+        title="List of temporal segments, empty list if no segments are found",
+        description="List of temporal segments, empty list if no segments are found",
     )
 
-    def __init__(self, **data):
-        super().__init__(**data)
+    def __init__(self, segments = []):
+        super().__init__(
+            segments=segments,
+        )
 
     @validator("segments")
-    def segments_must_be_valid_timecode(cls, v):
+    def segments_must_be_valid_list(cls, v):
+        if isinstance(v, list) == False:
+            raise ValueError("List of segments must be a list")
         return v
 
     @classmethod
     def get_instance(cls, start, end):
-        return cls(segments=[SingleSegment(start=start, end=end)])
+        return cls(
+            segments=[SingleSegment(start=start, end=end)]
+        )

@@ -1,5 +1,6 @@
 from LangChainPipeline.ParserChains.IntentParserChain import IntentParserChain
 from LangChainPipeline.ParserChains.TemporalChain import TemporalChain
+from LangChainPipeline.ParserChains.EditChain import EditChain
 
 from LangChainPipeline.utils import merge_segments, timecode_to_seconds
 
@@ -11,6 +12,9 @@ class LangChainPipeline():
         self.temporal_interpreter = TemporalChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10
         )
+        self.parameters_interpreter = EditChain(
+            verbose=verbose, video_id="4LdIvyfzoGY", interval=10
+        )
         self.spatial_interpreter = None
         self.set_parameters_interpreter = None
 
@@ -19,18 +23,44 @@ class LangChainPipeline():
 
     def set_parameters(self, top_k, neighbors_left, neighbors_right):
         self.temporal_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
+        self.parameters_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
 
     def predict_spatial_positions(self, 
         spatial, spatial_labels,
         edits, sketches, video_shape,
     ):
-        pass
+        return edits
 
     def predict_edit_parameters(self,
-        edit, parameters,
+        parameters,
         edits, sketches, video_shape,
     ):
-        pass
+        for edit in edits:
+            initial_edit_parameters = {
+                "textParameters": edit["textParameters"],
+                "imageParameters": edit["imageParameters"],
+                "shapeParameters": edit["shapeParameters"],
+                "blurParameters": edit["blurParameters"],
+                "cutParameters": edit["cutParameters"],
+                "cropParameters": edit["cropParameters"],
+                "zoomParameters": edit["zoomParameters"],
+            }
+            start = timecode_to_seconds(edit["temporalParameters"]["start"])
+            finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
+            new_edit_parameters = self.parameters_interpreter.run(
+                parameters, initial_edit_parameters,
+                start, finish,
+                video_shape
+            )
+            edit["textParameters"] = new_edit_parameters["textParameters"]
+            edit["imageParameters"] = new_edit_parameters["imageParameters"]
+            edit["shapeParameters"] = new_edit_parameters["shapeParameters"]
+            edit["blurParameters"] = new_edit_parameters["blurParameters"]
+            edit["cutParameters"] = new_edit_parameters["cutParameters"]
+            edit["cropParameters"] = new_edit_parameters["cropParameters"]
+            edit["zoomParameters"] = new_edit_parameters["zoomParameters"]
+
+        return edits
 
     def predict_temporal_segments(self,
         temporal,
@@ -116,8 +146,13 @@ class LangChainPipeline():
         command = request["requestParameters"]["text"]
         skipped_segments = self.build_skipped_segments(request)
         prev_edits = request["edits"]
-        current_player_position = request["requestParameters"]["curPlayPosition"]
-        sketches = []
+        current_player_position = request["curPlayPosition"]
+        # sketchRectangles: [...this.sketchCommand], sketchFrameTimestamp: this.sketchPlayPosition,
+        sketches = request["requestParameters"]["sketchRectangles"]
+        for sketch in sketches:
+            sketch["timestamp"] = request["requestParameters"]["sketchFrameTimestamp"]
+        print(sketches)
+
         ### TODO: build sketches
 
         video_shape = [request["projectMetadata"]["height"], request["projectMetadata"]["width"]]
@@ -139,7 +174,7 @@ class LangChainPipeline():
 
         ### set edit operations
         request["requestParameters"]["editOperations"] = references.edit
-        request["requestParameters"]["parameters"] = references.get_parameters()
+        request["requestParameters"]["parameters"] = references.get_parameters_short()
         
         ### predict temporal segments
         if from_scratch == True or add_more == True:
@@ -154,13 +189,13 @@ class LangChainPipeline():
 
         ### predict spatial positions
         edits = self.predict_spatial_positions(
-            references.spatial, references.spatial_labels,
+            references.spatial, [],
             edits, sketches, video_shape,
         )
 
         ### predict edit parameters
         edits = self.predict_edit_parameters(
-            references.edit, references.get_parameters(),
+            references.get_parameters(),
             edits, sketches, video_shape,
         )   
 

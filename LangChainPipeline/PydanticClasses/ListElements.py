@@ -14,8 +14,11 @@ class SingleElement(BaseModel):
         description="Explanation why the element is relevant",
     )
 
-    def __init__(self, **data):
-        super().__init__(**data)
+    def __init__(self, index="0", explanation=""):
+        super().__init__(
+            index=index,
+            explanation=explanation,
+        )
 
     @validator("index")
     def index_must_be_valid_integer(cls, v):
@@ -35,12 +38,14 @@ class SingleElement(BaseModel):
 class ListElements(BaseModel):
     list_elements: List[SingleElement] = Field(
         ...,
-        title="List of selected elements with their explanations",
-        description="List of selected elements with their explanations",
+        title="List of selected elements with their explanations or empty list if no relevant elements are found",
+        description="List of selected elements with their explanations or empty list if no relevant elements are found",
     )
 
-    def __init__(self, **data):
-        super().__init__(**data)
+    def __init__(self, list_elements=[]):
+        super().__init__(
+            list_elements=list_elements,
+        )
 
     @validator("list_elements")
     def list_elements_must_be_valid_list(cls, v):
