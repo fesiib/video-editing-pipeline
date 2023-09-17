@@ -1,6 +1,7 @@
 from LangChainPipeline.ParserChains.IntentParserChain import IntentParserChain
 from LangChainPipeline.ParserChains.TemporalChain import TemporalChain
 from LangChainPipeline.ParserChains.EditChain import EditChain
+from LangChainPipeline.ParserChains.SpatialChain import SpatialChain
 
 from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_same_objects
 
@@ -15,7 +16,9 @@ class LangChainPipeline():
         self.parameters_interpreter = EditChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10
         )
-        self.spatial_interpreter = None
+        self.spatial_interpreter = SpatialChain(
+            verbose=verbose, video_id="4LdIvyfzoGY", interval=10
+        )
         self.set_parameters_interpreter = None
 
     def set_video(self, video_id, interval):
@@ -25,10 +28,62 @@ class LangChainPipeline():
         self.temporal_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
         self.parameters_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
 
-    def predict_spatial_positions(self, 
+    def predict_spatial_locations(self, 
         spatial, spatial_labels,
         edits, sketches, video_shape,
     ):
+        for edit in edits:
+            start = timecode_to_seconds(edit["temporalParameters"]["start"])
+            finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
+            spatial_position_set = False
+            
+            ### check if sketch is available
+            for sketch in sketches:
+                if sketch["timestamp"] >= start and sketch["timestamp"] < finish:
+                    edit["spatialParameters"] = {
+                        "x": round(sketch["x"]),
+                        "y": round(sketch["y"]),
+                        "width": round(sketch["width"]),
+                        "height": round(sketch["height"]),
+                    }
+                    spatial_position_set = True
+                    break
+            if spatial_position_set == True:
+                continue
+
+            candidates = [{
+                "x": 0,
+                "y": 0,
+                "width": video_shape[1],
+                "height": video_shape[0],
+                "rotation": 0,
+                "label": "full",
+                "source": [],
+            }]
+
+            for sketch in sketches:
+                candidates.append({
+                    "x": round(sketch["x"]),
+                    "y": round(sketch["y"]),
+                    "width": round(sketch["width"]),
+                    "height": round(sketch["height"]),
+                    "rotation": 0,
+                    "label": "sketch",
+                    "source": [],
+                })
+            for reference, label in zip(spatial, spatial_labels):
+                candidates = self.spatial_interpreter.run(
+                    [reference], candidates, label,
+                    start, finish,
+                    video_shape,
+                )
+            
+            if len(candidates) == 0:
+                continue
+
+            ### choose the one with the medium area (can also, 0 or last one)
+            candidates.sort(key=lambda x: x["width"] * x["height"])
+            edit["spatialParameters"] = candidates[len(candidates) // 2]
         return edits
 
     def predict_edit_parameters(self,
@@ -218,8 +273,8 @@ class LangChainPipeline():
             edits = prev_edits
 
         ### predict spatial positions
-        edits = self.predict_spatial_positions(
-            references.spatial, [],
+        edits = self.predict_spatial_locations(
+            references.spatial, ["position" for ref in references.spatial],
             edits, sketches, video_shape,
         )
 

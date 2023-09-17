@@ -20,7 +20,7 @@ Server side for video editing pipline
 '''
 #intent_parser = IntentParser(40, 80)
 pipeline = Pipeline(50, 0)
-#langchain_pipeline = LangChainPipeline()
+langchain_pipeline = LangChainPipeline()
 
 '''
 Input:
@@ -31,8 +31,8 @@ Input:
 def parse_intent():
     edit_request = request.json
     
-    pipeline.reset()
-    edit_response = pipeline.process_request(edit_request)
+    #pipeline.reset()
+    edit_response = langchain_pipeline.process_request(edit_request)
     
     response = "User Request: {} \n \n Edit Disambiguation: {}".format(edit_request, edit_response)
 
@@ -163,28 +163,28 @@ def test_langchain_pipeline():
             "processingMode": "from-scratch",
             "hasText": False,
             "hasSketch": True,
-            "text": "",
+            "text": "at 1:00, put a transparent star around the laptop",
             "sketchRectangles": [
-                {
-                    "x": 222.14218431771891,
-                    "y": 83.49621553954651,
-                    "width": 231.3279022403259,
-                    "height": 189.60598945438687,
-                    "stroke": "red",
-                    "strokeWidth": 2,
-                    "lineCap": "round",
-                    "lineJoin": "round"
-                },
-                {
-                    "x": 597.8326120162933,
-                    "y": 226.13558375293846,
-                    "width": 200.020366598778,
-                    "height": 182.64797149275802,
-                    "stroke": "red",
-                    "strokeWidth": 2,
-                    "lineCap": "round",
-                    "lineJoin": "round"
-                }
+                # {
+                #     "x": 222.14218431771891,
+                #     "y": 83.49621553954651,
+                #     "width": 231.3279022403259,
+                #     "height": 189.60598945438687,
+                #     "stroke": "red",
+                #     "strokeWidth": 2,
+                #     "lineCap": "round",
+                #     "lineJoin": "round"
+                # },
+                # {
+                #     "x": 597.8326120162933,
+                #     "y": 226.13558375293846,
+                #     "width": 200.020366598778,
+                #     "height": 182.64797149275802,
+                #     "stroke": "red",
+                #     "strokeWidth": 2,
+                #     "lineCap": "round",
+                #     "lineJoin": "round"
+                # }
             ],
             "sketchFrameTimestamp": 63.48,
             "editOperation": ""
@@ -203,6 +203,6 @@ def test_langchain_pipeline():
 
 if __name__ == "__main__":
     # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
-    # launch_server()
+    launch_server()
     # test("whenever the person mentions the surface go, emphasize the screen response time")
-    test_langchain_pipeline()
+    # test_langchain_pipeline()

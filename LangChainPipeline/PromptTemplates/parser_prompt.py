@@ -89,6 +89,36 @@ def get_examples():
         [],
     )
 
+    command3 = 'Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn’t obstruct his movements for five seconds at which point the text disappears'
+    response3 = References(
+        ["whenever he introduces new ingredient and cooking instruction", "for five seconds"],
+        ["transcript", "other"],
+        ["top left corner", "make sure it doesn't obstruct his movements"],
+        ["text"],
+        ["arial font", "slightly smaller"],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+    )
+
+    command4 = '9:22 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
+    response4 = References(
+        ["9:22", ],
+        ["position"],
+        ["either side of subject"],
+        ["image"],
+        [],
+        ["animate graphics of a book and headphones"],
+        [],
+        [],
+        [],
+        [],
+        [],
+    )
+
     examples = []
     examples.append({
         "command": command1,
@@ -98,6 +128,16 @@ def get_examples():
         "command": command2,
         "response": response2.model_dump_json(),
     })
+    examples.append({
+        "command": command3,
+        "response": response3.model_dump_json(),
+    })
+
+    examples.append({
+        "command": command4,
+        "response": response4.model_dump_json(),
+    })
+
     return examples
 
 def get_parser_prompt_llm(partial_variables={}):
