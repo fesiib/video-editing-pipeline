@@ -139,9 +139,16 @@ def test_processor(video_link):
 
 def test_langchain_pipeline():
     pipeline = LangChainPipeline(verbose=True)
-    command1 = "Put a textbox in the top middle with the text 'Hello world' at 00:00:00 until 00:00:10 or when the speaker says hello."
-    command2 = "Whenever a big screen can be seen, slightly zoom in to the person"
-    result = pipeline.run(command1)
+    # result = pipeline.predict_temporal_segments(
+    #     ["whenever surface go is mentioned"], ["transcript"],
+    #     102, [480, 854],
+    #     [{"start": 0, "finish": 100}, {"start": 107, "finish": 300}]
+    # )
+    result = pipeline.predict_temporal_segments(
+        [], [],
+        102, [480, 854],
+        [{"start": 0, "finish": 100}, {"start": 107, "finish": 300}]
+    )
     print(result)
 
 if __name__ == "__main__":

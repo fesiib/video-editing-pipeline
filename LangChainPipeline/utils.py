@@ -1,4 +1,7 @@
 def timecode_to_seconds(timecode):
+    if isinstance(timecode, float) or isinstance(timecode, int):
+        return timecode
+
     timecode = timecode.split(":")
     hours = int(timecode[0])
     minutes = int(timecode[1])
