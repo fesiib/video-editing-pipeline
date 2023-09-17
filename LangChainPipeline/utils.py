@@ -27,3 +27,23 @@ def merge_segments(segments):
             else:
                 result.append(interval)
     return result
+
+def are_same_objects(obj1, obj2):
+    if isinstance(obj1, list) and isinstance(obj2, list):
+        if len(obj1) != len(obj2):
+            return False
+        for i in range(len(obj1)):
+            if not are_same_objects(obj1[i], obj2[i]):
+                return False
+        return True
+    elif isinstance(obj1, dict) and isinstance(obj2, dict):
+        if len(obj1) != len(obj2):
+            return False
+        for key in obj1:
+            if key not in obj2:
+                return False
+            if not are_same_objects(obj1[key], obj2[key]):
+                return False
+        return True
+    else:
+        return obj1 == obj2

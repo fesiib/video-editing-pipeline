@@ -40,5 +40,7 @@ class IntentParserChain():
         print("Initialized IntentParserChain")
 
     def run(self, command):
+        if command == "":
+            return References()
         references = self.chain.predict(command=command)
         return references

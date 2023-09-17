@@ -90,28 +90,46 @@ class EditChain():
         self.image_query.set_parameters(top_k, neighbors_left, neighbors_right)
         print("Set parameters")
 
-    def run(self, 
+    def run_all_parameters(self, 
         parameters, initial_edit_parameters,
-        start, finish,
         video_shape
     ):
         common_context = "Video Properties: height = " + str(video_shape[0]) + ", width = " + str(video_shape[1])
+
+        total_references = 0
+        for parameter in parameters:
+            total_references += len(parameters[parameter])
+        
+        if total_references == 0:
+            return initial_edit_parameters
+        
         new_edit_parameters = self.all_parameters.run(common_context, parameters, initial_edit_parameters)
-
-        text_content_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
-        if len(new_edit_parameters["textParameters"]["content"]) > 0 and len(text_content_context) > 0:
-            new_edit_parameters["textParameters"]["content"] = self.text_content.run(
-                text_content_context,
-                [new_edit_parameters["textParameters"]["content"]],
-            )
-
-        image_query_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
-        if len(new_edit_parameters["imageParameters"]["searchQuery"]) > 0 and len(image_query_context) > 0:
-            new_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
-                image_query_context,
-                [new_edit_parameters["imageParameters"]["searchQuery"]],
-            )
         return new_edit_parameters
+
+    def run_text_content(
+        self,
+        initial_edit_parameters,
+        start, finish,
+    ):
+        text_content_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
+        if len(initial_edit_parameters["textParameters"]["content"]) > 0 and len(text_content_context) > 0:
+            initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
+                text_content_context,
+                [initial_edit_parameters["textParameters"]["content"]],
+            )
+        return initial_edit_parameters
+
+    def run_image_query(self,
+        initial_edit_parameters,
+        start, finish,
+    ):
+        image_query_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
+        if len(initial_edit_parameters["imageParameters"]["searchQuery"]) > 0 and len(image_query_context) > 0:
+            initial_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
+                image_query_context,
+                [initial_edit_parameters["imageParameters"]["searchQuery"]],
+            )
+        return initial_edit_parameters
 
 
 class AllParametersChain():

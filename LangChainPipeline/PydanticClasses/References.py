@@ -31,17 +31,17 @@ class References(BaseModel):
     
     def __init__(
         self,
-        temporal,
-        temporal_labels,
-        spatial,
-        edit,
-        textParameters,
-        imageParameters,
-        shapeParameters,
-        blurParameters,
-        cutParameters,
-        cropParameters,
-        zoomParameters,
+        temporal=[],
+        temporal_labels=[],
+        spatial=[],
+        edit=[],
+        textParameters=[],
+        imageParameters=[],
+        shapeParameters=[],
+        blurParameters=[],
+        cutParameters=[],
+        cropParameters=[],
+        zoomParameters=[],
     ):
         super().__init__(
             temporal=temporal,

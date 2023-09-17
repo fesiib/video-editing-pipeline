@@ -2,7 +2,7 @@ from LangChainPipeline.ParserChains.IntentParserChain import IntentParserChain
 from LangChainPipeline.ParserChains.TemporalChain import TemporalChain
 from LangChainPipeline.ParserChains.EditChain import EditChain
 
-from LangChainPipeline.utils import merge_segments, timecode_to_seconds
+from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_same_objects
 
 from backend.operations import get_edit_segment
 
@@ -35,8 +35,9 @@ class LangChainPipeline():
         parameters,
         edits, sketches, video_shape,
     ):
-        for edit in edits:
-            initial_edit_parameters = {
+        for i in range(len(edits)):
+            edit = edits[i]
+            edit_parameters = {
                 "textParameters": edit["textParameters"],
                 "imageParameters": edit["imageParameters"],
                 "shapeParameters": edit["shapeParameters"],
@@ -45,20 +46,49 @@ class LangChainPipeline():
                 "cropParameters": edit["cropParameters"],
                 "zoomParameters": edit["zoomParameters"],
             }
+
+            run_all_parameters = True
+
+            for j in range(i):
+                prev_edit = edits[j]
+                prev_edit_parameters = {
+                    "textParameters": prev_edit["textParameters"],
+                    "imageParameters": prev_edit["imageParameters"],
+                    "shapeParameters": prev_edit["shapeParameters"],
+                    "blurParameters": prev_edit["blurParameters"],
+                    "cutParameters": prev_edit["cutParameters"],
+                    "cropParameters": prev_edit["cropParameters"],
+                    "zoomParameters": prev_edit["zoomParameters"],
+                }
+                if are_same_objects(edit_parameters, prev_edit_parameters):
+                    edit_parameters = prev_edit_parameters
+                    run_all_parameters = False
+                    break
+            
+            if run_all_parameters == True:
+                edit_parameters = self.parameters_interpreter.run_all_parameters(
+                    parameters, edit_parameters,
+                    video_shape
+                )
+
             start = timecode_to_seconds(edit["temporalParameters"]["start"])
             finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
-            new_edit_parameters = self.parameters_interpreter.run(
-                parameters, initial_edit_parameters,
+            edit_parameters = self.parameters_interpreter.run_text_content(
+                edit_parameters,
                 start, finish,
-                video_shape
             )
-            edit["textParameters"] = new_edit_parameters["textParameters"]
-            edit["imageParameters"] = new_edit_parameters["imageParameters"]
-            edit["shapeParameters"] = new_edit_parameters["shapeParameters"]
-            edit["blurParameters"] = new_edit_parameters["blurParameters"]
-            edit["cutParameters"] = new_edit_parameters["cutParameters"]
-            edit["cropParameters"] = new_edit_parameters["cropParameters"]
-            edit["zoomParameters"] = new_edit_parameters["zoomParameters"]
+            edit_parameters = self.parameters_interpreter.run_image_query(
+                edit_parameters,
+                start, finish,
+            )
+
+            edit["textParameters"] = edit_parameters["textParameters"]
+            edit["imageParameters"] = edit_parameters["imageParameters"]
+            edit["shapeParameters"] = edit_parameters["shapeParameters"]
+            edit["blurParameters"] = edit_parameters["blurParameters"]
+            edit["cutParameters"] = edit_parameters["cutParameters"]
+            edit["cropParameters"] = edit_parameters["cropParameters"]
+            edit["zoomParameters"] = edit_parameters["zoomParameters"]
 
         return edits
 
