@@ -72,6 +72,7 @@ class LangChainPipeline():
                     "source": [],
                 })
             for reference, label in zip(spatial, spatial_labels):
+                print("Spatial: ", reference, label)
                 candidates = self.spatial_interpreter.run(
                     [reference], candidates, label,
                     start, finish,
@@ -129,10 +130,12 @@ class LangChainPipeline():
             start = timecode_to_seconds(edit["temporalParameters"]["start"])
             finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
             edit_parameters = self.parameters_interpreter.run_text_content(
+                parameters,
                 edit_parameters,
                 start, finish,
             )
             edit_parameters = self.parameters_interpreter.run_image_query(
+                parameters,
                 edit_parameters,
                 start, finish,
             )
@@ -274,7 +277,7 @@ class LangChainPipeline():
 
         ### predict spatial positions
         edits = self.predict_spatial_locations(
-            references.spatial, ["position" for ref in references.spatial],
+            references.spatial, references.spatial_labels,
             edits, sketches, video_shape,
         )
 

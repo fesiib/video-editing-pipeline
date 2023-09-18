@@ -1,0 +1,2239 @@
+[
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 3,
+    "description": "Create a title over the video for \u201cPoint 1: How to get started in a language\u201d blur out the video to bring focus to the title. At 1:27, end title card",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Speaker says how to get started in a language (or something similar)"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "blur"
+    ],
+    "extra_params": [
+      "\u201cPoint 1: How to get started in a language\u201d"
+    ],
+    "temporal": [
+      [
+        70.0,
+        87.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 4,
+    "description": "9:22 - Add big text at top of frame to emphasize point, \u201cLots of listening and reading!\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Speaker says \"Lots of listening and reading\""
+    ],
+    "spatial_text": [
+      "Top of frame"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "\u201cLots of listening and reading!\u201d"
+    ],
+    "temporal": [
+      [
+        560.0,
+        564.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 6,
+    "description": "At 15:57, animate in text to emphasis summary, something like \u201cfocus on one language, occasionally refresh other languages with short stories, videos, etc.\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "15:57"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "\u201cfocus on one language, occasionally refresh other languages with short stories, videos, etc."
+    ],
+    "temporal": [
+      [
+        955.0,
+        959.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 12,
+    "description": "Similar to the book and headphone animation, occasionally animate in pictures the emphasis what the speaker is saying.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "pictures the emphasis what the speaker is saying"
+    ],
+    "temporal": [
+      [
+        206.0,
+        210.0
+      ],
+      [
+        250.0,
+        254.0
+      ],
+      [
+        269.0,
+        273.0
+      ],
+      [
+        308.0,
+        312.0
+      ],
+      [
+        358.0,
+        362.0
+      ],
+      [
+        439.0,
+        443.0
+      ],
+      [
+        452.0,
+        456.0
+      ],
+      [
+        475.0,
+        479.0
+      ],
+      [
+        549.0,
+        553.0
+      ],
+      [
+        642.0,
+        646.0
+      ],
+      [
+        813.0,
+        817.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 13,
+    "description": "End with answer at 1:02:21 and use a big title over the video: \u201cWHEN YOU FEEL LIKE IT!\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "1:02:21"
+    ],
+    "spatial_text": [
+      "over the video"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "WHEN YOU FEEL LIKE IT!"
+    ],
+    "temporal": [
+      [
+        3739.0,
+        3743.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 7,
+    "description": "16:49 Similar title slide \u201cPoint 3: How do you start talking?\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "16:49"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "Point 3: How do you start talking?"
+    ],
+    "temporal": [
+      [
+        1007.0,
+        1011.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 5,
+    "description": "We will zoom in on his hand while he talks about two different languages machine / natural language",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "while he talks about two different languages machine / natural language"
+    ],
+    "spatial_text": [
+      "on his hand"
+    ],
+    "edit_text": [
+      "zoom"
+    ],
+    "extra_params": [
+      "in on his hand"
+    ],
+    "temporal": [
+      [
+        467.0,
+        471.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 13,
+    "description": "Around 28:20 while showing very mysterious a.out file we will give some ghost looking transparent meaningless layovers because we dont\u2019 want to losen the concentration of watchers.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Around 28:20"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "ghost looking transparent meaningless layovers"
+    ],
+    "temporal": [
+      [
+        1698.0,
+        1702.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 7,
+    "description": "13:50-14:20 while he is talking thingies as\n\n#include <stdio.h>\nMain, header file ,\nInput, and receive thingies I want to make it one new screen and make it pop up by sequence so the watchers can get informations indented on their brain. For example, if I just listen to / watch to this video, It\u2019s actually hard to get the point which is the most important. So, we will gonna just highlight the important part .",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "13:50-14:20"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "#include <stdio.h> Header file\nInt main()\n{\n\n}\nReceive 0;"
+    ],
+    "temporal": [
+      [
+        830.0,
+        860.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 1,
+    "description": "Overall, this guys is interacting too much with subscribers saying meaningless thingies like hey laura blabla thank you so will gonna trim almost every of it and make it into compact \u2018informing\u2019 video.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "meaningless thingies like hey laura blabla thank you"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        43.0,
+        47.0
+      ],
+      [
+        58.0,
+        96.0
+      ],
+      [
+        223.0,
+        227.0
+      ],
+      [
+        381.0,
+        395.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 4,
+    "description": "6:46 He started to talk about history and mentioned one PhD student berish someone. We will gonna insert this photo and make it written down with sketching sound with his name at the exact point he mentioned that name. (used character as an explanation)",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "6:46"
+    ],
+    "spatial_text": [
+      "described as sketch"
+    ],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "this photo"
+    ],
+    "temporal": [
+      [
+        404.0,
+        408.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 4,
+    "description": "6:46 He started to talk about history and mentioned one PhD student berish someone. We will gonna insert this photo and make it written down with sketching sound with his name at the exact point he mentioned that name. (used character as an explanation)",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "exact point he mentioned that name"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "his name"
+    ],
+    "temporal": [
+      [
+        404.0,
+        408.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 2,
+    "description": "Every time any quality of Surface go is mentioned, show it on the screen",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Every time any quality of Surface go is mentioned"
+    ],
+    "spatial_text": [
+      "on the screen"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "any quality of surface go"
+    ],
+    "temporal": [
+      [
+        81.0,
+        96.0
+      ],
+      [
+        97.0,
+        101.0
+      ],
+      [
+        146.0,
+        150.0
+      ],
+      [
+        157.0,
+        161.0
+      ],
+      [
+        255.0,
+        259.0
+      ],
+      [
+        264.0,
+        268.0
+      ],
+      [
+        283.0,
+        287.0
+      ],
+      [
+        472.0,
+        476.0
+      ],
+      [
+        1004.0,
+        1008.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 3,
+    "description": "Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Whenever the quality/price/battery/accessories of the two devices are compared"
+    ],
+    "spatial_text": [
+      "Bottom of the screen"
+    ],
+    "edit_text": [
+      "shape"
+    ],
+    "extra_params": [
+      "box"
+    ],
+    "temporal": [
+      [
+        108.0,
+        112.0
+      ],
+      [
+        120.0,
+        124.0
+      ],
+      [
+        134.0,
+        139.0
+      ],
+      [
+        140.0,
+        144.0
+      ],
+      [
+        758.0,
+        762.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 4,
+    "description": "When entering the wifi password, place a screen that shows what he\u2019s entering. Show the first half of the password and put stars for the rest. E.g. admin12****",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "When entering the wifi password"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "first half of the password and put stars for the rest"
+    ],
+    "temporal": [
+      [
+        334.0,
+        338.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 5,
+    "description": "At the following moments put a very quick transitional frame which describes what the speaker is about to talk about:\n6:04 - Accessories\n7:48 - Power adapter\n8:09 - Surface Connect Connector\n9:20 - I/O\n10:06 - Webcam\n10:29 - Signature type cover\n11:16 - Magnetic docking mechanism\n15:35 - Display",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "6:04 - Accessories\t\n7:48 - Power adapter\t\n8:09 - Surface Connect Connector\t\n9:20 - I/O\t\n10:06 - Webcam\t\n10:29 - Signature type cover\t\n11:16 - Magnetic docking mechanism\t\n15:35 - Display"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "frame"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        362.0,
+        366.0
+      ],
+      [
+        466.0,
+        470.0
+      ],
+      [
+        487.0,
+        491.0
+      ],
+      [
+        558.0,
+        562.0
+      ],
+      [
+        604.0,
+        608.0
+      ],
+      [
+        627.0,
+        631.0
+      ],
+      [
+        674.0,
+        678.0
+      ],
+      [
+        933.0,
+        937.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 14,
+    "description": "Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "once the video starts"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "thumbnail picture"
+    ],
+    "temporal": [
+      [
+        0,
+        2.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 14,
+    "description": "Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "once the video starts"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "very small description text"
+    ],
+    "temporal": [
+      [
+        0,
+        2.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 1,
+    "description": "To compare the MS surface go\u2019s spec with gpd pocket 2 apple\u2019s spec, highlight the spec of gdp pocket 2",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        102.0,
+        106.0
+      ],
+      [
+        108.0,
+        112.0
+      ],
+      [
+        120.0,
+        124.0
+      ],
+      [
+        134.0,
+        139.0
+      ],
+      [
+        140.0,
+        144.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 11,
+    "description": "It looks lightweight when he holds it. It would be good to add an emphasis for this.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "when he holds it."
+    ],
+    "spatial_text": [
+      "{object}"
+    ],
+    "edit_text": [],
+    "extra_params": [],
+    "temporal": [
+      [
+        98.0,
+        102.0
+      ],
+      [
+        1177.0,
+        1181.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 12,
+    "description": "It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "content that emphasizes these differences"
+    ],
+    "temporal": [
+      [
+        131.0,
+        135.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 13,
+    "description": "I added a text below the prize barcode that says \u201cPlease take a photo, it\u2019s first come, first served.\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "Please take a photo, it's first come, first served"
+    ],
+    "temporal": [
+      [
+        410.0,
+        414.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 14,
+    "description": "Trim from 7:20 to 7:40 where he opens the box and says there is a manua",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "7:20 to 7:40, where he opens the box and says there is a manua"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        440.0,
+        460.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 1,
+    "description": "Remove all sections throughout the video that aren\u2019t directed at questions. For example, things like \u201cPlease like the video\u201d, \u201cThank you\u201d etc. at 6:07, 24:03, 32:57. The whole video should only contain questions and answers.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "all sections throughout the video that aren\u2019t directed at questions. For example, things like \u201cPlease like the video\u201d, \u201cThank you\u201d etc. at 6:07, 24:03, 32:57."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        5.0,
+        110.0
+      ],
+      [
+        362.0,
+        367.0
+      ],
+      [
+        500.0,
+        613.0
+      ],
+      [
+        1441.0,
+        1445.0
+      ],
+      [
+        1975.0,
+        1979.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 4,
+    "description": "Whenever the man\u2019s pauses or filler words are too long in his answers, cut them out.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "whenever the man's pauses or filler words are too long in his answers"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        7.0,
+        8.0
+      ],
+      [
+        12.0,
+        13.0
+      ],
+      [
+        16.0,
+        18.0
+      ],
+      [
+        45.0,
+        47.0
+      ],
+      [
+        202.0,
+        203.0
+      ],
+      [
+        445.0,
+        447.0
+      ],
+      [
+        463.0,
+        464.0
+      ],
+      [
+        553.0,
+        554.0
+      ],
+      [
+        669.0,
+        670.0
+      ],
+      [
+        766.0,
+        767.0
+      ],
+      [
+        952.0,
+        953.0
+      ],
+      [
+        1068.0,
+        1069.0
+      ],
+      [
+        1103.0,
+        1104.0
+      ],
+      [
+        1120.0,
+        1121.0
+      ],
+      [
+        1183.0,
+        1184.0
+      ],
+      [
+        1259.0,
+        1260.0
+      ],
+      [
+        1264.0,
+        1266.0
+      ],
+      [
+        1376.0,
+        1378.0
+      ],
+      [
+        1429.0,
+        1431.0
+      ],
+      [
+        1513.0,
+        1514.0
+      ],
+      [
+        1626.0,
+        1627.0
+      ],
+      [
+        1640.0,
+        1642.0
+      ],
+      [
+        1715.0,
+        1717.0
+      ],
+      [
+        1736.0,
+        1737.0
+      ],
+      [
+        1782.0,
+        1783.0
+      ],
+      [
+        1821.0,
+        1823.0
+      ],
+      [
+        1827.0,
+        1828.0
+      ],
+      [
+        1843.0,
+        1845.0
+      ],
+      [
+        1881.0,
+        1883.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 6,
+    "description": "Make a circular progress bar at the top right side of the screen that starts at 0% when the man starts answering the question, and gradually increases to 100% once he is done, so that users can know how much of the answer is left.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 8,
+    "description": "At 3:56, when the man refers to his instagram account, put an instagram icon and his instagram id on the right side of the screen, with a small description saying \u201ccheck recent eyebrow case\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "at 3:56, when the man refers to his instagram account"
+    ],
+    "spatial_text": [
+      "right side of the screen"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "check recent eyebrow case"
+    ],
+    "temporal": [
+      [
+        234.0,
+        238.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 8,
+    "description": "At 3:56, when the man refers to his instagram account, put an instagram icon and his instagram id on the right side of the screen, with a small description saying \u201ccheck recent eyebrow case\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "at 3:56, when the man refers to his instagram account"
+    ],
+    "spatial_text": [
+      "right side of the screen"
+    ],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "instagram icon"
+    ],
+    "temporal": [
+      [
+        234.0,
+        238.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 12,
+    "description": "When the man gives specific examples in his answer, show the key items/nouns as text next to his head. For example, at 31:48, he mentions caffeine and \u2018saw palmetto(?)\u2019 so show these words as text for a brief moment",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "when the man gives specific examples in his answer"
+    ],
+    "spatial_text": [
+      "next to his head"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "key items/nouns. For example, at 31:48, he mentions caffeine and \u2018saw palmetto(?)\u2019 so show these words as text for a brief moment"
+    ],
+    "temporal": [
+      [
+        1906.0,
+        1910.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 13,
+    "description": "Right at the beginning of the video, make a frame where all the questions are listed in order. There should be the tile of each category, and also the timestamp of each question. If they don\u2019t all fit in one frame, divide them into multiple (maybe one category per frame)",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Right at the beginning of the video"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "frame"
+    ],
+    "extra_params": [
+      "all the questions are listed in order. There should be a tile of each category, and also the timestap of each question. If they don't all fit in one frame, divide them into multiple (maybe one category per frame)"
+    ],
+    "temporal": [
+      [
+        0,
+        2.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 14,
+    "description": "Whenever the man refers to his YouTube channel or a specific YouTube video or another channel, put a text on the right side of the screen with a YouTube icon and the Channel name",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Whenever the man refers to his Youtube channel or a specific Youtube video or another channel"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "image"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        489.0,
+        493.0
+      ],
+      [
+        1441.0,
+        1445.0
+      ],
+      [
+        1547.0,
+        1551.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 1,
+    "description": "Take out all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts - essentially these that are outside of the questions+answers (excluding the opening and final ment).",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        1336.0,
+        1347.0
+      ],
+      [
+        1869.0,
+        1891.0
+      ],
+      [
+        2041.0,
+        2045.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 2,
+    "description": "For each question that is being read out and included in the video, show it clearly on the screen, preferably in the form of comment box.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "For each question that is being read out and included in the video"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "each question that is being read out and included in the video"
+    ],
+    "temporal": [
+      [
+        116.0,
+        120.0
+      ],
+      [
+        196.0,
+        200.0
+      ],
+      [
+        303.0,
+        307.0
+      ],
+      [
+        372.0,
+        376.0
+      ],
+      [
+        704.0,
+        708.0
+      ],
+      [
+        821.0,
+        825.0
+      ],
+      [
+        921.0,
+        925.0
+      ],
+      [
+        1108.0,
+        1112.0
+      ],
+      [
+        1164.0,
+        1168.0
+      ],
+      [
+        1202.0,
+        1206.0
+      ],
+      [
+        1256.0,
+        1260.0
+      ],
+      [
+        1271.0,
+        1275.0
+      ],
+      [
+        1292.0,
+        1296.0
+      ],
+      [
+        1350.0,
+        1354.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1411.0,
+        1415.0
+      ],
+      [
+        1450.0,
+        1454.0
+      ],
+      [
+        1492.0,
+        1496.0
+      ],
+      [
+        1528.0,
+        1532.0
+      ],
+      [
+        1582.0,
+        1586.0
+      ],
+      [
+        1626.0,
+        1630.0
+      ],
+      [
+        1659.0,
+        1663.0
+      ],
+      [
+        1773.0,
+        1777.0
+      ],
+      [
+        1815.0,
+        1819.0
+      ],
+      [
+        1889.0,
+        1893.0
+      ],
+      [
+        1996.0,
+        2000.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 2,
+    "description": "For each question that is being read out and included in the video, show it clearly on the screen, preferably in the form of comment box.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "For each question that is being read out and included in the video"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "shape"
+    ],
+    "extra_params": [
+      "form of comment box"
+    ],
+    "temporal": [
+      [
+        116.0,
+        120.0
+      ],
+      [
+        196.0,
+        200.0
+      ],
+      [
+        303.0,
+        307.0
+      ],
+      [
+        372.0,
+        376.0
+      ],
+      [
+        704.0,
+        708.0
+      ],
+      [
+        821.0,
+        825.0
+      ],
+      [
+        921.0,
+        925.0
+      ],
+      [
+        1108.0,
+        1112.0
+      ],
+      [
+        1164.0,
+        1168.0
+      ],
+      [
+        1202.0,
+        1206.0
+      ],
+      [
+        1256.0,
+        1260.0
+      ],
+      [
+        1271.0,
+        1275.0
+      ],
+      [
+        1292.0,
+        1296.0
+      ],
+      [
+        1350.0,
+        1354.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1411.0,
+        1415.0
+      ],
+      [
+        1450.0,
+        1454.0
+      ],
+      [
+        1492.0,
+        1496.0
+      ],
+      [
+        1528.0,
+        1532.0
+      ],
+      [
+        1582.0,
+        1586.0
+      ],
+      [
+        1626.0,
+        1630.0
+      ],
+      [
+        1659.0,
+        1663.0
+      ],
+      [
+        1773.0,
+        1777.0
+      ],
+      [
+        1815.0,
+        1819.0
+      ],
+      [
+        1889.0,
+        1893.0
+      ],
+      [
+        1996.0,
+        2000.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 3,
+    "description": "Timestamp -> 4:00\nWhen talking about the personal ig account, include the @doctor_gary (or whatever the instagram account is)\n\nI\u2019d prefer white, slightly rounded letters, and add dynamic motion to it - appearing from left to right. \n\nKeep it for around 5 seconds on the screen.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Timestamp -> 4:00 When talking about the personal ig account"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "@doctor_gary (or whatever the instagram account is). I\u2019d prefer white, slightly rounded letters, and add dynamic motion to it - appearing from left to right. \n\nKeep it for around 5 seconds on the screen."
+    ],
+    "temporal": [
+      [
+        240.0,
+        245.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 4,
+    "description": "Take out moments of pause between questions (i.e. the moments where doctor Gary  braces himself to read out the next question). The goal is to make the video more concise - the answers are already extensive, so we would like to shorten the part before reading out the question as much as possible.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "moments of pause between questions (i.e. the moments where doctor Gary braces himself to read out the next question)."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        7.0,
+        8.0
+      ],
+      [
+        12.0,
+        13.0
+      ],
+      [
+        16.0,
+        18.0
+      ],
+      [
+        45.0,
+        47.0
+      ],
+      [
+        202.0,
+        203.0
+      ],
+      [
+        445.0,
+        447.0
+      ],
+      [
+        463.0,
+        464.0
+      ],
+      [
+        553.0,
+        554.0
+      ],
+      [
+        669.0,
+        670.0
+      ],
+      [
+        766.0,
+        767.0
+      ],
+      [
+        952.0,
+        953.0
+      ],
+      [
+        1068.0,
+        1069.0
+      ],
+      [
+        1103.0,
+        1104.0
+      ],
+      [
+        1120.0,
+        1121.0
+      ],
+      [
+        1183.0,
+        1184.0
+      ],
+      [
+        1259.0,
+        1260.0
+      ],
+      [
+        1264.0,
+        1266.0
+      ],
+      [
+        1376.0,
+        1378.0
+      ],
+      [
+        1429.0,
+        1431.0
+      ],
+      [
+        1513.0,
+        1514.0
+      ],
+      [
+        1626.0,
+        1627.0
+      ],
+      [
+        1640.0,
+        1642.0
+      ],
+      [
+        1715.0,
+        1717.0
+      ],
+      [
+        1736.0,
+        1737.0
+      ],
+      [
+        1782.0,
+        1783.0
+      ],
+      [
+        1821.0,
+        1823.0
+      ],
+      [
+        1827.0,
+        1828.0
+      ],
+      [
+        1843.0,
+        1845.0
+      ],
+      [
+        1881.0,
+        1883.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 4,
+    "description": "Edit the lemon herb chicken at the end of Footage 1 by highlighting the pot with thick and moving lines, zooming in, making it more vibrant (increase color contrast) - this should also last a few seconds",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "at the end of Footage 1"
+    ],
+    "spatial_text": [
+      "the pot"
+    ],
+    "edit_text": [
+      "shape",
+      "zoom"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        2944.0,
+        2948.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 8,
+    "description": "Putting subtitles for summarized steps + things to emphasize",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 19,
+    "description": "Add both visual and audio transitions between introduction (Footages 1 to 3) and title screens, and between all instructional segments denoted by title screens",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "between introduction (Footages 1 to 3) and title screens, and between all instructional segments denoted by title screens"
+    ],
+    "spatial_text": [],
+    "edit_text": [],
+    "extra_params": [],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 6,
+    "description": "Show ingredients: Find footage for ingredients and edit it so it looks like we are spanning over the ingredients, and time highlights with narration => Footage 4, add after 1~3\nChicken thighs \nOlive oil\nBacon\n1 lemon \nOnion\nFlour\nCider\nStock\nHerbs - Thyme, rosemary\nSalt, pepper, chili flakes,",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Footage 4, add after 1~3"
+    ],
+    "spatial_text": [
+      "spanning over the ingredients"
+    ],
+    "edit_text": [
+      "image",
+      "text"
+    ],
+    "extra_params": [],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 16,
+    "description": "Add \u201cidiot sandwich\u201d meme to intro when introducing Gordon (\u201cif you don\u2019t know him, you\u2019re an\u201d + meme)",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "when introducing Gordon"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "idiot sandwich meme"
+    ],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 3,
+    "description": "Cut out irrelevant greetings \nCut from 3:19 to 11:43. Start back from \u2018So lets just get started\u2026\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "from 3:19 to 11:43 Start back from \u2018So lets just get started\u2026\u201d"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [
+      "irrelevant greetings"
+    ],
+    "temporal": [
+      [
+        199.0,
+        703.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 4,
+    "description": "Create a list that shows this video\u2019s main focus. The sections would be \n\nLesson 1: Hello World\nLesson 2: Compile & Execute\nCompile & Execute Locally\n\nAnd show this list after 0:57",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "after 0:57"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "Lesson 1: Hello World\nLesson 2: Compile & Execute\nCompile & Execute Locally"
+    ],
+    "temporal": [
+      [
+        55.0,
+        59.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 10,
+    "description": "Show his email at 2:46",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "at 2:46"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "his email"
+    ],
+    "temporal": [
+      [
+        164.0,
+        168.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 13,
+    "description": "Find and Cut out all moments of pause over 3 seconds as in 18:04- 18:08.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "all moments of pause over 3 seconds as in 18:04- 18:08"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [],
+    "spatial": []
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 7,
+    "description": "Cut the rest of the video from 33:43 to 57:50 and start back from \u201cthank you so much for watching\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "rest of the video from 33:43 to 57:50 and start back from \u201cthank you so much for watching\u201d"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        2023.0,
+        3470.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 4,
+    "description": "Whenever the camera is facing down to the pan crop it so that pan is centered\nCrop to what is within the box",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Whenever the camera is facing down to the pan"
+    ],
+    "spatial_text": [
+      "pan is centered"
+    ],
+    "edit_text": [
+      "crop"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        46.0,
+        701.0
+      ],
+      [
+        810.0,
+        824.0
+      ],
+      [
+        855.0,
+        866.0
+      ],
+      [
+        875.0,
+        904.0
+      ],
+      [
+        985.0,
+        994.0
+      ],
+      [
+        1024.0,
+        1034.0
+      ],
+      [
+        1195.0,
+        1204.0
+      ],
+      [
+        1226.0,
+        1234.0
+      ],
+      [
+        1245.0,
+        1264.0
+      ],
+      [
+        1315.0,
+        1334.0
+      ],
+      [
+        1454.0,
+        1464.0
+      ],
+      [
+        1475.0,
+        1484.0
+      ],
+      [
+        1535.0,
+        1544.0
+      ],
+      [
+        1565.0,
+        1594.0
+      ],
+      [
+        1615.0,
+        1624.0
+      ],
+      [
+        2366.0,
+        2394.0
+      ],
+      [
+        2464.0,
+        2474.0
+      ],
+      [
+        2504.0,
+        2514.0
+      ],
+      [
+        2525.0,
+        2535.0
+      ],
+      [
+        2564.0,
+        2575.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 6,
+    "description": "Add in bold, arial font \u201cCooking lemon herb chicken with gordon ramsay\u201d in intro with a light blur over the video which gradually goes away as soon as he starts talking.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "in intro"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "blur"
+    ],
+    "extra_params": [
+      "in bold, arial font \u201cCooking lemon herb chicken with gordon ramsay\u201d"
+    ],
+    "temporal": [
+      [
+        300.0,
+        316.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 7,
+    "description": "Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn\u2019t obstruct his movements for five seconds at which point the text disappears",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Whenever he introduces new ingredient and cooking instruction....for five seconds at which point the text disappears"
+    ],
+    "spatial_text": [
+      "in the top left corner"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "new ingredient and cooking instruction"
+    ],
+    "temporal": [
+      [
+        604.0,
+        608.0
+      ],
+      [
+        616.0,
+        620.0
+      ],
+      [
+        621.0,
+        625.0
+      ],
+      [
+        635.0,
+        639.0
+      ],
+      [
+        649.0,
+        653.0
+      ],
+      [
+        665.0,
+        669.0
+      ],
+      [
+        696.0,
+        700.0
+      ],
+      [
+        705.0,
+        709.0
+      ],
+      [
+        712.0,
+        716.0
+      ],
+      [
+        742.0,
+        746.0
+      ],
+      [
+        764.0,
+        768.0
+      ],
+      [
+        789.0,
+        793.0
+      ],
+      [
+        849.0,
+        853.0
+      ],
+      [
+        893.0,
+        897.0
+      ],
+      [
+        906.0,
+        910.0
+      ],
+      [
+        938.0,
+        942.0
+      ],
+      [
+        964.0,
+        968.0
+      ],
+      [
+        982.0,
+        986.0
+      ],
+      [
+        1007.0,
+        1014.0
+      ],
+      [
+        1050.0,
+        1054.0
+      ],
+      [
+        1084.0,
+        1088.0
+      ],
+      [
+        1122.0,
+        1126.0
+      ],
+      [
+        1147.0,
+        1151.0
+      ],
+      [
+        1190.0,
+        1194.0
+      ],
+      [
+        1242.0,
+        1246.0
+      ],
+      [
+        1277.0,
+        1281.0
+      ],
+      [
+        1288.0,
+        1292.0
+      ],
+      [
+        1297.0,
+        1301.0
+      ],
+      [
+        1308.0,
+        1312.0
+      ],
+      [
+        1318.0,
+        1322.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1418.0,
+        1422.0
+      ],
+      [
+        1633.0,
+        1637.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 9,
+    "description": "Add in hand emoji for delicious in top left corner whenever he says the word \u201cdelicious\u201d for a split second",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "whenever he says the word \u201cdelicious\u201d for a split second"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "hand emoji"
+    ],
+    "temporal": [
+      [
+        410.0,
+        414.0
+      ],
+      [
+        433.0,
+        437.0
+      ],
+      [
+        466.0,
+        470.0
+      ],
+      [
+        653.0,
+        657.0
+      ],
+      [
+        746.0,
+        750.0
+      ],
+      [
+        1015.0,
+        1019.0
+      ],
+      [
+        1058.0,
+        1062.0
+      ],
+      [
+        1099.0,
+        1103.0
+      ],
+      [
+        1149.0,
+        1153.0
+      ],
+      [
+        1245.0,
+        1249.0
+      ],
+      [
+        1423.0,
+        1427.0
+      ],
+      [
+        2115.0,
+        2119.0
+      ],
+      [
+        2173.0,
+        2177.0
+      ],
+      [
+        2580.0,
+        2584.0
+      ],
+      [
+        2670.0,
+        2674.0
+      ],
+      [
+        2902.0,
+        2906.0
+      ],
+      [
+        2999.0,
+        3003.0
+      ],
+      [
+        3107.0,
+        3111.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 13,
+    "description": "Cut out any remaining parts where he is talking about any other dish that isn\u2019t about the lemon herb chicken or the gravy",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "any remaining parts where he is talking about any other dish that isn\u2019t about the lemon herb chicken or the gravy"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        0,
+        412.0
+      ],
+      [
+        1092.0,
+        2732.0
+      ],
+      [
+        2976.0,
+        3235.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 11,
+    "description": "At 8:57, show a picture like\n\nNew words\n\nSome words\n\nOther words\n\nOther words\n\nSome words",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "At 8:57"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image",
+      "text"
+    ],
+    "extra_params": [],
+    "temporal": [
+      [
+        535.0,
+        539.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 12,
+    "description": "At 9:45, create a graphic that is similar to the one in 8:50 but this time add a new step",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "9:45"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "image"
+    ],
+    "extra_params": [
+      "graphic that is similar to the one in 8:50, but this time add a new step"
+    ],
+    "temporal": [
+      [
+        583.0,
+        587.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 14,
+    "description": "At 10:26 and 10:32, show on screen the definition of the words \u201cpolyglot\u201d and \u201cdilettante\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "10:26, 10:32"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "the definition of words \"ployglot\" and \"dliettante\""
+    ],
+    "temporal": [
+      [
+        626.0,
+        632.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 16,
+    "description": "At 11:54, add a youtube comment stating the question accompanied by an emoji or other facial icons.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "11:54"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "text",
+      "image"
+    ],
+    "extra_params": [
+      "youtube comment stating the question accompanied by an emoji or other facial icons"
+    ],
+    "temporal": [
+      [
+        712.0,
+        716.0
+      ]
+    ],
+    "spatial": []
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 21,
+    "description": "At 17:40, put an animation so that a phrase enters his ear as he says he heard the phrase and then make it come out of his mouth when he says it just comes out",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "17:40"
+    ],
+    "spatial_text": [
+      "entering his ear and coming out of his mouth"
+    ],
+    "edit_text": [
+      "text"
+    ],
+    "extra_params": [
+      "phrase when he says its"
+    ],
+    "temporal": [
+      [
+        1058.0,
+        1062.0
+      ]
+    ],
+    "spatial": []
+  }
+]

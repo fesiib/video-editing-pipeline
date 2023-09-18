@@ -8,6 +8,7 @@ class References(BaseModel):
     temporal: List[str] = Field(..., description="Temporal references")
     temporal_labels: List[str] = Field(..., description="Temporal reference labels")
     spatial: List[str] = Field(..., description="Spatial references")
+    spatial_labels: List[str] = Field(..., description="Spatial reference labels")
     edit: List[str] = Field(..., description="Edit operation references")
     textParameters: List[str] = Field(..., description="Text edit parameter references")
     imageParameters: List[str] = Field(..., description="Image edit parameter references")
@@ -20,6 +21,7 @@ class References(BaseModel):
     # temporal: Sequence[str] = Field(..., description="Temporal references and if there are no temporal references, please leave it empty")
     # temporal_labels: Sequence[str] = Field(..., description="Temporal reference labels and if there are no temporal references, please leave it empty")
     # spatial: Sequence[str] = Field(..., description="Spatial references and if there are no spatial references, please leave it empty")
+    # spatial_labels: Sequence[str] = Field(..., description="Spatial reference labels and if there are no spatial references, please leave it empty")
     # edit: Sequence[str] = Field(..., description="Edit operation references and if there are no edit operation references, please leave it empty")
     # textParameters: Sequence[str] = Field(..., description="Text edit parameter references and if there are no text edit parameter references, please leave it empty")
     # imageParameters: Sequence[str] = Field(..., description="Image edit parameter references and if there are no image edit parameter references, please leave it empty")
@@ -34,6 +36,7 @@ class References(BaseModel):
         temporal=[],
         temporal_labels=[],
         spatial=[],
+        spatial_labels=[],
         edit=[],
         textParameters=[],
         imageParameters=[],
@@ -47,6 +50,7 @@ class References(BaseModel):
             temporal=temporal,
             temporal_labels=temporal_labels,
             spatial=spatial,
+            spatial_labels=spatial_labels,
             edit=edit,
             textParameters=textParameters,
             imageParameters=imageParameters,
@@ -73,6 +77,12 @@ class References(BaseModel):
     def check_spatial(cls, v):
         for i in range(len(v)):
             assert v[i] != "", f"Spatial reference {v[i]} is empty"
+        return v
+    
+    @validator("spatial_labels")
+    def check_spatial_labels(cls, v):
+        for i in range(len(v)):
+            assert v[i] in ["visual-dependent", "independent", "other"], f"Spatial label {v[i]} is not valid"
         return v
     
     @validator("edit")

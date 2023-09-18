@@ -108,9 +108,11 @@ class EditChain():
 
     def run_text_content(
         self,
+        parameters,
         initial_edit_parameters,
         start, finish,
     ):
+        ## also possible to use the 
         text_content_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
         if len(initial_edit_parameters["textParameters"]["content"]) > 0 and len(text_content_context) > 0:
             initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
@@ -120,14 +122,15 @@ class EditChain():
         return initial_edit_parameters
 
     def run_image_query(self,
+        parameters,
         initial_edit_parameters,
         start, finish,
     ):
         image_query_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
-        if len(initial_edit_parameters["imageParameters"]["searchQuery"]) > 0 and len(image_query_context) > 0:
+        if len(parameters["imageParameters"]) > 0 and len(image_query_context) > 0:
             initial_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
                 image_query_context,
-                [initial_edit_parameters["imageParameters"]["searchQuery"]],
+                parameters["imageParameters"],
             )
         return initial_edit_parameters
 

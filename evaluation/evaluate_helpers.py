@@ -137,7 +137,8 @@ def __get_single_edit_operation_evaluation(prediction, ground_truth):
     return 0
 
 def get_dataset():
-    filename = "./gt_data/parsed_gt_v0.json"
+    #filename = "./gt_data/parsed_gt-v0.json"
+    filename = "./gt_data/parsed_gt-v1.json"
     with open(filename, "r") as f:
         dataset = json.load(f)
         return dataset
@@ -161,6 +162,8 @@ def get_data_point_info(dataset, index):
         "task_id": dataset[index]["task_id"],
         "intent_id": dataset[index]["intent_id"],
         "description": dataset[index]["description"],
+        "sketch": dataset[index]["sketch"],
+        "sketch_timestamp": dataset[index]["sketch_timestamp"],
         "videoUrl": videoInfo["videoUrl"],
         "videoTitle": videoInfo["videoTitle"],
         "videoKnowledge": videoInfo["videoKnowledge"],
@@ -174,21 +177,39 @@ def get_data_point_as_request(dataset, index):
     if (index >= len(dataset) or index < 0):
         return None
     input = {
+        "projectId": "test",
         "projectMetadata": {
-            "width": 854,
+            "totalIntentCnt": 2,
+            "duration": 1218.53678,
+            "projectId": "tutorial",
             "height": 480,
+            "fps": 25,
+            "width": 854,
+            "trackCnt": 1,
+            "title": "test"
         },
-        "requestParameters": {
-            "text": dataset[index]["description"],
-            "editOperation": "",
-            "processingMode": "from-scratch",
-        },
+        "curPlayPosition": 100,
         "edits": [],
+        "segmentOfInterest": {
+            "start": 0,
+            "finish": 1218.53678
+        },
+        "skippedSegments": [],
+        "requestParameters": {
+            "processingMode": "from-scratch",
+            "hasText": False,
+            "hasSketch": True,
+            "text": dataset[index]["description"],
+            "sketchRectangles": dataset[index]["sketch"],
+            "sketchFrameTimestamp": dataset[index]["sketch_timestamp"],
+            "editOperation": ""
+        },
     }
     ground_truth = {
         "editOperations": dataset[index]["edit_text"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
+        # TODO: "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],
@@ -200,12 +221,17 @@ def get_data_point_as_request(dataset, index):
 def get_data_point(dataset, index):
     if (index >= len(dataset) or index < 0):
         return None
-    input = dataset[index]["description"]
+    input = {
+        "text": dataset[index]["description"],
+        "sketch": dataset[index]["sketch"],
+        "sketch_timestamp": dataset[index]["sketch_timestamp"],
+    }
 
     ground_truth = {
         "editOperations": dataset[index]["edit_text"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
+        # TODO: "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],

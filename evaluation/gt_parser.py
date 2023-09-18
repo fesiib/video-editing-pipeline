@@ -8,6 +8,8 @@ COLUMN_PARTICIPANT_ID = "Participant"
 COLUMN_TASK_ID = "Task"
 COLUMN_INTENT_ID = "Intent"
 COLUMN_DESCRIPTION = "Notes"
+COLUMN_SKETCH = "Sketch Coordinates"
+COLUMN_SKETCH_TIMESTAMP = "Time of sketch coordinate"
 COLUMN_TIMESTAMP = "Timestamp"
 COLUMN_TEMPORAL_TEXT = "Temporal"
 COLUMN_SPATIAL_TEXT = "Spatial"
@@ -43,6 +45,8 @@ column_mapping = {
     COLUMN_TASK_ID: "task_id",
     COLUMN_INTENT_ID: "intent_id",
     COLUMN_DESCRIPTION: "description",
+    COLUMN_SKETCH: "sketch",
+    COLUMN_SKETCH_TIMESTAMP: "sketch_timestamp",
     COLUMN_TEMPORAL_TEXT: "temporal_text",
     COLUMN_SPATIAL_TEXT: "spatial_text",
     COLUMN_EDIT_TEXT: "edit_text", # TODO: should be mapped to edit_operations
@@ -95,6 +99,8 @@ class DataPoint():
     task_id = -1
     intent_id = -1
     description = ""
+    sketch = []
+    sketch_timestamp = -1
     temporal_text = []
     spatial_text = []
     edit_text = []
@@ -107,6 +113,8 @@ class DataPoint():
         task_id = -1,
         intent_id = -1,
         description = "",
+        sketch = [],
+        sketch_timestamp = -1,
         temporal_text = [],
         spatial_text = [],
         edit_text = [],
@@ -118,6 +126,8 @@ class DataPoint():
         self.task_id = task_id
         self.intent_id = intent_id
         self.description = description
+        self.sketch = sketch
+        self.sketch_timestamp = sketch_timestamp
         self.temporal_text = temporal_text
         self.spatial_text = spatial_text
         self.edit_text = edit_text
@@ -130,6 +140,8 @@ class DataPoint():
         self.task_id = -1
         self.intent_id = -1
         self.description = ""
+        self.sketch = []
+        self.sketch_timestamp = -1
         self.temporal_text = []
         self.spatial_text = []
         self.edit_text = []
@@ -139,7 +151,12 @@ class DataPoint():
 
 
     def __str__(self):
-        return f"{self.participant_id}, {self.task_id}, {self.intent_id}, {self.description}, {self.temporal_text}, {self.spatial_text}, {self.edit_text}, {self.extra_params}, {self.temporal}, {self.spatial}"
+        return f"""
+            {self.participant_id}, {self.task_id}, {self.intent_id},\n
+            {self.description}, {self.sketch}, {self.sketch_timestamp},\n
+            {self.temporal_text}, {self.spatial_text}, {self.edit_text}, {self.extra_params},\n
+            {self.temporal}, {self.spatial}
+        """
     
     def set_attr(self, __name: str, __value: Any) -> None:
         #print("->>", __name, __value)
@@ -170,6 +187,25 @@ class DataPoint():
         if (__name == column_mapping.get(COLUMN_DESCRIPTION)):
             if (isinstance(__value, str) == True):
                 self.description = __value.strip()
+        if (__name == column_mapping.get(COLUMN_SKETCH)):
+            if (isinstance(__value, str) == True):
+                sketches = __value.strip().split('\n')
+                for sketch in sketches:
+                    print("Sketch", sketch)
+                    #coordinates_str = json.loads(sketch)
+                    #coordinates = [int(float(coord.strip())) for coord in coordinates_str]
+                    coordinates = json.loads(sketch)
+                    self.sketch.append(coordinates)
+            elif (isinstance(__value, list) == True):
+                self.sketch += __value
+        if (__name == column_mapping.get(COLUMN_SKETCH_TIMESTAMP)):
+            if (isinstance(__value, str) == True):
+                if (is_timestamp(__value)):
+                    timestamp = parse_timestamp(__value)
+                    self.sketch_timestamp = timestamp
+            elif (isinstance(__value, float) == True):
+                self.sketch_timestamp = __value
+            print("Sketch timestamp", self.sketch_timestamp)
         if (__name == column_mapping.get(COLUMN_TEMPORAL_TEXT)):
             if (isinstance(__value, str) == True):
                 # parts = __value.split(',')
@@ -211,6 +247,7 @@ class DataPoint():
                     self.temporal.append([timestamp - 2, timestamp + 2])
                 elif (is_range(__value)):
                     timestamps_str = __value.split('-')
+                    print(timestamps_str)
                     timestamp_1 = parse_timestamp(timestamps_str[0])
                     timestamp_2 = parse_timestamp(timestamps_str[1])
                     if (timestamp_1 > timestamp_2):
@@ -255,18 +292,6 @@ class DataPoint():
                 new_temporal.append(segement)
         self.temporal = [segment for segment in new_temporal if segment[1] - segment[0] > 0]
 
-    def evaluate(self, response):
-        scores = {
-            "temporal_text_score": 0,
-            "spatial_text_score": 0,
-            "edit_text_score": 0,
-            "extra_params_score": 0,
-            "temporal_score": 0,
-            "spatial_score": 0,
-        }   
-        return scores
-    
-
 def main(args):
     csv_file = args.csv
     data = csv_to_dict(csv_file)
@@ -277,7 +302,9 @@ def main(args):
         data_point.consume_dict(dict)
         data_points.append(data_point)
 
-    with open("./gt_data/parsed_gt_v0.json", 'w') as f:
+    csv_filename = os.path.basename(csv_file).split(".")[0]
+
+    with open("./gt_data/parsed_" + csv_filename + ".json", 'w') as f:
         f.write(json.dumps([data_point.__dict__ for data_point in data_points], indent=2))
 
 if __name__ == "__main__":

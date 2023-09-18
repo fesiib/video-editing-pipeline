@@ -6,13 +6,13 @@ import json
 def round_number(number):
     return math.floor(number * 1000) / 1000
 
-def main_test_request():
+def main_evaluate_request():
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point_as_request,
-        pipeline_runner = run_pipeline_request_new,
-        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
-        # indexes = [1]
+        pipeline_runner = run_langchain_pipeline_request,
+        # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        indexes = [1]
     )
 
     if (len(result["dataset"]) == 0):
@@ -33,13 +33,13 @@ def main_test_request():
     #print("Parameters: ", result["parameters"])
     pass
 
-def main_evaluate():
+def main_evaluate_temporal():
     # result = run_evaluation_for_task()
 
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point,
-        pipeline_runner = run_pipeline_new,
+        pipeline_runner = run_lanchain_pipeline_temporal,
         indexes = [1] #[10] - video #[4] - position
     )
 
@@ -170,8 +170,10 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    main_evaluate()
-    # main_test_request()
+    main_evaluate_request()
+    # main_evaluate_temporal()
+    
+    
     # parsing_results(6)
 
     #summarize_prompt("./prompts/temporal_transcript.txt")

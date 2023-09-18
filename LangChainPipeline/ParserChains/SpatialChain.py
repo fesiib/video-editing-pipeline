@@ -129,7 +129,7 @@ class SpatialChain():
         video_shape,
     ):
         new_candidates = []
-        if label == "position":
+        if label == "independent":
             context = "height = " + str(video_shape[0]) + ", width = " + str(video_shape[1])
             for candidate in candidates:
                 new_candidates.append(self.position.run(
@@ -137,7 +137,7 @@ class SpatialChain():
                     command,
                     candidate,
                 ))
-        elif label == "visual":
+        elif label == "visual-dependent":
             refining_candidates = [self.process_visual_command(command, int((start + finish) // 2), video_shape)]
             for candidate in candidates:
                 for refinement in refining_candidates:
@@ -159,8 +159,10 @@ class SpatialChain():
                         candidate["width"] = round(intersection["width"])
                         candidate["height"] = round(intersection["height"])
                 new_candidates.append(candidate)
+        elif label == "other":
+            print("\"other\" label detected", command)
         else:
-            print("ERROR: label not recognized")
+            print("ERROR: label not recognized", label)
             new_candidates = candidates
         #elif label == "condition":
             ### foreground/background rotoscoping
