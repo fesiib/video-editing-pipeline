@@ -38,18 +38,27 @@ Response:
 """
 
 def get_examples():
-    context1 = ["A video is 00:20:13 long."]
+    context1 = ["A video is 10 minutes long."]
     command1 = ["0:07"]
     response1 = TemporalSegments.get_instance(start="00:00:04", finish="00:00:09")
 
     
-    context2 = ["A video is 00:20:13 long."]
+    context2 = ["A video is 45:13 long."]
     command2 = ["intro"]
     response2 = TemporalSegments.get_instance(start="00:00:00", finish="00:00:30")
 
     context3 = ["A video is 00:20:13 long."]
     command3 = ["between 5:10 and 5:20"]
     response3 = TemporalSegments.get_instance(start="00:05:10", finish="00:05:20")
+
+    context4 = ["A video is 5 minutes long.", "You are at 32 seconds"]
+    command4 = ["at current time"]
+    response4 = TemporalSegments.get_instance(start="00:00:32", finish="00:00:42")
+
+
+    context5 = ["A video is 00:20:13 long.", "You are at 10:00"]
+    command5 = ["after 30 seconds"]
+    response5 = TemporalSegments.get_instance(start="00:10:30", finish="00:10:40")
 
     examples = []
     examples.append({
@@ -66,6 +75,16 @@ def get_examples():
         "context": context3,
         "command": command3,
         "response": response3.model_dump_json(),
+    })
+    examples.append({
+        "context": context4,
+        "command": command4,
+        "response": response4.model_dump_json(),
+    })
+    examples.append({
+        "context": context5,
+        "command": command5,
+        "response": response5.model_dump_json(),
     })
     return examples
 

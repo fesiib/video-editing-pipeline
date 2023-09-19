@@ -88,10 +88,13 @@ class TemporalChain():
         self.visual.set_parameters(top_k, neighbors_left, neighbors_right)
         print("Set parameters")
 
-    def run(self, command, label, skipped_segments=[]):
+    def run(self, command, label, 
+        current_player_position = 0, skipped_segments=[]
+    ):
         if label == "position":
+            additional_context = [f'You are at {current_player_position} seconds']
             return self.position.run(
-                context=self.context,
+                context=self.context + [additional_context],
                 command=command,
             )
         elif label == "transcript":

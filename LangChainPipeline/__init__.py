@@ -181,7 +181,10 @@ class LangChainPipeline():
     ):
         segments = []
         for reference, label in zip(temporal, temporal_labels):
-            partial_segments = self.temporal_interpreter.run([reference], label, skipped_segments)
+            partial_segments = self.temporal_interpreter.run(
+                [reference], label, 
+                current_player_position, skipped_segments
+            )
             segments.extend(partial_segments)
         temporal_segments = merge_segments(segments)
         if len(temporal_segments) == 0 and len(temporal) == 0:
@@ -301,7 +304,6 @@ class LangChainPipeline():
                 current_player_position, sketch_timestamp,
                 video_shape, skipped_segments, 
             )
-
         else:
             edits = prev_edits
 
@@ -318,7 +320,7 @@ class LangChainPipeline():
         )   
 
         response["edits"] = edits
-
+        print(edits)
         return response
 
 
