@@ -1,4 +1,5 @@
 import ast
+import json
 
 from langchain.chat_models import ChatOpenAI
 from langchain.output_parsers import PydanticOutputParser
@@ -114,10 +115,10 @@ class EditChain():
     ):
         ## also possible to use the 
         text_content_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
-        if len(initial_edit_parameters["textParameters"]["content"]) > 0 and len(text_content_context) > 0:
+        if len(parameters["textParameters"]) > 0 and len(text_content_context) > 0:
             initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
                 text_content_context,
-                [initial_edit_parameters["textParameters"]["content"]],
+                parameters["textParameters"],
             )
         return initial_edit_parameters
 
@@ -166,8 +167,8 @@ class AllParametersChain():
     def run(self, context, parameters, initial_edit_parameters):
         result = self.chain.predict(
             context=context,
-            command=self.filter_parameters(parameters),
-            initial_parameters=self.filter_parameters(initial_edit_parameters),
+            command=json.dumps(self.filter_parameters(parameters)),
+            initial_parameters=json.dumps(self.filter_parameters(initial_edit_parameters)),
         )
         dict_result = result.dict()
         for parameter in self.skip_parameters:
@@ -215,8 +216,8 @@ class TextContentChain():
         )
 
         result = self.chain.predict(
-            context=[data["data"] for data in filtered_context],
-            command=command,
+            context=json.dumps([data["data"] for data in filtered_context]),
+            command=json.dumps(command),
         )
         return result
     
@@ -260,7 +261,7 @@ class ImageQueryChain():
         )
 
         result = self.chain.predict(
-            context=[data["structured_data"] for data in filtered_context],
-            command=command,
+            context=json.dumps([data["structured_data"] for data in filtered_context]),
+            command=json.dumps(command),
         )
         return result

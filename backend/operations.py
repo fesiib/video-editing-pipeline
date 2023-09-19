@@ -113,6 +113,9 @@ def get_edit_segment(start, finish, explanation, source, video_shape):
     edit_instance["temporalParameters"]["info"] = explanation
     edit_instance["temporalParameters"]["source"] = source
     
+    edit_instance["spatialParameters"]["info"] = ["default"]
+    edit_instance["spatialParameters"]["source"] = ["default"]
+    
     edit_instance["cropParameters"] = {
         "x": 0, "y": 0, "width": video_shape[1], "height": video_shape[0],
         "cropX": 0, "cropY": 0, "cropWidth": video_shape[1], "cropHeight": video_shape[0]

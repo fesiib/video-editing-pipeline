@@ -1,3 +1,5 @@
+import json
+
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -97,12 +99,12 @@ def get_examples():
     examples = []
     examples.append({
         "initial_parameters": initial_parameters1.model_dump_json(),
-        "command": command1,
+        "command": json.dumps(command1),
         "response": response1.model_dump_json(),
     })
     examples.append({
         "initial_parameters": initial_parameters2.model_dump_json(),
-        "command": command2,
+        "command": json.dumps(command2),
         "response": response2.model_dump_json(),
     })
     return examples
@@ -132,7 +134,7 @@ def get_all_parameters_prompt_llm(partial_variables={}, examples = []):
 def get_all_parameters_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Initial Parameters:{initial_parameters}\nCommand:{command}"),
+            ("human", "Initial Parameters: {initial_parameters}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -152,7 +154,7 @@ def get_all_parameters_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Initial Parameters:{initial_parameters}\nCommand:{command}"),
+            ("human", "Initial Parameters: {initial_parameters}\nCommand: {command}"),
         ]
     )
 

@@ -18,10 +18,10 @@ def merge_segments(segments):
             result.append(interval)
         else:
             last_interval = result[-1]
-            last_end = timecode_to_seconds(last_interval["end"])
+            last_finish = timecode_to_seconds(last_interval["finish"])
             interval_start = timecode_to_seconds(interval["start"])
-            if last_end >= interval_start:
-                last_interval["end"] = interval["end"]
+            if last_finish >= interval_start:
+                last_interval["finish"] = interval["finish"]
                 last_interval["explanation"].extend(interval["explanation"])
                 last_interval["source"].extend(interval["source"])
             else:

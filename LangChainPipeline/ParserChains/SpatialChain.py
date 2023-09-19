@@ -87,7 +87,7 @@ class SpatialChain():
             "width": bbox[2] / image_shape[1] * video_shape[1], 
             "height": bbox[3] / image_shape[0] * video_shape[0], 
             "rotation": 0,
-            "source": command,
+            "source": command.copy(),
         }
         return candidate
 
@@ -102,6 +102,7 @@ class SpatialChain():
                 "y": 0,
                 "width": 0,
                 "height": 0,
+                "info": ["intersection"],
             }
         else:
             return {
@@ -109,6 +110,7 @@ class SpatialChain():
                 "y": y1,
                 "width": x2 - x1,
                 "height": y2 - y1,
+                "info": ["intersection"],
             }
     
     def get_union(self, candidate1, candidate2):
@@ -121,6 +123,7 @@ class SpatialChain():
             "y": y1,
             "width": x2 - x1,
             "height": y2 - y1,
+            "info": ["union"],
         }
 
     def run(self, 
@@ -130,7 +133,7 @@ class SpatialChain():
     ):
         new_candidates = []
         if label == "independent":
-            context = "height = " + str(video_shape[0]) + ", width = " + str(video_shape[1])
+            context = "height: " + str(video_shape[0]) + ", width: " + str(video_shape[1])
             for candidate in candidates:
                 new_candidates.append(self.position.run(
                     context,
@@ -153,11 +156,15 @@ class SpatialChain():
                             candidate["y"] = round(union["y"])
                             candidate["width"] = round(union["width"])
                             candidate["height"] = round(union["height"])
+                            candidate["info"].extend(union["info"])
+                            candidate["source"].extend(refinement["source"])
                     else:
                         candidate["x"] = round(intersection["x"])
                         candidate["y"] = round(intersection["y"])
                         candidate["width"] = round(intersection["width"])
                         candidate["height"] = round(intersection["height"])
+                        candidate["info"].extend(intersection["info"])
+                        candidate["source"].extend(refinement["source"])
                 new_candidates.append(candidate)
         elif label == "other":
             print("\"other\" label detected", command)
@@ -193,13 +200,13 @@ class SpatialPositionChain():
         result = self.chain.predict(
             context=context,
             command=command,
-            rectangle={
-                "x": candidate["x"],
-                "y": candidate["y"],
-                "width": candidate["width"],
-                "height": candidate["height"],
-                "rotation": 0,
-            },
+            rectangle=Rectangle.get_instance(
+                x=candidate["x"],
+                y=candidate["y"],
+                width=candidate["width"],
+                height=candidate["height"],
+                rotation=0,
+            ).model_dump_json()
         )
 
         candidate["x"] = result.x
@@ -207,4 +214,6 @@ class SpatialPositionChain():
         candidate["width"] = result.width
         candidate["height"] = result.height
         candidate["rotation"] = result.rotation
+        candidate["info"].append("gpt")
+        candidate["source"] = candidate["source"].copy() + command.copy()
         return candidate

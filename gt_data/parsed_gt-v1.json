@@ -5,12 +5,13 @@
     "intent_id": 3,
     "description": "Create a title over the video for \u201cPoint 1: How to get started in a language\u201d blur out the video to bring focus to the title.",
     "sketch": [
-      [
-        200.44,
-        126.37,
-        409.77,
-        117.44
-      ]
+      {
+        "x": 200.44,
+        "y": 126.37,
+        "width": 409.77,
+        "height": 117.44,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 103.817057,
     "temporal_text": [
@@ -38,24 +39,27 @@
     "intent_id": 4,
     "description": "9:22 - Add big text at top of frame to emphasize point, \u201cLots of listening and reading!\u201d",
     "sketch": [
-      [
-        188.95,
-        71.48,
-        487.64,
-        51.06
-      ],
-      [
-        67.68,
-        196.58,
-        204.25,
-        168.5
-      ],
-      [
-        519.57,
-        177.43,
-        232.33,
-        177.43
-      ]
+      {
+        "x": 188.95,
+        "y": 71.48,
+        "width": 487.64,
+        "height": 51.06,
+        "rotation": 0
+      },
+      {
+        "x": 67.68,
+        "y": 196.58,
+        "width": 204.25,
+        "height": 168.5,
+        "rotation": 0
+      },
+      {
+        "x": 519.57,
+        "y": 177.43,
+        "width": 232.33,
+        "height": 177.43,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 559.0,
     "temporal_text": [
@@ -224,18 +228,20 @@
     "intent_id": 5,
     "description": "We will zoom in on his hand while he talks about two different languages machine / natural language",
     "sketch": [
-      [
-        651.05,
-        306.35,
-        60,
-        25.53
-      ],
-      [
-        648.5,
-        379.11,
-        77.87,
-        28.08
-      ]
+      {
+        "x": 651.05,
+        "y": 306.35,
+        "width": 60,
+        "height": 25.53,
+        "rotation": 0
+      },
+      {
+        "x": 648.5,
+        "y": 379.11,
+        "width": 77.87,
+        "height": 28.08,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 468.5,
     "temporal_text": [
@@ -264,12 +270,13 @@
     "intent_id": 6,
     "description": "11:56 he starts talking about hello.cpp\nThe coding screen is too small so we will gonna make it bigger and when he say \u2018 the hello.cpp\u2019 we will give some highlighting effect of box and give glittering sound effect.(imptnt)",
     "sketch": [
-      [
-        334.47,
-        76.59,
-        42.13,
-        14.04
-      ]
+      {
+        "x": 334.47,
+        "y": 76.59,
+        "width": 42.13,
+        "height": 14.04,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 716.0,
     "temporal_text": [
@@ -296,12 +303,13 @@
     "intent_id": 10,
     "description": "Around 24:05 he is talking some encouraging thingies while eye-contacting to screen. I wanna show him big and make it feels like audiences are in-person with him cuz I think he is delivering emotions and saying like showing weakness is okey so It is kinda genuine moment.",
     "sketch": [
-      [
-        670.2,
-        297.42,
-        72.76,
-        28.08
-      ]
+      {
+        "x": 670.2,
+        "y": 297.42,
+        "width": 72.76,
+        "height": 28.08,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 1446.47,
     "temporal_text": [
@@ -436,12 +444,13 @@
     "intent_id": 2,
     "description": "Every time any quality of Surface go is mentioned, show it on the screen",
     "sketch": [
-      [
-        465.95,
-        33.19,
-        278.28,
-        61.27
-      ]
+      {
+        "x": 465.95,
+        "y": 33.19,
+        "width": 278.28,
+        "height": 61.27,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 111.2,
     "temporal_text": [
@@ -545,12 +554,13 @@
     "intent_id": 4,
     "description": "When entering the wifi password, place a screen that shows what he\u2019s entering. Show the first half of the password and put stars for the rest. E.g. admin12****",
     "sketch": [
-      [
-        626.8,
-        75.31,
-        210.63,
-        232.32
-      ]
+      {
+        "x": 626.8,
+        "y": 75.31,
+        "width": 210.63,
+        "height": 232.32,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 339.2,
     "temporal_text": [
@@ -655,12 +665,13 @@
     "intent_id": 1,
     "description": "To compare the MS surface go\u2019s spec with gpd pocket 2 apple\u2019s spec, highlight the spec of gdp pocket 2",
     "sketch": [
-      [
-        513.19,
-        159.56,
-        172.33,
-        103.39
-      ]
+      {
+        "x": 513.19,
+        "y": 159.56,
+        "width": 172.33,
+        "height": 103.39,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 125.7,
     "temporal_text": [],
@@ -699,7 +710,7 @@
     "intent_id": 11,
     "description": "It looks lightweight when he holds it. It would be good to add an emphasis for this.",
     "sketch": [],
-    "sketch_timestamp": -1,
+    "sketch_timestamp": 1179.0,
     "temporal_text": [
       "when he holds it."
     ],
@@ -728,18 +739,20 @@
     "intent_id": 12,
     "description": "It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.",
     "sketch": [
-      [
-        273.2,
-        10.21,
-        397,
-        65.1
-      ],
-      [
-        606.37,
-        100.84,
-        174.88,
-        75.31
-      ]
+      {
+        "x": 273.2,
+        "y": 10.21,
+        "width": 397,
+        "height": 65.1,
+        "rotation": 0
+      },
+      {
+        "x": 606.37,
+        "y": 100.84,
+        "width": 174.88,
+        "height": 75.31,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 133.2,
     "temporal_text": [
@@ -766,7 +779,7 @@
     "intent_id": 13,
     "description": "I added a text below the prize barcode that says \u201cPlease take a photo, it\u2019s first come, first served.\u201d",
     "sketch": [],
-    "sketch_timestamp": -1,
+    "sketch_timestamp": 412.0,
     "temporal_text": [
       "(screenshot captures the timecode)"
     ],
@@ -791,12 +804,13 @@
     "intent_id": 14,
     "description": "Trim from 7:20 to 7:40 where he opens the box and says there is a manua",
     "sketch": [
-      [
-        298.73,
-        333.16,
-        223.39,
-        86.8
-      ]
+      {
+        "x": 298.73,
+        "y": 333.16,
+        "width": 223.39,
+        "height": 86.8,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 412.6,
     "temporal_text": [
@@ -860,12 +874,13 @@
     "intent_id": 4,
     "description": "Whenever the man\u2019s pauses or filler words are too long in his answers, cut them out.",
     "sketch": [
-      [
-        162.14,
-        185.09,
-        339.56,
-        58.72
-      ]
+      {
+        "x": 162.14,
+        "y": 185.09,
+        "width": 339.56,
+        "height": 58.72,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 366.38,
     "temporal_text": [
@@ -1046,18 +1061,20 @@
     "intent_id": 12,
     "description": "When the man gives specific examples in his answer, show the key items/nouns as text next to his head. For example, at 31:48, he mentions caffeine and \u2018saw palmetto(?)\u2019 so show these words as text for a brief moment",
     "sketch": [
-      [
-        63.85,
-        167.22,
-        116.16,
-        33.19
-      ],
-      [
-        93.21,
-        231.04,
-        153.18,
-        39.57
-      ]
+      {
+        "x": 63.85,
+        "y": 167.22,
+        "width": 116.16,
+        "height": 33.19,
+        "rotation": 0
+      },
+      {
+        "x": 93.21,
+        "y": 231.04,
+        "width": 153.18,
+        "height": 39.57,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 1908.7,
     "temporal_text": [
@@ -1619,12 +1636,13 @@
     "intent_id": 10,
     "description": "Show his email at 2:46",
     "sketch": [
-      [
-        344.68,
-        418.69,
-        132.76,
-        30.64
-      ]
+      {
+        "x": 344.68,
+        "y": 418.69,
+        "width": 132.76,
+        "height": 30.64,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 166.1,
     "temporal_text": [
@@ -1692,12 +1710,13 @@
     "intent_id": 4,
     "description": "Whenever the camera is facing down to the pan crop it so that pan is centered\nCrop to what is within the box",
     "sketch": [
-      [
-        49.8,
-        62.55,
-        621.67,
-        399.54
-      ]
+      {
+        "x": 49.8,
+        "y": 62.55,
+        "width": 621.67,
+        "height": 399.54,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 881.6,
     "temporal_text": [
@@ -1826,12 +1845,13 @@
     "intent_id": 7,
     "description": "Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn\u2019t obstruct his movements for five seconds at which point the text disappears",
     "sketch": [
-      [
-        57.46,
-        56.17,
-        250.2,
-        118.71
-      ]
+      {
+        "x": 57.46,
+        "y": 56.17,
+        "width": 250.2,
+        "height": 118.71,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 517.35,
     "temporal_text": [
@@ -2081,12 +2101,13 @@
     "intent_id": 10,
     "description": "Zoom into the pan when he starts flipping it around 8:38 and add slight motion blur",
     "sketch": [
-      [
-        57.46,
-        56.17,
-        250.2,
-        118.71
-      ]
+      {
+        "x": 57.46,
+        "y": 56.17,
+        "width": 250.2,
+        "height": 118.71,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 517.35,
     "temporal_text": [
@@ -2213,12 +2234,13 @@
     "intent_id": 16,
     "description": "At 11:54, add a youtube comment stating the question accompanied by an emoji or other facial icons.",
     "sketch": [
-      [
-        84.27,
-        39.57,
-        718.69,
-        100.84
-      ]
+      {
+        "x": 84.27,
+        "y": 39.57,
+        "width": 718.69,
+        "height": 100.84,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 714.3,
     "temporal_text": [
@@ -2246,12 +2268,13 @@
     "intent_id": 17,
     "description": "At 14:51, add an icon so it\u2019s like he\u2019s holding a memory",
     "sketch": [
-      [
-        347.24,
-        192.75,
-        51.06,
-        56.17
-      ]
+      {
+        "x": 347.24,
+        "y": 192.75,
+        "width": 51.06,
+        "height": 56.17,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 891.4,
     "temporal_text": [
@@ -2273,18 +2296,20 @@
     "intent_id": 21,
     "description": "At 17:40, put an animation so that a phrase enters his ear as he says he heard the phrase and then make it come out of his mouth when he says it just comes out",
     "sketch": [
-      [
-        214.48,
-        192.75,
-        100.85,
-        51.06
-      ],
-      [
-        472.34,
-        288.48,
-        122.55,
-        61.27
-      ]
+      {
+        "x": 214.48,
+        "y": 192.75,
+        "width": 100.85,
+        "height": 51.06,
+        "rotation": 0
+      },
+      {
+        "x": 472.34,
+        "y": 288.48,
+        "width": 122.55,
+        "height": 61.27,
+        "rotation": 0
+      }
     ],
     "sketch_timestamp": 1062.6,
     "temporal_text": [

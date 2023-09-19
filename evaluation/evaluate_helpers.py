@@ -67,7 +67,7 @@ def __get_temporal_evaluation_margin(prediction, groun_truth, margin = 5):
     f1_score = 0
     if precision + recall > 0:
         f1_score = 2 * precision * recall / (precision + recall)
-    return f1_score
+    return f1_score, precision, recall
 
 
 def __get_temporal_evaluation_f1(prediction, ground_truth):
@@ -94,7 +94,8 @@ def __get_temporal_evaluation_f1(prediction, ground_truth):
     if (total_length_prediction + total_length_ground_truth == 0):
         return 0
 
-    return (total_intersection * 2) / (total_length_prediction + total_length_ground_truth)
+    return ((total_intersection * 2) / (total_length_prediction + total_length_ground_truth),
+        total_intersection / total_length_prediction, total_intersection / total_length_ground_truth)
 
 def __get_temporal_evaluation_traditional(prediction, ground_truth):
     # prediction: list [start, end], ground_truth: list [start, end]
@@ -124,7 +125,7 @@ def __get_temporal_evaluation_traditional(prediction, ground_truth):
     recall /= len(ground_truth)
     if precision + recall == 0:
         return 0
-    return precision * recall / (precision + recall)
+    return precision * recall / (precision + recall), precision, recall
 
 def __get_single_edit_operation_evaluation(prediction, ground_truth):
     if isinstance(ground_truth, list):
@@ -209,7 +210,7 @@ def get_data_point_as_request(dataset, index):
         "editOperations": dataset[index]["edit_text"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
-        # TODO: "edits_spatial": dataset[index]["spatial"],
+        "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],
@@ -231,7 +232,7 @@ def get_data_point(dataset, index):
         "editOperations": dataset[index]["edit_text"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
-        # TODO: "edits_spatial": dataset[index]["spatial"],
+        "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],
@@ -254,10 +255,14 @@ def get_temporal_evaluation(prediction, ground_truth):
     # start - end: float (seconds)
     # temporal
     #f1 = __get_temporal_evaluation_f1(prediction, ground_truth)
-    f1 = __get_temporal_evaluation_margin(prediction, ground_truth, margin=0)
+    f1_0, precision_0, recall_0 = __get_temporal_evaluation_margin(prediction, ground_truth, margin=0)
     #traditional = __get_temporal_evaluation_traditional(prediction, ground_truth)
-    traditional = __get_temporal_evaluation_margin(prediction, ground_truth, margin=10)
-    return f1, traditional
+    f1_10, precision_10, recall_10 = __get_temporal_evaluation_margin(prediction, ground_truth, margin=10)
+    return (
+        f1_0, precision_0, recall_0,
+    ), (
+        f1_10, precision_10, recall_10,
+    )
 
 
 def get_spatial_evaluation():

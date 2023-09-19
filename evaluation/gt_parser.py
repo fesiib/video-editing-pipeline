@@ -195,7 +195,13 @@ class DataPoint():
                     #coordinates_str = json.loads(sketch)
                     #coordinates = [int(float(coord.strip())) for coord in coordinates_str]
                     coordinates = json.loads(sketch)
-                    self.sketch.append(coordinates)
+                    self.sketch.append({
+                        "x": coordinates[0],
+                        "y": coordinates[1],
+                        "width": coordinates[2],
+                        "height": coordinates[3],
+                        "rotation": 0,
+                    })
             elif (isinstance(__value, list) == True):
                 self.sketch += __value
         if (__name == column_mapping.get(COLUMN_SKETCH_TIMESTAMP)):

@@ -1,3 +1,5 @@
+import json
+
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -55,31 +57,65 @@ Response:
 
 def get_examples():
     metadata1 = [
-        " one thing that's a little frustrating not just about the surface go", " but about a lot of devices like it is that you've got this really low advertised", " starting price but i almost feel like it's a little bit because", " because no one actually spend", " four hundred dollars on a surface go the chat's getting spammed yes please full review people want a", " full review okay all right yeah we can we can probably arrange that um", " so i find it a little bit deceptive because if you look over here you've got a couple of skus and", " there's something kind of missing to the average consumer who's", " shopping for a surface go they might look at that and go well i only need 64 gigs of", " storage i'm just going to put a micro sd in for additional storage anyway but what's not mentioned", " here are we down is this our"
+        " one thing that's a little frustrating not just about the surface go",
+        " but about a lot of devices like it is that you've got this really low advertised",
+        " starting price but i almost feel like it's a little bit because",
+        " because no one actually spend",
+        " four hundred dollars on a surface go the chat's getting spammed yes please full review people want a",
+        " full review okay all right yeah we can we can probably arrange that um",
+        " so i find it a little bit deceptive because if you look over here you've got a couple of skus and",
+        " there's something kind of missing to the average consumer who's",
+        " shopping for a surface go they might look at that and go well i only need 64 gigs of",
+        " storage i'm just going to put a micro sd in for additional storage anyway but what's not mentioned",
+        " here are we down is this our"
     ]
-    command1 = ['no one actually spend four hundred dollars on a surface go']
+    command1 = ["no one actually spend four hundred dollars on a surface go"]
     # [{'index': '3', 'explanation': 'ends with the same beginning as the request'}, {'index': '4', 'explanation': 'starts with the last part of the request'}]
     response1 = ListElements.get_instance(
-        indexes=['3', '4'],
+        indexes=["3", "4"],
         explanations=['ends with the same beginning as the request', 'starts with the last part of the request'],
     )
 
-    metadata2 = [" surface go is using what is it a there it is a 4415", " y processor what do you like brandon do you like the unboxing on black", " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got", " a 4415 why processor four gigs or eight gigs of ram", " it's got 64 gigs or 128 gigs of storage acclaimed nine", " hours of battery life well this one's", " got a a very tablet-like form factor so all those specs are actually", " really similar to this guy right here so this is running an", " n37y30 cpu which sounds really different from a pentium", " gold 4415 why but in terms of the specs this one's got a base clock", " of i think only one gigahertz but runs at about 1.5 to", " 1.7 most of the time whereas this one has a base clock of 1.6", " they're both dual core quad threaded processors and i don't know how this one turbos", " yet but this also comes with four or eight gigs of ram and i think it starts at 128 gigs of storage", " so the pricing for that is about 600 and then the pricing for a surface", " with the eight gig rams back and 128 gigs of storage is about", " 549. so the question becomes would you rather something"]
-    command2 = ['when the guy mentions specs of the surface go']
-    # [{'index': '0', 'explanation': 'model of the processor of surface go'}, {'index': '3', 'explanation': 'ram specs of surface go'}, {'index': '4', 'explanation': 'storage specs of surface go'}, {'index': '5', 'explanation': 'battery life of surface go'}, {'index': '6', 'explanation': 'form factor of surface go'}, {'index': '11', 'explanation': 'base clock of surface go'}, {'index': '12', 'explanation': 'number of cores of surface go'}, {'index': '15', 'explanation': 'ends with the same beginning as the request'}]
+    metadata2 = [" surface go is using what is it a there it is a 4415",
+                 " y processor what do you like brandon do you like the unboxing on black",
+                 " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got",
+                 " a 4415 why processor four gigs or eight gigs of ram",
+                 " it's got 64 gigs or 128 gigs of storage acclaimed nine",
+                 " hours of battery life well this one's",
+                 " got a a very tablet-like form factor so all those specs are actually",
+                 " really similar to this guy right here so this is running an",
+                 " n37y30 cpu which sounds really different from a pentium",
+                 " gold 4415 why but in terms of the specs this one's got a base clock",
+                 " of i think only one gigahertz but runs at about 1.5 to",
+                 " 1.7 most of the time whereas this one has a base clock of 1.6",
+                 " they're both dual core quad threaded processors and i don't know how this one turbos",
+                 " yet but this also comes with four or eight gigs of ram and i think it starts at 128 gigs of storage",
+                 " so the pricing for that is about 600 and then the pricing for a surface",
+                 " with the eight gig rams back and 128 gigs of storage is about",
+                 " 549. so the question becomes would you rather something"]
+    command2 = ["when the guy mentions specs of the surface go"]
     response2 = ListElements.get_instance(
-        indexes=['0', '3', '4', '5', '6', '11', '12', '15'],
-        explanations=['model of the processor', 'ram specs', 'storage specs', 'battery life', 'form factor', 'base clock', 'number of cores', 'ends with the same beginning as the request'],
+        indexes=["0", "3", "4", "5", "6", "11", "12", "15"],
+        explanations=[
+            "model of the processor",
+            "ram specs", 
+            "storage specs", 
+            "battery life", 
+            "form factor", 
+            "base clock", 
+            "number of cores",
+            "ends with the same beginning as the request"
+        ],
     )
 
     examples = []
     examples.append({
-        "metadata": metadata1,
+        "metadata": json.dumps(metadata1),
         "command": command1,
         "response": response1.model_dump_json(),
     })
     examples.append({
-        "metadata": metadata2,
+        "metadata": json.dumps(metadata2),
         "command": command2,
         "response": response2.model_dump_json(),
     })
@@ -110,7 +146,7 @@ def get_temporal_transcript_prompt_llm(partial_variables={}, examples = []):
 def get_temporal_transcript_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Transcript Snippets:{metadata}\nCommand:{command}"),
+            ("human", "Transcript Snippets: {metadata}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -130,7 +166,7 @@ def get_temporal_transcript_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Transcript Snippets:{metadata}\nCommand:{command}"),
+            ("human", "Transcript Snippets: {metadata}\nCommand: {command}"),
         ]
     )
 

@@ -1,3 +1,5 @@
+import json
+
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -64,10 +66,12 @@ def get_examples():
         }
     ]
     command1 = ["when the guys is holding the laptop"]
-    # [{'index': '1', 'explanation': 'matching actions: holding the laptop'}, {'index': '2', 'explanation': 'matching actions: holding a laptop'}, {'index': '4', 'explanation': 'matching actions: holding a laptop'}]
     response1 = ListElements.get_instance(
-        indexes=['1', '2', '4'],
-        explanations=['actions matched: laptop holding', 'actions matched: holding a laptop', 'matching actions: holding a laptop'],
+        indexes=["1", "2", "4"],
+        explanations=["actions matched: laptop holding",
+            "actions matched: holding a laptop", 
+            "matching actions: holding a laptop",
+        ],
     )
 
     metadata2 = [
@@ -98,20 +102,22 @@ def get_examples():
         }
     ]
     command2 = ["when the guys is focusing on something else than camera"]
-    # [{'index': '1', 'explanation': 'matching actions: looking at a large flat screen'}, {'index': '2', 'explanation': 'matching actions: looking at screen'}]
     response2 = ListElements.get_instance(
-        indexes=['1', '2'],
-        explanations=['actions matched: looking at a large flat screen', 'matching actions: looking at screen'],
+        indexes=["1", "2"],
+        explanations=[
+            "actions matched: looking at a large flat screen", 
+            "matching actions: looking at screen",
+        ],
     )
 
     examples = []
     examples.append({
-        "metadata": metadata1,
+        "metadata": json.dumps(metadata1),
         "command": command1,
         "response": response1.model_dump_json(),
     })
     examples.append({
-        "metadata": metadata2,
+        "metadata": json.dumps(metadata2),
         "command": command2,
         "response": response2.model_dump_json(),
     })
@@ -142,7 +148,7 @@ def get_temporal_visual_prompt_llm(partial_variables={}, examples = []):
 def get_temporal_visual_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Descriptions of 10-second clips:{metadata}\nCommand:{command}"),
+            ("human", "Descriptions of 10-second clips: {metadata}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -162,7 +168,7 @@ def get_temporal_visual_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Descriptions of 10-second clips:{metadata}\nCommand:{command}"),
+            ("human", "Descriptions of 10-second clips: {metadata}\n Command:{command}"),
         ]
     )
 

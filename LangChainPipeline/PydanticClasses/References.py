@@ -63,76 +63,124 @@ class References(BaseModel):
 
     @validator("temporal")
     def check_temporal(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Temporal reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Temporal reference is empty")
+        return result
 
     @validator("temporal_labels")
     def check_temporal_labels(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] in ["position", "transcript", "video", "other"], f"Temporal label {v[i]} is not valid"
-        return v
+            if v[i] in ["position", "transcript", "video", "other"]:
+                result.append(v[i])
+            else:
+                print(f"WARNING: Temporal label {v[i]} is not valid")
+        return result
     
     @validator("spatial")
     def check_spatial(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Spatial reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Spatial reference is empty")
+        return result
     
     @validator("spatial_labels")
     def check_spatial_labels(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] in ["visual-dependent", "independent", "other"], f"Spatial label {v[i]} is not valid"
-        return v
+            if v[i] in ["visual-dependent", "independent", "other"]:
+                result.append(v[i])
+            else:
+                print(f"WARNING: Spatial label {v[i]} is not valid")
+        return result
     
     @validator("edit")
     def check_edit(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] in ["text", "image", "shape", "blur", "cut", "crop", "zoom"], f"Edit operation {v[i]} is not valid"
-        return v
+            if v[i] in ["text", "image", "shape", "blur", "cut", "crop", "zoom"]:
+                result.append(v[i])
+            else:
+                print(f"WARNING: Edit operation {v[i]} is not valid")
+        return result
         
 
     @validator("textParameters")
     def check_textParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Text parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Text parameter reference is empty")
+        return result
     
     @validator("imageParameters")
     def check_imageParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Image parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Image parameter reference is empty")
+        return result
     
     @validator("shapeParameters")
     def check_shapeParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Shape parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Shape parameter reference is empty")
+        return result
     
     @validator("blurParameters")
     def check_blurParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Blur parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Blur parameter reference is empty")
+        return result
     
     @validator("cutParameters")
     def check_cutParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Cut parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Cut parameter reference is empty")
+        return result
     
     @validator("cropParameters")
     def check_cropParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Crop parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Crop parameter reference is empty")
+        return result
     
     @validator("zoomParameters")
     def check_zoomParameters(cls, v):
+        result = []
         for i in range(len(v)):
-            assert v[i] != "", f"Zoom parameter reference {v[i]} is empty"
-        return v
+            if v[i] != "":
+                result.append(v[i])
+            else:
+                print("WARNING: Zoom parameter reference is empty")
+        return result
 
     def get_parameters(self):
         return {

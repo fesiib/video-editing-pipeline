@@ -11,7 +11,7 @@ from evaluation.sentence_embedder import get_cosine_similarity_scores
 # Using all metadata
 intent_parser = IntentParser(50, 50)
 pipeline = Pipeline(50, 0)
-langchain_pipeline = LangChainPipeline()
+langchain_pipeline = LangChainPipeline(verbose=True)
 
 # ground_truth = {
 #     "editOperations": dataset[index]["edit_text"],
@@ -133,20 +133,108 @@ def run_pipeline_request_new(edit_request):
     }
     return response
 
+
+def run_langchain_pipeline_temporal(input):
+    references = langchain_pipeline.input_parser.run(input["text"])
+    edits = langchain_pipeline.predict_temporal_segments(
+        references.temporal, references.temporal_labels, 
+        0, input["sketch_timestamp"],
+        [480,854], [], 
+    )
+    edits_temporal = []
+    edits_temporal_reasoning = []
+    edits_spatial = []
+    edits_spatial_reasoning = []
+    for edit in edits:
+        edits_temporal.append([
+            edit["temporalParameters"]["start"],
+            edit["temporalParameters"]["finish"],
+        ])
+        edits_temporal_reasoning.append([
+            edit["temporalParameters"]["info"],
+            edit["temporalParameters"]["source"],
+        ])
+        edits_spatial.append(edit["spatialParameters"])
+        edits_spatial_reasoning.append([
+            edit["spatialParameters"]["info"],
+            edit["spatialParameters"]["source"],
+        ])
+    
+    response = {
+        "editOperations": references.edit,
+        "parameters": references.get_parameters_short(),
+        "edits": edits_temporal,
+        "edits_temporal_reasoning": edits_temporal_reasoning,
+        "edits_spatial": edits_spatial,
+        "edits_spatial_reasoning": edits_spatial_reasoning,
+        "relevant_text": {
+            "temporal": references.temporal,
+            "spatial": references.spatial,
+            "edit": references.edit,
+        },
+    }
+    return response
+
+def run_langchain_pipeline_request(edit_request):
+    edit_response = langchain_pipeline.process_request(edit_request)
+    edits_temporal = []
+    edits_temporal_reasoning = []
+    edits_spatial = []
+    edits_spatial_reasoning = []
+    for edit in edit_response["edits"]:
+        edits_temporal.append([
+            edit["temporalParameters"]["start"],
+            edit["temporalParameters"]["finish"],
+        ])
+        edits_temporal_reasoning.append([
+            edit["temporalParameters"]["info"],
+            edit["temporalParameters"]["source"],
+        ])
+        edits_spatial.append(edit["spatialParameters"])
+        print(edit["spatialParameters"])
+        edits_spatial_reasoning.append([
+            edit["spatialParameters"]["info"],
+            edit["spatialParameters"]["source"],
+        ])
+    
+    response = {
+        "editOperations": edit_response["requestParameters"]["editOperations"],
+        "parameters": edit_response["requestParameters"]["parameters"],
+        "edits": edits_temporal,
+        "edits_temporal_reasoning": edits_temporal_reasoning,
+        "edits_spatial": edits_spatial,
+        "edits_spatial_reasoning": edits_spatial_reasoning,
+        "relevant_text": {
+            "temporal": [],
+            "spatial": [],
+            "edit": edit_response["requestParameters"]["editOperations"],
+        },
+    }
+    return response
+
 def run_evaluation_for_task(
     task_id = 6,
     data_point_getter = get_data_point_as_request,
-    pipeline_runner = run_pipeline_request,
+    pipeline_runner = run_langchain_pipeline_request,
     indexes = []
 ):
     dataset = get_dataset_for_task(task_id)
 
-    average_temporal_f1 = 0
-    average_temporal_traditional = 0
+    average_temporal_f1_0 = 0
+    average_temporal_precision_0 = 0
+    average_temporal_recall_0 = 0
+    average_temporal_f1_10 = 0
+    average_temporal_precision_10 = 0
+    average_temporal_recall_10 = 0
     average_edit_operation = 0
 
-    all_temporal_f1 = []
-    all_temporal_traditional = []
+    all_temporal_f1_0 = []
+    all_temporal_precision_0 = []
+    all_temporal_recall_0 = []
+    all_temporal_f1_10 = []
+    all_temporal_precision_10 = []
+    all_temporal_recall_10 = []
+    
     all_edit_operation = []
 
     all_cosine_similarity_temporal = []
@@ -157,11 +245,19 @@ def run_evaluation_for_task(
 
     if (len(dataset) == 0):
         return {
-            "temporal_f1": 1,
-            "temporal_traditional": 1,
+            "temporal_f1_0": 1,
+            "temporal_precision_0": 1,
+            "temporal_recall_0": 1,
+            "temporal_f1_10": 1,
+            "temporal_precision_10": 1,
+            "temporal_recall_10": 1,
             "edit_operation": 1,
-            "all_temporal_f1": all_temporal_f1,
-            "all_temporal_traditional": all_temporal_traditional,
+            "all_temporal_f1_0": all_temporal_f1_0,
+            "all_temporal_precision_0": all_temporal_precision_0,
+            "all_temporal_recall_0": all_temporal_recall_0,
+            "all_temporal_f1_10": all_temporal_f1_10,
+            "all_temporal_precision_10": all_temporal_precision_10,
+            "all_temporal_recall_10": all_temporal_recall_10,
             "all_edit_operation": all_edit_operation,
             "all_cosine_similarity_temporal": all_cosine_similarity_temporal,
             "all_top_10_cosine_similarity_temporal": all_top_10_cosine_similarity_temporal,
@@ -194,23 +290,37 @@ def run_evaluation_for_task(
         all_top_10_cosine_similarity_temporal.append(top_10_pairs_temporal)
         all_cosine_similarity_temporal.append(cosine_scores_temporal)
 
-        (f1, traditional) = get_temporal_evaluation(prediction["edits"], ground_truth["edits"])
+        (
+            f1_0, precision_0, recall_0
+        ), (
+            f1_10, precision_10, recall_10
+        ) = get_temporal_evaluation(prediction["edits"], ground_truth["edits"])
         # TODO: miou = get_spatial_evaluation(prediction["edits_spatial"], ground_truth["edits_spatial"])
         edit_operation = get_edit_operation_evaluation(prediction["editOperations"], ground_truth["editOperations"])
 
-        average_temporal_f1 += f1
-        average_temporal_traditional += traditional
+        average_temporal_f1_0 += f1_0
+        average_temporal_precision_0 += precision_0
+        average_temporal_recall_0 += recall_0
+        average_temporal_f1_10 += f1_10
+        average_temporal_precision_10 += precision_10
+        average_temporal_recall_10 += recall_10
+
         average_edit_operation += edit_operation
 
-        all_temporal_f1.append(f1)
-        all_temporal_traditional.append(traditional)
+        all_temporal_f1_0.append(f1_0)
+        all_temporal_precision_0.append(precision_0)
+        all_temporal_recall_0.append(recall_0)
+        all_temporal_f1_10.append(f1_10)
+        all_temporal_precision_10.append(precision_10)
+        all_temporal_recall_10.append(recall_10)
         all_edit_operation.append(edit_operation)
 
         print("--------------------")
         print("!!!input!!!: ", input)
         print("!!!prediction!!!: ", prediction)
         print("!!!ground_truth!!!: ", ground_truth)
-        print("!!!temporal evaluation!!!: ", "f1-score: ", f1, "traditional: ", traditional)
+        print("!!!temporal evaluation margin=0!!!: ", "f1-margin-0: ", f1_0, "precision-margin-0: ", precision_0, "recall-margin-0: ", recall_0)
+        print("!!!temporal evaluation margin=10!!!: ", "f1-margin-10: ", f1_10, "precision-margin-10: ", precision_10, "recall-margin-10: ", recall_10)
         print("!!!edit_op evaluation!!!: ", edit_operation)
         print("--------------------")
         print("!!!(temporal)cosine_similarity!!!: ", cosine_scores_temporal)
@@ -220,15 +330,27 @@ def run_evaluation_for_task(
         print("!!!(spatial)top_4_cosine_similarity!!!: ", json.dumps(top_10_pairs_spatial[0:4], indent=1))
         print("--------------------")
 
-    average_temporal_f1 /= len(indexes)
-    average_temporal_traditional /= len(indexes)
+    average_temporal_f1_0 /= len(indexes)
+    average_temporal_precision_0 /= len(indexes)
+    average_temporal_recall_0 /= len(indexes)
+    average_temporal_f1_10 /= len(indexes)
+    average_temporal_precision_10 /= len(indexes)
+    average_temporal_recall_10 /= len(indexes)
     average_edit_operation /= len(indexes)
     return {
-        "temporal_f1": average_temporal_f1,
-        "temporal_traditional": average_temporal_traditional,
+        "temporal_f1_0": average_temporal_f1_0,
+        "temporal_precision_0": average_temporal_precision_0,
+        "temporal_recall_0": average_temporal_recall_0,
+        "temporal_f1_10": average_temporal_f1_10,
+        "temporal_precision_10": average_temporal_precision_10,
+        "temporal_recall_10": average_temporal_recall_10,
         "edit_operation": average_edit_operation,
-        "all_temporal_f1": all_temporal_f1,
-        "all_temporal_traditional": all_temporal_traditional,
+        "all_temporal_f1_0": all_temporal_f1_0,
+        "all_temporal_precision_0": all_temporal_precision_0,
+        "all_temporal_recall_0": all_temporal_recall_0,
+        "all_temporal_f1_10": all_temporal_f1_10,
+        "all_temporal_precision_10": all_temporal_precision_10,
+        "all_temporal_recall_10": all_temporal_recall_10,
         "all_edit_operation": all_edit_operation,
         "all_cosine_similarity_temporal": all_cosine_similarity_temporal,
         "all_top_10_cosine_similarity_temporal": all_top_10_cosine_similarity_temporal,
@@ -236,61 +358,6 @@ def run_evaluation_for_task(
         "all_top_10_cosine_similarity_spatial": all_top_10_cosine_similarity_spatial,    
         "dataset": [item for i, item in enumerate(dataset) if i in indexes],
     }
-
-def run_lanchain_pipeline_temporal(input):
-    references = langchain_pipeline.input_parser.run(input["text"])
-    edits = langchain_pipeline.predict_temporal_segments(
-        references.temporal, references.temporal_labels, 
-        0, [480,854],
-        [], 
-    )
-    edits_temporal = []
-    edits_spatial = []
-    for edit in edits:
-        edits_temporal.append(
-            [
-                edit["temporalParameters"]["start"],
-                edit["temporalParameters"]["finish"],
-                edit["temporalParameters"]["info"],
-                edit["temporalParameters"]["source"],
-            ]
-        )
-        edits_spatial.append(edit["spatialParameters"])
-    
-    response = {
-        "editOperations": references.edit,
-        "parameters": references.parameters,
-        "edits": edits_temporal,
-        "edits_spatial": edits_spatial,
-        "relevant_text": references.dict(),
-    }
-    return response
-
-def run_langchain_pipeline_request(edit_request):
-    edit_response = langchain_pipeline.process_request(edit_request)
-    edits_temporal = []
-    edits_spatial = []
-    for edit in edit_response["edits"]:
-        edits_temporal.append([
-            edit["temporalParameters"]["start"],
-            edit["temporalParameters"]["finish"],
-            edit["temporalParameters"]["info"],
-            edit["temporalParameters"]["source"],
-        ])
-        edits_spatial.append(edit["spatialParameters"])
-    
-    response = {
-        "editOperations": edit_response["requestParameters"]["editOperations"],
-        "parameters": edit_response["requestParameters"]["parameters"],
-        "edits": edits_temporal,
-        "edits_spatial": edits_spatial,
-        "relevant_text": {
-            "temporal": [],
-            "spatial": [],
-            "edit": edit_response["requestParameters"]["editOperations"],
-        },
-    }
-    return response
 
 def main():
     run_evaluation_for_task()

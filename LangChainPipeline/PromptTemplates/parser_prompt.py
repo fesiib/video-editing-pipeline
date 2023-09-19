@@ -14,7 +14,12 @@ from LangChainPipeline.PydanticClasses.References import References
 PREFIX_INTENT_PARSER= """
 You are a video editor's assistant who is trying to understand the natural language command in the context of a given video. You will do it step-by-step.
 
-Step 1: You have to identify 4 types of references from the command first:
+Step 1: Identify the list of edit operations that the command is referring to:
+- choose only among "text", "image", "shape", "blur", "cut", "crop", "zoom"
+- make sure that the edit operation is only one of the above
+- if none of the above edit operations is directly relevant, give the one that is most relevant to the command (e.g. "highlight" -> "shape" with type parameter "star")
+
+Step 2: You have to identify 3 types of references from the command (Note: if there is a reference that contains noun-references such as this, that, it, etc. you will have to identify the noun that it refers to and replace the noun-reference with the noun.):
 1. Temporal reference: any information in the command that could refer to a segment of the video:
 - explicit timecodes or time ranges
 - explicit mentions or implicit references to the transcript of the video
@@ -25,11 +30,7 @@ Step 1: You have to identify 4 types of references from the command first:
 - specific locations or positions relative to the frame
 - specific objects or areas of interest
 
-3. Edit Operation reference: any information in the command that could refer to one or combination of the following editing operations:
-- [text, image, shape, blur, cut, crop, zoom]
-- edit operations must be only among the above list
-
-4. Edit Parameter reference: any information in the command that could refer to specific parameters of an edit operation that was identified ([text, image, shape, blur, cut, crop, zoom]).
+3. Edit Parameter reference: any information in the command that could refer to specific parameters of an edit operation that was identified ([text, image, shape, blur, cut, crop, zoom]).
 - text: content, font style, font color, or font size
 - image: visual keywords
 - shape: type of shape
@@ -38,18 +39,18 @@ Step 1: You have to identify 4 types of references from the command first:
 - crop: how much to crop
 - zoom: how long to perform the zooming animation
 
-Note: if there is a reference that contains noun-references such as this, that, it, etc. you will have to identify the noun that it refers to and replace the noun-reference with the noun.
-
-Step 2: You will classify each temporal reference into one of the following:
+Step 3-1: You will classify each temporal reference into one of the following:
 1. "position": reference in the form of a timecode (e.g. "54:43", "0:23"), time segment (e.g. "0:00-12:30", "from 43:30 to 44:20") or more abstract temporal position (e.g. "intro", "ending", "beginning part of the video")
 2. "transcript": reference to transcript both implicit or explicit
 3. "video": reference to specific action in the video or visual description of the frame, object, or elements
 4. "other": reference to other temporal information that does not fall into the above categories
 
-Step 3: You will classify each spatial reference into one of the following:
+Step 3-2: You will classify each spatial reference into one of the following:
 1. "visual-dependent": reference to specific objects, elements, or regions in the video frame that depend on the visual content of the video
 2. "independent": reference to specific locations or positions relative to the frame independent of the visual content of the video
 3. "other": any other spatial information that does not fall into the above categories
+
+Step 4: Format the output based on the result of each step.
 
 {format_instructions}
 """

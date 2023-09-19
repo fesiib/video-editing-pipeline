@@ -11,8 +11,8 @@ def main_evaluate_request():
         task_id = 6,
         data_point_getter = get_data_point_as_request,
         pipeline_runner = run_langchain_pipeline_request,
-        # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
-        indexes = [1]
+        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        # indexes = [1]
     )
 
     if (len(result["dataset"]) == 0):
@@ -21,14 +21,17 @@ def main_evaluate_request():
     
     print("Summary:")
     print("Video Info: ", "(" + info["videoKnowledge"], info["videoChannel"] + ")", '"' + info["videoTitle"] + '"', "-", info["videoUrl"])
-
-    print("--------------------")
     # all_cosine_similarity": all_cosine_similarity,
     # "all_top_10_cosine_similarity": all_top_10_cosine_similarity,")
     print("--------------------")
 
-    print("Temporal F1: ", round_number(result["temporal_f1"]), " --> ", [round_number(x) for x in result["all_temporal_f1"]])
-    print("Temporal Trad F1: ", round_number(result["temporal_traditional"]), " --> ", [round_number(x) for x in result["all_temporal_traditional"]])
+    print("Temporal F1 Margin=0: ", round_number(result["temporal_f1_0"]), " --> ", [round_number(x) for x in result["all_temporal_f1_0"]])
+    print("Temporal Precision Margin=0", round_number(result["temporal_precision_0"]), " --> ", [round_number(x) for x in result["all_temporal_precision_0"]])
+    print("Temporal Recall Margin=0", round_number(result["temporal_recall_0"]), " --> ", [round_number(x) for x in result["all_temporal_recall_0"]])
+    print("--------------------")
+    print("Temporal F1 Margin=10: ", round_number(result["temporal_f1_10"]), " --> ", [round_number(x) for x in result["all_temporal_f1_10"]])
+    print("Temporal Precision Margin=10", round_number(result["temporal_precision_10"]), " --> ", [round_number(x) for x in result["all_temporal_precision_10"]])
+    print("Temporal Recall Margin=10", round_number(result["temporal_recall_10"]), " --> ", [round_number(x) for x in result["all_temporal_recall_10"]])
     print("Edit Operation: ", round_number(result["edit_operation"]), " --> ", [round_number(x) for x in result["all_edit_operation"]])
     #print("Parameters: ", result["parameters"])
     pass
@@ -39,8 +42,9 @@ def main_evaluate_temporal():
     result = run_evaluation_for_task(
         task_id = 6,
         data_point_getter = get_data_point,
-        pipeline_runner = run_lanchain_pipeline_temporal,
-        indexes = [1] #[10] - video #[4] - position
+        pipeline_runner = run_langchain_pipeline_temporal,
+        indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        # indexes = [7, 8, 9, 10]
     )
 
     if (len(result["dataset"]) == 0):
@@ -55,8 +59,13 @@ def main_evaluate_temporal():
     # "all_top_10_cosine_similarity": all_top_10_cosine_similarity,")
     print("--------------------")
 
-    print("Temporal F1: ", round_number(result["temporal_f1"]), " --> ", [round_number(x) for x in result["all_temporal_f1"]])
-    print("Temporal Trad F1: ", round_number(result["temporal_traditional"]), " --> ", [round_number(x) for x in result["all_temporal_traditional"]])
+    print("Temporal F1 Margin=0: ", round_number(result["temporal_f1_0"]), " --> ", [round_number(x) for x in result["all_temporal_f1_0"]])
+    print("Temporal Precision Margin=0", round_number(result["temporal_precision_0"]), " --> ", [round_number(x) for x in result["all_temporal_precision_0"]])
+    print("Temporal Recall Margin=0", round_number(result["temporal_recall_0"]), " --> ", [round_number(x) for x in result["all_temporal_recall_0"]])
+    print("--------------------")
+    print("Temporal F1 Margin=10: ", round_number(result["temporal_f1_10"]), " --> ", [round_number(x) for x in result["all_temporal_f1_10"]])
+    print("Temporal Precision Margin=10", round_number(result["temporal_precision_10"]), " --> ", [round_number(x) for x in result["all_temporal_precision_10"]])
+    print("Temporal Recall Margin=10", round_number(result["temporal_recall_10"]), " --> ", [round_number(x) for x in result["all_temporal_recall_10"]])
     print("Edit Operation: ", round_number(result["edit_operation"]), " --> ", [round_number(x) for x in result["all_edit_operation"]])
     pass
 

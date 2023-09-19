@@ -22,8 +22,11 @@ class SingleElement(BaseModel):
 
     @validator("index")
     def index_must_be_valid_integer(cls, v):
-        assert v.isdigit(), "index must be a valid integer"
-        return v
+        if v.isdigit():
+            return v
+        else:
+            print("ERROR: index must be a valid integer")
+            return "0"
 
     @validator("explanation")
     def explanation_must_be_valid_string(cls, v):
@@ -31,7 +34,9 @@ class SingleElement(BaseModel):
     
     @validator("index")
     def index_must_be_nonnegative(cls, v):
-        assert int(v) >= 0, "index must be a valid index"
+        if int(v) < 0:
+            print("ERROR: index must be nonnegative")
+            return "0"
         return v
 
 
@@ -49,8 +54,11 @@ class ListElements(BaseModel):
 
     @validator("list_elements")
     def list_elements_must_be_valid_list(cls, v):
-        assert isinstance(v, list), "list_elements must be a valid list"
-        return v
+        if isinstance(v, list):
+            return v
+        print("ERROR: list_elements must be a valid list")
+        return []
+
 
     @classmethod
     def get_instance(cls, indexes, explanations):

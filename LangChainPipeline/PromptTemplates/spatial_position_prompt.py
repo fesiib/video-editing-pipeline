@@ -41,7 +41,7 @@ Response:
 
 def get_examples():
     #example1
-    context1 = "height=100, width=100"
+    context1 = "height: 100, width: 100"
     rectangle1 = Rectangle.get_instance(
         x=0,
         y=0,
@@ -58,7 +58,7 @@ def get_examples():
         rotation=0,
     )
     #example2
-    context2 = "height=480, width=854"
+    context2 = "height: 480, width: 854"
     rectangle2 = Rectangle.get_instance(
         x=150,
         y=300,
@@ -75,7 +75,7 @@ def get_examples():
         rotation=0,
     )
     #example3
-    context3 = "height=200, width=200"
+    context3 = "height: 200, width: 200"
     rectangle3 = Rectangle.get_instance(
         x=50,
         y=0,
@@ -92,7 +92,7 @@ def get_examples():
         rotation=0,
     )
     #example4
-    context4 = "height=500, width=1000"
+    context4 = "height: 500, width: 1000"
     rectangle4 = Rectangle.get_instance(
         x=300,
         y=190,
@@ -160,7 +160,7 @@ def get_spatial_position_prompt_llm(partial_variables={}, examples = []):
 def get_spatial_position_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Frame Size:{context}\nRectangle:{rectangle}\nCommand:{command}"),
+            ("human", "Frame Size: {context}\nRectangle: {rectangle}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -180,7 +180,7 @@ def get_spatial_position_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Frame Size:{context}\nRectangle:{rectangle}\nCommand:{command}"),
+            ("human", "Frame Size: {context}\nRectangle: {rectangle}\nCommand: {command}"),
         ]
     )
 

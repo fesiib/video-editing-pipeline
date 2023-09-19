@@ -38,21 +38,18 @@ Response:
 """
 
 def get_examples():
-    context1 = ['A video is 00:20:13 long.']
-    command1 = ['0:07']
-    # [{'start': '00:00:04', 'end': '00:00:09'}]
-    response1 = TemporalSegments.get_instance(start='00:00:04', end='00:00:09')
+    context1 = ["A video is 00:20:13 long."]
+    command1 = ["0:07"]
+    response1 = TemporalSegments.get_instance(start="00:00:04", finish="00:00:09")
 
     
-    context2 = ['A video is 00:20:13 long.']
-    command2 = ['intro']
-    # [{'start': '00:00:00', 'end': '00:00:30'}]
-    response2 = TemporalSegments.get_instance(start='00:00:00', end='00:00:30')
+    context2 = ["A video is 00:20:13 long."]
+    command2 = ["intro"]
+    response2 = TemporalSegments.get_instance(start="00:00:00", finish="00:00:30")
 
-    context3 = ['A video is 00:20:13 long.']
-    command3 = ['between 5:10 and 5:20']
-    # [{'start': '00:05:10', 'end': '00:05:20'}]
-    response3 = TemporalSegments.get_instance(start='00:05:10', end='00:05:20')
+    context3 = ["A video is 00:20:13 long."]
+    command3 = ["between 5:10 and 5:20"]
+    response3 = TemporalSegments.get_instance(start="00:05:10", finish="00:05:20")
 
     examples = []
     examples.append({
@@ -97,7 +94,7 @@ def get_temporal_position_prompt_llm(partial_variables={}, examples = []):
 def get_temporal_position_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Context:{context}\nCommand:{command}"),
+            ("human", "Context: {context}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -117,7 +114,7 @@ def get_temporal_position_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Context:{context}\nCommand:{command}"),
+            ("human", "Context: {context}\nCommand: {command}"),
         ]
     )
 

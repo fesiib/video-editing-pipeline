@@ -1,4 +1,5 @@
 import ast
+import json
 
 from langchain.chat_models import ChatOpenAI
 from langchain.output_parsers import PydanticOutputParser
@@ -109,7 +110,8 @@ class TemporalChain():
             print("Detected 'other' temporal reference: ", command)
             return []
         else:
-            raise ValueError(f"Unknown label: {label}")
+            print("ERROR: Invalid label: ", label)
+            return []
 
 
 class TemporalPositionChain():
@@ -142,9 +144,9 @@ class TemporalPositionChain():
         for segment in result.segments:
             segments.append({
                 "start": segment.start,
-                "end": segment.end,
-                "explanation": [""],
-                "source": command,
+                "finish": segment.finish,
+                "explanation": ["gpt"],
+                "source": command.copy(),
             })
         return segments
 
@@ -190,7 +192,7 @@ class TemporalTranscriptChain():
         )
 
         result = self.chain.predict(
-            metadata=[data["data"] for data in filtered_metadata],
+            metadata=json.dumps([data["data"] for data in filtered_metadata]),
             command=command,
         )
 
@@ -200,9 +202,9 @@ class TemporalTranscriptChain():
             explanation = element.explanation
             segments.append({
                 "start": metadata[index]["start"],
-                "end": metadata[index]["end"],
+                "finish": metadata[index]["end"],
                 "explanation": [explanation],
-                "source": command,
+                "source": command.copy(),
             })
 
         return segments
@@ -250,7 +252,7 @@ class TemporalVisualChain():
         )
 
         result = self.chain.predict(
-            metadata=[data["structured_data"] for data in filtered_metadata],
+            metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
             command=command,
         )
 
@@ -260,9 +262,9 @@ class TemporalVisualChain():
             explanation = element.explanation
             segments.append({
                 "start": metadata[index]["start"],
-                "end": metadata[index]["end"],
+                "finish": metadata[index]["end"],
                 "explanation": [explanation],
-                "source": command,
+                "source": command.copy(),
             })
 
         return segments

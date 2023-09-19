@@ -1,3 +1,5 @@
+import json
+
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -10,7 +12,7 @@ from langchain.prompts.example_selector import LengthBasedExampleSelector
 PREFIX_IMAGE_QUERY_PROMPT= """
 You are a video editor's assistant who is trying to understand natural language request of the editor to come up with search query for images to put in the video. You are given a command from the editor and a context which you can use to construct the image query. Context is list of visual descriptions (what action is happening, abstract caption, and descriptions of objects) of 10-second segments of the video. You must generate the search query for the image to be displayed based on the context and editor's command.
 
-Note 1: If no relevant search query can be generated that satisfies both context and the command, generate some reasonable search query based on the command only.
+Note 1: If no relevant search query can be generated that satisfies both context and the command, output the input command.
 Note 2: Make sure that the search query is not too long, since it should be editable by the editor. Keep it under 100 characters.
 
 """
@@ -80,17 +82,17 @@ def get_examples():
 
     examples = []
     examples.append({
-        "context": context1,
+        "context": json.dumps(context1),
         "command": command1,
         "response": response1,
     })
     examples.append({
-        "context": context2,
+        "context": json.dumps(context2),
         "command": command2,
         "response": response2,
     })
     examples.append({
-        "context": context3,
+        "context": json.dumps(context3),
         "command": command3,
         "response": response3,
     })
@@ -121,7 +123,7 @@ def get_image_query_prompt_llm(partial_variables={}, examples = []):
 def get_image_query_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Context:{context}\nCommand:{command}"),
+            ("human", "Context: {context}\nCommand: {command}"),
             ("ai", "{response}"),
         ]
     )
@@ -141,7 +143,7 @@ def get_image_query_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Context:{context}\nCommand:{command}"),
+            ("human", "Context: {context}\nCommand: {command}"),
         ]
     )
 

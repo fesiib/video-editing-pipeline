@@ -22,31 +22,36 @@ class TextStyleParameters(BaseModel):
     @validator("fill")
     def fill_must_be_hex(cls, v):
         if not v.startswith("#"):
-            raise ValueError("Fill must be a hex value")
+            print("ERROR: Fill must be a hex value: ", v)
+            return "#000000"
         return v
     
     @validator("fontSize")
     def font_size_must_be_positive(cls, v):
         if v <= 0:
-            raise ValueError("Font size must be positive")
+            print("ERROR: Font size must be positive: ", v)
+            return 12
         return v
     
     @validator("fontFamily")
     def font_family_must_be_valid(cls, v):
         if v not in ["Arial", "Times New Roman", "Courier New"]:
-            raise ValueError("Font family must be valid")
+            print("ERROR: Font family not supported: ", v)
+            return "Arial"
         return v
     
     @validator("align")
     def align_must_be_valid(cls, v):
         if v not in ["left", "center", "right"]:
-            raise ValueError("Align must be valid")
+            print("ERROR: Align not supported: ", v)
+            return "left"
         return v
     
     @validator("verticalAlign")
     def vertical_align_must_be_valid(cls, v):
         if v not in ["top", "middle", "bottom"]:
-            raise ValueError("Vertical align must be valid")
+            print("ERROR: Vertical align not supported: ", v)
+            return "top"
         return v
     
 class BackgroundParameters(BaseModel):
@@ -63,13 +68,15 @@ class BackgroundParameters(BaseModel):
     @validator("fill")
     def fill_must_be_hex(cls, v):
         if not v.startswith("#"):
-            raise ValueError("Fill must be a hex value")
+            print("ERROR: Fill must be a hex value: ", v)
+            return "#ffffff"
         return v
     
     @validator("alpha")
     def alpha_must_be_between_zero_and_one(cls, v):
         if v < 0 or v > 1:
-            raise ValueError("Alpha must be between 0 and 1")
+            print("ERROR: Alpha must be between 0 and 1: ", v)
+            return 1
         return v
 
 class StrokeParameters(BaseModel):
@@ -88,19 +95,22 @@ class StrokeParameters(BaseModel):
     @validator("width")
     def width_must_be_positive(cls, v):
         if v <= 0:
-            raise ValueError("Width must be positive")
+            print("ERROR: Width must be positive: ", v)
+            return 2
         return v
     
     @validator("fill")
     def fill_must_be_hex(cls, v):
         if not v.startswith("#"):
-            raise ValueError("Fill must be a hex value")
+            print("ERROR: Fill must be a hex value: ", v)
+            return "#000000"
         return v
     
     @validator("alpha")
     def alpha_must_be_between_zero_and_one(cls, v):
         if v < 0 or v > 1:
-            raise ValueError("Alpha must be between 0 and 1")
+            print("ERROR: Alpha must be between 0 and 1: ", v)
+            return 1
         return v
     
 class StarParameters(BaseModel):
@@ -117,13 +127,15 @@ class StarParameters(BaseModel):
     @validator("numPoints")
     def num_points_must_be_at_least_2(cls, v):
         if v < 2:
-            raise ValueError("Number of points must be at least 2")
+            print("ERROR: Number of points must be at least 2: ", v)
+            return 5
         return v
     
     @validator("innerRadius")
     def inner_radius_must_be_positive(cls, v):
         if v <= 0:
-            raise ValueError("Inner radius must be positive")
+            print("ERROR: Inner radius must be positive: ", v)
+            return 100
         return v
 
 class TextParameters(BaseModel):
@@ -144,7 +156,8 @@ class TextParameters(BaseModel):
     @validator("content")
     def content_must_be_string(cls, v):
         if not isinstance(v, str):
-            raise ValueError("Content must be a string")
+            print("ERROR: Content must be a string: ", v)
+            return "Text"
         return v
     
 class ImageParameters(BaseModel):
@@ -161,12 +174,14 @@ class ImageParameters(BaseModel):
     @validator("source")
     def source_must_be_link_or_directory(cls, v):
         if not v.startswith("http") and not v.startswith("/"):
-            raise ValueError("Source must be a link or directory")
+            print("ERROR: Source must be a link or directory: ", v)
+            return "/placeholder.jpg"
     
     @validator("searchQuery")
     def search_query_must_be_string(cls, v):
         if not isinstance(v, str):
-            raise ValueError("Search query must be a string")
+            print("ERROR: Search query must be a string: ", v)
+            return ""
         return v
 
 class ShapeParameters(BaseModel):
@@ -190,7 +205,8 @@ class ShapeParameters(BaseModel):
     @validator("type")
     def type_must_be_valid(cls, v):
         if v not in ["rectangle", "circle", "star"]:
-            raise ValueError("Type must be valid")
+            print("ERROR: Type must be rectangle, circle, or star: ", v)
+            return "rectangle"
         return v
     
 class ZoomParameters(BaseModel):
@@ -207,13 +223,15 @@ class ZoomParameters(BaseModel):
     @validator("zoomDurationStart")
     def zoom_duration_start_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Zoom duration start must be positive")
+            print("ERROR: Zoom duration start must be positive: ", v)
+            return 0
         return v
     
     @validator("zoomDurationEnd")
     def zoom_duration_end_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Zoom duration end must be positive")
+            print("ERROR: Zoom duration end must be positive: ", v)
+            return 0
         return v
     
 class CropParameters(BaseModel):
@@ -242,25 +260,29 @@ class CropParameters(BaseModel):
     @validator("width")
     def width_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Width must be positive")
+            print("ERROR: Width must be positive: ", v)
+            return 100
         return v
     
     @validator("height")
     def height_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Height must be positive")
+            print("ERROR: Height must be positive: ", v)
+            return 100
         return v
     
     @validator("cropWidth")
     def crop_width_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Crop width must be positive")
+            print("ERROR: Crop width must be positive: ", v)
+            return 100
         return v
     
     @validator("cropHeight")
     def crop_height_must_be_nonnegative(cls, v):
         if v < 0:
-            raise ValueError("Crop height must be positive")
+            print("ERROR: Crop height must be positive: ", v)
+            return 100
         return v
         
 class BlurParameters(BaseModel):
@@ -275,7 +297,8 @@ class BlurParameters(BaseModel):
     @validator("blur")
     def blur_must_be_positive(cls, v):
         if v <= 0:
-            raise ValueError("Blur must be positive")
+            print("ERROR: Blur must be positive: ", v)
+            return 0
         return v
     
 class CutParameters(BaseModel):
