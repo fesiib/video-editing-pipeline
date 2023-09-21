@@ -13,7 +13,7 @@ from video_host.processor import process_video, get_video_by_filename
 
 app = Flask(__name__)
 
-CORS(app, origins=["http://localhost:7777", "http://internal.kixlab.org:7777"])
+CORS(app, origins=["http://localhost:3000", "http://localhost:7777", "http://internal.kixlab.org:7777"])
 
 '''
 Server side for video editing pipline 

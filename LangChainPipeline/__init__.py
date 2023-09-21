@@ -89,7 +89,8 @@ class LangChainPipeline():
 
             ### choose the one with the medium area (can also, 0 or last one)
             candidates.sort(key=lambda x: x["width"] * x["height"])
-            edit["spatialParameters"] = candidates[len(candidates) // 2]
+            print(candidates)
+            edit["spatialParameters"] = candidates[(len(candidates) + 1) // 2 - 1]
         return edits
 
     def predict_edit_parameters(self,
