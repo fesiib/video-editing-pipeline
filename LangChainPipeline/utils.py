@@ -24,6 +24,7 @@ def merge_segments(segments):
                 last_interval["finish"] = interval["finish"]
                 last_interval["explanation"].extend(interval["explanation"])
                 last_interval["source"].extend(interval["source"])
+                last_interval["offsets"].extend(interval["offsets"])
             else:
                 result.append(interval)
     return result

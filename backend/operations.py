@@ -102,7 +102,7 @@ def get_timecoded_edit_instance(interval, video_shape):
     }
     return edit_instance
 
-def get_edit_segment(start, finish, explanation, source, video_shape):
+def get_edit_segment(start, finish, explanation, source, offsets, video_shape):
     edit = EditInstance()
     edit_instance = edit.get_edit_params()
     
@@ -112,9 +112,11 @@ def get_edit_segment(start, finish, explanation, source, video_shape):
     edit_instance["temporalParameters"]["duration"] = duration
     edit_instance["temporalParameters"]["info"] = explanation
     edit_instance["temporalParameters"]["source"] = source
+    edit_instance["temporalParameters"]["offsets"] = offsets
     
     edit_instance["spatialParameters"]["info"] = ["default"]
     edit_instance["spatialParameters"]["source"] = ["default"]
+    edit_instance["spatialParameters"]["offsets"] = [-1]
     
     edit_instance["cropParameters"] = {
         "x": 0, "y": 0, "width": video_shape[1], "height": video_shape[0],

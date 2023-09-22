@@ -133,11 +133,28 @@ def run_pipeline_request_new(edit_request):
     }
     return response
 
+def run_langchain_pipeline_temporal_indexed(input):
+    return run_langchain_pipeline_temporal(input, indexed=True)
 
-def run_langchain_pipeline_temporal(input):
-    references = langchain_pipeline.input_parser.run(input["text"])
+def run_langchain_pipeline_temporal(input, indexed=False):
+    references = None
+    temporal = []
+    temporal_labels = []
+    temporal_offsets = []
+    if indexed == True:
+        references = langchain_pipeline.indexed_input_parser.run(input["text"])
+        temporal = [item.reference for item in references.temporal_references]
+        temporal_labels = references.temporal_labels
+        temporal_offsets = [item.offset for item in references.temporal_references]
+    else:
+        references = langchain_pipeline.input_parser.run(input["text"])
+        temporal = references.temporal
+        temporal_labels = references.temporal_labels
+        temporal_offsets = [-1 for _ in temporal]
+
     edits = langchain_pipeline.predict_temporal_segments(
-        references.temporal, references.temporal_labels, 
+        input["text"],
+        temporal, temporal_labels, temporal_offsets,
         0, input["sketch_timestamp"],
         [480,854], [], 
     )
@@ -153,11 +170,13 @@ def run_langchain_pipeline_temporal(input):
         edits_temporal_reasoning.append([
             edit["temporalParameters"]["info"],
             edit["temporalParameters"]["source"],
+            edit["temporalParameters"]["offsets"],
         ])
         edits_spatial.append(edit["spatialParameters"])
         edits_spatial_reasoning.append([
             edit["spatialParameters"]["info"],
             edit["spatialParameters"]["source"],
+            edit["temporalParameters"]["offsets"],
         ])
     
     response = {
@@ -168,15 +187,18 @@ def run_langchain_pipeline_temporal(input):
         "edits_spatial": edits_spatial,
         "edits_spatial_reasoning": edits_spatial_reasoning,
         "relevant_text": {
-            "temporal": references.temporal,
-            "spatial": references.spatial,
+            "temporal": temporal,
+            "spatial": [item.reference for item in references.spatial_references],
             "edit": references.edit,
+            "indexed_temporal": [[item.offset, item.reference] for item in references.temporal_references],
+            "indexed_spatial": [[item.offset, item.reference] for item in references.spatial_references],
+            "indexed_edit": [[item.offset, item.reference] for item in references.edit_references],
         },
     }
     return response
 
 def run_langchain_pipeline_request(edit_request):
-    edit_response = langchain_pipeline.process_request(edit_request)
+    edit_response = langchain_pipeline.process_request_indexed(edit_request)
     edits_temporal = []
     edits_temporal_reasoning = []
     edits_spatial = []
@@ -189,12 +211,14 @@ def run_langchain_pipeline_request(edit_request):
         edits_temporal_reasoning.append([
             edit["temporalParameters"]["info"],
             edit["temporalParameters"]["source"],
+            edit["temporalParameters"]["offsets"],
         ])
         edits_spatial.append(edit["spatialParameters"])
         print(edit["spatialParameters"])
         edits_spatial_reasoning.append([
             edit["spatialParameters"]["info"],
             edit["spatialParameters"]["source"],
+            edit["temporalParameters"]["offsets"],
         ])
     
     response = {

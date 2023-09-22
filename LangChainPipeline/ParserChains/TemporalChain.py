@@ -88,26 +88,32 @@ class TemporalChain():
         self.visual.set_parameters(top_k, neighbors_left, neighbors_right)
         print("Set parameters")
 
-    def run(self, command, label, 
+    def run(self, original_command, command, label, offsets,
         current_player_position = 0, skipped_segments=[]
     ):
+        additional_context = [
+            f'The original command was: {original_command}',
+        ]
         if label == "position":
-            additional_context = [f'You are at {current_player_position} seconds']
+            current_position_context = [f'You are at {current_player_position} seconds']
             return self.position.run(
-                context=self.context + [additional_context],
+                context=self.context + additional_context + current_position_context,
                 command=command,
+                offsets=offsets,
             )
         elif label == "transcript":
             return self.transcript.run(
-                context=self.context,
+                context=self.context + additional_context,
                 command=command,
                 metadata=filter_metadata_skipped(self.transcript_metadata, skipped_segments),
+                offsets=offsets,
             )
         elif label == "video":
             return self.visual.run(
-                context=self.context,
+                context=self.context + additional_context,
                 command=command,
                 metadata=filter_metadata_skipped(self.visual_metadata, skipped_segments),
+                offsets=offsets,
             )
         elif label == "other":
             print("Detected 'other' temporal reference: ", command)
@@ -137,7 +143,7 @@ class TemporalPositionChain():
         )
         print("Initialized TemporalPositionChain")
 
-    def run(self, context, command):
+    def run(self, context, command, offsets):
         result = self.chain.predict(
             context=context,
             command=command,
@@ -150,6 +156,7 @@ class TemporalPositionChain():
                 "finish": segment.finish,
                 "explanation": ["gpt"],
                 "source": command.copy(),
+                "offsets": offsets.copy(),
             })
         return segments
 
@@ -185,7 +192,7 @@ class TemporalTranscriptChain():
         self.neighbors_left = neighbors_left
         self.neighbors_right = neighbors_right
 
-    def run(self, context, command, metadata):
+    def run(self, context, command, metadata, offsets):
         filtered_metadata = filter_metadata_by_semantic_similarity(
             targets=command,
             candidates=metadata,
@@ -195,6 +202,7 @@ class TemporalTranscriptChain():
         )
 
         result = self.chain.predict(
+            context=context,
             metadata=json.dumps([data["data"] for data in filtered_metadata]),
             command=command,
         )
@@ -208,6 +216,7 @@ class TemporalTranscriptChain():
                 "finish": metadata[index]["end"],
                 "explanation": [explanation],
                 "source": command.copy(),
+                "offsets": offsets.copy(),
             })
 
         return segments
@@ -245,7 +254,7 @@ class TemporalVisualChain():
         self.neighbors_left = neighbors_left
         self.neighbors_right = neighbors_right
 
-    def run(self, context, command, metadata):
+    def run(self, context, command, metadata, offsets):
         filtered_metadata = filter_metadata_by_semantic_similarity(
             targets=command,
             candidates=metadata,
@@ -255,6 +264,7 @@ class TemporalVisualChain():
         )
 
         result = self.chain.predict(
+            context=context,
             metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
             command=command,
         )
@@ -268,6 +278,7 @@ class TemporalVisualChain():
                 "finish": metadata[index]["end"],
                 "explanation": [explanation],
                 "source": command.copy(),
+                "offsets": offsets.copy(),
             })
 
         return segments

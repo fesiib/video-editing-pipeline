@@ -1,6 +1,7 @@
 import copy
 
 from LangChainPipeline.ParserChains.IntentParserChain import IntentParserChain
+from LangChainPipeline.ParserChains.IndexedIntentParserChain import IndexedIntentParserChain
 from LangChainPipeline.ParserChains.TemporalChain import TemporalChain
 from LangChainPipeline.ParserChains.EditChain import EditChain
 from LangChainPipeline.ParserChains.SpatialChain import SpatialChain
@@ -12,6 +13,8 @@ from backend.operations import get_edit_segment
 class LangChainPipeline():
     def __init__(self, verbose=False):
         self.input_parser = IntentParserChain(verbose=verbose)
+        self.indexed_input_parser = IndexedIntentParserChain(verbose=verbose)
+
         self.temporal_interpreter = TemporalChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10
         )
@@ -31,7 +34,9 @@ class LangChainPipeline():
         self.parameters_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
 
     def predict_spatial_locations(self, 
+        command,
         spatial, spatial_labels,
+        spatial_offsets,
         edits, sketches, video_shape,
     ):
         for edit in edits:
@@ -50,6 +55,7 @@ class LangChainPipeline():
                         "rotation": 0,
                         "info": ["sketch"],
                         "source": ["sketch"],
+                        "offsets": [-1],
                     }
                     spatial_position_set = True
                     break
@@ -64,6 +70,7 @@ class LangChainPipeline():
                 "rotation": 0,
                 "info": ["full"],
                 "source": ["default"],
+                "offsets": [-1],
             }]
 
             for sketch in sketches:
@@ -75,11 +82,13 @@ class LangChainPipeline():
                     "rotation": 0,
                     "info": ["sketch"],
                     "source": ["sketch"],
+                    "offsets": [-1],
                 })
-            for reference, label in zip(spatial, spatial_labels):
+            for reference, label, offsets in zip(spatial, spatial_labels, spatial_offsets):
                 print("Spatial: ", reference, label)
                 candidates = self.spatial_interpreter.run(
-                    [reference], candidates, label,
+                    command,
+                    [reference], candidates, label, [offsets],
                     start, finish,
                     video_shape,
                 )
@@ -94,7 +103,9 @@ class LangChainPipeline():
         return edits
 
     def predict_edit_parameters(self,
+        command,
         parameters,
+        parameter_offsets,
         edits, sketches, video_shape,
     ):
         for i in range(len(edits)):
@@ -129,6 +140,7 @@ class LangChainPipeline():
             
             if run_all_parameters == True:
                 edit_parameters = self.parameters_interpreter.run_all_parameters(
+                    command,
                     parameters, edit_parameters,
                     video_shape
                 )
@@ -136,11 +148,13 @@ class LangChainPipeline():
             start = timecode_to_seconds(edit["temporalParameters"]["start"])
             finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
             edit_parameters = self.parameters_interpreter.run_text_content(
+                command,
                 parameters,
                 edit_parameters,
                 start, finish,
             )
             edit_parameters = self.parameters_interpreter.run_image_query(
+                command,
                 parameters,
                 edit_parameters,
                 start, finish,
@@ -173,17 +187,20 @@ class LangChainPipeline():
         return start, finish
 
     def predict_temporal_segments(self,
+        command,
         temporal,
         temporal_labels,
+        temporal_offsets,
         current_player_position,
         sketch_timestamp,
         video_shape,
         skipped_segments,
     ):
         segments = []
-        for reference, label in zip(temporal, temporal_labels):
+        for reference, label, offsets in zip(temporal, temporal_labels, temporal_offsets):
             partial_segments = self.temporal_interpreter.run(
-                [reference], label, 
+                command,
+                [reference], label, [offsets],
                 current_player_position, skipped_segments
             )
             segments.extend(partial_segments)
@@ -198,6 +215,7 @@ class LangChainPipeline():
                 "finish": finish,
                 "explanation": ["current_play_position"],
                 "source": ["default"],
+                "offsets": [-1],
             })
         
         ### check if sketch_timestamp is in any of the edit segments
@@ -218,6 +236,7 @@ class LangChainPipeline():
                     "finish": finish,
                     "explanation": ["sketch_timestamp"],
                     "source": ["sketch"],
+                    "offsets": [-1],
                 })
         
         edit_segments = []
@@ -226,7 +245,8 @@ class LangChainPipeline():
             finish = timecode_to_seconds(segment["finish"])
             explanation = segment["explanation"]
             source = segment["source"]
-            edit = get_edit_segment(start, finish, explanation, source, video_shape)
+            offsets = segment["offsets"]
+            edit = get_edit_segment(start, finish, explanation, source, offsets, video_shape)
             edit_segments.append(edit)        
 
         return edit_segments 
@@ -288,6 +308,7 @@ class LangChainPipeline():
             response["edits"] = []
             response["requestParameters"]["editOperations"] = []
             response["requestParameters"]["parameters"] = {}
+            response["requestParameters"]["indexedReferences"] = {}
             return response
         
         ### parse command
@@ -297,11 +318,13 @@ class LangChainPipeline():
         ### set edit operations
         response["requestParameters"]["editOperations"] = references.edit
         response["requestParameters"]["parameters"] = references.get_parameters_short()
+        response["requestParameters"]["indexedReferences"] = {}
         
         ### predict temporal segments
         if from_scratch == True or add_more == True:
             edits = self.predict_temporal_segments(
-                references.temporal, references.temporal_labels, 
+                command,
+                references.temporal, references.temporal_labels, [-1 for _ in references.temporal],
                 current_player_position, sketch_timestamp,
                 video_shape, skipped_segments, 
             )
@@ -310,13 +333,16 @@ class LangChainPipeline():
 
         ### predict spatial positions
         edits = self.predict_spatial_locations(
+            command,
             references.spatial, references.spatial_labels,
             edits, sketches, video_shape,
         )
 
         ### predict edit parameters
         edits = self.predict_edit_parameters(
+            command,
             references.get_parameters(),
+            {},
             edits, sketches, video_shape,
         )   
 
@@ -326,7 +352,74 @@ class LangChainPipeline():
 
 
 
+    def process_request_indexed(self, request):
+        response = copy.deepcopy(request)
 
+        command = response["requestParameters"]["text"]
+        skipped_segments = self.build_skipped_segments(response)
+        prev_edits = response["edits"]
+        current_player_position = response["curPlayPosition"]
+        sketches = response["requestParameters"]["sketchRectangles"]
+        sketch_timestamp = response["requestParameters"]["sketchFrameTimestamp"]
+        for sketch in sketches:
+            sketch["timestamp"] = sketch_timestamp
+
+        video_shape = [response["projectMetadata"]["height"], response["projectMetadata"]["width"]]
+
+        from_scratch = response["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = response["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = response["requestParameters"]["processingMode"] == "adjust-selected"
+
+        if from_scratch == False and add_more == False and adjust_selected == False:
+            print("ERROR: Invalid processing mode")
+            response["edits"] = []
+            response["requestParameters"]["editOperations"] = []
+            response["requestParameters"]["parameters"] = {}
+            response["requestParameters"]["indexedReferences"] = {}
+            return response
+        
+        ### parse command
+        references = self.indexed_input_parser.run(command)
+        simple_references = references.get_references()
+        print(references)
+
+        ### set edit operations
+        response["requestParameters"]["editOperations"] = simple_references.edit
+        response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
+        response["requestParameters"]["indexedReferences"] = references.model_dump_json()
+
+        
+        ### predict temporal segments
+        if from_scratch == True or add_more == True:
+            edits = self.predict_temporal_segments(
+                command,
+                simple_references.temporal, simple_references.temporal_labels,
+                [item.offset for item in references.temporal_references],
+                current_player_position, sketch_timestamp,
+                video_shape, skipped_segments, 
+            )
+        else:
+            edits = prev_edits
+
+        ### predict spatial positions
+        edits = self.predict_spatial_locations(
+            command,
+            simple_references.spatial, simple_references.spatial_labels,
+            [item.offset for item in references.spatial_references],
+            edits, sketches, video_shape,
+        )
+
+        ### predict edit parameters TODO
+        edits = self.predict_edit_parameters(
+            command,
+            simple_references.get_parameters(),
+            {},
+            edits, sketches, video_shape,
+        )   
+
+        response["edits"] = edits
+        print(edits)
+        return response
 
 
 

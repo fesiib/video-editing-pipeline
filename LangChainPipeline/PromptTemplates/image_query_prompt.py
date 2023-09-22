@@ -10,27 +10,32 @@ from langchain.prompts import (
 from langchain.prompts.example_selector import LengthBasedExampleSelector
 
 PREFIX_IMAGE_QUERY_PROMPT= """
-You are a video editor's assistant who is trying to understand natural language request of the editor to come up with search query for images to put in the video. You are given a command from the editor and a context which you can use to construct the image query. Context is list of visual descriptions (what action is happening, abstract caption, and descriptions of objects) of 10-second segments of the video. You must generate the search query for the image to be displayed based on the context and editor's command.
+You are a video editor's assistant who is trying to understand natural language request of the editor to come up with search query for images to put in the video. You are given a command from the editor, the original context of the command, and visual description of the video which you can use to construct the image query. Visual description of the video is a list of textual descriptions (what action is happening, abstract caption, and descriptions of objects) of 10-second segments of the video. You must generate the search query for the image to be displayed based on the editor's command, original context, and visual descriptions.
 
-Note 1: If no relevant search query can be generated that satisfies both context and the command, output the input command.
-Note 2: Make sure that the search query is not too long, since it should be editable by the editor. Keep it under 100 characters.
+Note 1: If no relevant search query can be generated that satisfies the command, the context, and the visual descriptions, output only the command.
+Note 2: Make sure that the search query is not too long, since it should be seen by the editor. Keep it under 100 characters.
 
 """
 
 EXAMPLE_PROMPT = """
-Context: {context}
 Command: {command}
+Context: {context}
+Visual Descriptions: {metadata}
 Response: {response}
 """
 
 SUFFIX_IMAGE_QUERY_PROMPT = """
-Context: {context}
 Command: {command}
+Context: {context}
+Visual Descriptions: {metadata}
 Response:
 """
-
+# TODO: fill in the example contexts
 def get_examples():
     context1 = [
+
+    ]
+    metadata1 = [
         {
             "action": "using computer",
             "abstract_caption": "young man sitting at a desk working on a laptop with headphones on.",
@@ -46,6 +51,9 @@ def get_examples():
     response1 = "black laptop, black and sliver watch, cell phone, black keyboard png"
 
     context2 = [
+
+    ]
+    metadata2 = [
         {
             "action": "using computer",
             "abstract_caption": "a man sitting at a desk holding a laptop in his hands and a computer on the table.",
@@ -60,7 +68,8 @@ def get_examples():
     command2 = ["icon that represents the scene"]
     response2 = "man working at a desk on a laptop icon png"
 
-    context3 = [
+    context3 = []
+    metadata3 = [
         {
             "action": "using computer",
             "abstract_caption": "a man sitting at a desk holding a laptop in his hands and a computer on the table.",
@@ -83,24 +92,27 @@ def get_examples():
     examples = []
     examples.append({
         "context": json.dumps(context1),
-        "command": command1,
+        "metadata": json.dumps(metadata1),
+        "command": json.dumps(command1),
         "response": response1,
     })
     examples.append({
         "context": json.dumps(context2),
-        "command": command2,
+        "metadata": json.dumps(metadata2),
+        "command": json.dumps(command2),
         "response": response2,
     })
     examples.append({
         "context": json.dumps(context3),
-        "command": command3,
+        "metadata": json.dumps(metadata3),
+        "command": json.dumps(command3),
         "response": response3,
     })
     return examples
 
 def get_image_query_prompt_llm(partial_variables={}, examples = []):
     example_prompt_template = PromptTemplate(
-        input_variables=["context", "command", "response"],
+        input_variables=["context", "metadata", "command", "response"],
         template=EXAMPLE_PROMPT,
     )
 
@@ -115,7 +127,7 @@ def get_image_query_prompt_llm(partial_variables={}, examples = []):
         example_prompt=example_prompt_template,
         prefix=PREFIX_IMAGE_QUERY_PROMPT,
         suffix=SUFFIX_IMAGE_QUERY_PROMPT,
-        input_variables=["context", "command"],
+        input_variables=["context", "metadata", "command"],
         partial_variables=partial_variables,
     )
 
@@ -123,7 +135,7 @@ def get_image_query_prompt_llm(partial_variables={}, examples = []):
 def get_image_query_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Context: {context}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nVisual Descriptions: {metadata}"),
             ("ai", "{response}"),
         ]
     )
@@ -143,7 +155,7 @@ def get_image_query_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Context: {context}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nVisual Descriptions: {metadata}"),
         ]
     )
 

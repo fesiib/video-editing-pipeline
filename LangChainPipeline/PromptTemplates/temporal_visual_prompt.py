@@ -13,31 +13,35 @@ from LangChainPipeline.PydanticClasses.ListElements import ListElements
 
 
 PREFIX_TEMPORAL_VISUAL_PROMPT= """
-You are a video editor's assistant who is trying to understand the natural language reference of the video editor to some part of the video given the set of most relevant visual descriptions of 10-second clips of the video. Visual description of a 10-second clip consists of an action label which is a main action happening, an abstract caption which is an abstract description of the clip, and the dense captions, which are list of descriptions of objects that are present. Try taking into account each of them. 
+You are a video editor's assistant who is trying to understand the natural language reference of the video editor to some part of the video given the set of most relevant visual descriptions of 10-second clips of the video and original context of the command. Visual description of a 10-second clip consists of an action label which is a main action happening, an abstract caption which is an abstract description of the clip, and the dense captions, which are list of descriptions of objects that are present. Try taking into account each of them. 
 
 Instruction:
-Locate the descriptions that are relevant to the editor's command and return the positions of those descriptions from the list along with short explanation of how each is relevant to editor's command.
+Locate the visual descriptions that are relevant to the editor's command and original context of the command, and return the positions of those descriptions from the list along with short explanation of how each is relevant to editor's command.
 
-Note 1: If there are no relevant descriptions, return an empty array [].
-Note 2: If there is more than one description that is relevant to the editor's command, output all of them in a list.
+Note 1: If there are no relevant viusal descriptions, return an empty array [].
+Note 2: If there is more than one description that is relevant to the editor's command and original context, output all of them in a list.
 
 {format_instructions}
 """
 
 EXAMPLE_PROMPT = """
-Descriptions of 10-second clips: {metadata}
 Command: {command}
+Context: {context}
+Visual descriptions of 10-second clips: {metadata}
 Response: {response}
 """
 
 SUFFIX_TEMPORAL_VISUAL_PROMPT = """
-Descriptions of 10-second clips: {metadata}
 Command: {command}
+Context: {context}
+Visual descriptions of 10-second clips: {metadata}
 Response:
 """
 
+#TODO
 def get_examples():
 
+    context1 = []
     metadata1 = [
         {
             "action": "using computer",
@@ -74,6 +78,7 @@ def get_examples():
         ],
     )
 
+    context2 = []
     metadata2 = [
         {
             "action": "using computer",
@@ -112,11 +117,13 @@ def get_examples():
 
     examples = []
     examples.append({
+        "context": json.dumps(context1),
         "metadata": json.dumps(metadata1),
         "command": command1,
         "response": response1.model_dump_json(),
     })
     examples.append({
+        "context": json.dumps(context2),
         "metadata": json.dumps(metadata2),
         "command": command2,
         "response": response2.model_dump_json(),
@@ -125,7 +132,7 @@ def get_examples():
 
 def get_temporal_visual_prompt_llm(partial_variables={}, examples = []):
     example_prompt_template = PromptTemplate(
-        input_variables=["metadata", "command", "response"],
+        input_variables=["context", "metadata", "command", "response"],
         template=EXAMPLE_PROMPT,
     )
 
@@ -140,7 +147,7 @@ def get_temporal_visual_prompt_llm(partial_variables={}, examples = []):
         example_prompt=example_prompt_template,
         prefix=PREFIX_TEMPORAL_VISUAL_PROMPT,
         suffix=SUFFIX_TEMPORAL_VISUAL_PROMPT,
-        input_variables=["metadata", "command"],
+        input_variables=["context", "metadata", "command"],
         partial_variables=partial_variables,
     )
 
@@ -148,7 +155,7 @@ def get_temporal_visual_prompt_llm(partial_variables={}, examples = []):
 def get_temporal_visual_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Descriptions of 10-second clips: {metadata}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nVisual descriptions of 10-second clips: {metadata}"),
             ("ai", "{response}"),
         ]
     )
@@ -168,7 +175,7 @@ def get_temporal_visual_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Descriptions of 10-second clips: {metadata}\n Command:{command}"),
+            ("human", "Command: {command}\nContext: {context}\nVisual descriptions of 10-second clips: {metadata}"),
         ]
     )
 

@@ -1,4 +1,4 @@
-#context, command, candidate
+import json
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -16,9 +16,9 @@ You are a video editor's assistant who is trying to understand editor's natural 
 
 Instructions:
 1. You will be given an initial location of the rectangle in the frame and the boundaries of the frame (do not exceed outside the boundaries) (i.e width = 480, height = 854).
-2. You will be given a command that describes the desired spatial location of the rectangle in the frame.
-3. You will have to refine the location of the rectangle based on the command.
-4. You will have to resize the rectangle based on the command.
+2. You will be given a command that describes the desired spatial location of the rectangle in the frame and the original context of the command.
+3. You will have to refine the location of the rectangle based on the command and context.
+4. You will have to resize the rectangle based on the command and context.
 
 Perform each step one-by-one and output the final location of the rectangle in the frame.
 
@@ -26,22 +26,23 @@ Perform each step one-by-one and output the final location of the rectangle in t
 """
 
 EXAMPLE_PROMPT = """
-Frame Size: {context}
-Rectangle: {rectangle}
 Command: {command}
+Context: {context}
+Rectangle: {rectangle}
 Response: {response}
 """
 
 SUFFIX_SPATIAL_POSITION_PROMPT = """
-Frame Size: {context}
-Rectangle: {rectangle}
 Command: {command}
+Context: {context}
+Rectangle: {rectangle}
 Response:
 """
 
+#TODO
 def get_examples():
     #example1
-    context1 = "height: 100, width: 100"
+    context1 = ["height: 100, width: 100"]
     rectangle1 = Rectangle.get_instance(
         x=0,
         y=0,
@@ -58,7 +59,7 @@ def get_examples():
         rotation=0,
     )
     #example2
-    context2 = "height: 480, width: 854"
+    context2 = ["height: 480, width: 854"]
     rectangle2 = Rectangle.get_instance(
         x=150,
         y=300,
@@ -75,7 +76,7 @@ def get_examples():
         rotation=0,
     )
     #example3
-    context3 = "height: 200, width: 200"
+    context3 = ["height: 200, width: 200"]
     rectangle3 = Rectangle.get_instance(
         x=50,
         y=0,
@@ -92,7 +93,7 @@ def get_examples():
         rotation=0,
     )
     #example4
-    context4 = "height: 500, width: 1000"
+    context4 = ["height: 500, width: 1000"]
     rectangle4 = Rectangle.get_instance(
         x=300,
         y=190,
@@ -110,27 +111,27 @@ def get_examples():
     )
     examples = []
     examples.append({
-        "context": context1,
+        "context": json.dumps(context1),
         "rectangle": rectangle1.model_dump_json(),
-        "command": command1,
+        "command": json.dumps(command1),
         "response": response1.model_dump_json(),
     })
     examples.append({
-        "context": context2,
+        "context": json.dumps(context2),
         "rectangle": rectangle2.model_dump_json(),
-        "command": command2,
+        "command": json.dumps(command2),
         "response": response2.model_dump_json(),
     })
     examples.append({
-        "context": context3,
+        "context": json.dumps(context3),
         "rectangle": rectangle3.model_dump_json(),
-        "command": command3,
+        "command": json.dumps(command3),
         "response": response3.model_dump_json(),
     })
     examples.append({
-        "context": context4,
+        "context": json.dumps(context4),
         "rectangle": rectangle4.model_dump_json(),
-        "command": command4,
+        "command": json.dumps(command4),
         "response": response4.model_dump_json(),
     })
     return examples
@@ -160,7 +161,7 @@ def get_spatial_position_prompt_llm(partial_variables={}, examples = []):
 def get_spatial_position_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Frame Size: {context}\nRectangle: {rectangle}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nRectangle: {rectangle}\n"),
             ("ai", "{response}"),
         ]
     )
@@ -180,7 +181,7 @@ def get_spatial_position_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Frame Size: {context}\nRectangle: {rectangle}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nRectangle: {rectangle}\n"),
         ]
     )
 

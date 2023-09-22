@@ -71,7 +71,7 @@ class SpatialChain():
         # self.visual.set_parameters(top_k, neighbors_left, neighbors_right)
         print("Set parameters SpatialChain")
 
-    def process_visual_command(self, command, frame_sec, video_shape):
+    def process_visual_command(self, command, frame_sec, video_shape, offsets):
         input_images, input_bboxes, frame_id, img = self.image_processor.get_candidates_from_frame(frame_sec)
         bbox = self.image_processor.extract_related_crop(
             command[0],
@@ -88,6 +88,7 @@ class SpatialChain():
             "height": bbox[3] / image_shape[0] * video_shape[0], 
             "rotation": 0,
             "source": command.copy(),
+            "offsets": offsets.copy(),
         }
         return candidate
 
@@ -126,22 +127,28 @@ class SpatialChain():
             "info": ["union"],
         }
 
-    def run(self, 
+    def run(self,
+        original_command, 
         command, candidates, label,
+        offsets,
         start, finish,
         video_shape,
     ):
         new_candidates = []
         if label == "independent":
-            context = "height: " + str(video_shape[0]) + ", width: " + str(video_shape[1])
+            # left top
+            context = [f"Frame Size: height: {str(video_shape[0])}, width: {str(video_shape[1])}",
+                f'The original command was: {original_command}',
+            ]
             for candidate in candidates:
                 new_candidates.append(self.position.run(
                     context,
                     command,
                     candidate,
+                    offsets,
                 ))
         elif label == "visual-dependent":
-            refining_candidates = [self.process_visual_command(command, int((start + finish) // 2), video_shape)]
+            refining_candidates = [self.process_visual_command(command, int((start + finish) // 2), video_shape, offsets)]
             for candidate in candidates:
                 for refinement in refining_candidates:
                     ### if there is intersection, then take the intersection
@@ -158,6 +165,7 @@ class SpatialChain():
                             candidate["height"] = round(union["height"])
                             candidate["info"].extend(union["info"])
                             candidate["source"].extend(refinement["source"])
+                            candidate["offsets"].extend(refinement["offsets"])
                     else:
                         candidate["x"] = round(intersection["x"])
                         candidate["y"] = round(intersection["y"])
@@ -165,6 +173,7 @@ class SpatialChain():
                         candidate["height"] = round(intersection["height"])
                         candidate["info"].extend(intersection["info"])
                         candidate["source"].extend(refinement["source"])
+                        candidate["offsets"].extend(refinement["offsets"])
                 new_candidates.append(candidate)
         elif label == "other":
             print("\"other\" label detected", command)
@@ -196,7 +205,7 @@ class SpatialPositionChain():
         )
         print("Initialized SpatialPositionChain")
 
-    def run(self, context, command, candidate):
+    def run(self, context, command, candidate, offsets):
         result = self.chain.predict(
             context=context,
             command=command,
@@ -216,4 +225,5 @@ class SpatialPositionChain():
         candidate["rotation"] = result.rotation
         candidate["info"].append("gpt")
         candidate["source"] = candidate["source"].copy() + command.copy()
+        candidate["offsets"] = candidate["offsets"].copy() + offsets.copy()
         return candidate

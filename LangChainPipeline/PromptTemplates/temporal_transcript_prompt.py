@@ -32,10 +32,10 @@ from LangChainPipeline.PydanticClasses.ListElements import ListElements
 # """
 
 PREFIX_TEMPORAL_TRANSCRIPT_PROMPT= """
-You are a video editor's assistant who is trying to understand the natural language reference of the video editor to some part of the video given the relevant snippets of the transcript of the video.
+You are a video editor's assistant who is trying to understand the natural language reference of the video editor to some part of the video given the original context of the reference and relevant snippets of the transcript of the video.
 
 Instruction:
-Locate the snippets of the transcript that are relevant to the editor's command and return the positions of those snippets from the list along with short explanation of how each is relevant to editor's command.
+Locate the snippets of the transcript that are relevant to the editor's command ad original context, and return the positions of those snippets from the list along with short explanation of how each is relevant to editor's command.
 
 Note 1: If there are no relevant snippets, return an empty array [].
 Note 2: If there is more than one snippet that is relevant to the editor's command, output all of them in a list.
@@ -44,18 +44,22 @@ Note 2: If there is more than one snippet that is relevant to the editor's comma
 """
 
 EXAMPLE_PROMPT = """
-Transcript Snippets: {metadata}
 Command: {command}
+Context: {context}
+Transcript Snippets: {metadata}
 Response: {response}
 """
 
 SUFFIX_TEMPORAL_TRANSCRIPT_PROMPT = """
-Transcript Snippets: {metadata}
 Command: {command}
+Context: {context}
+Transcript Snippets: {metadata}
 Response:
 """
 
+#TODO
 def get_examples():
+    context1 = []
     metadata1 = [
         " one thing that's a little frustrating not just about the surface go",
         " but about a lot of devices like it is that you've got this really low advertised",
@@ -76,6 +80,7 @@ def get_examples():
         explanations=['ends with the same beginning as the request', 'starts with the last part of the request'],
     )
 
+    context2 = []
     metadata2 = [" surface go is using what is it a there it is a 4415",
                  " y processor what do you like brandon do you like the unboxing on black",
                  " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got",
@@ -110,11 +115,13 @@ def get_examples():
 
     examples = []
     examples.append({
+        "context": json.dumps(context1),
         "metadata": json.dumps(metadata1),
         "command": command1,
         "response": response1.model_dump_json(),
     })
     examples.append({
+        "context": json.dumps(context2),
         "metadata": json.dumps(metadata2),
         "command": command2,
         "response": response2.model_dump_json(),
@@ -123,7 +130,7 @@ def get_examples():
 
 def get_temporal_transcript_prompt_llm(partial_variables={}, examples = []):
     example_prompt_template = PromptTemplate(
-        input_variables=["metadata", "command", "response"],
+        input_variables=["context", "metadata", "command", "response"],
         template=EXAMPLE_PROMPT,
     )
 
@@ -138,7 +145,7 @@ def get_temporal_transcript_prompt_llm(partial_variables={}, examples = []):
         example_prompt=example_prompt_template,
         prefix=PREFIX_TEMPORAL_TRANSCRIPT_PROMPT,
         suffix=SUFFIX_TEMPORAL_TRANSCRIPT_PROMPT,
-        input_variables=["metadata", "command"],
+        input_variables=["context", "metadata", "command"],
         partial_variables=partial_variables,
     )
 
@@ -146,7 +153,7 @@ def get_temporal_transcript_prompt_llm(partial_variables={}, examples = []):
 def get_temporal_transcript_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Transcript Snippets: {metadata}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nTranscript Snippets: {metadata}"),
             ("ai", "{response}"),
         ]
     )
@@ -166,7 +173,7 @@ def get_temporal_transcript_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Transcript Snippets: {metadata}\nCommand: {command}"),
+            ("human", "Command: {command}\nContext: {context}\nTranscript Snippets: {metadata}"),
         ]
     )
 

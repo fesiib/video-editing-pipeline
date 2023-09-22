@@ -91,11 +91,15 @@ class EditChain():
         self.image_query.set_parameters(top_k, neighbors_left, neighbors_right)
         print("Set parameters")
 
-    def run_all_parameters(self, 
+    def run_all_parameters(self,
+        original_command, 
         parameters, initial_edit_parameters,
         video_shape
     ):
-        common_context = "Video Properties: height = " + str(video_shape[0]) + ", width = " + str(video_shape[1])
+        context = [
+            f'The original command was: {original_command}',
+            f'Video Properties are: height: {str(video_shape[0])}, width: {str(video_shape[1])}'
+        ]
 
         total_references = 0
         for parameter in parameters:
@@ -104,33 +108,42 @@ class EditChain():
         if total_references == 0:
             return initial_edit_parameters
         
-        new_edit_parameters = self.all_parameters.run(common_context, parameters, initial_edit_parameters)
+        new_edit_parameters = self.all_parameters.run(context, parameters, initial_edit_parameters)
         return new_edit_parameters
 
     def run_text_content(
         self,
+        original_command,
         parameters,
         initial_edit_parameters,
         start, finish,
     ):
-        ## also possible to use the 
-        text_content_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
-        if len(parameters["textParameters"]) > 0 and len(text_content_context) > 0:
+        context = [
+            f'The original command was: {original_command}',
+        ]
+        metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
+        if len(parameters["textParameters"]) > 0 and len(metadata) > 0:
             initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
-                text_content_context,
+                context,
+                metadata,
                 parameters["textParameters"],
             )
         return initial_edit_parameters
 
     def run_image_query(self,
+        original_command,
         parameters,
         initial_edit_parameters,
         start, finish,
     ):
-        image_query_context = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
-        if len(parameters["imageParameters"]) > 0 and len(image_query_context) > 0:
+        context = [
+            f'The original command was: {original_command}',
+        ]
+        metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
+        if len(parameters["imageParameters"]) > 0 and len(metadata) > 0:
             initial_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
-                image_query_context,
+                context,
+                metadata,
                 parameters["imageParameters"],
             )
         return initial_edit_parameters
@@ -205,18 +218,19 @@ class TextContentChain():
         print("Set parameters")
 
     ### TODO: need to consider only metadata from the relevant segment
-    def run(self, context, command):
+    def run(self, context, metadata, command):
 
-        filtered_context = filter_metadata_by_semantic_similarity(
+        filtered_metadata = filter_metadata_by_semantic_similarity(
             targets=command,
-            candidates=context,
+            candidates=metadata,
             k=self.top_k,
             neighbors_left=self.neighbors_left,
             neighbors_right=self.neighbors_right,
         )
 
         result = self.chain.predict(
-            context=json.dumps([data["data"] for data in filtered_context]),
+            context=context,
+            metadata=json.dumps([data["data"] for data in filtered_metadata]),
             command=json.dumps(command),
         )
         return result
@@ -251,17 +265,18 @@ class ImageQueryChain():
         print("Set parameters")
 
     ### TODO: need to consider only metadata from the relevant segment
-    def run(self, context, command):
-        filtered_context = filter_metadata_by_semantic_similarity(
+    def run(self, context, metadata, command):
+        filtered_metadata = filter_metadata_by_semantic_similarity(
             targets=command,
-            candidates=context,
+            candidates=metadata,
             k=self.top_k,
             neighbors_left=self.neighbors_left,
             neighbors_right=self.neighbors_right,
         )
 
         result = self.chain.predict(
-            context=json.dumps([data["structured_data"] for data in filtered_context]),
+            context=context,
+            metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
             command=json.dumps(command),
         )
         return result
