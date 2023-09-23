@@ -32,9 +32,7 @@ def parse_intent():
     edit_request = request.json
     
     #pipeline.reset()
-    edit_response = langchain_pipeline.process_request(edit_request)
-    
-    response = "User Request: {} \n \n Edit Disambiguation: {}".format(edit_request, edit_response)
+    edit_response = langchain_pipeline.process_request_indexed(edit_request)
 
     return jsonify(edit_response)
 

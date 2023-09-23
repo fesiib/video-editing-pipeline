@@ -76,7 +76,7 @@ def get_examples():
     command1 = ["no one actually spend four hundred dollars on a surface go"]
     # [{'index': '3', 'explanation': 'ends with the same beginning as the request'}, {'index': '4', 'explanation': 'starts with the last part of the request'}]
     response1 = ListElements.get_instance(
-        indexes=["3", "4"],
+        indexes=[3, 4],
         explanations=['ends with the same beginning as the request', 'starts with the last part of the request'],
     )
 
@@ -100,7 +100,7 @@ def get_examples():
                  " 549. so the question becomes would you rather something"]
     command2 = ["when the guy mentions specs of the surface go"]
     response2 = ListElements.get_instance(
-        indexes=["0", "3", "4", "5", "6", "11", "12", "15"],
+        indexes=[0, 3, 4, 5, 6, 11, 12, 15],
         explanations=[
             "model of the processor",
             "ram specs", 

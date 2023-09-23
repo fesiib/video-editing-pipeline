@@ -47,35 +47,35 @@ class Rectangle(BaseModel):
     
     @validator("x")
     def x_must_be_valid(cls, v):
-        if isinstance(v, int) == False:
+        if type(v) != int:
             print("ERROR: X coordinate must be an integer")
             return 0
         return v
     
     @validator("y")
     def y_must_be_valid(cls, v):
-        if isinstance(v, int) == False:
+        if type(v) != int:
             print("Y coordinate must be an integer")
             return 0
         return v
     
     @validator("width")
     def width_must_be_valid_and_positive(cls, v):
-        if isinstance(v, int) == False or v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Width must be an integer")
             return 100
         return v
     
     @validator("height")
     def height_must_be_valid_and_positive(cls, v):
-        if isinstance(v, int) == False or v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Height must be an integer")
             return 100
         return v
 
     @validator("rotation")
     def rotation_must_be_valid(cls, v):
-        if isinstance(v, float) == False or v > 180 or v < -180:
+        if type(v) != float or v > 180 or v < -180:
             print("ERROR: Rotation must be a float between -180 and 180")
             return 0
         return v

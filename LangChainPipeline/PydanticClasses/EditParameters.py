@@ -28,7 +28,7 @@ class TextStyleParameters(BaseModel):
     
     @validator("fontSize")
     def font_size_must_be_positive(cls, v):
-        if v <= 0:
+        if v <= 0 or type(v) != int:
             print("ERROR: Font size must be positive: ", v)
             return 12
         return v
@@ -74,7 +74,7 @@ class BackgroundParameters(BaseModel):
     
     @validator("alpha")
     def alpha_must_be_between_zero_and_one(cls, v):
-        if v < 0 or v > 1:
+        if v < 0 or v > 1 or type(v) != float:
             print("ERROR: Alpha must be between 0 and 1: ", v)
             return 1
         return v
@@ -94,7 +94,7 @@ class StrokeParameters(BaseModel):
     
     @validator("width")
     def width_must_be_positive(cls, v):
-        if v <= 0:
+        if v <= 0 or type(v) != int:
             print("ERROR: Width must be positive: ", v)
             return 2
         return v
@@ -108,7 +108,7 @@ class StrokeParameters(BaseModel):
     
     @validator("alpha")
     def alpha_must_be_between_zero_and_one(cls, v):
-        if v < 0 or v > 1:
+        if v < 0 or v > 1 or type(v) != float:
             print("ERROR: Alpha must be between 0 and 1: ", v)
             return 1
         return v
@@ -126,14 +126,14 @@ class StarParameters(BaseModel):
     
     @validator("numPoints")
     def num_points_must_be_at_least_2(cls, v):
-        if v < 2:
+        if v < 2 or type(v) != int:
             print("ERROR: Number of points must be at least 2: ", v)
             return 5
         return v
     
     @validator("innerRadius")
     def inner_radius_must_be_positive(cls, v):
-        if v <= 0:
+        if v <= 0 or type(v) != int:
             print("ERROR: Inner radius must be positive: ", v)
             return 100
         return v
@@ -222,14 +222,14 @@ class ZoomParameters(BaseModel):
     
     @validator("zoomDurationStart")
     def zoom_duration_start_must_be_nonnegative(cls, v):
-        if v < 0:
+        if v < 0 or type(v) != int:
             print("ERROR: Zoom duration start must be positive: ", v)
             return 0
         return v
     
     @validator("zoomDurationEnd")
     def zoom_duration_end_must_be_nonnegative(cls, v):
-        if v < 0:
+        if v < 0 or type(v) != int:
             print("ERROR: Zoom duration end must be positive: ", v)
             return 0
         return v
@@ -259,28 +259,28 @@ class CropParameters(BaseModel):
     
     @validator("width")
     def width_must_be_nonnegative(cls, v):
-        if v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Width must be positive: ", v)
             return 100
         return v
     
     @validator("height")
     def height_must_be_nonnegative(cls, v):
-        if v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Height must be positive: ", v)
             return 100
         return v
     
     @validator("cropWidth")
     def crop_width_must_be_nonnegative(cls, v):
-        if v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Crop width must be positive: ", v)
             return 100
         return v
     
     @validator("cropHeight")
     def crop_height_must_be_nonnegative(cls, v):
-        if v < 0:
+        if type(v) != int or v < 0:
             print("ERROR: Crop height must be positive: ", v)
             return 100
         return v
@@ -296,7 +296,7 @@ class BlurParameters(BaseModel):
     
     @validator("blur")
     def blur_must_be_positive(cls, v):
-        if v <= 0:
+        if type(v) != int or v <= 0:
             print("ERROR: Blur must be positive: ", v)
             return 0
         return v

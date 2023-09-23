@@ -73,15 +73,15 @@ def get_examples():
     command1 = 'Zoom into the pan at around 1:31 when he is saying "Make sure to flip chicken after about 6 minutes'
     response1 = IndexedReferences.get_instance(
         [
-            ["28", "1:31"], ["52", "make sure to flip chicken after about 6 minutes"]
+            [28, "1:31"], [52, "make sure to flip chicken after about 6 minutes"]
         ],
         ["position", "transcript"],
         [
-            ["14", "pan"]
+            [14, "pan"]
         ],
         ["visual-dependent"],
         [
-            ["0", "zoom into"]
+            [0, "zoom into"]
         ],
         ["zoom"],
         [],
@@ -96,13 +96,13 @@ def get_examples():
     command2 = '27:32 - start video where he is talking about the chicken again - end the cut when he puts chicken into the oven.'
     response2 = IndexedReferences.get_instance(
         [
-            ["0", "27:32"], ["32", "talking about the chicken again"], ["86", "puts the chicken into the oven"]
+            [0, "27:32"], [32, "talking about the chicken again"], [86, "puts the chicken into the oven"]
         ],
         ["position", "transcript", "video"],
         [],
         [],
         [
-            ["8", "start video"], ["66", "end the cut"]
+            [8, "start video"], [66, "end the cut"]
         ],
         ["cut"],
         [],
@@ -117,21 +117,21 @@ def get_examples():
     command3 = 'Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn’t obstruct his movements for five seconds at which point the text disappears'
     response3 = IndexedReferences.get_instance(
         [
-            ["0", "whenever he introduces new ingredient and cooking instruction"], ["195", "for five seconds"]
+            [0, "whenever he introduces new ingredient and cooking instruction"], [195, "for five seconds"]
         ],
         ["transcript", "other"],
         [
-            ["87", "top left corner"], ["164", "doesn't obstruct his movements"],
+            [87, "top left corner"], [164, "doesn't obstruct his movements"],
         ],
         ["independent", "other"],
         [
-            ["12", "introduces new ingredient and cooking instruction"], ["70", "listed up"], ["231", "text"],
+            [12, "introduces new ingredient and cooking instruction"], [70, "listed up"], [231, "text"],
         ],
         ["text"],
         [
-            ["23", "new ingredient and cooking instruction"],
-            ["115", "arial font"],
-            ["130", "slightly smaller"],
+            [23, "new ingredient and cooking instruction"],
+            [115, "arial font"],
+            [130, "slightly smaller"],
         ],
         [],
         [],
@@ -144,24 +144,24 @@ def get_examples():
     command4 = '9:22 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
     response4 = IndexedReferences.get_instance(
         [
-            ["0", "9:22"]
+            [0, "9:22"]
         ],
         ["position"],
         [
-            ["52", "either side of subject"]
+            [52, "either side of subject"]
         ],
         ["visual-dependent"],
         [
-            ["7", "animate graphics"],
-            ["29", "book"],
-            ["38", "headphones"],
-            ["78", "engage audience"],
-            ["98", "emphasis point"],
+            [7, "animate graphics"],
+            [29, "book"],
+            [38, "headphones"],
+            [78, "engage audience"],
+            [98, "emphasis point"],
         ],
         ["image"],
         [],
         [
-            ["7", "animate graphics"], ["29", "book"], ["38", "headphones"]
+            [7, "animate graphics"], [29, "book"], [38, "headphones"]
         ],
         [],
         [],
@@ -173,21 +173,21 @@ def get_examples():
     command5 = 'Whenever there is laptop seen, highlight it with a transparent star around it'
     response5 = IndexedReferences.get_instance(
         [
-            ["0", "whenever there is laptop seen"]
+            [0, "whenever there is laptop seen"]
         ],
         ["video"],
         [
-            ["68", "around it"]
+            [68, "around it"]
         ],
         ["visual-dependent"],
         [
-            ["31", "highlight it"], ["51", "transparent star"]
+            [31, "highlight it"], [51, "transparent star"]
         ],
         ["shape"],
         [],
         [],
         [
-            ["51", "transparent star"]
+            [51, "transparent star"]
         ],
         [],
         [],

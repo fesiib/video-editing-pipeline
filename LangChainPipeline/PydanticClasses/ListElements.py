@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, validator
 from typing import Dict, List, Sequence
 
 class SingleElement(BaseModel):
-    index: str = Field(
+    index: int = Field(
         ...,
         title="Index of the element",
         description="Index of the element",
@@ -20,21 +20,13 @@ class SingleElement(BaseModel):
             explanation=explanation,
         )
 
-    @validator("index")
-    def index_must_be_valid_integer(cls, v):
-        if v.isdigit():
-            return v
-        else:
-            print("ERROR: index must be a valid integer")
-            return "0"
-
     @validator("explanation")
     def explanation_must_be_valid_string(cls, v):
         return v
     
     @validator("index")
     def index_must_be_nonnegative(cls, v):
-        if int(v) < 0:
+        if v < 0 or type(v) != int:
             print("ERROR: index must be nonnegative")
             return "0"
         return v

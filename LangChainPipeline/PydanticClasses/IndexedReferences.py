@@ -7,7 +7,7 @@ from LangChainPipeline.PydanticClasses.References import References
 class SingleReference(BaseModel):
     """A single reference to a temporal, spatial, edit operation, or parameter in a user's video editing command along with offset within the original command"""
 
-    offset: str = Field(
+    offset: int = Field(
         ...,
         title="Offset of the reference int he original command",
         description="Offset of the reference int he original command",
@@ -18,19 +18,11 @@ class SingleReference(BaseModel):
         description="The reference (one of temporal, spatial, edit operation, or parameters)",
     )
 
-    def __init__(self, offset="0", reference=""):
+    def __init__(self, offset=0, reference=""):
         super().__init__(
             offset=offset,
             reference=reference,
         )
-
-    @validator("offset")
-    def offset_must_be_valid_integer(cls, v):
-        if v.isdigit():
-            return v
-        else:
-            print("ERROR: offset must be a valid integer")
-            return "0"
     
     @validator("reference")
     def reference_must_be_valid_string(cls, v):
@@ -38,9 +30,9 @@ class SingleReference(BaseModel):
 
     @validator("offset")
     def offset_must_be_nonnegative(cls, v):
-        if int(v) < 0:
+        if v < 0 or type(v) != int:
             print("ERROR: offset must be nonnegative")
-            return "0"
+            return 0
         return v
 
 class IndexedReferences(BaseModel):

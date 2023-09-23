@@ -71,7 +71,7 @@ def get_examples():
     ]
     command1 = ["when the guys is holding the laptop"]
     response1 = ListElements.get_instance(
-        indexes=["1", "2", "4"],
+        indexes=[1, 2, 4],
         explanations=["actions matched: laptop holding",
             "actions matched: holding a laptop", 
             "matching actions: holding a laptop",
@@ -108,7 +108,7 @@ def get_examples():
     ]
     command2 = ["when the guys is focusing on something else than camera"]
     response2 = ListElements.get_instance(
-        indexes=["1", "2"],
+        indexes=[1, 2],
         explanations=[
             "actions matched: looking at a large flat screen", 
             "matching actions: looking at screen",

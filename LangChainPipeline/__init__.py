@@ -386,7 +386,7 @@ class LangChainPipeline():
         ### set edit operations
         response["requestParameters"]["editOperations"] = simple_references.edit
         response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
-        response["requestParameters"]["indexedReferences"] = references.model_dump_json()
+        response["requestParameters"]["indexedReferences"] = references.dict()
 
         
         ### predict temporal segments
