@@ -14,6 +14,8 @@ from pycocotools import mask as mask_utils
 # from segment_anything import sam_model_registry, SamAutomaticMaskGenerator, SamPredictor
 from .helpers import Timecode
 
+SEGMENTATION_DATA_PATH = "segmentation-data"
+
 class ImageProcessor:
     def __init__(self):
         # sam_checkpoint = "/mnt/c/Users/indue/Downloads/sam_vit_h_4b8939.pth"
@@ -99,12 +101,12 @@ class ImageProcessor:
     #         images.append(transformers.preprocess(masked_image_pil))
     #     return images
     
-    def extract_candidate_frame_masks(self, frame_range):
+    def extract_candidate_frame_masks(self, frame_range, video_id):
         start_frame = frame_range["start"]
         end_frame = frame_range["end"]
         
         candidate_frame = (end_frame.convert_timecode_to_sec() + start_frame.convert_timecode_to_sec()) // 2 
-        FRAME_DIR = os.path.join("Data", "Frame.{}.0".format(int(candidate_frame)))
+        FRAME_DIR = os.path.join(SEGMENTATION_DATA_PATH, video_id, "Frame.{}.0".format(int(candidate_frame)))
 
         MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
         IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")    
@@ -129,9 +131,9 @@ class ImageProcessor:
 
         return input_images, input_bboxes, candidate_frame, image
 
-    def get_candidates_from_frame(self, frame_sec):
+    def get_candidates_from_frame(self, frame_sec, video_id):
         
-        FRAME_DIR = os.path.join("Data", "Frame.{}.0".format(frame_sec))
+        FRAME_DIR = os.path.join(SEGMENTATION_DATA_PATH, video_id, "Frame.{}.0".format(frame_sec))
 
         MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
         IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")    
@@ -204,7 +206,7 @@ class ImageProcessor:
 def main():    
     image_processor = ImageProcessor()
     frame_range = {'start': Timecode("00:03:00"), 'end': Timecode("00:03:10")}
-    input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range)
+    input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range, "4LdIvyfzoGY")
     # image_processor.create_masks(img)
     image_processor.extract_related_crop("cables on a table", input_bboxes, input_images, frame_id, img)
 

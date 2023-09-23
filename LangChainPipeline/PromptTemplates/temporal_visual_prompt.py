@@ -38,10 +38,12 @@ Visual descriptions of 10-second clips: {metadata}
 Response:
 """
 
-#TODO
 def get_examples():
 
-    context1 = []
+    context1 = [
+        "The video is 34 minutes and 23 seconds long",
+        "The original command was: Highlight around his hand when the guy is holding the laptop",
+    ]
     metadata1 = [
         {
             "action": "using computer",
@@ -69,7 +71,7 @@ def get_examples():
             "dense_caption": "a man playing the wii,a black framed projector screen,a silver laptop,a person is holding a wii controller,a white apple computer,black cords on the desk,a man with brown hair\n",
         }
     ]
-    command1 = ["when the guys is holding the laptop"]
+    command1 = ["when the guy is holding the laptop"]
     response1 = ListElements.get_instance(
         indexes=[1, 2, 4],
         explanations=["actions matched: laptop holding",
@@ -78,7 +80,10 @@ def get_examples():
         ],
     )
 
-    context2 = []
+    context2 = [
+        "The video ends at 4:34",
+        "The original command was: Put a warning sign when the guy is focusing on something else than camera",
+    ]
     metadata2 = [
         {
             "action": "using computer",
@@ -106,7 +111,7 @@ def get_examples():
             "dense_caption": "a man playing the wii,a black framed projector screen,a silver laptop,a person is holding a wii controller,a white apple computer,black cords on the desk,a man with brown hair\n",
         }
     ]
-    command2 = ["when the guys is focusing on something else than camera"]
+    command2 = ["when the guy is focusing on something else than camera"]
     response2 = ListElements.get_instance(
         indexes=[1, 2],
         explanations=[
@@ -119,13 +124,13 @@ def get_examples():
     examples.append({
         "context": json.dumps(context1),
         "metadata": json.dumps(metadata1),
-        "command": command1,
+        "command": json.dumps(command1),
         "response": response1.model_dump_json(),
     })
     examples.append({
         "context": json.dumps(context2),
         "metadata": json.dumps(metadata2),
-        "command": command2,
+        "command": json.dumps(command2),
         "response": response2.model_dump_json(),
     })
     return examples

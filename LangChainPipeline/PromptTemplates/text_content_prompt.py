@@ -30,9 +30,11 @@ Context: {context}
 Transcript snippets: {metadata}
 Response:
 """
-#TODO
+
 def get_examples():
-    context1 = []
+    context1 = [
+        "The original command was: Put a greeting text in the beginning.",
+    ]
     metadata1 = [
         " oh happy friday everyone so a couple of",
         " serendipitous things sort of happened here uh one i was in the middle of working on a video actually come check this thing out so this is the gpd",
@@ -40,7 +42,9 @@ def get_examples():
     command1 = ["a greeting text"]
     response1 = "Happy Friday!"
 
-    context2 = []
+    context2 = [
+        "The original command was: Whenever he starts talking about the wifi, put an imaginary wifi password.",
+    ]
     metadata2 = [
         " up before don't finish up now you told me you were done sorry let me just get my wi-fi password in here i'm just gonna throw in some extra motions",
         " so that hopefully you guys reverse engineer my password here because that would be really really really inconvenient for me i would",
@@ -49,7 +53,9 @@ def get_examples():
     command2 = ["an imaginary wifi password"]
     response2 = "Linu*****est"
 
-    context3 = []
+    context3 = [
+        "The original command was: Whenever mentioned, put the specs of the surface go",
+    ]
     metadata3 = [
         " surface go is using what is it a there it is a 4415 y processor what do you like brandon do you like the unboxing on black",
         " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got a 4415 why processor four gigs or eight gigs of ram",
@@ -58,7 +64,9 @@ def get_examples():
     command3 = ["specs of the surface go"]
     response3 = "4415y processor,\n4GB RAM,\n64GB storage,\n9h battery life"
 
-    context4 = []
+    context4 = [
+        "The original command was: Put the price of the surface go where it is mentioned or can be seen.",
+    ]
     metadata4 = [
         " oh happy friday everyone so a couple of",
         " serendipitous things sort of happened here uh one i was in the middle of working on a video actually come check this thing out so this is the gpd",
@@ -70,25 +78,25 @@ def get_examples():
     examples.append({
         "context": json.dumps(context1),
         "metadata": json.dumps(metadata1),
-        "command": command1,
+        "command": json.dumps(command1),
         "response": response1,
     })
     examples.append({
         "context": json.dumps(context2),
         "metadata": json.dumps(metadata2),
-        "command": command2,
+        "command": json.dumps(command2),
         "response": response2,
     })
     examples.append({
         "context": json.dumps(context3),
         "metadata": json.dumps(metadata3),
-        "command": command3,
+        "command": json.dumps(command3),
         "response": response3,
     })
     examples.append({
         "context": json.dumps(context4),
         "metadata": json.dumps(metadata4),
-        "command": command4,
+        "command": json.dumps(command4),
         "response": response4,
     })
     return examples

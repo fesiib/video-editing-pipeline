@@ -193,7 +193,7 @@ class Pipeline():
 
     def process_spatial(self, spatial_intent, frame_range):
         image_processor = ImageProcessor()
-        input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range)
+        input_images, input_bboxes, frame_id, img = image_processor.extract_candidate_frame_masks(frame_range, "4LdIvyfzoGY")
         return image_processor.extract_related_crop(
             spatial_intent,
             input_bboxes,

@@ -38,9 +38,12 @@ Context: {context}
 Initial Parameters: {initial_parameters}
 Response:
 """
-#TODO
+
 def get_examples():
-    context1 = []
+    context1 = [
+        "The original command was: For each moment where the speaker is talking about learning points, add a text with bigger font and red background.",
+        "Video Properties are: height: 480, width: 854"
+    ]
     initial_parameters1 = EditParameters.get_instance(
         textParameters={"content":"Text","style":{"fill":"#000000","fontSize":12,"fontFamily":"Arial","align":"center","verticalAlign":"middle"},"background":{"fill":"#ffffff","alpha":1}},
         # imageParameters={"source": "/placeholder.jpg", "searchQuery": ""},
@@ -69,7 +72,9 @@ def get_examples():
         zoomParameters={"zoomDurationStart":0,"zoomDurationEnd":0},
     )
 
-    context2 = []
+    context2 = ["The original command was: Do 2 seconds long zoom out at the beginning of the video and add shorter text with flashy shape.",
+        "Video Properties are: height: 500, width: 1000"
+    ]
     initial_parameters2 = EditParameters.get_instance(
         textParameters={"content":"The text is about how to make it work?","style":{"fill":"#000000","fontSize":12,"fontFamily":"Courier New","align":"left","verticalAlign":"bottom"},"background":{"fill":"#ffffff","alpha":1}},
         # imageParameters={"source": "/placeholder.jpg", "searchQuery": ""},

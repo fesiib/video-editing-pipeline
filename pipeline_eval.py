@@ -6,6 +6,76 @@ import json
 def round_number(number):
     return math.floor(number * 1000) / 1000
 
+def evaluate_all():
+    task_ids = [2, 3, 4, 5, 6]
+    result = run_evaluation(
+        task_ids = task_ids,
+        data_point_getter = get_data_point_as_request,
+        pipeline_runner = run_langchain_pipeline_request,
+        # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
+        # indexes = [0, 2, 4, 6, 8, 10],
+        indexes=[0]
+    )
+
+    if (len(result["dataset"]) == 0):
+        return
+    
+    print("Summary:")
+    print("--------------------")
+
+    print("Temporal F1 Margin=0: ", round_number(result["temporal_f1_0"]), " --> ", [round_number(x) for x in result["all_temporal_f1_0"]])
+    print("Temporal Precision Margin=0", round_number(result["temporal_precision_0"]), " --> ", [round_number(x) for x in result["all_temporal_precision_0"]])
+    print("Temporal Recall Margin=0", round_number(result["temporal_recall_0"]), " --> ", [round_number(x) for x in result["all_temporal_recall_0"]])
+    print("--------------------")
+    print ("Temporal F1 Margin=5: ", round_number(result["temporal_f1_5"]), " --> ", [round_number(x) for x in result["all_temporal_f1_5"]])
+    print("Temporal Precision Margin=5", round_number(result["temporal_precision_5"]), " --> ", [round_number(x) for x in result["all_temporal_precision_5"]])
+    print("Temporal Recall Margin=5", round_number(result["temporal_recall_5"]), " --> ", [round_number(x) for x in result["all_temporal_recall_5"]])
+    print("--------------------")
+    print("Temporal F1 Margin=10: ", round_number(result["temporal_f1_10"]), " --> ", [round_number(x) for x in result["all_temporal_f1_10"]])
+    print("Temporal Precision Margin=10", round_number(result["temporal_precision_10"]), " --> ", [round_number(x) for x in result["all_temporal_precision_10"]])
+    print("Temporal Recall Margin=10", round_number(result["temporal_recall_10"]), " --> ", [round_number(x) for x in result["all_temporal_recall_10"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=0: ", round_number(result["spatial_miou_0"]), " --> ", [round_number(x) for x in result["all_spatial_miou_0"]])
+    print("Spatial Thresholded Margin=0: ", round_number(result["spatial_thresholded_0"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_0"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=5: ", round_number(result["spatial_miou_5"]), " --> ", [round_number(x) for x in result["all_spatial_miou_5"]])
+    print("Spatial Thresholded Margin=5: ", round_number(result["spatial_thresholded_5"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_5"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=10: ", round_number(result["spatial_miou_10"]), " --> ", [round_number(x) for x in result["all_spatial_miou_10"]])
+    print("Spatial Thresholded Margin=10: ", round_number(result["spatial_thresholded_10"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_10"]])
+    print("--------------------")
+    print("Edit Operation: ", round_number(result["edit_operation"]), " --> ", [round_number(x) for x in result["all_edit_operation"]])
+    #print("Parameters: ", result["parameters"])
+    pass
+
+def evaluate_all_spatial():
+    task_ids = [2, 3, 4, 5, 6]
+    # task_ids = [6]
+    result = run_evaluation_spatial(
+        task_ids = task_ids,
+        indexes = [],
+        # indexes=[0, 1]
+    )
+
+    if (len(result["dataset"]) == 0):
+        return
+    
+    print("Summary:")
+    print("--------------------")
+    print("Spatial mIOU: ", round_number(result["spatial_miou"]), " --> ", [round_number(x) for x in result["all_spatial_miou"]])
+    print("Spatial Thresholded: ", round_number(result["spatial_thresholded"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=0: ", round_number(result["spatial_miou_0"]), " --> ", [round_number(x) for x in result["all_spatial_miou_0"]])
+    print("Spatial Thresholded Margin=0: ", round_number(result["spatial_thresholded_0"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_0"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=5: ", round_number(result["spatial_miou_5"]), " --> ", [round_number(x) for x in result["all_spatial_miou_5"]])
+    print("Spatial Thresholded Margin=5: ", round_number(result["spatial_thresholded_5"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_5"]])
+    print("--------------------")
+    print("Spatial mIOU Margin=10: ", round_number(result["spatial_miou_10"]), " --> ", [round_number(x) for x in result["all_spatial_miou_10"]])
+    print("Spatial Thresholded Margin=10: ", round_number(result["spatial_thresholded_10"]), " --> ", [round_number(x) for x in result["all_spatial_thresholded_10"]])
+    print("--------------------")
+    pass
+
 def main_evaluate_request():
     result = run_evaluation_for_task(
         task_id = 6,
@@ -13,6 +83,7 @@ def main_evaluate_request():
         pipeline_runner = run_langchain_pipeline_request,
         # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
         indexes = [0, 2, 4, 6, 8, 10]
+        # indexes=[0, 1, 2]
     )
 
     if (len(result["dataset"]) == 0):
@@ -179,7 +250,10 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    main_evaluate_request()
+    evaluate_all_spatial()
+    # evaluate_all()
+    
+    # main_evaluate_request()
     # main_evaluate_temporal()
     
     

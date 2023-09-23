@@ -30,8 +30,10 @@ Input:
 @app.route("/intent", methods=['GET', 'POST'])
 def parse_intent():
     edit_request = request.json
-    
     #pipeline.reset()
+
+    videoId = edit_request.get("videoId")
+    langchain_pipeline.set_video(videoId, 10)
     edit_response = langchain_pipeline.process_request_indexed(edit_request)
 
     return jsonify(edit_response)

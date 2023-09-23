@@ -35,10 +35,10 @@ PREFIX_TEMPORAL_TRANSCRIPT_PROMPT= """
 You are a video editor's assistant who is trying to understand the natural language reference of the video editor to some part of the video given the original context of the reference and relevant snippets of the transcript of the video.
 
 Instruction:
-Locate the snippets of the transcript that are relevant to the editor's command ad original context, and return the positions of those snippets from the list along with short explanation of how each is relevant to editor's command.
+Locate the snippets of the transcript that are relevant to the editor's command and original context, and return the positions of those snippets from the list along with short explanation of how each one is relevant to editor's command and original context.
 
 Note 1: If there are no relevant snippets, return an empty array [].
-Note 2: If there is more than one snippet that is relevant to the editor's command, output all of them in a list.
+Note 2: If there is more than one snippet that is relevant to the editor's command, output all of them in a list with respective indexes and explanations.
 
 {format_instructions}
 """
@@ -57,9 +57,11 @@ Transcript Snippets: {metadata}
 Response:
 """
 
-#TODO
 def get_examples():
-    context1 = []
+    context1 = [
+        "The video ends at 5:00",
+        "The original command was: Add a big sign when they guy says no one actually spend four hundred dollars on a surface go",
+    ]
     metadata1 = [
         " one thing that's a little frustrating not just about the surface go",
         " but about a lot of devices like it is that you've got this really low advertised",
@@ -80,7 +82,10 @@ def get_examples():
         explanations=['ends with the same beginning as the request', 'starts with the last part of the request'],
     )
 
-    context2 = []
+    context2 = [
+        "The video ends at 1453 seconds.",
+        "The original command was: When the guy mentions specs of the surface go, put a textbox with that information.",
+    ]
     metadata2 = [" surface go is using what is it a there it is a 4415",
                  " y processor what do you like brandon do you like the unboxing on black",
                  " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got",
@@ -117,13 +122,13 @@ def get_examples():
     examples.append({
         "context": json.dumps(context1),
         "metadata": json.dumps(metadata1),
-        "command": command1,
+        "command": json.dumps(command1),
         "response": response1.model_dump_json(),
     })
     examples.append({
         "context": json.dumps(context2),
         "metadata": json.dumps(metadata2),
-        "command": command2,
+        "command": json.dumps(command2),
         "response": response2.model_dump_json(),
     })
     return examples

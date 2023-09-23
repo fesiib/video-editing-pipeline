@@ -30,10 +30,10 @@ Context: {context}
 Visual Descriptions: {metadata}
 Response:
 """
-# TODO: fill in the example contexts
+
 def get_examples():
     context1 = [
-
+        "The original command was: Put some images of devices that can be seen in the video.",
     ]
     metadata1 = [
         {
@@ -51,7 +51,7 @@ def get_examples():
     response1 = "black laptop, black and sliver watch, cell phone, black keyboard png"
 
     context2 = [
-
+        "The original command was: Whenever possible, put an icon that represents the scene.",
     ]
     metadata2 = [
         {
@@ -68,7 +68,9 @@ def get_examples():
     command2 = ["icon that represents the scene"]
     response2 = "man working at a desk on a laptop icon png"
 
-    context3 = []
+    context3 = [
+        "The original command was: Based on the current scene, add an appropriate meme."
+    ]
     metadata3 = [
         {
             "action": "using computer",

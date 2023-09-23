@@ -28,6 +28,7 @@ class EditChain():
         self.visual_metadata = None
         self.transcript_metadata = None
         self.interval = interval
+        self.video_id = video_id
         self.set_video(video_id, interval)
         
         self.all_parameters = AllParametersChain(
@@ -54,6 +55,7 @@ class EditChain():
         print("Initialized EditChain")
 
     def set_video(self, video_id, interval):
+        self.video_id = video_id
         metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
         self.visual_metadata = []
         self.transcript_metadata = []

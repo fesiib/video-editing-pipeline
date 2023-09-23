@@ -29,6 +29,7 @@ class TemporalChain():
         self.transcript_metadata = None
         self.context = None
         self.interval = interval
+        self.video_id = video_id
         self.set_video(video_id, interval)
         self.position = TemporalPositionChain(verbose)
         self.transcript = TemporalTranscriptChain(
@@ -50,6 +51,7 @@ class TemporalChain():
         print("Initialized TemporalChain")
 
     def set_video(self, video_id, interval):
+        self.video_id = video_id
         metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
         self.visual_metadata = []
         self.transcript_metadata = []

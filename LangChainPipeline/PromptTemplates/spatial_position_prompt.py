@@ -12,15 +12,14 @@ from LangChainPipeline.PydanticClasses.Rectangle import Rectangle
 
 
 PREFIX_SPATIAL_POSITION_PROMPT= """
-You are a video editor's assistant who is trying to understand editor's natural language description of the spatial location within the frame. The description is based on the rectangle that is already present in the frame. You will have to refine its location and resize (if necessary) based on the command. You will do it step-by-step.
+You are a video editor's assistant who is trying to understand editor's natural language description of the spatial location within the frame. The description is based on the rectangle that is already present in the frame. You will have to refine its location and resize (if necessary) based on the command.
+You will be given the initial location of the rectangle in the frame: x, y, width, height, where (x, y) are coordinates of the top-left corner, and (width, height) are just width and height. Also, you will be given a command that describes the desired spatial location of the rectangle in the frame, the original context of the command, and the boundaries of the frame (e.g. width=1280, height=720)
 
-Instructions:
-1. You will be given an initial location of the rectangle in the frame and the boundaries of the frame (do not exceed outside the boundaries) (i.e width = 480, height = 854).
-2. You will be given a command that describes the desired spatial location of the rectangle in the frame and the original context of the command.
-3. You will have to refine the location of the rectangle based on the command and context.
-4. You will have to resize the rectangle based on the command and context.
+You will do it step-by-step.
+1. Refine the location of the rectangle (x, y coorindates) based on the command, original context of the command, and boundaries of the frame (make sure not to exceed the boundaries);
+2. Resize the rectangle (width, height) based on the command, original context of the command, and boundaries of the frame (make sure not to exceed the boundaries);
 
-Perform each step one-by-one and output the final location of the rectangle in the frame.
+Perform each step one-by-one and output the final location of the rectangle in the frame in appropriate format.
 
 {format_instructions}
 """
@@ -39,10 +38,13 @@ Rectangle: {rectangle}
 Response:
 """
 
-#TODO
+
 def get_examples():
     #example1
-    context1 = ["height: 100, width: 100"]
+    context1 = [
+        "Frame Size: height: 100, width: 100",
+        "The original command was: Put a rectangle in the top left corner."
+    ]
     rectangle1 = Rectangle.get_instance(
         x=0,
         y=0,
@@ -59,7 +61,10 @@ def get_examples():
         rotation=0,
     )
     #example2
-    context2 = ["height: 480, width: 854"]
+    context2 = [
+        "Frame Size: height: 480, width: 854",
+        "The original command was: Whenever laptop is mentioned, put a textbox on the right side of the frame."
+    ]
     rectangle2 = Rectangle.get_instance(
         x=150,
         y=300,
@@ -76,7 +81,10 @@ def get_examples():
         rotation=0,
     )
     #example3
-    context3 = ["height: 200, width: 200"]
+    context3 = [
+        "Frame Size: height: 200, width: 200",
+        "The original command was: Zoom should start at the bottom center."
+    ]
     rectangle3 = Rectangle.get_instance(
         x=50,
         y=0,
@@ -93,7 +101,10 @@ def get_examples():
         rotation=0,
     )
     #example4
-    context4 = ["height: 500, width: 1000"]
+    context4 = [
+        "Frame Size: height: 500, width: 1000",
+        "The original command was: Put the textbox with greeting text at the title-like position."
+    ]
     rectangle4 = Rectangle.get_instance(
         x=300,
         y=190,

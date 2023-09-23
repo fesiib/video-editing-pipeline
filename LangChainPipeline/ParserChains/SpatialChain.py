@@ -24,6 +24,7 @@ class SpatialChain():
         self.visual_metadata = None
         self.transcript_metadata = None
         self.interval = interval
+        self.video_id = video_id
         self.set_video(video_id, interval)
         self.position = SpatialPositionChain(verbose)
         self.image_processor = ImageProcessor()
@@ -34,6 +35,7 @@ class SpatialChain():
         print("Initialized SpatialChain")
 
     def set_video(self, video_id, interval):
+        self.video_id = video_id
         metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
         self.visual_metadata = []
         self.transcript_metadata = []
@@ -72,7 +74,7 @@ class SpatialChain():
         print("Set parameters SpatialChain")
 
     def process_visual_command(self, command, frame_sec, video_shape, offsets):
-        input_images, input_bboxes, frame_id, img = self.image_processor.get_candidates_from_frame(frame_sec)
+        input_images, input_bboxes, frame_id, img = self.image_processor.get_candidates_from_frame(frame_sec, self.video_id)
         bbox = self.image_processor.extract_related_crop(
             command[0],
             input_bboxes,

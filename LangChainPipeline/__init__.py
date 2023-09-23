@@ -28,6 +28,8 @@ class LangChainPipeline():
 
     def set_video(self, video_id, interval):
         self.temporal_interpreter.set_video(video_id, interval)
+        self.parameters_interpreter.set_video(video_id, interval)
+        self.spatial_interpreter.set_video(video_id, interval)
 
     def set_parameters(self, top_k, neighbors_left, neighbors_right):
         self.temporal_interpreter.set_parameters(top_k, neighbors_left, neighbors_right)
