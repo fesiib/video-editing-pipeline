@@ -313,7 +313,7 @@ class EditParameters(BaseModel):
     shapeParameters: ShapeParameters = Field(..., description="Shape edit parameters")
     blurParameters: BlurParameters = Field(..., description="Blur edit parameters")
     # cutParameters: CutParameters = Field(..., description="Cut edit parameters")
-    cropParameters: CropParameters = Field(..., description="Crop edit parameters")
+    # cropParameters: CropParameters = Field(..., description="Crop edit parameters")
     zoomParameters: ZoomParameters = Field(..., description="Zoom edit parameters")
     
     def __init__(
@@ -323,7 +323,7 @@ class EditParameters(BaseModel):
         shapeParameters,
         blurParameters,
         # cutParameters,
-        cropParameters,
+        # cropParameters,
         zoomParameters,
     ):
         super().__init__(
@@ -332,7 +332,7 @@ class EditParameters(BaseModel):
             shapeParameters=shapeParameters,
             blurParameters=blurParameters,
             # cutParameters=cutParameters,
-            cropParameters=cropParameters,
+            # cropParameters=cropParameters,
             zoomParameters=zoomParameters,
         )
 
@@ -343,7 +343,7 @@ class EditParameters(BaseModel):
             "shapeParameters": self.shapeParameters,
             "blurParameters": self.blurParameters,
             # "cutParameters": self.cutParameters,
-            "cropParameters": self.cropParameters,
+            # "cropParameters": self.cropParameters,
             "zoomParameters": self.zoomParameters,
         }
 
@@ -354,7 +354,7 @@ class EditParameters(BaseModel):
             "shape": self.shapeParameters,
             "blur": self.blurParameters,
             # "cut": self.cutParameters,
-            "crop": self.cropParameters,
+            # "crop": self.cropParameters,
             "zoom": self.zoomParameters,
         }
     
@@ -365,7 +365,7 @@ class EditParameters(BaseModel):
         shapeParameters = ShapeParameters(**shapeParameters)
         blurParameters = BlurParameters(**blurParameters)
         # cutParameters = CutParameters(**cutParameters)
-        cropParameters = CropParameters(**cropParameters)
+        # cropParameters = CropParameters(**cropParameters)
         zoomParameters = ZoomParameters(**zoomParameters)
 
         return cls(
@@ -374,6 +374,6 @@ class EditParameters(BaseModel):
             shapeParameters=shapeParameters,
             blurParameters=blurParameters,
             # cutParameters=cutParameters,
-            cropParameters=cropParameters,
+            # cropParameters=cropParameters,
             zoomParameters=zoomParameters,
         )

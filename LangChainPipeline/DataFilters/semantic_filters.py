@@ -11,6 +11,9 @@ def filter_metadata_by_semantic_similarity(targets, candidates, k, neighbors_lef
     :return: top k candidates
     """
     
+    if len(candidates) == 0 or k == 0:
+        return []
+
     # remove transcript segments that are in the skipped segments
     for i, candidate in enumerate(candidates):
         candidate["score"] = 0

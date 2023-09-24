@@ -50,7 +50,7 @@ def get_examples():
         shapeParameters={"type":"rectangle","background":{"fill":"#ffffff","alpha":1},"stroke":{"width":2,"fill":"#000000","alpha":1},"star":{"numPoints":6,"innerRadius":100}},
         blurParameters={"blur":6},
         # cutParameters={},
-        cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
+        # cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
         zoomParameters={"zoomDurationStart":0,"zoomDurationEnd":0},
     )
     command1 = {
@@ -59,7 +59,7 @@ def get_examples():
         "shapeParameters": [],
         "blurParameters": [],
         # "cutParameters": [],
-        "cropParameters": [],
+        # "cropParameters": [],
         "zoomParameters": [],
     }
     response1 = EditParameters.get_instance(
@@ -68,7 +68,7 @@ def get_examples():
         shapeParameters={"type":"rectangle","background":{"fill":"#ffffff","alpha":1},"stroke":{"width":2,"fill":"#000000","alpha":1},"star":{"numPoints":6,"innerRadius":100}},
         blurParameters={"blur":6},
         # cutParameters={},
-        cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
+        # cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
         zoomParameters={"zoomDurationStart":0,"zoomDurationEnd":0},
     )
 
@@ -81,7 +81,7 @@ def get_examples():
         shapeParameters={"type":"rectangle","background":{"fill":"#ffffff","alpha":1},"stroke":{"width":2,"fill":"#000000","alpha":1},"star":{"numPoints":6,"innerRadius":100}},
         blurParameters={"blur":6},
         # cutParameters={},
-        cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
+        # cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
         zoomParameters={"zoomDurationStart":0,"zoomDurationEnd":0},
     )
     command2 = {
@@ -90,7 +90,7 @@ def get_examples():
         "shapeParameters": ["flashy shape"],
         "blurParameters": [],
         # "cutParameters": [],
-        "cropParameters": [],
+        # "cropParameters": [],
         "zoomParameters": ["2 seconds long zoom out"],
     }
     response2 = EditParameters.get_instance(
@@ -99,7 +99,7 @@ def get_examples():
         shapeParameters={"type":"star","background":{"fill":"#ffff00","alpha":1},"stroke":{"width":2,"fill":"#000000","alpha":1},"star":{"numPoints":10,"innerRadius":200}},
         blurParameters={"blur":6},
         # cutParameters={},
-        cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
+        # cropParameters={"x":0,"y":0,"width":0,"height":0,"cropX":0,"cropY":0,"cropWidth":0,"cropHeight":0},
         zoomParameters={"zoomDurationStart":0,"zoomDurationEnd":2},
     )
 

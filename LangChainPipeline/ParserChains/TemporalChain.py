@@ -80,7 +80,7 @@ class TemporalChain():
                     "data": transcript,
                 })
             self.context = [f'The video ends at {self.visual_metadata[-1]["end"]}']
-        print("Set video")
+        print("Set video TemporalChain")
 
     def set_parameters(self, top_k, neighbors_left, neighbors_right):
         self.top_k = top_k

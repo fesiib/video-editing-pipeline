@@ -83,7 +83,7 @@ class EditChain():
                     "end": interval["end"],
                     "data": transcript,
                 })
-        print("Set video")
+        print("Set video EditChain")
 
     def set_parameters(self, top_k, neighbors_left, neighbors_right):
         self.top_k = top_k
@@ -102,14 +102,6 @@ class EditChain():
             f'The original command was: {original_command}',
             f'Video Properties are: height: {str(video_shape[0])}, width: {str(video_shape[1])}'
         ]
-
-        total_references = 0
-        for parameter in parameters:
-            total_references += len(parameters[parameter])
-        
-        if total_references == 0:
-            return initial_edit_parameters
-        
         new_edit_parameters = self.all_parameters.run(context, parameters, initial_edit_parameters)
         return new_edit_parameters
 
@@ -124,7 +116,7 @@ class EditChain():
             f'The original command was: {original_command}',
         ]
         metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
-        if len(parameters["textParameters"]) > 0 and len(metadata) > 0:
+        if len(parameters["textParameters"]) > 0:
             initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
                 context,
                 metadata,
@@ -142,13 +134,29 @@ class EditChain():
             f'The original command was: {original_command}',
         ]
         metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
-        if len(parameters["imageParameters"]) > 0 and len(metadata) > 0:
+        if len(parameters["imageParameters"]) > 0:
             initial_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
                 context,
                 metadata,
                 parameters["imageParameters"],
             )
         return initial_edit_parameters
+    
+    def run_crop_parameters(self,
+        spatial_parameters,
+        initial_edit_parameters,
+        video_shape,
+    ):
+        initial_edit_parameters["cropParameters"]["x"] = 0
+        initial_edit_parameters["cropParameters"]["y"] = 0
+        initial_edit_parameters["cropParameters"]["width"] = video_shape[1]
+        initial_edit_parameters["cropParameters"]["height"] = video_shape[0]
+        initial_edit_parameters["cropParameters"]["cropX"] = spatial_parameters["x"]
+        initial_edit_parameters["cropParameters"]["cropY"] = spatial_parameters["y"]
+        initial_edit_parameters["cropParameters"]["cropWidth"] = spatial_parameters["width"]
+        initial_edit_parameters["cropParameters"]["cropHeight"] = spatial_parameters["height"]
+        return initial_edit_parameters
+
 
 
 class AllParametersChain():
@@ -156,7 +164,7 @@ class AllParametersChain():
             self,
             verbose=False,
     ):
-        self.skip_parameters = ["imageParameters", "cutParameters"]
+        self.skip_parameters = ["imageParameters", "cutParameters", "cropParameters"]
         self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
         self.parser = PydanticOutputParser(pydantic_object=EditParameters)
 
@@ -180,10 +188,20 @@ class AllParametersChain():
         return filtered_parameters
 
     def run(self, context, parameters, initial_edit_parameters):
+        filtered_parameters = self.filter_parameters(parameters)
+        filtered_edit_parameters = self.filter_parameters(initial_edit_parameters)
+
+        total_references = 0
+        for parameter in filtered_parameters:
+            total_references += len(filtered_parameters[parameter])
+        
+        if total_references == 0:
+            return initial_edit_parameters
+
         result = self.chain.predict(
             context=context,
-            command=json.dumps(self.filter_parameters(parameters)),
-            initial_parameters=json.dumps(self.filter_parameters(initial_edit_parameters)),
+            command=json.dumps(filtered_parameters),
+            initial_parameters=json.dumps(filtered_edit_parameters),
         )
         dict_result = result.dict()
         for parameter in self.skip_parameters:

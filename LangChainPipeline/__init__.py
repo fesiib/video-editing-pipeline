@@ -7,6 +7,8 @@ from LangChainPipeline.ParserChains.EditChain import EditChain
 from LangChainPipeline.ParserChains.SpatialChain import SpatialChain
 from LangChainPipeline.ParserChains.SummarizeRequestChain import SummarizeRequestChain
 
+from langchain.callbacks import get_openai_callback
+
 from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_same_objects
 
 from backend.operations import get_edit_segment
@@ -43,15 +45,43 @@ class LangChainPipeline():
         spatial_offsets,
         edits, sketches, video_shape,
     ):
-        for edit in edits:
-            start = timecode_to_seconds(edit["temporalParameters"]["start"])
-            finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
-            spatial_position_set = False
-            
-            ### check if sketch is available
-            for sketch in sketches:
-                if sketch["timestamp"] >= start and sketch["timestamp"] < finish:
-                    edit["spatialParameters"] = {
+        with get_openai_callback() as cb:
+            for edit in edits:
+                start = timecode_to_seconds(edit["temporalParameters"]["start"])
+                finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
+                spatial_position_set = False
+                
+                ### check if sketch is available
+                for sketch in sketches:
+                    if sketch["timestamp"] >= start and sketch["timestamp"] < finish:
+                        edit["spatialParameters"] = {
+                            "x": round(sketch["x"]),
+                            "y": round(sketch["y"]),
+                            "width": round(sketch["width"]),
+                            "height": round(sketch["height"]),
+                            "rotation": 0,
+                            "info": ["sketch"],
+                            "source": ["sketch"],
+                            "offsets": [-1],
+                        }
+                        spatial_position_set = True
+                        break
+                if spatial_position_set == True:
+                    continue
+
+                candidates = [{
+                    "x": 0,
+                    "y": 0,
+                    "width": video_shape[1],
+                    "height": video_shape[0],
+                    "rotation": 0,
+                    "info": ["full"],
+                    "source": ["default"],
+                    "offsets": [-1],
+                }]
+
+                for sketch in sketches:
+                    candidates.append({
                         "x": round(sketch["x"]),
                         "y": round(sketch["y"]),
                         "width": round(sketch["width"]),
@@ -60,50 +90,25 @@ class LangChainPipeline():
                         "info": ["sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
-                    }
-                    spatial_position_set = True
-                    break
-            if spatial_position_set == True:
-                continue
+                    })
+                for reference, label, offsets in zip(spatial, spatial_labels, spatial_offsets):
+                    print("Spatial: ", reference, label)
+                    candidates = self.spatial_interpreter.run(
+                        command,
+                        [reference], candidates, label, [offsets],
+                        start, finish,
+                        video_shape,
+                    )
+                
+                if len(candidates) == 0:
+                    continue
 
-            candidates = [{
-                "x": 0,
-                "y": 0,
-                "width": video_shape[1],
-                "height": video_shape[0],
-                "rotation": 0,
-                "info": ["full"],
-                "source": ["default"],
-                "offsets": [-1],
-            }]
-
-            for sketch in sketches:
-                candidates.append({
-                    "x": round(sketch["x"]),
-                    "y": round(sketch["y"]),
-                    "width": round(sketch["width"]),
-                    "height": round(sketch["height"]),
-                    "rotation": 0,
-                    "info": ["sketch"],
-                    "source": ["sketch"],
-                    "offsets": [-1],
-                })
-            for reference, label, offsets in zip(spatial, spatial_labels, spatial_offsets):
-                print("Spatial: ", reference, label)
-                candidates = self.spatial_interpreter.run(
-                    command,
-                    [reference], candidates, label, [offsets],
-                    start, finish,
-                    video_shape,
-                )
-            
-            if len(candidates) == 0:
-                continue
-
-            ### choose the one with the medium area (can also, 0 or last one)
-            candidates.sort(key=lambda x: x["width"] * x["height"])
-            print(candidates)
-            edit["spatialParameters"] = candidates[(len(candidates) + 1) // 2 - 1]
+                ### choose the one with the medium area (can also, 0 or last one)
+                candidates.sort(key=lambda x: x["width"] * x["height"])
+                print(candidates)
+                edit["spatialParameters"] = candidates[(len(candidates) + 1) // 2 - 1]
+            print("'USAGE': Spatial:")
+            print(cb)
         return edits
 
     def predict_edit_parameters(self,
@@ -111,67 +116,78 @@ class LangChainPipeline():
         parameters,
         parameter_offsets,
         edits, sketches, video_shape,
+        edit_operations,
     ):
-        for i in range(len(edits)):
-            edit = edits[i]
-            edit_parameters = {
-                "textParameters": edit["textParameters"],
-                "imageParameters": edit["imageParameters"],
-                "shapeParameters": edit["shapeParameters"],
-                "blurParameters": edit["blurParameters"],
-                "cutParameters": edit["cutParameters"],
-                "cropParameters": edit["cropParameters"],
-                "zoomParameters": edit["zoomParameters"],
-            }
-
-            run_all_parameters = True
-
-            for j in range(i):
-                prev_edit = edits[j]
-                prev_edit_parameters = {
-                    "textParameters": prev_edit["textParameters"],
-                    "imageParameters": prev_edit["imageParameters"],
-                    "shapeParameters": prev_edit["shapeParameters"],
-                    "blurParameters": prev_edit["blurParameters"],
-                    "cutParameters": prev_edit["cutParameters"],
-                    "cropParameters": prev_edit["cropParameters"],
-                    "zoomParameters": prev_edit["zoomParameters"],
+        with get_openai_callback() as cb:
+            for i in range(len(edits)):
+                edit = edits[i]
+                edit_parameters = {
+                    "textParameters": edit["textParameters"].copy(),
+                    "imageParameters": edit["imageParameters"].copy(),
+                    "shapeParameters": edit["shapeParameters"].copy(),
+                    "blurParameters": edit["blurParameters"].copy(),
+                    "cutParameters": edit["cutParameters"].copy(),
+                    "cropParameters": edit["cropParameters"].copy(),
+                    "zoomParameters": edit["zoomParameters"].copy(),
                 }
-                if are_same_objects(edit_parameters, prev_edit_parameters):
-                    edit_parameters = prev_edit_parameters
-                    run_all_parameters = False
-                    break
-            
-            if run_all_parameters == True:
-                edit_parameters = self.parameters_interpreter.run_all_parameters(
-                    command,
-                    parameters, edit_parameters,
-                    video_shape
-                )
 
-            start = timecode_to_seconds(edit["temporalParameters"]["start"])
-            finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
-            edit_parameters = self.parameters_interpreter.run_text_content(
-                command,
-                parameters,
-                edit_parameters,
-                start, finish,
-            )
-            edit_parameters = self.parameters_interpreter.run_image_query(
-                command,
-                parameters,
-                edit_parameters,
-                start, finish,
-            )
+                run_all_parameters = True
 
-            edit["textParameters"] = edit_parameters["textParameters"]
-            edit["imageParameters"] = edit_parameters["imageParameters"]
-            edit["shapeParameters"] = edit_parameters["shapeParameters"]
-            edit["blurParameters"] = edit_parameters["blurParameters"]
-            edit["cutParameters"] = edit_parameters["cutParameters"]
-            edit["cropParameters"] = edit_parameters["cropParameters"]
-            edit["zoomParameters"] = edit_parameters["zoomParameters"]
+                for j in range(i):
+                    prev_edit = edits[j]
+                    prev_edit_parameters = {
+                        "textParameters": prev_edit["textParameters"],
+                        "imageParameters": prev_edit["imageParameters"],
+                        "shapeParameters": prev_edit["shapeParameters"],
+                        "blurParameters": prev_edit["blurParameters"],
+                        "cutParameters": prev_edit["cutParameters"],
+                        "cropParameters": prev_edit["cropParameters"],
+                        "zoomParameters": prev_edit["zoomParameters"],
+                    }
+                    if are_same_objects(edit_parameters, prev_edit_parameters):
+                        edit_parameters = prev_edit_parameters
+                        run_all_parameters = False
+                        break
+                
+                if run_all_parameters == True:
+                    edit_parameters = self.parameters_interpreter.run_all_parameters(
+                        command,
+                        parameters, edit_parameters,
+                        video_shape
+                    )
 
+                start = timecode_to_seconds(edit["temporalParameters"]["start"])
+                finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
+                if "text" in edit_operations or len(parameters["textParameters"]) > 0:
+                    edit_parameters = self.parameters_interpreter.run_text_content(
+                        command,
+                        parameters,
+                        edit_parameters,
+                        start, finish,
+                    )
+                if "image" in edit_operations or len(parameters["imageParameters"]) > 0:
+                    edit_parameters = self.parameters_interpreter.run_image_query(
+                        command,
+                        parameters,
+                        edit_parameters,
+                        start, finish,
+                    )
+                if "crop" in edit_operations or len(parameters["cropParameters"]) > 0:
+                    edit_parameters = self.parameters_interpreter.run_crop_parameters(
+                        edit["spatialParameters"],
+                        edit_parameters,
+                        video_shape,
+                    )
+
+                edit["textParameters"] = edit_parameters["textParameters"].copy()
+                edit["imageParameters"] = edit_parameters["imageParameters"].copy()
+                edit["shapeParameters"] = edit_parameters["shapeParameters"].copy()
+                edit["blurParameters"] = edit_parameters["blurParameters"].copy()
+                edit["cutParameters"] = edit_parameters["cutParameters"].copy()
+                edit["cropParameters"] = edit_parameters["cropParameters"].copy()
+                edit["zoomParameters"] = edit_parameters["zoomParameters"].copy()
+            print("'USAGE': Edit parameters:")
+            print(cb)
         return edits
 
     def __get_non_intersecting_segment(self, start, finish, segments):
@@ -200,59 +216,61 @@ class LangChainPipeline():
         video_shape,
         skipped_segments,
     ):
-        segments = []
-        for reference, label, offsets in zip(temporal, temporal_labels, temporal_offsets):
-            partial_segments = self.temporal_interpreter.run(
-                command,
-                [reference], label, [offsets],
-                current_player_position, skipped_segments
-            )
-            segments.extend(partial_segments)
-        temporal_segments = merge_segments(segments)
-        if len(temporal_segments) == 0 and len(temporal) == 0:
-            #### if no temporal reference is found, use default 10 seconds from current player position
-            start, finish = self.__get_non_intersecting_segment(
-                current_player_position, current_player_position + 10, skipped_segments
-            )
-            temporal_segments.append({
-                "start": start,
-                "finish": finish,
-                "explanation": ["current_play_position"],
-                "source": ["default"],
-                "offsets": [-1],
-            })
-        
-        ### check if sketch_timestamp is in any of the edit segments
-        if sketch_timestamp >= 0:
-            sketch_covered = False
-            for segment in temporal_segments:
-                start = timecode_to_seconds(segment["start"])
-                finish = timecode_to_seconds(segment["finish"])
-                if start <= sketch_timestamp < finish:
-                    sketch_covered = True
-                    break
-            if sketch_covered == False:
+        with get_openai_callback() as cb:
+            segments = []
+            for reference, label, offsets in zip(temporal, temporal_labels, temporal_offsets):
+                partial_segments = self.temporal_interpreter.run(
+                    command,
+                    [reference], label, [offsets],
+                    current_player_position, skipped_segments
+                )
+                segments.extend(partial_segments)
+            temporal_segments = merge_segments(segments)
+            if len(temporal_segments) == 0 and len(temporal) == 0:
+                #### if no temporal reference is found, use default 10 seconds from current player position
                 start, finish = self.__get_non_intersecting_segment(
-                    sketch_timestamp, sketch_timestamp + 10, skipped_segments + temporal_segments
+                    current_player_position, current_player_position + 10, skipped_segments
                 )
                 temporal_segments.append({
                     "start": start,
                     "finish": finish,
-                    "explanation": ["sketch_timestamp"],
-                    "source": ["sketch"],
+                    "explanation": ["current_play_position"],
+                    "source": ["default"],
                     "offsets": [-1],
                 })
-        
-        edit_segments = []
-        for segment in temporal_segments:
-            start = timecode_to_seconds(segment["start"])
-            finish = timecode_to_seconds(segment["finish"])
-            explanation = segment["explanation"]
-            source = segment["source"]
-            offsets = segment["offsets"]
-            edit = get_edit_segment(start, finish, explanation, source, offsets, video_shape)
-            edit_segments.append(edit)        
-
+            
+            ### check if sketch_timestamp is in any of the edit segments
+            if sketch_timestamp >= 0:
+                sketch_covered = False
+                for segment in temporal_segments:
+                    start = timecode_to_seconds(segment["start"])
+                    finish = timecode_to_seconds(segment["finish"])
+                    if start <= sketch_timestamp < finish:
+                        sketch_covered = True
+                        break
+                if sketch_covered == False:
+                    start, finish = self.__get_non_intersecting_segment(
+                        sketch_timestamp, sketch_timestamp + 10, skipped_segments + temporal_segments
+                    )
+                    temporal_segments.append({
+                        "start": start,
+                        "finish": finish,
+                        "explanation": ["sketch_timestamp"],
+                        "source": ["sketch"],
+                        "offsets": [-1],
+                    })
+            
+            edit_segments = []
+            for segment in temporal_segments:
+                start = timecode_to_seconds(segment["start"])
+                finish = timecode_to_seconds(segment["finish"])
+                explanation = segment["explanation"]
+                source = segment["source"]
+                offsets = segment["offsets"]
+                edit = get_edit_segment(start, finish, explanation, source, offsets, video_shape)
+                edit_segments.append(edit)        
+            print("'USAGE': Temporal:")
+            print(cb)
         return edit_segments 
 
     def build_skipped_segments(self, request):
@@ -315,43 +333,49 @@ class LangChainPipeline():
             response["requestParameters"]["indexedReferences"] = {}
             return response
         
-        ### parse command
-        references = self.input_parser.run(command)
-        print(references)
+        with get_openai_callback() as cb:
+            ### parse command
+            references = self.input_parser.run(command)
+            print(references)
 
-        ### set edit operations
-        response["requestParameters"]["editOperations"] = references.edit
-        response["requestParameters"]["parameters"] = references.get_parameters_short()
-        response["requestParameters"]["indexedReferences"] = {}
-        
-        ### predict temporal segments
-        if from_scratch == True or add_more == True:
-            edits = self.predict_temporal_segments(
+            ### set edit operations
+            response["requestParameters"]["editOperations"] = references.edit
+            response["requestParameters"]["parameters"] = references.get_parameters_short()
+            response["requestParameters"]["indexedReferences"] = {}
+            
+            ### predict temporal segments
+            if from_scratch == True or add_more == True:
+                edits = self.predict_temporal_segments(
+                    command,
+                    references.temporal, references.temporal_labels, [-1 for _ in references.temporal],
+                    current_player_position, sketch_timestamp,
+                    video_shape, skipped_segments, 
+                )
+            else:
+                edits = prev_edits
+
+            ### predict spatial positions
+            edits = self.predict_spatial_locations(
                 command,
-                references.temporal, references.temporal_labels, [-1 for _ in references.temporal],
-                current_player_position, sketch_timestamp,
-                video_shape, skipped_segments, 
+                references.spatial, references.spatial_labels,
+                edits, sketches, video_shape,
             )
-        else:
-            edits = prev_edits
 
-        ### predict spatial positions
-        edits = self.predict_spatial_locations(
-            command,
-            references.spatial, references.spatial_labels,
-            edits, sketches, video_shape,
-        )
+            ### predict edit parameters
+            edits = self.predict_edit_parameters(
+                command,
+                references.get_parameters(),
+                {},
+                edits, sketches, video_shape,
+                references.edit
+            )   
 
-        ### predict edit parameters
-        edits = self.predict_edit_parameters(
-            command,
-            references.get_parameters(),
-            {},
-            edits, sketches, video_shape,
-        )   
-
-        response["edits"] = edits
-        print(edits)
+            response["edits"] = edits
+            print(edits)
+            
+            ### Output usage
+            print("'USAGE': Full:")
+            print(cb)
         return response
 
 
@@ -382,53 +406,62 @@ class LangChainPipeline():
             response["requestParameters"]["indexedReferences"] = {}
             return response
         
-        ### parse command
-        references = self.indexed_input_parser.run(command)
-        simple_references = references.get_references()
-        print(references)
+        with get_openai_callback() as cb:
+            ### parse command
+            references = self.indexed_input_parser.run(command)
+            simple_references = references.get_references()
+            print(references)
 
-        ### set edit operations
-        response["requestParameters"]["editOperations"] = simple_references.edit
-        response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
-        response["requestParameters"]["indexedReferences"] = references.dict()
+            ### set edit operations
+            response["requestParameters"]["editOperations"] = simple_references.edit
+            response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
+            response["requestParameters"]["indexedReferences"] = references.dict()
 
-        
-        ### predict temporal segments
-        if from_scratch == True or add_more == True:
-            edits = self.predict_temporal_segments(
+            
+            ### predict temporal segments
+            if from_scratch == True or add_more == True:
+                edits = self.predict_temporal_segments(
+                    command,
+                    simple_references.temporal, simple_references.temporal_labels,
+                    [item.offset for item in references.temporal_references],
+                    current_player_position, sketch_timestamp,
+                    video_shape, skipped_segments, 
+                )
+            else:
+                edits = prev_edits
+
+            ### predict spatial positions
+            edits = self.predict_spatial_locations(
                 command,
-                simple_references.temporal, simple_references.temporal_labels,
-                [item.offset for item in references.temporal_references],
-                current_player_position, sketch_timestamp,
-                video_shape, skipped_segments, 
+                simple_references.spatial, simple_references.spatial_labels,
+                [item.offset for item in references.spatial_references],
+                edits, sketches, video_shape,
             )
-        else:
-            edits = prev_edits
 
-        ### predict spatial positions
-        edits = self.predict_spatial_locations(
-            command,
-            simple_references.spatial, simple_references.spatial_labels,
-            [item.offset for item in references.spatial_references],
-            edits, sketches, video_shape,
-        )
+            ### predict edit parameters
+            edits = self.predict_edit_parameters(
+                command,
+                simple_references.get_parameters(),
+                {},
+                edits, sketches, video_shape,
+                simple_references.edit
+            )   
 
-        ### predict edit parameters TODO
-        edits = self.predict_edit_parameters(
-            command,
-            simple_references.get_parameters(),
-            {},
-            edits, sketches, video_shape,
-        )   
+            response["edits"] = edits
+            print(edits)
 
-        response["edits"] = edits
-        print(edits)
+            ### Output usage
+            print("'USAGE': Indexed Full:")
+            print(cb)
         return response
 
     def get_summary(self, input):
-        summary = self.summarize_request.run(
-            request=input
-        )
+        with get_openai_callback() as cb:
+            summary = self.summarize_request.run(
+                request=input
+            )
+            print("'USAGE': Summary:")
+            print(cb)
         return summary
 
 
