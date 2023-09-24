@@ -5,6 +5,7 @@ from LangChainPipeline.ParserChains.IndexedIntentParserChain import IndexedInten
 from LangChainPipeline.ParserChains.TemporalChain import TemporalChain
 from LangChainPipeline.ParserChains.EditChain import EditChain
 from LangChainPipeline.ParserChains.SpatialChain import SpatialChain
+from LangChainPipeline.ParserChains.SummarizeRequestChain import SummarizeRequestChain
 
 from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_same_objects
 
@@ -25,6 +26,7 @@ class LangChainPipeline():
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10
         )
         self.set_parameters_interpreter = None
+        self.summarize_request = SummarizeRequestChain(verbose=verbose)
 
     def set_video(self, video_id, interval):
         self.temporal_interpreter.set_video(video_id, interval)
@@ -422,6 +424,12 @@ class LangChainPipeline():
         response["edits"] = edits
         print(edits)
         return response
+
+    def get_summary(self, input):
+        summary = self.summarize_request.run(
+            request=input
+        )
+        return summary
 
 
 

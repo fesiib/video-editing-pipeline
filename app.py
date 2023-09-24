@@ -44,11 +44,10 @@ Summary of the edit description
 @app.route("/summary", methods=['GET', 'POST'])
 def fetch_summary():
     data = request.json
-
-    pipeline.reset()
-    response = pipeline.get_summary(data.get("input"))
-
-    return jsonify({"summary": response})
+    #pipeline.reset()
+    
+    summary = langchain_pipeline.get_summary(data.get("input"))
+    return jsonify({"summary": summary})
 
 @app.route("/ambiguous", methods=['POST'])
 def fetch_ambiguous():
