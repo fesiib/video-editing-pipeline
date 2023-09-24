@@ -147,8 +147,8 @@ class TemporalPositionChain():
 
     def run(self, context, command, offsets):
         result = self.chain.predict(
-            context=context,
-            command=command,
+            context=json.dumps(context),
+            command=json.dumps(command),
         )
 
         segments = []
@@ -204,7 +204,7 @@ class TemporalTranscriptChain():
         )
 
         result = self.chain.predict(
-            context=context,
+            context=json.dumps(context),
             metadata=json.dumps([data["data"] for data in filtered_metadata]),
             command=command,
         )
@@ -214,8 +214,8 @@ class TemporalTranscriptChain():
             index = int(element.index)
             explanation = element.explanation
             segments.append({
-                "start": metadata[index]["start"],
-                "finish": metadata[index]["end"],
+                "start": filtered_metadata[index]["start"],
+                "finish": filtered_metadata[index]["end"],
                 "explanation": [explanation],
                 "source": command.copy(),
                 "offsets": offsets.copy(),
@@ -266,9 +266,9 @@ class TemporalVisualChain():
         )
 
         result = self.chain.predict(
-            context=context,
+            context=json.dumps(context),
             metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
-            command=command,
+            command=json.dumps(command),
         )
 
         segments = []
@@ -276,8 +276,8 @@ class TemporalVisualChain():
             index = int(element.index)
             explanation = element.explanation
             segments.append({
-                "start": metadata[index]["start"],
-                "finish": metadata[index]["end"],
+                "start": filtered_metadata[index]["start"],
+                "finish": filtered_metadata[index]["end"],
                 "explanation": [explanation],
                 "source": command.copy(),
                 "offsets": offsets.copy(),

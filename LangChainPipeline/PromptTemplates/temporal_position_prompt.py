@@ -1,3 +1,5 @@
+import json
+
 from langchain import PromptTemplate
 from langchain.prompts import (
     FewShotPromptTemplate,
@@ -81,28 +83,28 @@ def get_examples():
 
     examples = []
     examples.append({
-        "context": context1,
-        "command": command1,
+        "context": json.dumps(context1),
+        "command": json.dumps(command1),
         "response": response1.model_dump_json(),
     })
     examples.append({
-        "context": context2,
-        "command": command2,
+        "context": json.dumps(context2),
+        "command": json.dumps(command2),
         "response": response2.model_dump_json(),
     })
     examples.append({
-        "context": context3,
-        "command": command3,
+        "context": json.dumps(context3),
+        "command": json.dumps(command3),
         "response": response3.model_dump_json(),
     })
     examples.append({
-        "context": context4,
-        "command": command4,
+        "context": json.dumps(context4),
+        "command": json.dumps(command4),
         "response": response4.model_dump_json(),
     })
     examples.append({
-        "context": context5,
-        "command": command5,
+        "context": json.dumps(context5),
+        "command": json.dumps(command5),
         "response": response5.model_dump_json(),
     })
     return examples

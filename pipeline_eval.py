@@ -13,8 +13,8 @@ def evaluate_all():
         data_point_getter = get_data_point_as_request,
         pipeline_runner = run_langchain_pipeline_request,
         # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
-        # indexes = [0, 2, 4, 6, 8, 10],
-        indexes=[0]
+        indexes = [0, 2, 4, 6, 8, 10],
+        # indexes=[0]
     )
 
     if (len(result["dataset"]) == 0):
@@ -250,8 +250,8 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    evaluate_all_spatial()
-    # evaluate_all()
+    # evaluate_all_spatial()
+    evaluate_all()
     
     # main_evaluate_request()
     # main_evaluate_temporal()

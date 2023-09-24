@@ -199,7 +199,7 @@ class AllParametersChain():
             return initial_edit_parameters
 
         result = self.chain.predict(
-            context=context,
+            context=json.dumps(context),
             command=json.dumps(filtered_parameters),
             initial_parameters=json.dumps(filtered_edit_parameters),
         )
@@ -237,7 +237,6 @@ class TextContentChain():
         self.neighbors_right = neighbors_right
         print("Set parameters")
 
-    ### TODO: need to consider only metadata from the relevant segment
     def run(self, context, metadata, command):
 
         filtered_metadata = filter_metadata_by_semantic_similarity(
@@ -249,7 +248,7 @@ class TextContentChain():
         )
 
         result = self.chain.predict(
-            context=context,
+            context=json.dumps(context),
             metadata=json.dumps([data["data"] for data in filtered_metadata]),
             command=json.dumps(command),
         )
@@ -295,7 +294,7 @@ class ImageQueryChain():
         )
 
         result = self.chain.predict(
-            context=context,
+            context=json.dumps(context),
             metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
             command=json.dumps(command),
         )

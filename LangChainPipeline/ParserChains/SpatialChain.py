@@ -1,4 +1,5 @@
 import ast
+import json
 
 from langchain.chat_models import ChatOpenAI
 from langchain.output_parsers import PydanticOutputParser
@@ -209,8 +210,8 @@ class SpatialPositionChain():
 
     def run(self, context, command, candidate, offsets):
         result = self.chain.predict(
-            context=context,
-            command=command,
+            context=json.dumps(context),
+            command=json.dumps(command),
             rectangle=Rectangle.get_instance(
                 x=candidate["x"],
                 y=candidate["y"],
