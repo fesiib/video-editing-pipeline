@@ -1,4 +1,13 @@
 /home/bekzat/starlab/video-editing-pipeline/experiment.txt
+  154,1: Total Cost (USD): $0.0
+  1993,1: Total Cost (USD): $1.1236500000000003
+  3037,1: Total Cost (USD): $0.60264
+  3310,1: Total Cost (USD): $0.10124999999999998
+  3424,1: Total Cost (USD): $0.0
+  3779,1: Total Cost (USD): $0.1689
+
+
+/home/bekzat/starlab/video-editing-pipeline/experiment.txt
   143,1: Total Cost (USD): $0.02862
   153,1: Total Cost (USD): $0.0
   224,1: Total Cost (USD): $0.11253000000000002

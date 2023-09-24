@@ -250,8 +250,8 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
-    # evaluate_all_spatial()
-    evaluate_all()
+    evaluate_all_spatial()
+    # evaluate_all()
     
     # main_evaluate_request()
     # main_evaluate_temporal()

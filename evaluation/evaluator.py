@@ -853,11 +853,12 @@ def run_evaluation_spatial(
 
             references = langchain_pipeline.indexed_input_parser.run(input["text"])
             simple_references = references.get_references()
-            edits =  langchain_pipeline.predict_spatial_locations(
+            edits =  langchain_pipeline.predict_spatial_locations_new(
                 input["text"],
                 simple_references.spatial, simple_references.spatial_labels,
                 [item.offset for item in references.spatial_references],
                 edits, sketches, video_shape,
+                sketch_timestamp
             )
             edits_temporal = []
             edits_temporal_reasoning = []

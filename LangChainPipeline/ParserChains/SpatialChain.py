@@ -153,10 +153,10 @@ class SpatialChain():
                 ### return sketches as candidates
                 return [
                     {
-                        "x": bbox["x"], 
-                        "y": bbox["y"], 
-                        "width": bbox["width"], 
-                        "height": bbox["height"], 
+                        "x": round(bbox["x"]), 
+                        "y": round(bbox["y"]), 
+                        "width": round(bbox["width"]), 
+                        "height": round(bbox["height"]), 
                         "rotation": 0,
                         "info": ["sketch"],
                         "source": ["sketch"],
@@ -169,8 +169,8 @@ class SpatialChain():
                     {
                         "x": 0, 
                         "y": 0,
-                        "width": video_shape[1],
-                        "height": video_shape[0],
+                        "width": round(video_shape[1]),
+                        "height": round(video_shape[0]),
                         "rotation": 0,
                         "info": ["full_frame"],
                         "source": ["full_frame"],
@@ -179,14 +179,14 @@ class SpatialChain():
                 ]
         if len(ref_bboxes) > 0:
             filename_prefix = "{}_{}".format(self.video_id, str(random.randint(0, 100000)))
-            _, _, _, image = self.image_processor.get_candidates_from_frame(int(ref_timestamp), self.video_id)
+            _, _, _, image = self.image_processor.get_candidates_from_frame(round(ref_timestamp), self.video_id)
             scaled_ref_bboxes = []
             for bbox in ref_bboxes:
                 scaled_bbox = [
-                    int(bbox['x'] / video_shape[1] * image.shape[1]),
-                    int(bbox['y'] / video_shape[0] * image.shape[0]),
-                    int(bbox['width'] / video_shape[1] * image.shape[1]),
-                    int(bbox['height'] / video_shape[0] * image.shape[0]),
+                    round(bbox['x'] / video_shape[1] * image.shape[1]),
+                    round(bbox['y'] / video_shape[0] * image.shape[0]),
+                    round(bbox['width'] / video_shape[1] * image.shape[1]),
+                    round(bbox['height'] / video_shape[0] * image.shape[0]),
                 ]
                 scaled_ref_bboxes.append(scaled_bbox)
             output_ref_image = image.copy()
@@ -209,10 +209,10 @@ class SpatialChain():
             )
             final_candidate = candidate_bbox_sum
             return [{
-                "x": final_candidate[0] / image.shape[1] * video_shape[1],
-                "y": final_candidate[1] / image.shape[0] * video_shape[0],
-                "width": final_candidate[2] / image.shape[1] * video_shape[1],
-                "height": final_candidate[3] / image.shape[0] * video_shape[0],
+                "x": round(final_candidate[0] / image.shape[1] * video_shape[1]),
+                "y": round(final_candidate[1] / image.shape[0] * video_shape[0]),
+                "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
+                "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
                 "info": ["visual-dependent"],
                 "source": vs_texts,
@@ -232,10 +232,10 @@ class SpatialChain():
             )
             final_candidate = candidate_bbox_sum
             return [{
-                "x": final_candidate[0] / image.shape[1] * video_shape[1],
-                "y": final_candidate[1] / image.shape[0] * video_shape[0],
-                "width": final_candidate[2] / image.shape[1] * video_shape[1],
-                "height": final_candidate[3] / image.shape[0] * video_shape[0],
+                "x": round(final_candidate[0] / image.shape[1] * video_shape[1]),
+                "y": round(final_candidate[1] / image.shape[0] * video_shape[0]),
+                "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
+                "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
                 "info": ["visual-dependent"],
                 "source": vs_texts,
