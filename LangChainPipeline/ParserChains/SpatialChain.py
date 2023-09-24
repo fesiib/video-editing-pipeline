@@ -1,5 +1,7 @@
 import ast
 import json
+import cv2
+import random
 
 from langchain.chat_models import ChatOpenAI
 from langchain.output_parsers import PydanticOutputParser
@@ -129,6 +131,116 @@ class SpatialChain():
             "height": y2 - y1,
             "info": ["union"],
         }
+
+    def get_candidate_bboxes(self,
+        start, finish,
+        commands, labels, offsets,
+        ref_timestamp, ref_bboxes,
+        video_shape,
+    ):
+        ### if no visual-dependent & no sketches -> return full frame as candidate
+        ### if no visual-dependent -> return sketches as candidates
+        ### if visual-dependent -> return visual-dependent+sketches x segmentations (sum or argmax) as candidate
+        ### if visual-dependent but no sketches -> return visual-dependent x segmentations (sum or argmax) as candidate
+        vs_texts = []
+        vs_offsets = []
+        for i in range(len(commands)):
+            if labels[i] == "visual-dependent":
+                vs_texts.append(commands[i])
+                vs_offsets.append(offsets[i])
+        if len(vs_texts) == 0:
+            if len(ref_bboxes) > 0:
+                ### return sketches as candidates
+                return [
+                    {
+                        "x": bbox["x"], 
+                        "y": bbox["y"], 
+                        "width": bbox["width"], 
+                        "height": bbox["height"], 
+                        "rotation": 0,
+                        "info": ["sketch"],
+                        "source": ["sketch"],
+                        "offsets": [-1],
+                    } for bbox in ref_bboxes
+                ]
+            else:
+                ### return full frame as candidate
+                return [
+                    {
+                        "x": 0, 
+                        "y": 0,
+                        "width": video_shape[1],
+                        "height": video_shape[0],
+                        "rotation": 0,
+                        "info": ["full_frame"],
+                        "source": ["full_frame"],
+                        "offsets": [-1],
+                    }
+                ]
+        if len(ref_bboxes) > 0:
+            filename_prefix = "{}_{}".format(self.video_id, str(random.randint(0, 100000)))
+            _, _, _, image = self.image_processor.get_candidates_from_frame(int(ref_timestamp), self.video_id)
+            scaled_ref_bboxes = []
+            for bbox in ref_bboxes:
+                scaled_bbox = [
+                    int(bbox['x'] / video_shape[1] * image.shape[1]),
+                    int(bbox['y'] / video_shape[0] * image.shape[0]),
+                    int(bbox['width'] / video_shape[1] * image.shape[1]),
+                    int(bbox['height'] / video_shape[0] * image.shape[0]),
+                ]
+                scaled_ref_bboxes.append(scaled_bbox)
+            output_ref_image = image.copy()
+            for bbox in scaled_ref_bboxes:
+                cv2.rectangle(output_ref_image, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), (0, 0, 255), 2)
+            cv2.imwrite("./images/{}_!ref_image.jpg".format(filename_prefix), output_ref_image)
+            ref_image = image.copy()
+            
+            frame_sec = int(start + finish) // 2
+            (
+                _, segmentation_bboxes, _, image
+            ) = self.image_processor.get_candidates_from_frame(frame_sec, self.video_id)
+
+            (
+                candidate_bbox_argmax,
+                candidate_bbox_sum,
+            ) = self.image_processor.get_candidate_ref_text_single(
+                image.copy(),
+                ref_image.copy(), segmentation_bboxes, vs_texts, scaled_ref_bboxes
+            )
+            final_candidate = candidate_bbox_sum
+            return [{
+                "x": final_candidate[0] / image.shape[1] * video_shape[1],
+                "y": final_candidate[1] / image.shape[0] * video_shape[0],
+                "width": final_candidate[2] / image.shape[1] * video_shape[1],
+                "height": final_candidate[3] / image.shape[0] * video_shape[0],
+                "rotation": 0,
+                "info": ["visual-dependent"],
+                "source": vs_texts,
+                "offsets": vs_offsets,
+            }]
+        else:
+            frame_sec = int(start + finish) // 2
+            (
+                _, segmentation_bboxes, _, image
+            ) = self.image_processor.get_candidates_from_frame(frame_sec, self.video_id)
+            (
+                candidate_bbox_argmax,
+                candidate_bbox_sum,
+            ) = self.image_processor.get_candidate_text(
+                image.copy(),
+                segmentation_bboxes, vs_texts
+            )
+            final_candidate = candidate_bbox_sum
+            return [{
+                "x": final_candidate[0] / image.shape[1] * video_shape[1],
+                "y": final_candidate[1] / image.shape[0] * video_shape[0],
+                "width": final_candidate[2] / image.shape[1] * video_shape[1],
+                "height": final_candidate[3] / image.shape[0] * video_shape[0],
+                "rotation": 0,
+                "info": ["visual-dependent"],
+                "source": vs_texts,
+                "offsets": vs_offsets,
+            }]
 
     def run(self,
         original_command, 

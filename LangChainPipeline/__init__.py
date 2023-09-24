@@ -111,6 +111,56 @@ class LangChainPipeline():
             print(cb)
         return edits
 
+    def predict_spatial_locations_new(self, 
+        command,
+        spatial, spatial_labels,
+        spatial_offsets,
+        edits, sketches, video_shape,
+        sketch_timestamp
+    ):
+        
+        with get_openai_callback() as cb:
+            for edit in edits:
+                start = timecode_to_seconds(edit["temporalParameters"]["start"])
+                finish = timecode_to_seconds(edit["temporalParameters"]["finish"])
+                
+                if start <= sketch_timestamp < finish and len(sketches) > 0:
+                    edit["spatialParameters"] = {
+                        "x": round(sketches[0]["x"]),
+                        "y": round(sketches[0]["y"]),
+                        "width": round(sketches[0]["width"]),
+                        "height": round(sketches[0]["height"]),
+                        "rotation": 0,
+                        "info": ["sketch"],
+                        "source": ["sketch"],
+                        "offsets": [-1],
+                    }
+                    continue
+                
+                candidates = self.spatial_interpreter.get_candidate_bboxes(
+                    start, finish,
+                    spatial, spatial_labels, spatial_offsets, sketch_timestamp, sketches, video_shape
+                )
+                print("INITIAL_CANDIDATES: ", start, finish, candidates)
+                
+                for reference, label, offsets in zip(spatial, spatial_labels, spatial_offsets):
+                    if label != 'visual-dependent':
+                        candidates = self.spatial_interpreter.run(
+                            command,
+                            [reference], candidates, label, [offsets],
+                            start, finish,
+                            video_shape,
+                        )
+                if len(candidates) == 0:
+                    continue
+                ### choose the one with the medium area (can also, 0 or last one)
+                candidates.sort(key=lambda x: x["width"] * x["height"])
+                print("CANDIDATES: ", start, finish, candidates)
+                edit["spatialParameters"] = candidates[(len(candidates) + 1) // 2 - 1]
+            print("'USAGE': Spatial:")
+            print(cb)
+        return edits
+
     def predict_edit_parameters(self,
         command,
         parameters,
@@ -431,11 +481,12 @@ class LangChainPipeline():
                 edits = prev_edits
 
             ### predict spatial positions
-            edits = self.predict_spatial_locations(
+            edits = self.predict_spatial_locations_new(
                 command,
                 simple_references.spatial, simple_references.spatial_labels,
                 [item.offset for item in references.spatial_references],
                 edits, sketches, video_shape,
+                sketch_timestamp
             )
 
             ### predict edit parameters

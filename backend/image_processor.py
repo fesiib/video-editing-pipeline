@@ -131,33 +131,6 @@ class ImageProcessor:
 
         return input_images, input_bboxes, candidate_frame, image
 
-    def get_candidates_from_frame(self, frame_sec, video_id):
-        
-        FRAME_DIR = os.path.join(SEGMENTATION_DATA_PATH, video_id, "Frame.{}.0".format(frame_sec))
-
-        MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
-        IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")    
-        # load image + bboxes
-        image = cv2.imread(IMAGE_FILE)
-        # print(image.shape)
-        # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-
-        with open(MASK_METADATA_FILE, 'r') as f:
-            data = f.read()
-            mask_data = data.strip().split("\n")
-            mask_data = [json.loads(mask) for mask in mask_data]
-
-        input_images = []
-        input_bboxes = []
-
-        for annotation in mask_data:
-            crop = self.extract_bbox(image, annotation['bbox'])
-            masked_image_pil = Image.fromarray(crop)
-            input_images.append(self.preprocess(masked_image_pil))
-            input_bboxes.append(annotation['bbox'])            
-
-        return input_images, input_bboxes, frame_sec, image
-
     def extract_related_crop(self, input_text, input_bboxes, input_images, frame_id, image):
         images = torch.tensor(np.stack(input_images)).cuda()
         text = clip.tokenize(input_text).cuda()
@@ -202,6 +175,159 @@ class ImageProcessor:
 
         iou = intersection_area / union_area
         return iou
+    
+    # new approach
+
+    def get_candidates_from_frame(self, frame_sec, video_id):
+        
+        FRAME_DIR = os.path.join(SEGMENTATION_DATA_PATH, video_id, "Frame.{}.0".format(frame_sec))
+
+        MASK_METADATA_FILE = os.path.join(FRAME_DIR, "mask_data.txt")
+        IMAGE_FILE = os.path.join(FRAME_DIR, "frame.jpg")    
+        # load image + bboxes
+        image = cv2.imread(IMAGE_FILE)
+        # print(image.shape)
+        # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        with open(MASK_METADATA_FILE, 'r') as f:
+            data = f.read()
+            mask_data = data.strip().split("\n")
+            mask_data = [json.loads(mask) for mask in mask_data]
+
+        input_images = []
+        input_bboxes = []
+
+        for annotation in mask_data:
+            input_image = self.extract_crop(image, annotation['bbox'])
+            input_images.append(input_image)
+            input_bboxes.append(annotation['bbox'])            
+
+        return input_images, input_bboxes, frame_sec, image
+
+    def extract_crop(self, image, bbox):
+        crop = self.extract_bbox(image, bbox)
+        result = self.preprocess(Image.fromarray(crop))
+        return result
+
+    def __get_candidate_1(self, image, ref_image, candidate_bboxes, ref_bboxes):
+        candidates = []
+        refs = []
+
+        for bbox in candidate_bboxes:
+            candidates.append(self.extract_crop(image.copy(), bbox))
+        for bbox in ref_bboxes:
+            refs.append(self.extract_crop(ref_image.copy(), bbox))
+
+        if len(candidates) == 0 or len(refs) == 0:
+            return None, None
+
+        candidates = torch.tensor(np.stack(candidates)).cuda()
+        refs = torch.tensor(np.stack(refs)).cuda()
+
+        with torch.no_grad():
+            candidates_features = self.model.encode_image(candidates).float()
+            refs_features = self.model.encode_image(refs).float()
+
+        candidates_features /= candidates_features.norm(dim=-1, keepdim=True)
+        refs_features /= refs_features.norm(dim=-1, keepdim=True)
+
+        similarity = refs_features.cpu().numpy() @ candidates_features.cpu().numpy().T
+
+        similarity_sum = np.sum(similarity, axis=0)
+
+        argmax_idx = np.unravel_index(np.argmax(similarity), similarity.shape)
+        sum_idx = np.argmax(similarity_sum)
+
+        print(argmax_idx, sum_idx, len(candidate_bboxes), similarity.shape, similarity_sum.shape)
+
+        candidate_bbox_argmax = candidate_bboxes[argmax_idx[1]]
+        candidate_bbox_sum = candidate_bboxes[sum_idx]
+
+        return candidate_bbox_argmax, candidate_bbox_sum
+
+    def get_candidate_ref(self, image, ref_image, segmentations_bboxes, sketches_bboxes, relevants_bboxes):
+        candidate_bbox_sketch_argmax, candidate_bbox_sketch_sum = self.__get_candidate_1(image, ref_image, segmentations_bboxes, sketches_bboxes)
+        candidate_bbox_relevant_argmax, candidate_bbox_relevant_sum = self.__get_candidate_1(image, ref_image, segmentations_bboxes, relevants_bboxes)
+        return candidate_bbox_sketch_argmax, candidate_bbox_relevant_argmax, candidate_bbox_sketch_sum, candidate_bbox_relevant_sum
+    
+    def get_candidate_ref_text_single(self, image, ref_image, candidate_bboxes, ref_texts, ref_bboxes):
+        candidates = []
+        refs = []
+
+        for bbox in candidate_bboxes:
+            candidates.append(self.extract_crop(image.copy(), bbox))
+        for bbox in ref_bboxes:
+            refs.append(self.extract_crop(ref_image.copy(), bbox))
+
+        if len(candidates) == 0 or len(refs) == 0 or len(ref_texts) == 0:
+            return None, None
+
+        candidates = torch.tensor(np.stack(candidates)).cuda()
+        refs = torch.tensor(np.stack(refs)).cuda()
+        ref_texts = clip.tokenize(ref_texts).cuda()
+
+        with torch.no_grad():
+            candidates_features = self.model.encode_image(candidates).float()
+            refs_features = self.model.encode_image(refs).float()
+            ref_texts_features = self.model.encode_text(ref_texts).float()
+
+        candidates_features /= candidates_features.norm(dim=-1, keepdim=True)
+        refs_features /= refs_features.norm(dim=-1, keepdim=True)
+        ref_texts_features /= ref_texts_features.norm(dim=-1, keepdim=True)
+
+        similarity_images = refs_features.cpu().numpy() @ candidates_features.cpu().numpy().T
+        similarity_texts = ref_texts_features.cpu().numpy() @ candidates_features.cpu().numpy().T
+        
+        similarity = np.concatenate([similarity_images, similarity_texts], axis=0)
+        
+        similarity_sum = np.sum(similarity, axis=0)
+
+        argmax_idx = np.unravel_index(np.argmax(similarity), similarity.shape)
+        sum_idx = np.argmax(similarity_sum)
+
+        print(argmax_idx, sum_idx, len(candidate_bboxes), similarity.shape, similarity_sum.shape)
+
+        candidate_bbox_argmax = candidate_bboxes[argmax_idx[1]]
+        candidate_bbox_sum = candidate_bboxes[sum_idx]
+
+        return candidate_bbox_argmax, candidate_bbox_sum
+
+    def get_candidate_ref_text(self, image, ref_image, segmentations_bboxes, vs_texts, sketches_bboxes, relevants_bboxes):
+        candidate_bbox_sketch_argmax, candidate_bbox_sketch_sum = self.get_candidate_ref_text_single(image, ref_image, segmentations_bboxes, vs_texts, sketches_bboxes)
+        candidate_bbox_relevant_argmax, candidate_bbox_relevant_sum = self.get_candidate_ref_text_single(image, ref_image, segmentations_bboxes, vs_texts, relevants_bboxes)
+        return candidate_bbox_sketch_argmax, candidate_bbox_relevant_argmax, candidate_bbox_sketch_sum, candidate_bbox_relevant_sum
+    
+    def get_candidate_text(self, image, segmentations_bboxes, vs_texts):
+        candidates = []
+
+        for bbox in segmentations_bboxes:
+            candidates.append(self.extract_crop(image.copy(), bbox))
+
+        if len(candidates) == 0 or len(vs_texts) == 0:
+            return None
+
+        candidates = torch.tensor(np.stack(candidates)).cuda()
+        vs_texts = clip.tokenize(vs_texts).cuda()
+
+        with torch.no_grad():
+            candidates_features = self.model.encode_image(candidates).float()
+            vs_texts_features = self.model.encode_text(vs_texts).float()
+
+        candidates_features /= candidates_features.norm(dim=-1, keepdim=True)
+        vs_texts_features /= vs_texts_features.norm(dim=-1, keepdim=True)
+
+        similarity = vs_texts_features.cpu().numpy() @ candidates_features.cpu().numpy().T
+        similarity_sum = np.sum(similarity, axis=0)
+
+        argmax_idx = np.unravel_index(np.argmax(similarity), similarity.shape)
+        sum_idx = np.argmax(similarity_sum)
+
+        print(argmax_idx, sum_idx, len(segmentations_bboxes), similarity.shape, similarity_sum.shape)
+
+        candidate_bbox_argmax = segmentations_bboxes[argmax_idx[1]]
+        candidate_bbox_sum = segmentations_bboxes[sum_idx]
+
+        return candidate_bbox_argmax, candidate_bbox_sum
 
 def main():    
     image_processor = ImageProcessor()
