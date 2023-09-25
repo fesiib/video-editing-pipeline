@@ -8,7 +8,7 @@ from backend.pipeline import Pipeline
 from LangChainPipeline import LangChainPipeline
 from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
-from video_host.processor import process_video, get_video_by_filename
+from video_host.processor import process_video, get_video_by_filename, process_clipped_video
 
 
 app = Flask(__name__)
@@ -61,18 +61,43 @@ def fetch_ambiguous_gpt():
     input = data.get("input")
     return jsonify({"ambiguousParts": extract_adverbs_of_space_gpt3(input)})
 
+@app.route("/save-user", methods=["POST"])
+def save_user():
+    decoded = request.data.decode('utf-8')
+    request_json = json.loads(decoded)
+    data = request_json["data"]
+    data_id = data["dataId"]
+    user_id = data["userId"]
+    with open(f"user-data/{user_id}_{data_id}.json", "w") as f:
+        f.write(json.dumps(data))
+    return jsonify({"status": "success"})
+
+
 def fail_with(msg):
     return {
         "status": "failed",
         "message": msg,
     }
 
+CLIP_VIDEOS = {
+    "https://www.youtube.com/watch?v=b3TVLNNqgdc": {
+        "start": 2 * 60 + 20,
+        "end": 7 * 60 + 40,
+    },
+    "https://www.youtube.com/live/Tih8I3Klw54?si=QXkQ-ID33_FyAmWO": {
+        "start": 50,
+        "end": 6 * 60 + 30,
+    },
+}
+
 @app.route("/process_youtube_link", methods=["POST"])
 def process_youtube_link():
     decoded = request.data.decode('utf-8')
     request_json = json.loads(decoded)
     video_link = request_json["videoLink"]
-
+    is_cilpped = video_link in CLIP_VIDEOS
+    clip_start = 0
+    clip_end = 0
     # Extract transcript
     # Extract OCR results per frame
     # Group OCR results based on similarity
@@ -90,12 +115,24 @@ def process_youtube_link():
     #   "transcript": list[transcript]
     # }
 
-    transcript, moments, metadata = process_video(video_link)
+    transcript = []
+    moments = []
+    metadata = {}
+
+    if is_cilpped == False:
+        transcript, moments, metadata = process_video(video_link)
+    else:
+        clip_start = CLIP_VIDEOS[video_link]["start"]
+        clip_end = CLIP_VIDEOS[video_link]["end"]
+        transcript, moments, metadata = process_clipped_video(video_link, clip_start, clip_end)
     filename = f'{metadata["id"]}.mp4'
 
     responseJSON = {
         "request": {
             "videoLink": video_link,
+            "isClipped": is_cilpped,
+            "clipStart": clip_start,
+            "clipEnd": clip_end,
         },
         "moments": moments,
         "metadata": metadata,
@@ -200,8 +237,30 @@ def test_langchain_pipeline():
     # )
     print(result)
 
+def create_clip(video_link, start, end):
+    transcript, moments, metadata = create_clipped_video(video_link, start, end)
+    filename = f'{metadata["id"]}.mp4'
+
+    responseJSON = {
+        "request": {
+            "videoLink": video_link,
+            "isClipped": True,
+            "clipStart": start,
+            "clipEnd": end,
+        },
+        "moments": moments,
+        "metadata": metadata,
+        "transcript": transcript,
+        #"source": url_for("display_video", filename=filename),
+        "source": str(get_video_by_filename(filename)),
+        "status": "success"
+    }
+    print(json.dumps(responseJSON))
+
 if __name__ == "__main__":
     # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
     launch_server()
     # test("whenever the person mentions the surface go, emphasize the screen response time")
     # test_langchain_pipeline()
+
+    # create_clip("https://www.youtube.com/live/4LdIvyfzoGY?feature=share", 100, 400)

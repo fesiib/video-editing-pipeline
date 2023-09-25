@@ -3,10 +3,12 @@ import json
 import webvtt
 import os
 import re
+import ast
 
 #import whisper
 import difflib
 
+from backend.helpers import Timecode
 
 from yt_dlp import YoutubeDL
 
@@ -14,6 +16,7 @@ from pathlib import Path
 
 ROOT = Path('.')
 DATABASE = ROOT / "static" / "database"
+METADATA = ROOT / "metadata"
 
 video_library = {}
 
@@ -201,3 +204,75 @@ def process_video(video_link):
 
     # transcript = get_transcript_each_word(subtitles)
     return transcript, moments, metadata
+
+def clipMetadata(new_title, old_title, suffix, clipStart, clipFinish):
+    metadata_path = os.path.join(METADATA, f'{old_title}{suffix}.txt')
+    new_metadata_path = os.path.join(METADATA, f'{new_title}{suffix}.txt')
+    new_metadata = []
+    with open(metadata_path, 'r') as f:
+        raw_lines = f.readlines()
+        for line in raw_lines:
+            data_point = ast.literal_eval(line.rstrip())
+            startTimecode = Timecode(data_point["start"])
+            endTimecode = Timecode(data_point["end"])
+            start = startTimecode.total_seconds()
+            end = endTimecode.total_seconds()
+            if start >= clipStart and end <= clipFinish:
+                data_point["start"] = Timecode.convert_sec_to_timecode(start - clipStart)
+                data_point["end"] = Timecode.convert_sec_to_timecode(end - clipStart)
+                new_metadata.append(data_point)
+        with open(new_metadata_path, 'w') as f:
+            for data_point in new_metadata:
+                f.write(json.dumps(data_point) + "\n")
+
+
+def process_clipped_video(video_link, clipStart, clipFinish):
+    print(f"Clipping '{video_link}'")
+
+    clip_video_link = video_link + "_clipped"
+
+    if (clip_video_link not in video_library):
+        if (video_link not in video_library):
+            video_library[video_link] = download_video(video_link)
+    
+        metadata = video_library[video_link]
+        video_title = metadata.get('id')
+        clip_video_title = video_title + "_clipped"
+        clip_metadata = metadata.copy()
+        clip_metadata["id"] = clip_video_title
+        video_library[clip_video_link] = clip_metadata
+        
+        print(f"'{clip_video_title}'")
+
+        video_path = os.path.join(DATABASE, f'{video_title}.mp4')
+        subtitles_path = os.path.join(DATABASE, f'{video_title}.en.vtt')
+        audio_path = os.path.join(DATABASE, f'{video_title}.mp3')
+
+        clip_filename = video_path.replace(".mp4", f"_clipped.mp4")
+        ### create clipped video in the same format, override if such file exists
+        os.system(f"ffmpeg -i {video_path} -ss {clipStart} -to {clipFinish} -c:v libx264 copy -c:a copy -y {clip_filename}")
+
+        subtitles = webvtt.read(subtitles_path)
+        clip_subtitles = webvtt.WebVTT()
+        for caption in subtitles:
+            if caption.start_in_seconds >= float(clipStart) and caption.end_in_seconds <= float(clipFinish):
+                caption_start = Timecode.convert_sec_to_timecode(caption.start_in_seconds - float(clipStart)) + f".{caption.start.split('.')[1]}"
+                caption_end = Timecode.convert_sec_to_timecode(caption.end_in_seconds - float(clipStart)) + f".{caption.end.split('.')[1]}"
+                clip_caption = webvtt.Caption(
+                    start=caption_start,
+                    end=caption_end,
+                    text=caption.text
+                )
+                clip_subtitles.captions.append(clip_caption)
+        clip_subtitles.save(subtitles_path.replace(".en.vtt", "_clipped.en.vtt"))
+
+        clip_audio_filename = audio_path.replace(".mp3", f"_clipped.mp3")
+        os.system(f"ffmpeg -i {audio_path} -ss {clipStart} -to {clipFinish} -c:a copy -y {clip_audio_filename}")
+
+
+        clipMetadata(clip_video_title, video_title, "_10", clipStart, clipFinish)
+        clipMetadata(clip_video_title, video_title, "_5", clipStart, clipFinish)
+        clipMetadata(clip_video_title, video_title, "_10_combined", clipStart, clipFinish)
+        clipMetadata(clip_video_title, video_title, "_5_combined", clipStart, clipFinish)
+
+    return process_video(clip_video_link)

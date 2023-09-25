@@ -48,7 +48,7 @@ class Timecode:
         hours = seconds // 3600
         minutes = (seconds % 3600) // 60
         secs = seconds % 60
-        return "{:02d}:{:02d}:{:02d}".format(hours, minutes, secs)
+        return "{:02d}:{:02d}:{:02d}".format(int(hours), int(minutes), int(secs))
     
     def convert_timecode_to_sec(self):
         return self.time["hours"] * 3600 + self.time["minutes"] * 60 + self.time["seconds"] 
