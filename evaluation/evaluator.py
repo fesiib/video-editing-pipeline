@@ -160,7 +160,8 @@ def run_langchain_pipeline_temporal(input, indexed=False):
         input["text"],
         temporal, temporal_labels, temporal_offsets,
         0, input["sketch_timestamp"],
-        [480,854], [], 
+        input["video_shape"], [],
+        input["video_duration"],
     )
     edits_temporal = []
     edits_temporal_reasoning = []

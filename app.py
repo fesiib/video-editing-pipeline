@@ -20,7 +20,7 @@ Server side for video editing pipline
 '''
 #intent_parser = IntentParser(40, 80)
 pipeline = Pipeline(50, 0)
-langchain_pipeline = LangChainPipeline(verbose=True)
+langchain_pipeline = LangChainPipeline(verbose=False)
 
 '''
 Input:
@@ -238,7 +238,7 @@ def test_langchain_pipeline():
     print(result)
 
 def create_clip(video_link, start, end):
-    transcript, moments, metadata = create_clipped_video(video_link, start, end)
+    transcript, moments, metadata = process_clipped_video(video_link, start, end)
     filename = f'{metadata["id"]}.mp4'
 
     responseJSON = {

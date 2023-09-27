@@ -265,6 +265,7 @@ class LangChainPipeline():
         sketch_timestamp,
         video_shape,
         skipped_segments,
+        video_duration,
     ):
         with get_openai_callback() as cb:
             segments = []
@@ -281,13 +282,14 @@ class LangChainPipeline():
                 start, finish = self.__get_non_intersecting_segment(
                     current_player_position, current_player_position + 10, skipped_segments
                 )
-                temporal_segments.append({
-                    "start": start,
-                    "finish": finish,
-                    "explanation": ["current_play_position"],
-                    "source": ["default"],
-                    "offsets": [-1],
-                })
+                if start >= 0 and finish > start and finish < video_duration:
+                    temporal_segments.append({
+                        "start": start,
+                        "finish": finish,
+                        "explanation": ["current_play_position"],
+                        "source": ["default"],
+                        "offsets": [-1],
+                    })
             
             ### check if sketch_timestamp is in any of the edit segments
             if sketch_timestamp >= 0:
@@ -302,13 +304,14 @@ class LangChainPipeline():
                     start, finish = self.__get_non_intersecting_segment(
                         sketch_timestamp, sketch_timestamp + 10, skipped_segments + temporal_segments
                     )
-                    temporal_segments.append({
-                        "start": start,
-                        "finish": finish,
-                        "explanation": ["sketch_timestamp"],
-                        "source": ["sketch"],
-                        "offsets": [-1],
-                    })
+                    if start >= 0 and finish > start and finish < video_duration:
+                        temporal_segments.append({
+                            "start": start,
+                            "finish": finish,
+                            "explanation": ["sketch_timestamp"],
+                            "source": ["sketch"],
+                            "offsets": [-1],
+                        })
             
             edit_segments = []
             for segment in temporal_segments:
@@ -370,6 +373,7 @@ class LangChainPipeline():
         print(sketches)
 
         video_shape = [response["projectMetadata"]["height"], response["projectMetadata"]["width"]]
+        video_duration = response["projectMetadata"]["duration"]
 
         from_scratch = response["requestParameters"]["processingMode"] == "from-scratch"
         add_more = response["requestParameters"]["processingMode"] == "add-more"
@@ -400,6 +404,7 @@ class LangChainPipeline():
                     references.temporal, references.temporal_labels, [-1 for _ in references.temporal],
                     current_player_position, sketch_timestamp,
                     video_shape, skipped_segments, 
+                    video_duration
                 )
             else:
                 edits = prev_edits
@@ -443,6 +448,7 @@ class LangChainPipeline():
             sketch["timestamp"] = sketch_timestamp
 
         video_shape = [response["projectMetadata"]["height"], response["projectMetadata"]["width"]]
+        video_duration = response["projectMetadata"]["duration"]
 
         from_scratch = response["requestParameters"]["processingMode"] == "from-scratch"
         add_more = response["requestParameters"]["processingMode"] == "add-more"
@@ -465,8 +471,11 @@ class LangChainPipeline():
             ### set edit operations
             response["requestParameters"]["editOperations"] = simple_references.edit
             response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
-            response["requestParameters"]["indexedReferences"] = references.dict()
-
+            response["requestParameters"]["indexedParameters"] = references.get_parameters_short()
+            
+            response["requestParameters"]["indexedEdits"] = []
+            for edit_reference in references.edit_references:
+                response["requestParameters"]["indexedEdits"].append(edit_reference.get_object())
             
             ### predict temporal segments
             if from_scratch == True or add_more == True:
@@ -475,7 +484,8 @@ class LangChainPipeline():
                     simple_references.temporal, simple_references.temporal_labels,
                     [item.offset for item in references.temporal_references],
                     current_player_position, sketch_timestamp,
-                    video_shape, skipped_segments, 
+                    video_shape, skipped_segments,
+                    video_duration,
                 )
             else:
                 edits = prev_edits

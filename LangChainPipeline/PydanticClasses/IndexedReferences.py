@@ -35,6 +35,12 @@ class SingleReference(BaseModel):
             return 0
         return v
 
+    def get_object(self):
+        return {
+            "offset": self.offset,
+            "reference": self.reference,
+        }
+
 class IndexedReferences(BaseModel):
     """References to temporal, spatial, and edit operations in a user's video editing command along with offsets within the original command"""
 
@@ -200,14 +206,15 @@ class IndexedReferences(BaseModel):
         }
 
     def get_parameters_short(self):
+
         return {
-            "text": self.textParameters,
-            "image": self.imageParameters,
-            "shape": self.shapeParameters,
-            "blur": self.blurParameters,
-            "cut": self.cutParameters,
-            "crop": self.cropParameters,
-            "zoom": self.zoomParameters,
+            "text": [item.get_object() for item in self.textParameters],
+            "image": [item.get_object() for item in self.imageParameters],
+            "shape": [item.get_object() for item in self.shapeParameters],
+            "blur": [item.get_object() for item in self.blurParameters],
+            "cut": [item.get_object() for item in self.cutParameters],
+            "crop": [item.get_object() for item in self.cropParameters],
+            "zoom": [item.get_object() for item in self.zoomParameters],
         }
     
     def get_references(self):

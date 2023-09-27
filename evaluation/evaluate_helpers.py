@@ -280,7 +280,8 @@ def get_data_point(dataset, index):
         "text": dataset[index]["description"],
         "sketch": dataset[index]["sketch"],
         "sketch_timestamp": dataset[index]["sketch_timestamp"],
-        "video_shape": [480, 854]
+        "video_shape": [480, 854],
+        "video_duration": VIDEO_DATABASE[str(dataset[index]["task_id"])]["duration"],
     }
 
     ground_truth = {

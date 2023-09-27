@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path('.')
 DATABASE = ROOT / "static" / "database"
 METADATA = ROOT / "metadata"
+SEGMENTATION_DATA = ROOT / "segmentation-data"
 
 video_library = {}
 
@@ -205,9 +206,11 @@ def process_video(video_link):
     # transcript = get_transcript_each_word(subtitles)
     return transcript, moments, metadata
 
-def clipMetadata(new_title, old_title, suffix, clipStart, clipFinish):
+def clip_metadata_file(new_title, old_title, suffix, clipStart, clipFinish):
     metadata_path = os.path.join(METADATA, f'{old_title}{suffix}.txt')
     new_metadata_path = os.path.join(METADATA, f'{new_title}{suffix}.txt')
+    if not os.path.exists(metadata_path):
+        return
     new_metadata = []
     with open(metadata_path, 'r') as f:
         raw_lines = f.readlines()
@@ -225,6 +228,19 @@ def clipMetadata(new_title, old_title, suffix, clipStart, clipFinish):
             for data_point in new_metadata:
                 f.write(json.dumps(data_point) + "\n")
 
+
+def clip_segmentation_data(new_title, old_title, clipStart, clipFinish):
+    segmentation_data_path = os.path.join(SEGMENTATION_DATA, f'{old_title}')
+    new_segmentation_data_path = os.path.join(SEGMENTATION_DATA, f'{new_title}')
+    if not os.path.exists(segmentation_data_path):
+        return
+    if not os.path.exists(new_segmentation_data_path):
+        os.mkdir(new_segmentation_data_path)
+    ### copy all the relevant folders and rename them
+    for frame_sec in range(round(clipStart), round(clipFinish) + 1):
+        folder_name = os.path.join(segmentation_data_path, "Frame.{}.0".format(frame_sec))
+        new_folder_name = os.path.join(new_segmentation_data_path, "Frame.{}.0".format(frame_sec - round(clipStart)))
+        os.system(f"cp -r {folder_name} {new_folder_name}")
 
 def process_clipped_video(video_link, clipStart, clipFinish):
     print(f"Clipping '{video_link}'")
@@ -267,12 +283,14 @@ def process_clipped_video(video_link, clipStart, clipFinish):
         clip_subtitles.save(subtitles_path.replace(".en.vtt", "_clipped.en.vtt"))
 
         clip_audio_filename = audio_path.replace(".mp3", f"_clipped.mp3")
-        os.system(f"ffmpeg -i {audio_path} -ss {clipStart} -to {clipFinish} -c:a copy -y {clip_audio_filename}")
+        os.system(f"ffmpeg -i {audio_path} -ss {clipStart} -to {clipFinish} -c copy -y {clip_audio_filename}")
 
 
-        clipMetadata(clip_video_title, video_title, "_10", clipStart, clipFinish)
-        clipMetadata(clip_video_title, video_title, "_5", clipStart, clipFinish)
-        clipMetadata(clip_video_title, video_title, "_10_combined", clipStart, clipFinish)
-        clipMetadata(clip_video_title, video_title, "_5_combined", clipStart, clipFinish)
+        clip_metadata_file(clip_video_title, video_title, "_10", clipStart, clipFinish)
+        clip_metadata_file(clip_video_title, video_title, "_5", clipStart, clipFinish)
+        clip_metadata_file(clip_video_title, video_title, "_10_combined", clipStart, clipFinish)
+        clip_metadata_file(clip_video_title, video_title, "_5_combined", clipStart, clipFinish)
+
+        clip_segmentation_data(clip_video_title, video_title, clipStart, clipFinish)
 
     return process_video(clip_video_link)
