@@ -115,11 +115,13 @@ class EditChain():
         context = [
             f'The original command was: {original_command}',
         ]
-        metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
+        metadata_transcript = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
+        metadata_visual = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
         if len(parameters["textParameters"]) > 0:
             initial_edit_parameters["textParameters"]["content"] = self.text_content.run(
                 context,
-                metadata,
+                metadata_transcript,
+                metadata_visual,
                 parameters["textParameters"],
             )
         return initial_edit_parameters
@@ -133,11 +135,13 @@ class EditChain():
         context = [
             f'The original command was: {original_command}',
         ]
-        metadata = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
+        metadata_transcript = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.transcript_metadata))
+        metadata_visual = list(filter(lambda x: start <= timecode_to_seconds(x["start"]) < finish, self.visual_metadata))
         if len(parameters["imageParameters"]) > 0:
             initial_edit_parameters["imageParameters"]["searchQuery"] = self.image_query.run(
                 context,
-                metadata,
+                metadata_transcript,
+                metadata_visual,
                 parameters["imageParameters"],
             )
         return initial_edit_parameters
@@ -237,19 +241,27 @@ class TextContentChain():
         self.neighbors_right = neighbors_right
         print("Set parameters")
 
-    def run(self, context, metadata, command):
+    def run(self, context, metadata_transcript, metadata_visual, command):
 
-        filtered_metadata = filter_metadata_by_semantic_similarity(
+        filtered_metadata_transcript = filter_metadata_by_semantic_similarity(
             targets=command,
-            candidates=metadata,
-            k=self.top_k,
+            candidates=metadata_transcript,
+            k=self.top_k/2,
+            neighbors_left=self.neighbors_left,
+            neighbors_right=self.neighbors_right,
+        )
+        filtered_metadata_visual = filter_metadata_by_semantic_similarity(
+            targets=command,
+            candidates=metadata_visual,
+            k=self.top_k/2,
             neighbors_left=self.neighbors_left,
             neighbors_right=self.neighbors_right,
         )
 
         result = self.chain.predict(
             context=json.dumps(context),
-            metadata=json.dumps([data["data"] for data in filtered_metadata]),
+            metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
+            metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
             command=json.dumps(command),
         )
         return result
@@ -284,18 +296,26 @@ class ImageQueryChain():
         print("Set parameters")
 
     ### TODO: need to consider only metadata from the relevant segment
-    def run(self, context, metadata, command):
-        filtered_metadata = filter_metadata_by_semantic_similarity(
+    def run(self, context, metadata_transcript, metadata_visual, command):
+        filtered_metadata_transcript = filter_metadata_by_semantic_similarity(
             targets=command,
-            candidates=metadata,
-            k=self.top_k,
+            candidates=metadata_transcript,
+            k=self.top_k/2,
+            neighbors_left=self.neighbors_left,
+            neighbors_right=self.neighbors_right,
+        )
+        filtered_metadata_visual = filter_metadata_by_semantic_similarity(
+            targets=command,
+            candidates=metadata_visual,
+            k=self.top_k/2,
             neighbors_left=self.neighbors_left,
             neighbors_right=self.neighbors_right,
         )
 
         result = self.chain.predict(
             context=json.dumps(context),
-            metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
+            metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
+            metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
             command=json.dumps(command),
         )
         return result

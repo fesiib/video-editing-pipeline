@@ -10,9 +10,9 @@ from langchain.prompts import (
 from langchain.prompts.example_selector import LengthBasedExampleSelector
 
 PREFIX_IMAGE_QUERY_PROMPT= """
-You are a video editor's assistant who is trying to understand natural language request of the editor to come up with search query for images to put in the video. You are given a command from the editor, the original context of the command, and visual description of the video which you can use to construct the image query. Visual description of the video is a list of textual descriptions (what action is happening, abstract caption, and descriptions of objects) of 10-second segments of the video. You must generate the search query for the image to be displayed based on the editor's command, original context, and visual descriptions.
+You are a video editor's assistant who is trying to understand natural language request of the editor to come up with search query for images to put in the video. You are given a command from the editor, the original context of the command, and relevant content from the video. Relevant content is a list of snippets from the transcript and visual description (what action is happening, abstract caption, and descriptions of objects) of 10-second segments. You must generate the search query for the image to be displayed based on the editor's command, original context, and relevant content.
 
-Note 1: If no relevant search query can be generated that satisfies the command, the context, and the visual descriptions, output only the command.
+Note 1: If no relevant search query can be generated that satisfies the command, output only the command.
 Note 2: Make sure that the search query is not too long, since it should be seen by the editor. Keep it under 100 characters.
 
 """
@@ -20,14 +20,16 @@ Note 2: Make sure that the search query is not too long, since it should be seen
 EXAMPLE_PROMPT = """
 Command: {command}
 Context: {context}
-Visual Descriptions: {metadata}
+Transcript snippets: {metadata_transcript}
+Visual descriptions: {metadata_visual}
 Response: {response}
 """
 
 SUFFIX_IMAGE_QUERY_PROMPT = """
 Command: {command}
 Context: {context}
-Visual Descriptions: {metadata}
+Transcript snippets: {metadata_transcript}
+Visual descriptions: {metadata_visual}
 Response:
 """
 
@@ -35,7 +37,11 @@ def get_examples():
     context1 = [
         "The original command was: Put some images of devices that can be seen in the video.",
     ]
-    metadata1 = [
+    metadata_transcript1 = [
+        " oh happy friday everyone so a couple of",
+        " serendipitous things sort of happened here uh one i was in the middle of working on a video actually come check this thing out so this is the gpd",
+    ]
+    metadata_visual1 = [
         {
             "action": "using computer",
             "abstract_caption": "young man sitting at a desk working on a laptop with headphones on.",
@@ -53,7 +59,12 @@ def get_examples():
     context2 = [
         "The original command was: Whenever possible, put an icon that represents the scene.",
     ]
-    metadata2 = [
+    metadata_transcript2 = [
+        " up before don't finish up now you told me you were done sorry let me just get my wi-fi password in here i'm just gonna throw in some extra motions",
+        " so that hopefully you guys reverse engineer my password here because that would be really really really inconvenient for me i would",
+        " have to take a whole probably about six minutes or so and log into my interface and then change that all right now we have some important setup to do",
+    ]
+    metadata_visual2 = [
         {
             "action": "using computer",
             "abstract_caption": "a man sitting at a desk holding a laptop in his hands and a computer on the table.",
@@ -71,7 +82,12 @@ def get_examples():
     context3 = [
         "The original command was: Based on the current scene, add an appropriate meme."
     ]
-    metadata3 = [
+    metadata_transcript3 = [
+        " surface go is using what is it a there it is a 4415 y processor what do you like brandon do you like the unboxing on black",
+        " or the unboxing on wood grain which duper you like the wood grain all right we're going to do the wood grain so it's got a 4415 why processor four gigs or eight gigs of ram",
+        " it's got 64 gigs or 128 gigs of storage acclaimed nine hours of battery life well this one's",
+    ]
+    metadata_visual3 = [
         {
             "action": "using computer",
             "abstract_caption": "a man sitting at a desk holding a laptop in his hands and a computer on the table.",
@@ -89,24 +105,27 @@ def get_examples():
         }
     ]
     command3 = ["appropriate meme"]
-    response3 = "meme about young man talking about laptop png"
+    response3 = "meme about young man talking about laptop specifications"
 
     examples = []
     examples.append({
         "context": json.dumps(context1),
-        "metadata": json.dumps(metadata1),
+        "metadata_transcript": json.dumps(metadata_transcript1),
+        "metadata_visual": json.dumps(metadata_visual1),
         "command": json.dumps(command1),
         "response": response1,
     })
     examples.append({
         "context": json.dumps(context2),
-        "metadata": json.dumps(metadata2),
+        "metadata_transcript": json.dumps(metadata_transcript2),
+        "metadata_visual": json.dumps(metadata_visual2),
         "command": json.dumps(command2),
         "response": response2,
     })
     examples.append({
         "context": json.dumps(context3),
-        "metadata": json.dumps(metadata3),
+        "metadata_transcript": json.dumps(metadata_transcript3),
+        "metadata_visual": json.dumps(metadata_visual3),
         "command": json.dumps(command3),
         "response": response3,
     })
@@ -114,7 +133,7 @@ def get_examples():
 
 def get_image_query_prompt_llm(partial_variables={}, examples = []):
     example_prompt_template = PromptTemplate(
-        input_variables=["context", "metadata", "command", "response"],
+        input_variables=["context", "metadata_transcript", "metadata_visual", "command", "response"],
         template=EXAMPLE_PROMPT,
     )
 
@@ -137,7 +156,7 @@ def get_image_query_prompt_llm(partial_variables={}, examples = []):
 def get_image_query_prompt_chat(partial_variables={}):
     example_prompt_template = ChatPromptTemplate.from_messages(
         [
-            ("human", "Command: {command}\nContext: {context}\nVisual Descriptions: {metadata}"),
+            ("human", "Command: {command}\nContext: {context}\nTranscript snippets: {metadata_transcript}\nVisual descriptions: {metadata_visual}"),
             ("ai", "{response}"),
         ]
     )
@@ -157,7 +176,7 @@ def get_image_query_prompt_chat(partial_variables={}):
         [
             system_message,
             few_shot_prompt_template,
-            ("human", "Command: {command}\nContext: {context}\nVisual Descriptions: {metadata}"),
+            ("human", "Command: {command}\nContext: {context}\nTranscript snippets: {metadata_transcript}\nVisual descriptions: {metadata_visual}"),
         ]
     )
 

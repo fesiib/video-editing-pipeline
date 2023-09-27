@@ -10,7 +10,7 @@ from langchain.prompts import (
 from langchain.prompts.example_selector import LengthBasedExampleSelector
 
 PREFIX_TEXT_CONTENT_PROMPT= """
-You are a video editor's assistant who is trying to understand natural language request of the editor to find a text to display in the video. You are given a command from the editor, the original context of the command, and relevant content from the video. Relevant content is a list of snippets from the transcript and visual description (what action is happening, abstract caption, and descriptions of objects) of 10-second segments. You must generate the text to be displayed based on the editor's command, original context, and relevant content.
+You are a video editor's assistant who is trying to understand natural language request of the editor to. You are given a command from the editor, the original context of the command, and relevant content from the video. Relevant content is a list of snippets from the transcript and visual description (what action is happening, abstract caption, and descriptions of objects) of 10-second segments. You must generate the text to be displayed based on the editor's command, original context, and relevant content.
 
 Note 1: If no relevant text can be generated that satisfies the command, output the input command itself with reasonable formatting.
 Note 2: Make sure that text is not too long, since it will be displayed on the screen. Keep it under 100 characters.
