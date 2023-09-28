@@ -266,7 +266,8 @@ def process_clipped_video(video_link, clipStart, clipFinish):
 
         clip_filename = video_path.replace(".mp4", f"_clipped.mp4")
         ### create clipped video in the same format, override if such file exists
-        os.system(f"ffmpeg -i {video_path} -ss {clipStart} -to {clipFinish} -c:v libx264 copy -c:a copy -y {clip_filename}")
+        # os.system(f"ffmpeg -i {video_path} -ss {clipStart} -to {clipFinish}  -c copy -avoid_negative_ts make_zero -async 1 -y {clip_filename}")
+        os.system(f'ffmpeg -i {video_path} -ss {clipStart} -to {clipFinish} -vf "setpts=PTS-STARTPTS" -af "asetpts=PTS-STARTPTS" -r 30 -c:v libx264 -c:a aac -strict experimental -y {clip_filename}')
 
         subtitles = webvtt.read(subtitles_path)
         clip_subtitles = webvtt.WebVTT()

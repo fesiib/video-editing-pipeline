@@ -237,25 +237,14 @@ def test_langchain_pipeline():
     # )
     print(result)
 
-def create_clip(video_link, start, end):
+def create_clip(idx):
+    video_link = list(CLIP_VIDEOS.keys())[idx]
+    start = CLIP_VIDEOS[video_link]["start"]
+    end = CLIP_VIDEOS[video_link]["end"]
     transcript, moments, metadata = process_clipped_video(video_link, start, end)
     filename = f'{metadata["id"]}.mp4'
 
-    responseJSON = {
-        "request": {
-            "videoLink": video_link,
-            "isClipped": True,
-            "clipStart": start,
-            "clipEnd": end,
-        },
-        "moments": moments,
-        "metadata": metadata,
-        "transcript": transcript,
-        #"source": url_for("display_video", filename=filename),
-        "source": str(get_video_by_filename(filename)),
-        "status": "success"
-    }
-    print(json.dumps(responseJSON))
+    print(filename)
 
 if __name__ == "__main__":
     # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
@@ -263,4 +252,4 @@ if __name__ == "__main__":
     # test("whenever the person mentions the surface go, emphasize the screen response time")
     # test_langchain_pipeline()
 
-    # create_clip("https://www.youtube.com/live/4LdIvyfzoGY?feature=share", 100, 400)
+    # create_clip(0)

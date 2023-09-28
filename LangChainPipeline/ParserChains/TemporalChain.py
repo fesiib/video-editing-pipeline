@@ -213,6 +213,9 @@ class TemporalTranscriptChain():
         for element in result.list_elements:
             index = int(element.index)
             explanation = element.explanation
+            if index >= len(filtered_metadata) or index < 0:
+                print("ERROR: Invalid index: ", index, len(filtered_metadata), command)
+                continue
             segments.append({
                 "start": filtered_metadata[index]["start"],
                 "finish": filtered_metadata[index]["end"],
@@ -275,6 +278,9 @@ class TemporalVisualChain():
         for element in result.list_elements:
             index = int(element.index)
             explanation = element.explanation
+            if index >= len(filtered_metadata) or index < 0:
+                print("ERROR: Invalid index: ", index, len(filtered_metadata), command)
+                continue
             segments.append({
                 "start": filtered_metadata[index]["start"],
                 "finish": filtered_metadata[index]["end"],
