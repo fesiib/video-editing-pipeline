@@ -108,7 +108,7 @@ class SpatialChain():
                 "y": 0,
                 "width": 0,
                 "height": 0,
-                "info": ["intersection"],
+                "info": ["Intersection"],
             }
         else:
             return {
@@ -116,7 +116,7 @@ class SpatialChain():
                 "y": y1,
                 "width": x2 - x1,
                 "height": y2 - y1,
-                "info": ["intersection"],
+                "info": ["Intersection"],
             }
     
     def get_union(self, candidate1, candidate2):
@@ -129,7 +129,7 @@ class SpatialChain():
             "y": y1,
             "width": x2 - x1,
             "height": y2 - y1,
-            "info": ["union"],
+            "info": ["Union"],
         }
 
     def get_candidate_bboxes(self,
@@ -158,7 +158,7 @@ class SpatialChain():
                         "width": round(bbox["width"]), 
                         "height": round(bbox["height"]), 
                         "rotation": 0,
-                        "info": ["sketch"],
+                        "info": ["Sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     } for bbox in ref_bboxes
@@ -169,11 +169,11 @@ class SpatialChain():
                     {
                         "x": 0, 
                         "y": 0,
-                        "width": round(video_shape[1]),
-                        "height": round(video_shape[0]),
+                        "width": round(video_shape[1] / 2),
+                        "height": round(video_shape[0] / 2),
                         "rotation": 0,
-                        "info": ["full_frame"],
-                        "source": ["full_frame"],
+                        "info": ["Default location"],
+                        "source": ["default"],
                         "offsets": [-1],
                     }
                 ]
@@ -214,7 +214,7 @@ class SpatialChain():
                 "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
                 "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
-                "info": ["visual-dependent"],
+                "info": ["Visual Dependent"],
                 "source": vs_texts,
                 "offsets": vs_offsets,
             }]
@@ -237,7 +237,7 @@ class SpatialChain():
                 "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
                 "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
-                "info": ["visual-dependent"],
+                "info": ["Visual Dependent"],
                 "source": vs_texts,
                 "offsets": vs_offsets,
             }]

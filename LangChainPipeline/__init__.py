@@ -60,7 +60,7 @@ class LangChainPipeline():
                             "width": round(sketch["width"]),
                             "height": round(sketch["height"]),
                             "rotation": 0,
-                            "info": ["sketch"],
+                            "info": ["Sketch"],
                             "source": ["sketch"],
                             "offsets": [-1],
                         }
@@ -75,7 +75,7 @@ class LangChainPipeline():
                     "width": video_shape[1],
                     "height": video_shape[0],
                     "rotation": 0,
-                    "info": ["full"],
+                    "info": ["Default Location"],
                     "source": ["default"],
                     "offsets": [-1],
                 }]
@@ -87,7 +87,7 @@ class LangChainPipeline():
                         "width": round(sketch["width"]),
                         "height": round(sketch["height"]),
                         "rotation": 0,
-                        "info": ["sketch"],
+                        "info": ["Sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     })
@@ -131,7 +131,7 @@ class LangChainPipeline():
                         "width": round(sketches[0]["width"]),
                         "height": round(sketches[0]["height"]),
                         "rotation": 0,
-                        "info": ["sketch"],
+                        "info": ["Sketch Location"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     }
@@ -286,7 +286,7 @@ class LangChainPipeline():
                     temporal_segments.append({
                         "start": start,
                         "finish": finish,
-                        "explanation": ["current_play_position"],
+                        "explanation": ["Current player timestamp"],
                         "source": ["default"],
                         "offsets": [-1],
                     })
@@ -308,7 +308,7 @@ class LangChainPipeline():
                         temporal_segments.append({
                             "start": start,
                             "finish": finish,
-                            "explanation": ["sketch_timestamp"],
+                            "explanation": ["Sketch timestamp"],
                             "source": ["sketch"],
                             "offsets": [-1],
                         })

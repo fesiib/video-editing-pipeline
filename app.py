@@ -80,10 +80,10 @@ def fail_with(msg):
     }
 
 CLIP_VIDEOS = {
-    "https://www.youtube.com/watch?v=b3TVLNNqgdc": {
-        "start": 2 * 60 + 20,
-        "end": 7 * 60 + 40,
-    },
+    # "https://www.youtube.com/watch?v=b3TVLNNqgdc": {
+    #     "start": 2 * 60 + 20,
+    #     "end": 7 * 60 + 40,
+    # },
     "https://www.youtube.com/live/Tih8I3Klw54?si=QXkQ-ID33_FyAmWO": {
         "start": 50,
         "end": 6 * 60 + 30,
