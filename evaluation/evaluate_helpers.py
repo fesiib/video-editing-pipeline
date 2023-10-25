@@ -150,25 +150,35 @@ def __get_single_edit_operation_evaluation(prediction, ground_truth):
 def __get_spatial_evaluation_miou(pairs):
     mean = 0
     all_iou = []
-    total_counted = 0
-    for (rect1, rect2) in pairs:
-        if rect1 == None or rect2 == None:
+    for (rect1s, rect2s) in pairs:
+        print("before", rect1s, rect2s)
+        if isinstance(rect1s, list) == False:
+            rect1s = [rect1s]
+        if isinstance(rect2s, list) == False:
+            rect2s = [rect2s]
+        print("after", rect1s, rect2s)
+        max_iou = -1
+        for rect1 in rect1s:
+            for rect2 in rect2s:
+                if rect1 == None or rect2 == None:
+                    continue
+                x1 = max(rect1["x"], rect2["x"])
+                y1 = max(rect1["y"], rect2["y"])
+                x2 = min(rect1["x"] + rect1["width"], rect2["x"] + rect2["width"])
+                y2 = min(rect1["y"] + rect1["height"], rect2["y"] + rect2["height"])
+                intersection = max(0, x2 - x1) * max(0, y2 - y1)
+                union = rect1["width"] * rect1["height"] + rect2["width"] * rect2["height"] - intersection
+                iou = intersection / union
+                max_iou = max(max_iou, iou)
+        if max_iou == -1:
             continue
-        total_counted += 1
-        x1 = max(rect1["x"], rect2["x"])
-        y1 = max(rect1["y"], rect2["y"])
-        x2 = min(rect1["x"] + rect1["width"], rect2["x"] + rect2["width"])
-        y2 = min(rect1["y"] + rect1["height"], rect2["y"] + rect2["height"])
-        intersection = max(0, x2 - x1) * max(0, y2 - y1)
-        union = rect1["width"] * rect1["height"] + rect2["width"] * rect2["height"] - intersection
-        iou = intersection / union
-        mean += iou
-        all_iou.append(iou)
-
-    if total_counted == 0:
+        mean += max_iou
+        all_iou.append(max_iou)
+            
+    if len(all_iou) == 0:
         return 0, []
 
-    mean /= total_counted
+    mean /= len(all_iou)
     return mean, all_iou
 
 def __get_spatial_evaluation_margin(prediction, ground_truth, temporal_prediction, temporal_ground_truth, margin = 5):
@@ -189,7 +199,8 @@ def __get_spatial_evaluation_margin(prediction, ground_truth, temporal_predictio
 def get_dataset():
     # filename = "./gt_data/parsed_gt-v0.json"
     # filename = "./gt_data/parsed_gt-v1.json"
-    filename = "./gt_data/parsed_gt-v2.json"
+    # filename = "./gt_data/parsed_gt-v2.json"
+    filename = "./gt_data/parsed_gt-v3.json"
     with open(filename, "r") as f:
         dataset = json.load(f)
         return dataset
@@ -260,7 +271,7 @@ def get_data_point_as_request(dataset, index):
         },
     }
     ground_truth = {
-        "editOperations": dataset[index]["edit_text"],
+        "editOperations": dataset[index]["edit"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
         "edits_spatial": dataset[index]["spatial"],
@@ -268,7 +279,29 @@ def get_data_point_as_request(dataset, index):
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],
             "edit": dataset[index]["edit_text"],
+            "parameters": dataset[index]["params_text"],
         }
+    }
+    return input, ground_truth
+
+def get_data_point_parsing(dataset, index):
+    if (index >= len(dataset) or index < 0):
+        return None
+    input = {
+        "videoId": VIDEO_DATABASE[str(dataset[index]["task_id"])]["videoId"],
+        "text": dataset[index]["description"],
+        "sketch": dataset[index]["sketch"],
+        "sketch_timestamp": dataset[index]["sketch_timestamp"],
+        "video_shape": [480, 854],
+        "video_duration": VIDEO_DATABASE[str(dataset[index]["task_id"])]["duration"],
+    }
+
+    ground_truth = {
+        "editOperations": dataset[index]["edit"],
+        "temporal": dataset[index]["temporal_text"],
+        "spatial": dataset[index]["spatial_text"],
+        "edit": dataset[index]["edit_text"],
+        "parameters": dataset[index]["params_text"],
     }
     return input, ground_truth
 
@@ -285,7 +318,7 @@ def get_data_point(dataset, index):
     }
 
     ground_truth = {
-        "editOperations": dataset[index]["edit_text"],
+        "editOperations": dataset[index]["edit"],
         "parameters": {},
         "edits": dataset[index]["temporal"],
         "edits_spatial": dataset[index]["spatial"],
@@ -293,6 +326,7 @@ def get_data_point(dataset, index):
             "temporal": dataset[index]["temporal_text"],
             "spatial": dataset[index]["spatial_text"],
             "edit": dataset[index]["edit_text"],
+            "parameters": dataset[index]["params_text"],
         }
     }
     return input, ground_truth
@@ -372,17 +406,28 @@ def get_spatial_evaluation_pairs(predictions, ground_truth, iou_threshold = 0.5)
     return miou, thresholded
 
 def get_edit_operation_evaluation(prediction, ground_truth):
+    total = 0
+    precision = 0
+    recall = 0
+    f1 = 0
     if isinstance(prediction, list):
-        if len(prediction) == 0:
-            return (1 if len(ground_truth) == 0 else 0)
-        total = 0
         for single_prediction in prediction:
             result = __get_single_edit_operation_evaluation(single_prediction, ground_truth)
             total += result
-        return total / len(prediction)
     else:
-        return __get_single_edit_operation_evaluation(prediction, ground_truth)
-    # edit_text
+        total = __get_single_edit_operation_evaluation(prediction, ground_truth)
+    
+    if len(prediction) > 0:
+        precision = total / len(prediction)
+    else:
+        precision = 1
+    if len(ground_truth) > 0:
+        recall = total / len(ground_truth)
+    else:
+        recall = 1
+    if precision + recall > 0:
+        f1 = 2 * precision * recall / (precision + recall)
+    return f1, precision, recall
 
 def get_edit_params_evaluation():
     # extra params

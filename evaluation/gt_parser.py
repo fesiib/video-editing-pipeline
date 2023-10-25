@@ -14,9 +14,10 @@ COLUMN_TIMESTAMP = "Timestamp"
 COLUMN_TEMPORAL_TEXT = "Temporal"
 COLUMN_SPATIAL_TEXT = "Spatial"
 COLUMN_EDIT_TEXT = "Edit"
-COLUMN_EXTRA_PARAMS = "Extra params"
-COLUMN_TEMPORAL = "Temporal Disambiguation"
-COLUMN_SPATIAL = "Spatial Disambiguation"
+
+COLUMN_SEGMENTS = "Segments"
+COLUMN_PARAMETERS = "Parameters"
+COLUMN_EDIT_OPERATION = "Edit Operation"
 
 UNNAMED_HEADER = "Unnamed"
 
@@ -27,7 +28,6 @@ EDIT_OPERATION_BLUR = "blurring"
 EDIT_OPERATION_CUT = "cutting/trimming"
 EDIT_OPERATION_ZOOM = "zooming"
 EDIT_OPERATION_CROP = "cropping"
-EDIT_OPERATION_FRAME = "adding frames"
 
 edit_operation_mapping = {
     EDIT_OPERATION_TEXT: "text",
@@ -37,7 +37,6 @@ edit_operation_mapping = {
     EDIT_OPERATION_CUT: "cut",
     EDIT_OPERATION_ZOOM: "zoom",
     EDIT_OPERATION_CROP: "crop",
-    EDIT_OPERATION_FRAME: "frame",
 }
 
 column_mapping = {
@@ -50,9 +49,10 @@ column_mapping = {
     COLUMN_TEMPORAL_TEXT: "temporal_text",
     COLUMN_SPATIAL_TEXT: "spatial_text",
     COLUMN_EDIT_TEXT: "edit_text",
-    COLUMN_EXTRA_PARAMS: "params",
-    COLUMN_TEMPORAL: "temporal",
-    COLUMN_SPATIAL: "spatial",
+    COLUMN_PARAMETERS: "params_text",
+    
+    COLUMN_SEGMENTS: "segments",
+    COLUMN_EDIT_OPERATION: "edit",
 }
 
 def csv_parser(csv_file):
@@ -104,9 +104,11 @@ class DataPoint():
     temporal_text = []
     spatial_text = []
     edit_text = []
-    extra_params = []
+    params_text = []
+
     temporal = []
     spatial = []
+    edit = []
 
     def __init__(self,
         participant_id = -1,
@@ -118,9 +120,10 @@ class DataPoint():
         temporal_text = [],
         spatial_text = [],
         edit_text = [],
-        extra_params = [],
+        params_text = [],
         temporal = [],
         spatial = [],
+        edit = [],
     ):
         self.participant_id = participant_id
         self.task_id = task_id
@@ -131,9 +134,11 @@ class DataPoint():
         self.temporal_text = temporal_text
         self.spatial_text = spatial_text
         self.edit_text = edit_text
-        self.extra_params = extra_params
+        self.params_text = params_text
+
         self.temporal = temporal
         self.spatial = spatial
+        self.edit = edit
 
     def reset(self):
         self.participant_id = -1
@@ -145,17 +150,19 @@ class DataPoint():
         self.temporal_text = []
         self.spatial_text = []
         self.edit_text = []
-        self.extra_params = []
+        self.params_text = []
+        
         self.temporal = []
         self.spatial = []
+        self.edit = []
 
 
     def __str__(self):
         return f"""
             {self.participant_id}, {self.task_id}, {self.intent_id},\n
             {self.description}, {self.sketch}, {self.sketch_timestamp},\n
-            {self.temporal_text}, {self.spatial_text}, {self.edit_text}, {self.extra_params},\n
-            {self.temporal}, {self.spatial}
+            {self.temporal_text}, {self.spatial_text}, {self.edit_text}, {self.params_text},\n
+            {self.temporal}, {self.spatial}, {self.edit}, {self.params_text}
         """
     
     def set_attr(self, __name: str, __value: Any) -> None:
@@ -188,10 +195,11 @@ class DataPoint():
             if (isinstance(__value, str) == True):
                 self.description = __value.strip()
         if (__name == column_mapping.get(COLUMN_SKETCH)):
-            if (isinstance(__value, str) == True):
+            if (__value == "x"):
+                    self.sketch = []
+            elif (isinstance(__value, str) == True):
                 sketches = __value.strip().split('\n')
                 for sketch in sketches:
-                    print("Sketch", sketch)
                     #coordinates_str = json.loads(sketch)
                     #coordinates = [int(float(coord.strip())) for coord in coordinates_str]
                     coordinates = json.loads(sketch)
@@ -205,13 +213,16 @@ class DataPoint():
             elif (isinstance(__value, list) == True):
                 self.sketch += __value
         if (__name == column_mapping.get(COLUMN_SKETCH_TIMESTAMP)):
+
             if (isinstance(__value, str) == True):
-                if (is_timestamp(__value)):
+                if (__value == "x"):
+                    self.sketch_timestamp = -1
+                elif (is_timestamp(__value)):
                     timestamp = parse_timestamp(__value)
                     self.sketch_timestamp = timestamp
             elif (isinstance(__value, float) == True):
                 self.sketch_timestamp = __value
-            print("Sketch timestamp", self.sketch_timestamp)
+
         if (__name == column_mapping.get(COLUMN_TEMPORAL_TEXT)):
             if (isinstance(__value, str) == True):
                 # parts = __value.split(',')
@@ -226,7 +237,25 @@ class DataPoint():
                 self.spatial_text.append(__value)
             elif (isinstance(__value, list) == True):
                 self.spatial_text += __value
+        
+        """ FROM V3"""
+        if (__name == column_mapping.get(COLUMN_PARAMETERS)):
+            if (isinstance(__value, str) == True):
+                # parts = __value.split(',')
+                # self.extra_params += [part.strip() for part in parts]
+                self.params_text.append(__value)
+            elif (isinstance(__value, list) == True):
+                self.params_text += __value
+
         if (__name == column_mapping.get(COLUMN_EDIT_TEXT)):
+            if (isinstance(__value, str) == True):
+                # parts = __value.split(',')
+                # self.spatial_text += [part.strip() for part in parts]
+                self.edit_text.append(__value)
+            elif (isinstance(__value, list) == True):
+                self.edit_text += __value
+
+        if (__name == column_mapping.get(COLUMN_EDIT_OPERATION)):
             if (isinstance(__value, str) == True):
                 parts = __value.lower().split(',')
                 parts = [part.strip()[0:10] for part in parts]
@@ -236,23 +265,17 @@ class DataPoint():
                         if operation.startswith(part) == True:
                             edit_operation = edit_operation_mapping[operation]
                             break
-                    self.edit_text.append(edit_operation)
+                    self.edit.append(edit_operation)
             elif (isinstance(__value, list) == True):
-                self.edit_text += __value
-        if (__name == column_mapping.get(COLUMN_EXTRA_PARAMS)):
-            if (isinstance(__value, str) == True):
-                # parts = __value.split(',')
-                # self.extra_params += [part.strip() for part in parts]
-                self.extra_params.append(__value)
-            elif (isinstance(__value, list) == True):
-                self.extra_params += __value
-        if (__name == column_mapping.get(COLUMN_TEMPORAL)):
+                self.edit += __value
+
+        if (__name == column_mapping.get(COLUMN_SEGMENTS)):
             if (isinstance(__value, str) == True):
                 parts = __value.strip().split(',', 1)
                 timestamp_str = parts[0].strip()
                 rect_str = None
                 if (len(parts) > 1):
-                    rect_str = parts[1].strip()
+                    rect_str = ",".join(parts[1:]).strip()
                 if (is_timestamp(timestamp_str)):
                     timestamp = parse_timestamp(timestamp_str)
                     self.temporal.append([max(0, timestamp - 2), timestamp + 2])
@@ -265,15 +288,27 @@ class DataPoint():
                     self.temporal.append([timestamp_1, timestamp_2])
                 
                 if (rect_str != None):
+                    new_spatial = []
                     coordinates = json.loads(rect_str)
-                    self.spatial.append({
-                        "x": coordinates[0],
-                        "y": coordinates[1],
-                        "width": coordinates[2],
-                        "height": coordinates[3],
-                        "rotation": 0,
-                    })
-                    print("Spatial", self.spatial[-1])
+                    if isinstance(coordinates[0], list) == True:
+                        for coordinate in coordinates:
+                            new_spatial.append({
+                                "x": coordinate[0],
+                                "y": coordinate[1],
+                                "width": coordinate[2],
+                                "height": coordinate[3],
+                                "rotation": 0,
+                            })
+                    else:
+                        new_spatial.append({
+                            "x": coordinates[0],
+                            "y": coordinates[1],
+                            "width": coordinates[2],
+                            "height": coordinates[3],
+                            "rotation": 0,
+                        })
+                    self.spatial.append(new_spatial)
+                    #print("Spatial", new_spatial)
                 else:
                     self.spatial.append(None)
 
@@ -291,13 +326,6 @@ class DataPoint():
             elif (isinstance(__value, list) == True):
                 self.temporal.append(__value)
                 self.spatial.append(None)
-        # if (__name == column_mapping.get(COLUMN_SPATIAL)):
-        #     if (isinstance(__value, str) == True):
-        #         coordinates_str = __value.split(',')
-        #         coordinates = [int(float(coord.strip())) for coord in coordinates_str]
-        #         self.spatial.append(coordinates)
-        #     elif (isinstance(__value, list) == True):
-        #         self.spatial.append(__value)
 
     def consume_dict(self, dict):
         self.reset()
@@ -320,28 +348,29 @@ class DataPoint():
             # else:
             #     print(f"Warning: {key} is not a valid column name and its value is {dict[key]}")
         self.temporal = sorted(self.temporal, key=lambda x: x[0])
-        new_temporal_spatial = [[0, 0, None]]
-        for segement, rect in zip(self.temporal, self.spatial):
-            if segement[0] <= new_temporal_spatial[-1][1]:
-                new_temporal_spatial[-1][1] = max(segement[1], new_temporal_spatial[-1][1])
-                if rect != None:
-                    union_rect = {}
-                    if new_temporal_spatial[-1][2] != None:
-                        union_rect['x'] = min(rect['x'], new_temporal_spatial[-1][2]['x'])
-                        union_rect['y'] = min(rect['y'], new_temporal_spatial[-1][2]['y'])
-                        union_rect['width'] = round(max(rect['x'] + rect['width'], new_temporal_spatial[-1][2]['x'] + new_temporal_spatial[-1][2]['width']) - union_rect['x'], 2)
-                        union_rect['height'] = round(max(rect['y'] + rect['height'], new_temporal_spatial[-1][2]['y'] + new_temporal_spatial[-1][2]['height']) - union_rect['y'], 2)
-                        union_rect['rotation'] = 0
-                    else:
-                        union_rect = rect.copy()
-                    #get union of two rects
-                    print("Warning: competing spatial", rect, new_temporal_spatial[-1][2], union_rect, dict['Participant'], dict['Task'], dict['Intent'])
-                    new_temporal_spatial[-1][2] = union_rect
+        new_temporal_spatial = [[0, 0, []]]
+        for segment, rects in zip(self.temporal, self.spatial):
+            if segment[0] <= new_temporal_spatial[-1][1]:
+                new_temporal_spatial[-1][1] = max(segment[1], new_temporal_spatial[-1][1])
+                if rects != None:
+                    # union_rect = {}
+                    # if new_temporal_spatial[-1][2] != None:
+                    #     union_rect['x'] = min(rect['x'], new_temporal_spatial[-1][2]['x'])
+                    #     union_rect['y'] = min(rect['y'], new_temporal_spatial[-1][2]['y'])
+                    #     union_rect['width'] = round(max(rect['x'] + rect['width'], new_temporal_spatial[-1][2]['x'] + new_temporal_spatial[-1][2]['width']) - union_rect['x'], 2)
+                    #     union_rect['height'] = round(max(rect['y'] + rect['height'], new_temporal_spatial[-1][2]['y'] + new_temporal_spatial[-1][2]['height']) - union_rect['y'], 2)
+                    #     union_rect['rotation'] = 0
+                    # else:
+                    #     union_rect = rects.copy()
+                    # #get union of two rects
+                    # print("Warning: competing spatial", rect, new_temporal_spatial[-1][2], union_rect, dict['Participant'], dict['Task'], dict['Intent'])
+                    
+                    new_temporal_spatial[-1][2].extend(rects.copy())
             else:
-                if rect != None:
-                    new_temporal_spatial.append(segement.copy() + [rect.copy()])
+                if rects != None:
+                    new_temporal_spatial.append(segment.copy() + [rects.copy()])
                 else:
-                    new_temporal_spatial.append(segement.copy() + [None])
+                    new_temporal_spatial.append(segment.copy() + [[]])
         self.spatial = []
         self.temporal = []
         for segment_rect in new_temporal_spatial:

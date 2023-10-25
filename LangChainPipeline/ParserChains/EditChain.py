@@ -1,3 +1,4 @@
+import os
 import ast
 import json
 
@@ -15,6 +16,8 @@ from LangChainPipeline.PydanticClasses.EditParameters import EditParameters
 from LangChainPipeline.DataFilters.semantic_filters import filter_metadata_by_semantic_similarity
 from LangChainPipeline.utils import timecode_to_seconds
 
+from backend.image_retriever import get_first_google_search_image
+
 class EditChain():
     def __init__(
         self,
@@ -27,8 +30,8 @@ class EditChain():
     ):
         self.visual_metadata = None
         self.transcript_metadata = None
-        self.interval = interval
-        self.video_id = video_id
+        self.interval = None
+        self.video_id = None
         self.set_video(video_id, interval)
         
         self.all_parameters = AllParametersChain(
@@ -55,8 +58,18 @@ class EditChain():
         print("Initialized EditChain")
 
     def set_video(self, video_id, interval):
+        if self.video_id == video_id and self.interval == interval:
+            return
+
         self.video_id = video_id
-        metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+
+        self.is_combined = True
+        metadata_filepath = f"metadata/{video_id}_{str(interval)}_combined.txt"
+        if os.path.exists(metadata_filepath) == False:
+            print("ERROR: Metadata file does not exist: ", metadata_filepath)
+            metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+            self.is_combined = False
+
         self.visual_metadata = []
         self.transcript_metadata = []
         with open(metadata_filepath) as f:
@@ -71,6 +84,19 @@ class EditChain():
                 visual_data_str = (interval["synth_caption"].strip() + ", " 
                     + interval["dense_caption"].strip() + ", " 
                     + interval["action_pred"].strip())
+                
+                if self.is_combined:
+                    visual_data = {
+                        "action": interval["action_pred"],
+                        "abstract_caption": interval["synth_caption"],
+                        "objects": interval["objects"],
+                        "dense_caption": interval["dense_caption_2"],
+                    }
+                    visual_data_str = (json.dumps(interval["synth_caption"]).strip() + ", "
+                        + json.dumps(interval["dense_caption_2"]).strip() + ", "
+                        + json.dumps(interval["action_pred"]).strip() + ", "
+                        + json.dumps(interval["objects"]).strip())
+
                 transcript = interval["transcript"].strip()
                 self.visual_metadata.append({
                     "start": interval["start"],
@@ -144,6 +170,11 @@ class EditChain():
                 metadata_visual,
                 parameters["imageParameters"],
             )
+
+            initial_edit_parameters["imageParameters"]["source"] = get_first_google_search_image(
+                initial_edit_parameters["imageParameters"]["searchQuery"],
+                initial_edit_parameters["imageParameters"]["source"]
+            )
         return initial_edit_parameters
     
     def run_crop_parameters(self,
@@ -201,12 +232,16 @@ class AllParametersChain():
         
         if total_references == 0:
             return initial_edit_parameters
-
-        result = self.chain.predict(
-            context=json.dumps(context),
-            command=json.dumps(filtered_parameters),
-            initial_parameters=json.dumps(filtered_edit_parameters),
-        )
+        
+        try:
+            result = self.chain.predict(
+                context=json.dumps(context),
+                command=json.dumps(filtered_parameters),
+                initial_parameters=json.dumps(filtered_edit_parameters),
+            )
+        except:
+            print("ERROR: Failed to adjust parameters: ", filtered_parameters)
+            return initial_edit_parameters
         dict_result = result.dict()
         for parameter in self.skip_parameters:
             dict_result[parameter] = initial_edit_parameters[parameter]
@@ -258,12 +293,16 @@ class TextContentChain():
             neighbors_right=self.neighbors_right,
         )
 
-        result = self.chain.predict(
-            context=json.dumps(context),
-            metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
-            metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
-            command=json.dumps(command),
-        )
+        try: 
+            result = self.chain.predict(
+                context=json.dumps(context),
+                metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
+                metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
+                command=json.dumps(command),
+            )
+        except:
+            print("ERROR: Failed to adjust text content: ", command)
+            return ""
         return result
     
 class ImageQueryChain():
@@ -312,10 +351,14 @@ class ImageQueryChain():
             neighbors_right=self.neighbors_right,
         )
 
-        result = self.chain.predict(
-            context=json.dumps(context),
-            metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
-            metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
-            command=json.dumps(command),
-        )
+        try:
+            result = self.chain.predict(
+                context=json.dumps(context),
+                metadata_transcript=json.dumps([data["data"] for data in filtered_metadata_transcript]),
+                metadata_visual=json.dumps([data["structured_data"] for data in filtered_metadata_visual]),
+                command=json.dumps(command),
+            )
+        except:
+            print("ERROR: Failed to adjust image query: ", command)
+            return ""
         return result

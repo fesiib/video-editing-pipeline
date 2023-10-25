@@ -1,3 +1,4 @@
+import os
 import ast
 import json
 
@@ -28,8 +29,8 @@ class TemporalChain():
         self.visual_metadata = None
         self.transcript_metadata = None
         self.context = None
-        self.interval = interval
-        self.video_id = video_id
+        self.interval = None
+        self.video_id = None
         self.set_video(video_id, interval)
         self.position = TemporalPositionChain(verbose)
         self.transcript = TemporalTranscriptChain(
@@ -51,8 +52,18 @@ class TemporalChain():
         print("Initialized TemporalChain")
 
     def set_video(self, video_id, interval):
+        if self.video_id == video_id and self.interval == interval:
+            return
+
         self.video_id = video_id
-        metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+        
+        self.is_combined = True
+        metadata_filepath = f"metadata/{video_id}_{str(interval)}_combined.txt"
+        if os.path.exists(metadata_filepath) == False:
+            print("ERROR: Metadata file does not exist: ", metadata_filepath)
+            metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+            self.is_combined = False
+
         self.visual_metadata = []
         self.transcript_metadata = []
         with open(metadata_filepath) as f:
@@ -67,6 +78,19 @@ class TemporalChain():
                 visual_data_str = (interval["synth_caption"].strip() + ", " 
                     + interval["dense_caption"].strip() + ", " 
                     + interval["action_pred"].strip())
+                
+                if self.is_combined:
+                    visual_data = {
+                        "action": interval["action_pred"],
+                        "abstract_caption": interval["synth_caption"],
+                        "objects": interval["objects"],
+                        "dense_caption": interval["dense_caption_2"],
+                    }
+                    visual_data_str = (json.dumps(interval["synth_caption"]).strip() + ", "
+                        + json.dumps(interval["dense_caption_2"]).strip() + ", "
+                        + json.dumps(interval["action_pred"]).strip() + ", "
+                        + json.dumps(interval["objects"]).strip())
+
                 transcript = interval["transcript"].strip()
                 self.visual_metadata.append({
                     "start": interval["start"],
@@ -146,17 +170,21 @@ class TemporalPositionChain():
         print("Initialized TemporalPositionChain")
 
     def run(self, context, command, offsets):
-        result = self.chain.predict(
-            context=json.dumps(context),
-            command=json.dumps(command),
-        )
+        try:
+            result = self.chain.predict(
+                context=json.dumps(context),
+                command=json.dumps(command),
+            )
+        except:
+            print("ERROR: Failed to parse command: ", command)
+            return []
 
         segments = []
         for segment in result.segments:
             segments.append({
                 "start": segment.start,
                 "finish": segment.finish,
-                "explanation": ["gpt"],
+                "explanation": ["Explicit reference to time"],
                 "source": command.copy(),
                 "offsets": offsets.copy(),
             })
@@ -203,11 +231,15 @@ class TemporalTranscriptChain():
             neighbors_right=self.neighbors_right,
         )
 
-        result = self.chain.predict(
-            context=json.dumps(context),
-            metadata=json.dumps([data["data"] for data in filtered_metadata]),
-            command=command,
-        )
+        try: 
+            result = self.chain.predict(
+                context=json.dumps(context),
+                metadata=json.dumps([data["data"] for data in filtered_metadata]),
+                command=command,
+            )
+        except:
+            print("ERROR: Failed to parse command: ", command)
+            return []
 
         segments = []
         for element in result.list_elements:
@@ -268,11 +300,15 @@ class TemporalVisualChain():
             neighbors_right=self.neighbors_right,
         )
 
-        result = self.chain.predict(
-            context=json.dumps(context),
-            metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
-            command=json.dumps(command),
-        )
+        try:
+            result = self.chain.predict(
+                context=json.dumps(context),
+                metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
+                command=json.dumps(command),
+            )
+        except:
+            print("ERROR: Failed to parse command: ", command)
+            return []
 
         segments = []
         for element in result.list_elements:

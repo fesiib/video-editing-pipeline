@@ -136,6 +136,25 @@ def run_pipeline_request_new(edit_request):
     }
     return response
 
+def run_langchain_pipeline_references(input):
+    langchain_pipeline.set_video(input["videoId"], 10)
+    references = langchain_pipeline.indexed_input_parser.run(input["text"])
+    simple_references = references.get_references()
+    parameters = simple_references.get_parameters_short()
+    flattened_parameters = set()
+    for key in parameters.keys():
+        flattened_parameters = flattened_parameters.union(parameters[key])
+    flattened_parameters = list(flattened_parameters)
+
+    response = {
+        "editOperations": simple_references.edit,
+        "temporal": simple_references.temporal,
+        "spatial": simple_references.spatial,
+        "edit": [item.reference for item in references.edit_references],
+        "parameters": flattened_parameters,
+    }
+    return response
+
 def run_langchain_pipeline_temporal_indexed(input):
     return run_langchain_pipeline_temporal(input, indexed=True)
 
@@ -194,7 +213,7 @@ def run_langchain_pipeline_temporal(input, indexed=False):
         "relevant_text": {
             "temporal": temporal,
             "spatial": [item.reference for item in references.spatial_references],
-            "edit": references.edit,
+            "edit": [item.reference for item in references.edit_references],
             "indexed_temporal": [[item.offset, item.reference] for item in references.temporal_references],
             "indexed_spatial": [[item.offset, item.reference] for item in references.spatial_references],
             "indexed_edit": [[item.offset, item.reference] for item in references.edit_references],
@@ -227,6 +246,8 @@ def run_langchain_pipeline_request(edit_request):
             edit["temporalParameters"]["offsets"],
         ])
     
+    relevant_text = edit_response["requestParameters"]["relevantText"]
+
     response = {
         "editOperations": edit_response["requestParameters"]["editOperations"],
         "parameters": edit_response["requestParameters"]["parameters"],
@@ -235,9 +256,9 @@ def run_langchain_pipeline_request(edit_request):
         "edits_spatial": edits_spatial,
         "edits_spatial_reasoning": edits_spatial_reasoning,
         "relevant_text": {
-            "temporal": [],
-            "spatial": [],
-            "edit": edit_response["requestParameters"]["editOperations"],
+            "temporal": relevant_text["temporal"],
+            "spatial": relevant_text["spatial"],
+            "edit": relevant_text["edit"],
         },
     }
     return response
@@ -267,7 +288,9 @@ def run_evaluation_for_task(
     average_spatial_miou_10 = 0
     average_spatial_thresholded_10 = 0
 
-    average_edit_operation = 0
+    average_edit_operation_f1 = 0
+    average_edit_operation_precision = 0
+    average_edit_operation_recall = 0
 
     all_temporal_f1_0 = []
     all_temporal_precision_0 = []
@@ -312,7 +335,10 @@ def run_evaluation_for_task(
             "spatial_miou_10": 1,
             "spatial_thresholded_10": 1,
 
-            "edit_operation": 1,
+            "edit_operation_f1": 1,
+            "edit_operation_precision": 1,
+            "edit_operation_recall": 1,
+
             "all_temporal_f1_0": all_temporal_f1_0,
             "all_temporal_precision_0": all_temporal_precision_0,
             "all_temporal_recall_0": all_temporal_recall_0,
@@ -397,7 +423,9 @@ def run_evaluation_for_task(
         average_spatial_miou_10 += miou_10
         average_spatial_thresholded_10 += thresholded_10
 
-        average_edit_operation += edit_operation
+        average_edit_operation_f1 += edit_operation[0]
+        average_edit_operation_precision += edit_operation[1]
+        average_edit_operation_recall += edit_operation[2]
 
         all_temporal_f1_0.append(f1_0)
         all_temporal_precision_0.append(precision_0)
@@ -428,7 +456,7 @@ def run_evaluation_for_task(
         print("!!!spatial evaluation margin=0!!!: ", "miou-margin-0: ", miou_0, "thresholded-margin-0: ", thresholded_0)
         print("!!!spatial evaluation margin=5!!!: ", "miou-margin-5: ", miou_5, "thresholded-margin-5: ", thresholded_5)
         print("!!!spatial evaluation margin=10!!!: ", "miou-margin-10: ", miou_10, "thresholded-margin-10: ", thresholded_10)
-        print("!!!edit_op evaluation!!!: ", edit_operation)
+        print("!!!edit_op evaluation!!!: ", "f1", edit_operation[0], "precision", edit_operation[1], "recall", edit_operation[2])
         print("--------------------")
         print("!!!(temporal)cosine_similarity!!!: ", cosine_scores_temporal)
         print("!!!(temporal)top_4_cosine_similarity!!!: ", json.dumps(top_10_pairs_temporal[0:4], indent=1))
@@ -452,7 +480,9 @@ def run_evaluation_for_task(
     average_spatial_thresholded_5 /= len(indexes)
     average_spatial_miou_10 /= len(indexes)
     average_spatial_thresholded_10 /= len(indexes)
-    average_edit_operation /= len(indexes)
+    average_edit_operation_f1 /= len(indexes)
+    average_edit_operation_precision /= len(indexes)
+    average_edit_operation_recall /= len(indexes)
     return {
         "temporal_f1_0": average_temporal_f1_0,
         "temporal_precision_0": average_temporal_precision_0,
@@ -469,7 +499,9 @@ def run_evaluation_for_task(
         "spatial_thresholded_5": average_spatial_thresholded_5,
         "spatial_miou_10": average_spatial_miou_10,
         "spatial_thresholded_10": average_spatial_thresholded_10,
-        "edit_operation": average_edit_operation,
+        "edit_operation_f1": average_edit_operation_f1,
+        "edit_operation_precision": average_edit_operation_precision,
+        "edit_operation_recall": average_edit_operation_recall,
         "all_temporal_f1_0": all_temporal_f1_0,
         "all_temporal_precision_0": all_temporal_precision_0,
         "all_temporal_recall_0": all_temporal_recall_0,
@@ -517,7 +549,9 @@ def run_evaluation(
     average_spatial_miou_10 = 0
     average_spatial_thresholded_10 = 0
 
-    average_edit_operation = 0
+    average_edit_operation_f1 = 0
+    average_edit_operation_precision = 0
+    average_edit_operation_recall = 0
 
     all_temporal_f1_0 = []
     all_temporal_precision_0 = []
@@ -577,7 +611,9 @@ def run_evaluation(
         task_spatial_miou_10 = []
         task_spatial_thresholded_10 = []
 
-        task_edit_operation = []
+        task_edit_operation_f1 = []
+        task_edit_operation_precision = []
+        task_edit_operation_recall = []
 
         for index in cur_indexes:
             evaluated_dataset.append(dataset[index])
@@ -635,7 +671,9 @@ def run_evaluation(
             average_spatial_miou_10 += miou_10
             average_spatial_thresholded_10 += thresholded_10
 
-            average_edit_operation += edit_operation
+            average_edit_operation_f1 += edit_operation[0]
+            average_edit_operation_precision += edit_operation[1]
+            average_edit_operation_recall += edit_operation[2]
 
             all_temporal_f1_0.append(f1_0)
             all_temporal_precision_0.append(precision_0)
@@ -673,7 +711,9 @@ def run_evaluation(
             task_spatial_miou_10.append(miou_10)
             task_spatial_thresholded_10.append(thresholded_10)
 
-            task_edit_operation.append(edit_operation)
+            task_edit_operation_f1.append(edit_operation[0])
+            task_edit_operation_precision.append(edit_operation[1])
+            task_edit_operation_recall.append(edit_operation[2])
 
             print("--------------------")
             print("!!!input!!!: ", input)
@@ -685,7 +725,7 @@ def run_evaluation(
             print("!!!spatial evaluation margin=0!!!: ", "miou-margin-0: ", miou_0, "thresholded-margin-0: ", thresholded_0)
             print("!!!spatial evaluation margin=5!!!: ", "miou-margin-5: ", miou_5, "thresholded-margin-5: ", thresholded_5)
             print("!!!spatial evaluation margin=10!!!: ", "miou-margin-10: ", miou_10, "thresholded-margin-10: ", thresholded_10)
-            print("!!!edit_op evaluation!!!: ", edit_operation)
+            print("!!!edit_op evaluation!!!: ", "f1", edit_operation[0], "precision", edit_operation[1], "recall", edit_operation[2])
             print("--------------------")
             print("!!!(temporal)cosine_similarity!!!: ", cosine_scores_temporal)
             print("!!!(temporal)top_4_cosine_similarity!!!: ", json.dumps(top_10_pairs_temporal[0:4], indent=1))
@@ -702,7 +742,7 @@ def run_evaluation(
         print("!!!spatial evaluation margin=0!!!: ", "miou-margin-0: ", np.mean(task_spatial_miou_0), "thresholded-margin-0: ", np.mean(task_spatial_thresholded_0))
         print("!!!spatial evaluation margin=5!!!: ", "miou-margin-5: ", np.mean(task_spatial_miou_5), "thresholded-margin-5: ", np.mean(task_spatial_thresholded_5))
         print("!!!spatial evaluation margin=10!!!: ", "miou-margin-10: ", np.mean(task_spatial_miou_10), "thresholded-margin-10: ", np.mean(task_spatial_thresholded_10))
-        print("!!!edit_op evaluation!!!: ", np.mean(task_edit_operation))
+        print("!!!edit_op evaluation!!!: ", "f1", np.mean(task_edit_operation_f1), "precision", np.mean(task_edit_operation_precision), "recall", np.mean(task_edit_operation_recall))
         print("--------------------")
 
 
@@ -722,7 +762,9 @@ def run_evaluation(
         average_spatial_thresholded_5 = 1
         average_spatial_miou_10 = 1
         average_spatial_thresholded_10 = 1
-        average_edit_operation = 1
+        average_edit_operation_f1 = 1
+        average_edit_operation_precision = 1
+        average_edit_operation_recall = 1
     else:
         average_temporal_f1_0 /= len(evaluated_dataset)
         average_temporal_precision_0 /= len(evaluated_dataset)
@@ -739,7 +781,10 @@ def run_evaluation(
         average_spatial_thresholded_5 /= len(evaluated_dataset)
         average_spatial_miou_10 /= len(evaluated_dataset)
         average_spatial_thresholded_10 /= len(evaluated_dataset)
-        average_edit_operation /= len(evaluated_dataset)
+        average_edit_operation_f1 /= len(evaluated_dataset)
+        average_edit_operation_precision /= len(evaluated_dataset)
+        average_edit_operation_recall /= len(evaluated_dataset)
+
     return {
         "temporal_f1_0": average_temporal_f1_0,
         "temporal_precision_0": average_temporal_precision_0,
@@ -756,7 +801,9 @@ def run_evaluation(
         "spatial_thresholded_5": average_spatial_thresholded_5,
         "spatial_miou_10": average_spatial_miou_10,
         "spatial_thresholded_10": average_spatial_thresholded_10,
-        "edit_operation": average_edit_operation,
+        "edit_operation_f1": average_edit_operation_f1,
+        "edit_operation_precision": average_edit_operation_precision,
+        "edit_operation_recall": average_edit_operation_recall,
         "all_temporal_f1_0": all_temporal_f1_0,
         "all_temporal_precision_0": all_temporal_precision_0,
         "all_temporal_recall_0": all_temporal_recall_0,
@@ -826,8 +873,8 @@ def run_evaluation_spatial(
             input = data_point[0]
             ground_truth = data_point[1]
             count_spatial_gt = 0
-            for spatial_gt in ground_truth["edits_spatial"]:
-                if spatial_gt is not None:
+            for spatial_gts in ground_truth["edits_spatial"]:
+                if len(spatial_gts) > 0:
                     count_spatial_gt += 1
 
             if count_spatial_gt == 0:
@@ -891,7 +938,8 @@ def run_evaluation_spatial(
                 "relevant_text": {
                     "temporal": simple_references.temporal,
                     "spatial": simple_references.spatial,
-                    "edit": simple_references.edit,
+                    "edit": [item.reference for item in references.edit_references],
+                    "parameters": simple_references.get_parameters(),
                 },
             }
 
@@ -952,6 +1000,18 @@ def run_evaluation_spatial(
         print("!!!spatial evaluation margin=10!!!: ", "miou-margin-10: ", np.mean(task_spatial_miou_10), "thresholded-margin-10: ", np.mean(task_spatial_thresholded_10))
         print ("!!!spatial evaluation pairs!!!: ", "miou: ", np.mean(task_spatial_miou), "thresholded: ", np.mean(task_spatial_thresholded))
         print("--------------------")
+        filename = "results/spatial_evaluation_" + str(task_id) + ".json"
+        with open(filename, "w") as f:
+            json.dump({
+                "spatial_miou_0": task_spatial_miou_0,
+                "spatial_thresholded_0": task_spatial_thresholded_0,
+                "spatial_miou_5": task_spatial_miou_5,
+                "spatial_thresholded_5": task_spatial_thresholded_5,
+                "spatial_miou_10": task_spatial_miou_10,
+                "spatial_thresholded_10": task_spatial_thresholded_10,
+                "spatial_miou": task_spatial_miou,
+                "spatial_thresholded": task_spatial_thresholded,
+            }, f, indent=1)
         
     return {
         "spatial_miou_0": np.mean(all_spatial_miou_0),

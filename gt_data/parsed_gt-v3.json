@@ -1,0 +1,4307 @@
+[
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 3,
+    "description": "Create a title over the video for \u201cPoint 1: How to get started in a language\u201d blur out the video to bring focus to the title.",
+    "sketch": [
+      {
+        "x": 200.44,
+        "y": 126.37,
+        "width": 409.77,
+        "height": 117.44,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 103.817057,
+    "temporal_text": [
+      "\u201cPoint 1: How to get started in a language\u201d"
+    ],
+    "spatial_text": [
+      "over the video"
+    ],
+    "edit_text": [
+      "create a title, blur out the video"
+    ],
+    "params_text": [
+      "\u201cPoint 1: How to get started in a language\u201d, title"
+    ],
+    "temporal": [
+      [
+        102.0,
+        106.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 200.44,
+          "y": 126.37,
+          "width": 409.77,
+          "height": 117.44,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "blur"
+    ]
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 4,
+    "description": "9:22 - Add big text at top of frame to emphasize point, \u201cLots of listening and reading!\u201d",
+    "sketch": [
+      {
+        "x": 188.95,
+        "y": 71.48,
+        "width": 487.64,
+        "height": 51.06,
+        "rotation": 0
+      },
+      {
+        "x": 67.68,
+        "y": 196.58,
+        "width": 204.25,
+        "height": 168.5,
+        "rotation": 0
+      },
+      {
+        "x": 519.57,
+        "y": 177.43,
+        "width": 232.33,
+        "height": 177.43,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 559.0,
+    "temporal_text": [
+      "\"Lots of listening and reading\""
+    ],
+    "spatial_text": [
+      "Top of frame"
+    ],
+    "edit_text": [
+      "add big text, emphasize point"
+    ],
+    "params_text": [
+      "big text, \u201cLots of listening and reading!\u201d"
+    ],
+    "temporal": [
+      [
+        560.0,
+        564.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 188.95,
+          "y": 71.48,
+          "width": 487.64,
+          "height": 51.06,
+          "rotation": 0
+        },
+        {
+          "x": 67.68,
+          "y": 196.58,
+          "width": 204.25,
+          "height": 168.5,
+          "rotation": 0
+        },
+        {
+          "x": 519.57,
+          "y": 177.43,
+          "width": 232.33,
+          "height": 177.43,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 6,
+    "description": "Similarly, find the most concise talking points that support the conclusion at 15:57, and cut out unnecessary side points.\nAt 15:57, animate in text to emphasis summary, something like \u201cfocus on one language, occasionally refresh other languages with short stories, videos, etc.\u201d\nAnimate the text with a simple and engaging side panel similar to this, have the subject move over to the side.",
+    "sketch": [
+      {
+        "x": 209.11,
+        "y": 89.09,
+        "width": 364.88,
+        "height": 385.99,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 559.0,
+    "temporal_text": [
+      "15:57,"
+    ],
+    "spatial_text": [
+      "over to the side"
+    ],
+    "edit_text": [
+      "cut out, animate in text"
+    ],
+    "params_text": [
+      "\u201cfocus on one language, occasionally refresh other languages with short stories, videos, etc.\""
+    ],
+    "temporal": [
+      [
+        955.0,
+        959.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 183.09,
+          "y": 20.68,
+          "width": 635.33,
+          "height": 103.39,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 852,
+          "height": 480,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "width": 216.67,
+          "height": 480,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "crop",
+      "shape",
+      "text"
+    ]
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 7,
+    "description": "16:49 Similar title slide \u201cPoint 3: How do you start talking?\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "16:49"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "title"
+    ],
+    "params_text": [
+      "\"Point 3: How do you start talking?\""
+    ],
+    "temporal": [
+      [
+        1007.0,
+        1011.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 200.44,
+          "y": 126.37,
+          "width": 409.77,
+          "height": 117.44,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 1,
+    "task_id": 3,
+    "intent_id": 13,
+    "description": "End with answer at 1:02:21 and use a big title over the video: \u201cWHEN YOU FEEL LIKE IT!\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "1:02:21"
+    ],
+    "spatial_text": [
+      "over the video"
+    ],
+    "edit_text": [
+      "big title"
+    ],
+    "params_text": [
+      "\"WHEN YOU FEEL LIKE IT!\", big title"
+    ],
+    "temporal": [
+      [
+        3739.0,
+        3743.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 126.27,
+          "y": 15.51,
+          "width": 669.77,
+          "height": 113.73,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 1,
+    "description": "Overall, this guys is interacting too much with subscribers saying meaningless thingies like hey laura blabla thank you so will gonna trim almost every of it and make it into compact \u2018informing\u2019 video.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "meaningless thingies like hey laura blabla thank you"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "trim almost every of it"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        0,
+        45.0
+      ],
+      [
+        58.0,
+        96.0
+      ],
+      [
+        225.0,
+        266.0
+      ],
+      [
+        381.0,
+        395.0
+      ],
+      [
+        585.0,
+        625.0
+      ],
+      [
+        2782.0,
+        2830.0
+      ]
+    ],
+    "spatial": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 4,
+    "description": "6:46 He started to talk about history and mentioned one PhD student berish someone. We will gonna insert this photo and make it written down with sketching sound with his name at the exact point he mentioned that name. (used character as an explanation)",
+    "sketch": [
+      {
+        "x": 380.7,
+        "y": 187.56,
+        "width": 177.51,
+        "height": 198.9,
+        "rotation": 0
+      },
+      {
+        "x": 538.49,
+        "y": 159.99,
+        "width": 171.59,
+        "height": 96.5,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 406.0,
+    "temporal_text": [
+      "6:46, history, one PhD student berish someone, exact point he mentioned that name"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "insert this photo and make it written down"
+    ],
+    "params_text": [
+      "this photo, his name"
+    ],
+    "temporal": [
+      [
+        404.0,
+        408.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 380.7,
+          "y": 187.56,
+          "width": 177.51,
+          "height": 198.9,
+          "rotation": 0
+        },
+        {
+          "x": 538.49,
+          "y": 159.99,
+          "width": 171.59,
+          "height": 96.5,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "image",
+      "text"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 5,
+    "description": "We will zoom in on his hand while he talks about two different languages machine / natural language",
+    "sketch": [
+      {
+        "x": 651.05,
+        "y": 306.35,
+        "width": 60,
+        "height": 25.53,
+        "rotation": 0
+      },
+      {
+        "x": 648.5,
+        "y": 379.11,
+        "width": 77.87,
+        "height": 28.08,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 468.5,
+    "temporal_text": [
+      "while he talks about two different languages machine / natural language"
+    ],
+    "spatial_text": [
+      "on his hand"
+    ],
+    "edit_text": [
+      "zoom in"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        466.5,
+        470.5
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 651.05,
+          "y": 306.35,
+          "width": 60,
+          "height": 25.53,
+          "rotation": 0
+        },
+        {
+          "x": 648.5,
+          "y": 379.11,
+          "width": 77.87,
+          "height": 28.08,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "zoom"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 6,
+    "description": "11:56 he starts talking about hello.cpp\nThe coding screen is too small so we will gonna make it bigger and when he say \u2018 the hello.cpp\u2019 we will give some highlighting effect of box and give glittering sound effect.(imptnt)",
+    "sketch": [
+      {
+        "x": 334.47,
+        "y": 76.59,
+        "width": 42.13,
+        "height": 14.04,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 716.0,
+    "temporal_text": [
+      "11:56, talking about hello.cpp, when he say ' the hello.cpp'"
+    ],
+    "spatial_text": [
+      "coding screen"
+    ],
+    "edit_text": [
+      "make it bigger"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        714.0,
+        718.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 334.47,
+          "y": 76.59,
+          "width": 42.13,
+          "height": 14.04,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "zoom"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 7,
+    "description": "13:50-14:20 while he is talking thingies as\n#include <stdio.h>\nMain, header file ,\nInput, and receive thingies I want to make it one new screen and make it pop up by sequence so the watchers can get informations indented on their brain. For example, if I just listen to / watch to this video, It\u2019s actually hard to get the point which is the most important. So, we will gonna just highlight the important part .",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "13:50-14:20,  talking thingies as\n#include <stdio.h>\nMain, header file ,\nInput, and receive thingies"
+    ],
+    "spatial_text": [
+      "new screen"
+    ],
+    "edit_text": [
+      "make one new screen, make it pop up by sequence"
+    ],
+    "params_text": [
+      "#include <stdio.h>\nMain, header file ,\nInput, and receive"
+    ],
+    "temporal": [
+      [
+        830.0,
+        860.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 54,
+          "y": 90,
+          "width": 232,
+          "height": 265,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "shape"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 9,
+    "description": "19:48 He said like \u201c exercise this checkpoint\u201d and give challenge and even said like take some minute to work on this so show it in big screen, only questions(not the person) while he is on there in audio. Also, when doing this, he said to notice the space between lines, and when he say that zoom to space like constantly zooming (slow zoom)",
+    "sketch": [
+      {
+        "x": 1.14,
+        "y": 235.79,
+        "width": 268.69,
+        "height": 162.32,
+        "rotation": 0
+      },
+      {
+        "x": 61.04,
+        "y": 310.97,
+        "width": 18.83,
+        "height": 15.38,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 1202.957497,
+    "temporal_text": [
+      "19:48 He said like \u201c exercise this checkpoint\u201d and give challenge and even said like take some minute to work on this, he said notice the space between lines"
+    ],
+    "spatial_text": [
+      "space between lines"
+    ],
+    "edit_text": [
+      "show it in big screen, only questions, soom to space"
+    ],
+    "params_text": [
+      "only questions, constantly zooming (slow zoom)"
+    ],
+    "temporal": [
+      [
+        1200.957497,
+        1204.957497
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 1.14,
+          "y": 235.79,
+          "width": 268.69,
+          "height": 162.32,
+          "rotation": 0
+        },
+        {
+          "x": 61.04,
+          "y": 310.97,
+          "width": 18.83,
+          "height": 15.38,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "crop",
+      "zoom"
+    ]
+  },
+  {
+    "participant_id": 2,
+    "task_id": 4,
+    "intent_id": 10,
+    "description": "Around 24:05 he is talking some encouraging thingies while eye-contacting to screen. I wanna show him big and make it feels like audiences are in-person with him cuz I think he is delivering emotions and saying like showing weakness is okey so It is kinda genuine moment.",
+    "sketch": [
+      {
+        "x": 670.2,
+        "y": 297.42,
+        "width": 72.76,
+        "height": 28.08,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 1446.47,
+    "temporal_text": [
+      "around 24:05, talking some encouraging thingies while eye-contacting to screen"
+    ],
+    "spatial_text": [
+      "him"
+    ],
+    "edit_text": [
+      "show him big"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        1448.824842,
+        1452.824842
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 513.67,
+          "y": 236.07,
+          "width": 328.86,
+          "height": 237.79,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "crop"
+    ]
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 2,
+    "description": "Every time any quality of Surface go is mentioned, show it on the screen",
+    "sketch": [
+      {
+        "x": 465.95,
+        "y": 33.19,
+        "width": 278.28,
+        "height": 61.27,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 111.2,
+    "temporal_text": [
+      "Every time any quality of Surface go is mentioned"
+    ],
+    "spatial_text": [
+      "on the screen"
+    ],
+    "edit_text": [
+      "quality, show it on screen"
+    ],
+    "params_text": [
+      "quality of surface go"
+    ],
+    "temporal": [
+      [
+        81.0,
+        88.0
+      ],
+      [
+        90.0,
+        96.0
+      ],
+      [
+        97.0,
+        101.0
+      ],
+      [
+        109.2,
+        113.2
+      ],
+      [
+        259.0,
+        263.0
+      ],
+      [
+        264.0,
+        268.0
+      ],
+      [
+        279.0,
+        283.0
+      ],
+      [
+        472.0,
+        476.0
+      ],
+      [
+        1004.0,
+        1008.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 532.7,
+          "y": 117.7,
+          "width": 269.68,
+          "height": 100.39,
+          "rotation": 0
+        },
+        {
+          "x": 579.37,
+          "y": 121.16,
+          "width": 257.58,
+          "height": 93.47,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 617.41,
+          "y": 235.4,
+          "width": 226.47,
+          "height": 83.08,
+          "rotation": 0
+        },
+        {
+          "x": 617.41,
+          "y": 235.4,
+          "width": 226.47,
+          "height": 83.08,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 567.27,
+          "y": 280.4,
+          "width": 254.13,
+          "height": 83.08,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 465.95,
+          "y": 33.19,
+          "width": 278.28,
+          "height": 61.27,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 541.34,
+          "y": 195.59,
+          "width": 228.19,
+          "height": 93.47,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 441.07,
+          "y": 256.17,
+          "width": 273.14,
+          "height": 88.28,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 441.07,
+          "y": 256.17,
+          "width": 273.14,
+          "height": 88.28,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 441.07,
+          "y": 256.17,
+          "width": 273.14,
+          "height": 88.28,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 615.68,
+          "y": 77.89,
+          "width": 197.08,
+          "height": 53.66,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 3,
+    "description": "Whenever the quality/price/battery/accessories of the two devices are compared, place a small light colored box on the bottom of the screen, so that the viewer can visually compare them",
+    "sketch": [
+      {
+        "x": 0,
+        "y": 412.06,
+        "width": 426,
+        "height": 66.96,
+        "rotation": 0
+      },
+      {
+        "x": 426,
+        "y": 412.06,
+        "width": 426,
+        "height": 66.96,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 293.0,
+    "temporal_text": [
+      "Whenever the quality/price/battery/accessories of the two devices are compared"
+    ],
+    "spatial_text": [
+      "Bottom of the screen"
+    ],
+    "edit_text": [
+      "place a small light colored box"
+    ],
+    "params_text": [
+      "small light colored box"
+    ],
+    "temporal": [
+      [
+        108.0,
+        112.0
+      ],
+      [
+        120.0,
+        124.0
+      ],
+      [
+        134.0,
+        139.0
+      ],
+      [
+        140.0,
+        144.0
+      ],
+      [
+        794.386345,
+        798.386345
+      ],
+      [
+        914.0,
+        918.0
+      ],
+      [
+        943.0,
+        947.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        },
+        {
+          "x": 426,
+          "y": 412.06,
+          "width": 426,
+          "height": 66.96,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "shape"
+    ]
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 4,
+    "description": "When entering the wifi password, place a screen that shows what he\u2019s entering. Show the first half of the password and put stars for the rest. E.g. admin12****",
+    "sketch": [
+      {
+        "x": 626.8,
+        "y": 75.31,
+        "width": 210.63,
+        "height": 232.32,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 339.2,
+    "temporal_text": [
+      "When entering the wifi password"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "place a screen"
+    ],
+    "params_text": [
+      "first half of the password and put stars for the rest. E.g. admin12****"
+    ],
+    "temporal": [
+      [
+        337.2,
+        341.2
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 626.8,
+          "y": 75.31,
+          "width": 210.63,
+          "height": 232.32,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 3,
+    "task_id": 6,
+    "intent_id": 14,
+    "description": "Add a thumbnail picture and once the video starts add a very small description text, since there is no introduction part",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "once the video starts"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "very small description text"
+    ],
+    "params_text": [
+      "very small description text"
+    ],
+    "temporal": [
+      [
+        0,
+        2.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 544.4,
+          "y": 207.79,
+          "width": 309.6,
+          "height": 263.89,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 1,
+    "description": "To compare the MS surface go\u2019s spec with gpd pocket 2 apple\u2019s spec, highlight the spec of gdp pocket 2",
+    "sketch": [
+      {
+        "x": 552.29,
+        "y": 165.9,
+        "width": 153.84,
+        "height": 135.88,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 125.7,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "highglight"
+    ],
+    "params_text": [
+      "spec of gdp pocket 2"
+    ],
+    "temporal": [
+      [
+        108.0,
+        112.0
+      ],
+      [
+        123.0,
+        127.0
+      ],
+      [
+        134.0,
+        141.0
+      ],
+      [
+        758.0,
+        762.0
+      ],
+      [
+        791.0,
+        795.0
+      ],
+      [
+        918.0,
+        922.0
+      ],
+      [
+        965.0,
+        969.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 529.52,
+          "y": 161.96,
+          "width": 134.12,
+          "height": 131.94,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 556.24,
+          "y": 163.93,
+          "width": 122.28,
+          "height": 128.01,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 663.64,
+          "y": 421.91,
+          "width": 126.23,
+          "height": 57.11,
+          "rotation": 0
+        },
+        {
+          "x": 620,
+          "y": 2,
+          "width": 236,
+          "height": 158,
+          "rotation": 0
+        },
+        {
+          "x": 472.32,
+          "y": 213.16,
+          "width": 145.95,
+          "height": 118.16,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 677.44,
+          "y": 213.16,
+          "width": 88.75,
+          "height": 68.93,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 497.96,
+          "y": 81.21,
+          "width": 134.12,
+          "height": 94.53,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 405.27,
+          "y": 47.74,
+          "width": 147.92,
+          "height": 137.85,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 634.05,
+          "y": 315.56,
+          "width": 142.01,
+          "height": 108.31,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "shape"
+    ]
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 11,
+    "description": "It looks lightweight when he holds it. It would be good to add an emphasis for this.",
+    "sketch": [],
+    "sketch_timestamp": 1179.0,
+    "temporal_text": [
+      "when he holds it."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "emphasis"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        98.0,
+        102.0
+      ],
+      [
+        108.0,
+        112.0
+      ],
+      [
+        1179.0,
+        1187.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 268,
+          "y": 75,
+          "width": 324,
+          "height": 324,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 287,
+          "y": 120,
+          "width": 329,
+          "height": 257,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 457,
+          "y": 236,
+          "width": 183,
+          "height": 177,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "shape"
+    ]
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 12,
+    "description": "It looks like there are clear pros and cons between the ones on the right and the left. It would be beneficial to include content that emphasizes these differences.",
+    "sketch": [
+      {
+        "x": 273.2,
+        "y": 10.21,
+        "width": 397,
+        "height": 65.1,
+        "rotation": 0
+      },
+      {
+        "x": 606.37,
+        "y": 100.84,
+        "width": 174.88,
+        "height": 75.31,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 133.2,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "include content that emphasizes"
+    ],
+    "params_text": [
+      "content that emphasizes these differences"
+    ],
+    "temporal": [
+      [
+        131.2,
+        135.2
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 273.2,
+          "y": 10.21,
+          "width": 397,
+          "height": 65.1,
+          "rotation": 0
+        },
+        {
+          "x": 606.37,
+          "y": 100.84,
+          "width": 174.88,
+          "height": 75.31,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 13,
+    "description": "I added a text below the prize barcode that says \u201cPlease take a photo, it\u2019s first come, first served.\u201d",
+    "sketch": [
+      {
+        "x": 233.53,
+        "y": 396.25,
+        "width": 450.44,
+        "height": 77.62,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 412.841903,
+    "temporal_text": [
+      "prize barcode"
+    ],
+    "spatial_text": [
+      "below the prize barcode"
+    ],
+    "edit_text": [
+      "added a text"
+    ],
+    "params_text": [
+      "\"Please take a photo, it's first come, first served\""
+    ],
+    "temporal": [
+      [
+        410.0,
+        414.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 233.53,
+          "y": 396.25,
+          "width": 450.44,
+          "height": 77.62,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 4,
+    "task_id": 6,
+    "intent_id": 14,
+    "description": "Trim from 7:20 to 7:40 where he opens the box and says there is a manua",
+    "sketch": [
+      {
+        "x": 298.73,
+        "y": 333.16,
+        "width": 223.39,
+        "height": 86.8,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 412.6,
+    "temporal_text": [
+      "from 7:20 to 7:40, where he opens the box and says there is a manua"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "trim"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        440.0,
+        460.0
+      ]
+    ],
+    "spatial": [
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 1,
+    "description": "Take out all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts - essentially these that are outside of the questions+answers (excluding the opening and final ment).",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "all \u201cthank you for your donation\u201d and \u201cthank you for your comment\u201d parts"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "take out"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        1336.0,
+        1347.0
+      ],
+      [
+        1869.0,
+        1891.0
+      ],
+      [
+        2041.0,
+        2045.0
+      ]
+    ],
+    "spatial": [
+      [],
+      [],
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 2,
+    "description": "For each question that is being read out and included in the video, show it clearly on the screen, preferably in the form of comment box.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "For each question that is being read out and included in the video"
+    ],
+    "spatial_text": [
+      "on the screen"
+    ],
+    "edit_text": [
+      "show it clearly, in the form of comment box"
+    ],
+    "params_text": [
+      "each question that is being read out and included in the video, comment box"
+    ],
+    "temporal": [
+      [
+        116.0,
+        120.0
+      ],
+      [
+        196.0,
+        200.0
+      ],
+      [
+        303.0,
+        307.0
+      ],
+      [
+        372.0,
+        376.0
+      ],
+      [
+        704.0,
+        708.0
+      ],
+      [
+        821.0,
+        825.0
+      ],
+      [
+        921.0,
+        925.0
+      ],
+      [
+        1108.0,
+        1112.0
+      ],
+      [
+        1164.0,
+        1168.0
+      ],
+      [
+        1202.0,
+        1206.0
+      ],
+      [
+        1256.0,
+        1260.0
+      ],
+      [
+        1271.0,
+        1275.0
+      ],
+      [
+        1292.0,
+        1296.0
+      ],
+      [
+        1350.0,
+        1354.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1411.0,
+        1415.0
+      ],
+      [
+        1450.0,
+        1454.0
+      ],
+      [
+        1492.0,
+        1496.0
+      ],
+      [
+        1528.0,
+        1532.0
+      ],
+      [
+        1582.0,
+        1586.0
+      ],
+      [
+        1626.0,
+        1630.0
+      ],
+      [
+        1659.0,
+        1663.0
+      ],
+      [
+        1773.0,
+        1777.0
+      ],
+      [
+        1815.0,
+        1819.0
+      ],
+      [
+        1889.0,
+        1893.0
+      ],
+      [
+        1996.0,
+        2000.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 23,
+          "width": 340,
+          "height": 130,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 5,
+    "task_id": 5,
+    "intent_id": 3,
+    "description": "Timestamp -> 4:00\nWhen talking about the personal ig account, include the @doctor_gary (or whatever the instagram account is)\nI\u2019d prefer white, slightly rounded letters, and add dynamic motion to it - appearing from left to right. Keep it for around 5 seconds on the screen.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Timestamp -> 4:00 When talking about the personal ig account, Keep it for around 5 seconds on the screen."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "include the @doctor_gary"
+    ],
+    "params_text": [
+      "@doctor_gary (or whatever the instagram account is). I\u2019d prefer white, slightly rounded letters, and add dynamic motion to it - appearing from left to right."
+    ],
+    "temporal": [
+      [
+        240.0,
+        245.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 34,
+          "y": 63,
+          "width": 247,
+          "height": 120,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 1,
+    "description": "Remove all sections throughout the video that aren\u2019t directed at questions. For example, things like \u201cPlease like the video\u201d, \u201cThank you\u201d etc. at 6:07, 24:03, 32:57. The whole video should only contain questions and answers.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "all sections throughout the video that aren\u2019t directed at questions. For example, things like \u201cPlease like the video\u201d, \u201cThank you\u201d etc. at 6:07, 24:03, 32:57."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "remove"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        0,
+        110.0
+      ],
+      [
+        362.0,
+        367.0
+      ],
+      [
+        500.0,
+        613.0
+      ],
+      [
+        1334.0,
+        1338.0
+      ],
+      [
+        1441.0,
+        1445.0
+      ],
+      [
+        1975.0,
+        1979.0
+      ],
+      [
+        2078.0,
+        2119.0
+      ]
+    ],
+    "spatial": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 4,
+    "description": "After removing the video part of each question, make a freeze frame in that place, with the question written in text. This frame should be shown for around 5 seconds (depending on the length of the question), and then the answer part of the man should be shown.\nThe frame should be the first frame of the man answering, but blurred out. Like this:",
+    "sketch": [
+      {
+        "x": 57,
+        "y": 130,
+        "width": 607,
+        "height": 125,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 118.0,
+    "temporal_text": [
+      "the video part of each question, for around 5 seconds (depending on the length of the question)"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "removing the video part, written in text, blurred out"
+    ],
+    "params_text": [
+      "question"
+    ],
+    "temporal": [
+      [
+        116.0,
+        120.0
+      ],
+      [
+        196.0,
+        200.0
+      ],
+      [
+        303.0,
+        307.0
+      ],
+      [
+        372.0,
+        376.0
+      ],
+      [
+        704.0,
+        708.0
+      ],
+      [
+        821.0,
+        825.0
+      ],
+      [
+        921.0,
+        925.0
+      ],
+      [
+        1108.0,
+        1112.0
+      ],
+      [
+        1164.0,
+        1168.0
+      ],
+      [
+        1202.0,
+        1206.0
+      ],
+      [
+        1256.0,
+        1260.0
+      ],
+      [
+        1271.0,
+        1275.0
+      ],
+      [
+        1292.0,
+        1296.0
+      ],
+      [
+        1350.0,
+        1354.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1411.0,
+        1415.0
+      ],
+      [
+        1450.0,
+        1454.0
+      ],
+      [
+        1492.0,
+        1496.0
+      ],
+      [
+        1528.0,
+        1532.0
+      ],
+      [
+        1582.0,
+        1586.0
+      ],
+      [
+        1626.0,
+        1630.0
+      ],
+      [
+        1659.0,
+        1663.0
+      ],
+      [
+        1773.0,
+        1777.0
+      ],
+      [
+        1815.0,
+        1819.0
+      ],
+      [
+        1889.0,
+        1893.0
+      ],
+      [
+        1996.0,
+        2000.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 57,
+          "y": 130,
+          "width": 607,
+          "height": 125,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "cut",
+      "text",
+      "blur"
+    ]
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 8,
+    "description": "At 3:56, when the man refers to his instagram account, put an instagram icon and his instagram id on the right side of the screen, with a small description saying \u201ccheck recent eyebrow case\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "at 3:56, when the man refers to his instagram account"
+    ],
+    "spatial_text": [
+      "right side of the screen"
+    ],
+    "edit_text": [
+      "put an instagram icon and his instagram id, small description saying"
+    ],
+    "params_text": [
+      "instagram icon, instagram id, \"check recent eyebrow case\""
+    ],
+    "temporal": [
+      [
+        234.0,
+        238.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 647.28,
+          "y": 4.09,
+          "width": 203.82,
+          "height": 98.04,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 12,
+    "description": "When the man gives specific examples in his answer, show the key items/nouns as text next to his head. For example, at 31:48, he mentions caffeine and \u2018saw palmetto(?)\u2019 so show these words as text for a brief moment",
+    "sketch": [
+      {
+        "x": 63.85,
+        "y": 167.22,
+        "width": 116.16,
+        "height": 33.19,
+        "rotation": 0
+      },
+      {
+        "x": 93.21,
+        "y": 231.04,
+        "width": 153.18,
+        "height": 39.57,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 1908.7,
+    "temporal_text": [
+      "when the man gives specific examples in his answer, at 31:48, he mentions caffeine and 'saw palmetto(?)', for a brief moment"
+    ],
+    "spatial_text": [
+      "next to his head"
+    ],
+    "edit_text": [
+      "show the key items/nouns as text, show these words as text"
+    ],
+    "params_text": [
+      "key items/nouns, \"saw palmetto(?)\""
+    ],
+    "temporal": [
+      [
+        1906.7,
+        1910.7
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 63.85,
+          "y": 167.22,
+          "width": 116.16,
+          "height": 33.19,
+          "rotation": 0
+        },
+        {
+          "x": 93.21,
+          "y": 231.04,
+          "width": 153.18,
+          "height": 39.57,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 6,
+    "task_id": 5,
+    "intent_id": 14,
+    "description": "Whenever the man refers to his YouTube channel or a specific YouTube video or another channel, put a text on the right side of the screen with a YouTube icon and the Channel name",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "Whenever the man refers to his Youtube channel or a specific Youtube video or another channel"
+    ],
+    "spatial_text": [
+      "right side of the screen"
+    ],
+    "edit_text": [
+      "put a text"
+    ],
+    "params_text": [
+      "YouTube icon and the Channel name"
+    ],
+    "temporal": [
+      [
+        489.0,
+        493.0
+      ],
+      [
+        1441.0,
+        1445.0
+      ],
+      [
+        1547.0,
+        1551.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 563.72,
+          "y": 16.34,
+          "width": 289.42,
+          "height": 134.81,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 563.72,
+          "y": 16.34,
+          "width": 289.42,
+          "height": 134.81,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 563.72,
+          "y": 16.34,
+          "width": 289.42,
+          "height": 134.81,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "participant_id": 7,
+    "task_id": 2,
+    "intent_id": 16,
+    "description": "Add \u201cidiot sandwich\u201d meme to intro when introducing Gordon (\u201cif you don\u2019t know him, you\u2019re an\u201d + meme)",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "to intro when introducing Gordon"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "add, meme"
+    ],
+    "params_text": [
+      "\"idiot sandwich\" meme, (\u201cif you don\u2019t know him, you\u2019re an\u201d + meme)"
+    ],
+    "temporal": [
+      [
+        319.0,
+        323.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 603.2,
+          "y": 5.17,
+          "width": 246.21,
+          "height": 334.29,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "image"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 2,
+    "description": "Create a profile card for the talker with his name for the text.",
+    "sketch": [
+      {
+        "x": 573.93,
+        "y": 423.89,
+        "width": 266.88,
+        "height": 53.42,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 0.0,
+    "temporal_text": [],
+    "spatial_text": [],
+    "edit_text": [
+      "create a profile card"
+    ],
+    "params_text": [
+      "profile card for the talker with his name for the text"
+    ],
+    "temporal": [
+      [
+        0,
+        3510.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 573.93,
+          "y": 423.89,
+          "width": 266.88,
+          "height": 53.42,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "shape",
+      "text"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 3,
+    "description": "Cut out irrelevant greetings Cut from 3:19 to 11:43. Start back from \u2018So lets just get started\u2026\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "irrelevant greetings, from 3:19 to 11:43. Start back from \u2018So lets just get started\u2026\u201d"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut out"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        199.0,
+        703.0
+      ]
+    ],
+    "spatial": [
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 4,
+    "description": "Create a list that shows this video\u2019s main focus. The sections would be Lesson 1: Hello World\nLesson 2: Compile & Execute\nCompile & Execute Locally\nAnd show this list after 0:57",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "after 0:57"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "create a list"
+    ],
+    "params_text": [
+      "video's main focus, Lesson 1: Hello World\nLesson 2: Compile & Execute\nCompile & Execute Locally"
+    ],
+    "temporal": [
+      [
+        55.0,
+        59.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 78.06,
+          "y": 106.83,
+          "width": 449.38,
+          "height": 318.78,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 5,
+    "description": "Make the code larger for people with bad eyesight. To do this, one can cut out the part for the code and make the the part larger as shown below",
+    "sketch": [
+      {
+        "x": 286.39,
+        "y": 75.82,
+        "width": 552.69,
+        "height": 403.21,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 712.0,
+    "temporal_text": [],
+    "spatial_text": [
+      "for the code"
+    ],
+    "edit_text": [
+      "cut out the part"
+    ],
+    "params_text": [
+      "larger"
+    ],
+    "temporal": [
+      [
+        660.0,
+        664.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 286.39,
+          "y": 75.82,
+          "width": 552.69,
+          "height": 403.21,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "crop"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 7,
+    "description": "Cut the rest of the video from 33:43 to 57:50 and start back from \u201cthank you so much for watching\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "rest of the video from 33:43 to 57:50 and start back from \u201cthank you so much for watching\u201d"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        2023.0,
+        3470.0
+      ]
+    ],
+    "spatial": [
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 8,
+    "task_id": 4,
+    "intent_id": 10,
+    "description": "Show his email at 2:46",
+    "sketch": [
+      {
+        "x": 344.68,
+        "y": 418.69,
+        "width": 132.76,
+        "height": 30.64,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 166.1,
+    "temporal_text": [
+      "at 2:46"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "show his email"
+    ],
+    "params_text": [
+      "his email"
+    ],
+    "temporal": [
+      [
+        164.1,
+        168.1
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 344.68,
+          "y": 418.69,
+          "width": 132.76,
+          "height": 30.64,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 4,
+    "description": "Whenever the camera is facing down to the pan crop it so that pan is centered\nCrop to what is within the box",
+    "sketch": [
+      {
+        "x": 49.8,
+        "y": 62.55,
+        "width": 621.67,
+        "height": 399.54,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 881.6,
+    "temporal_text": [
+      "Whenever the camera is facing down to the pan"
+    ],
+    "spatial_text": [
+      "pan"
+    ],
+    "edit_text": [
+      "crop it, crop to"
+    ],
+    "params_text": [
+      "centered"
+    ],
+    "temporal": [
+      [
+        46.0,
+        701.0
+      ],
+      [
+        810.0,
+        824.0
+      ],
+      [
+        855.0,
+        866.0
+      ],
+      [
+        880.0,
+        904.0
+      ],
+      [
+        983.0,
+        994.0
+      ],
+      [
+        1024.0,
+        1034.0
+      ],
+      [
+        1196.0,
+        1204.0
+      ],
+      [
+        1221.0,
+        1233.0
+      ],
+      [
+        1245.0,
+        1264.0
+      ],
+      [
+        1319.0,
+        1334.0
+      ],
+      [
+        1454.0,
+        1464.0
+      ],
+      [
+        1475.0,
+        1484.0
+      ],
+      [
+        1535.0,
+        1544.0
+      ],
+      [
+        1565.0,
+        1594.0
+      ],
+      [
+        1615.0,
+        1624.0
+      ],
+      [
+        2366.0,
+        2394.0
+      ],
+      [
+        2469.0,
+        2474.0
+      ],
+      [
+        2508.0,
+        2514.0
+      ],
+      [
+        2525.0,
+        2535.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        },
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 97.05,
+          "y": 160.97,
+          "width": 326.73,
+          "height": 306.37,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 169.66,
+          "y": 176.55,
+          "width": 269.68,
+          "height": 275.21,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 169.66,
+          "y": 176.55,
+          "width": 269.68,
+          "height": 275.21,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 169.66,
+          "y": 176.55,
+          "width": 269.68,
+          "height": 275.21,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 150.64,
+          "y": 188.67,
+          "width": 274.87,
+          "height": 254.44,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 90.14,
+          "y": 171.36,
+          "width": 330.19,
+          "height": 299.44,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 90.14,
+          "y": 171.36,
+          "width": 330.19,
+          "height": 299.44,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 90.14,
+          "y": 171.36,
+          "width": 330.19,
+          "height": 299.44,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 48.65,
+          "y": 121.16,
+          "width": 428.73,
+          "height": 346.18,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 48.65,
+          "y": 121.16,
+          "width": 428.73,
+          "height": 346.18,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 150.64,
+          "y": 209.44,
+          "width": 262.77,
+          "height": 245.79,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 150.64,
+          "y": 209.44,
+          "width": 262.77,
+          "height": 245.79,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 150.64,
+          "y": 209.44,
+          "width": 262.77,
+          "height": 245.79,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 150.64,
+          "y": 209.44,
+          "width": 262.77,
+          "height": 245.79,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "crop"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 6,
+    "description": "Add in bold, arial font \u201cCooking lemon herb chicken with gordon ramsay\u201d in intro with a light blur over the video which gradually goes away as soon as he starts talking.",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "in intro, he starts talking"
+    ],
+    "spatial_text": [
+      "over the video"
+    ],
+    "edit_text": [
+      "add in bold, arial font, blur"
+    ],
+    "params_text": [
+      "in bold, arial font \u201cCooking lemon herb chicken with gordon ramsay\u201d, light blur, gradually goes away"
+    ],
+    "temporal": [
+      [
+        319.0,
+        323.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 146.93,
+          "y": 84.43,
+          "width": 599.18,
+          "height": 248.13,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "blur"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 7,
+    "description": "Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn\u2019t obstruct his movements for five seconds at which point the text disappears",
+    "sketch": [
+      {
+        "x": 57.46,
+        "y": 56.17,
+        "width": 250.2,
+        "height": 118.71,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 517.35,
+    "temporal_text": [
+      "Whenever he introduces new ingredient and cooking instruction, for five seconds at which point the text disappears"
+    ],
+    "spatial_text": [
+      "in the top left corner"
+    ],
+    "edit_text": [
+      "listed up, text"
+    ],
+    "params_text": [
+      "new ingredient and cooking instruction, same arial font, slightly smaller, doesn't obstruct his movements"
+    ],
+    "temporal": [
+      [
+        604.0,
+        608.0
+      ],
+      [
+        616.0,
+        620.0
+      ],
+      [
+        621.0,
+        625.0
+      ],
+      [
+        635.0,
+        639.0
+      ],
+      [
+        649.0,
+        653.0
+      ],
+      [
+        665.0,
+        669.0
+      ],
+      [
+        696.0,
+        700.0
+      ],
+      [
+        705.0,
+        709.0
+      ],
+      [
+        712.0,
+        716.0
+      ],
+      [
+        742.0,
+        746.0
+      ],
+      [
+        764.0,
+        768.0
+      ],
+      [
+        789.0,
+        793.0
+      ],
+      [
+        849.0,
+        853.0
+      ],
+      [
+        893.0,
+        897.0
+      ],
+      [
+        906.0,
+        910.0
+      ],
+      [
+        938.0,
+        942.0
+      ],
+      [
+        964.0,
+        968.0
+      ],
+      [
+        982.0,
+        986.0
+      ],
+      [
+        1007.0,
+        1014.0
+      ],
+      [
+        1050.0,
+        1054.0
+      ],
+      [
+        1084.0,
+        1088.0
+      ],
+      [
+        1122.0,
+        1126.0
+      ],
+      [
+        1147.0,
+        1151.0
+      ],
+      [
+        1190.0,
+        1194.0
+      ],
+      [
+        1242.0,
+        1246.0
+      ],
+      [
+        1277.0,
+        1281.0
+      ],
+      [
+        1288.0,
+        1292.0
+      ],
+      [
+        1297.0,
+        1301.0
+      ],
+      [
+        1308.0,
+        1312.0
+      ],
+      [
+        1318.0,
+        1322.0
+      ],
+      [
+        1384.0,
+        1388.0
+      ],
+      [
+        1418.0,
+        1422.0
+      ],
+      [
+        1633.0,
+        1637.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        },
+        {
+          "x": 0,
+          "y": 4.09,
+          "width": 231.49,
+          "height": 200.17,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 9,
+    "description": "Add in hand emoji for delicious in top left corner whenever he says the word \u201cdelicious\u201d for a split second",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "whenever he says the word \u201cdelicious\u201d for a split second"
+    ],
+    "spatial_text": [
+      "in the top left corner"
+    ],
+    "edit_text": [
+      "add in hand emoji"
+    ],
+    "params_text": [
+      "hand emoji"
+    ],
+    "temporal": [
+      [
+        410.0,
+        414.0
+      ],
+      [
+        433.0,
+        437.0
+      ],
+      [
+        466.0,
+        470.0
+      ],
+      [
+        653.0,
+        657.0
+      ],
+      [
+        746.0,
+        750.0
+      ],
+      [
+        1015.0,
+        1019.0
+      ],
+      [
+        1058.0,
+        1062.0
+      ],
+      [
+        1099.0,
+        1103.0
+      ],
+      [
+        1149.0,
+        1153.0
+      ],
+      [
+        1245.0,
+        1249.0
+      ],
+      [
+        1423.0,
+        1427.0
+      ],
+      [
+        2115.0,
+        2119.0
+      ],
+      [
+        2173.0,
+        2177.0
+      ],
+      [
+        2580.0,
+        2584.0
+      ],
+      [
+        2670.0,
+        2674.0
+      ],
+      [
+        2902.0,
+        2906.0
+      ],
+      [
+        2999.0,
+        3003.0
+      ],
+      [
+        3107.0,
+        3111.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 140.63,
+          "height": 126.64,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "image"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 10,
+    "description": "Zoom into the pan when he starts flipping it around 8:38 and add slight motion blur \n10:20 - zoom into pan again and gradually apply slight red tint for 2 seconds when he says \u201cnice and hot\u201d",
+    "sketch": [
+      {
+        "x": 57.46,
+        "y": 56.17,
+        "width": 250.2,
+        "height": 118.71,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 517.35,
+    "temporal_text": [
+      "he starts flipping it around 8:38, 10:20, for 2 seconds when he says \"nice and hot\""
+    ],
+    "spatial_text": [
+      "the pan, pan,"
+    ],
+    "edit_text": [
+      "zoom into, add slight motion blur"
+    ],
+    "params_text": [
+      "slight motion blur, gradually, slight red tint"
+    ],
+    "temporal": [
+      [
+        515.35,
+        519.35
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 57.46,
+          "y": 56.17,
+          "width": 250.2,
+          "height": 118.71,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "zoom",
+      "blur"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 13,
+    "description": "Cut out any remaining parts where he is talking about any other dish that isn\u2019t about the lemon herb chicken or the gravy",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "any remaining parts where he is talking about any other dish that isn\u2019t about the lemon herb chicken or the gravy"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "cut out"
+    ],
+    "params_text": [],
+    "temporal": [
+      [
+        0,
+        412.0
+      ],
+      [
+        1092.0,
+        2732.0
+      ],
+      [
+        2976.0,
+        3235.0
+      ]
+    ],
+    "spatial": [
+      [],
+      [],
+      []
+    ],
+    "edit": [
+      "cut"
+    ]
+  },
+  {
+    "participant_id": 9,
+    "task_id": 2,
+    "intent_id": 16,
+    "description": "For the ending slow the video down by 50% when it hovers over the chicken and gradually blur out",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "for the ending, when it hovers over the chicken"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "blur out"
+    ],
+    "params_text": [
+      "gradually"
+    ],
+    "temporal": [
+      [
+        3184.724418,
+        3188.724418
+      ]
+    ],
+    "spatial": [
+      []
+    ],
+    "edit": [
+      "blur"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 3,
+    "description": "Add a textbox for the three questions at time stamps 1:10, 1:47, 3:16, 9:48, 16:48.",
+    "sketch": [
+      {
+        "x": 114.54,
+        "y": 31.16,
+        "width": 633.17,
+        "height": 84.33,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 74.0,
+    "temporal_text": [
+      "at time stamps 1:10, 1:47, 3:16, 9:48, 16:48."
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "add a textbox"
+    ],
+    "params_text": [
+      "for the three questions"
+    ],
+    "temporal": [
+      [
+        68.0,
+        72.0
+      ],
+      [
+        105.0,
+        109.0
+      ],
+      [
+        194.0,
+        198.0
+      ],
+      [
+        586.0,
+        590.0
+      ],
+      [
+        1006.0,
+        1010.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 114.54,
+          "y": 31.16,
+          "width": 633.17,
+          "height": 84.33,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 114.54,
+          "y": 31.16,
+          "width": 633.17,
+          "height": 84.33,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 114.54,
+          "y": 31.16,
+          "width": 633.17,
+          "height": 84.33,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 114.54,
+          "y": 31.16,
+          "width": 633.17,
+          "height": 84.33,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 114.54,
+          "y": 31.16,
+          "width": 633.17,
+          "height": 84.33,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 4,
+    "description": "At 4:36, show the four different forms of characters of Arabic",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "4:36"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "show the four different forms of characters of Arabic"
+    ],
+    "params_text": [
+      "the four different forms of characters of Arabic"
+    ],
+    "temporal": [
+      [
+        274.0,
+        278.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 96.21,
+          "y": 81.58,
+          "width": 295.05,
+          "height": 238.32,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "image"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 5,
+    "description": "At 5:24, put emphasis on the 30-40 times by showing a textbox (with a light symbol) like below. At 16:49, do the same things but use the words \u201cfind out what\u2019s best for yourself\u201d",
+    "sketch": [
+      {
+        "x": 169.52,
+        "y": 26.58,
+        "width": 463.65,
+        "height": 108.16,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 330.0,
+    "temporal_text": [
+      "5:24, 16:49"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "put emphasis, showing a textbox (with a light symbol)"
+    ],
+    "params_text": [
+      "a light symbol, \"find out what's best for yourself\""
+    ],
+    "temporal": [
+      [
+        325.0,
+        329.0
+      ],
+      [
+        1007.0,
+        1011.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 169.52,
+          "y": 26.58,
+          "width": 463.65,
+          "height": 108.16,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 169.52,
+          "y": 26.58,
+          "width": 463.65,
+          "height": 108.16,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 14,
+    "description": "At 10:26 and 10:32, show on screen the definition of the words \u201cpolyglot\u201d and \u201cdilettante\u201d",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "At 10:26 and 10:32"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "show on screen the definition"
+    ],
+    "params_text": [
+      "the definition of words \"polyglot\" and \"dliettante\""
+    ],
+    "temporal": [
+      [
+        629.0,
+        633.0
+      ],
+      [
+        635.0,
+        639.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 64.14,
+          "y": 112.74,
+          "width": 307.88,
+          "height": 215.4,
+          "rotation": 0
+        }
+      ],
+      [
+        {
+          "x": 470.98,
+          "y": 131.08,
+          "width": 317.04,
+          "height": 194.32,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 16,
+    "description": "At 11:54, add a youtube comment stating the question accompanied by an emoji or other facial icons.",
+    "sketch": [
+      {
+        "x": 84.27,
+        "y": 39.57,
+        "width": 718.69,
+        "height": 100.84,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 714.3,
+    "temporal_text": [
+      "11:54"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "add a youtube comment, an emoji or other facial icons"
+    ],
+    "params_text": [
+      "youtube comment stating the question accompanied by an emoji or other facial icons"
+    ],
+    "temporal": [
+      [
+        712.3,
+        716.3
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 84.27,
+          "y": 39.57,
+          "width": 718.69,
+          "height": 100.84,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text",
+      "image"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 17,
+    "description": "At 14:51, add an icon so it\u2019s like he\u2019s holding a memory",
+    "sketch": [
+      {
+        "x": 347.24,
+        "y": 192.75,
+        "width": 51.06,
+        "height": 56.17,
+        "rotation": 0
+      }
+    ],
+    "sketch_timestamp": 891.4,
+    "temporal_text": [
+      "14:51"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "add an icon"
+    ],
+    "params_text": [
+      "Icon so it's like he's holding memory"
+    ],
+    "temporal": [
+      [
+        889.4,
+        893.4
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 347.24,
+          "y": 192.75,
+          "width": 51.06,
+          "height": 56.17,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "image"
+    ]
+  },
+  {
+    "participant_id": 10,
+    "task_id": 3,
+    "intent_id": 20,
+    "description": "At 17:06, put emphasis in 3000 words by using an entirely separate frame and very big font",
+    "sketch": [],
+    "sketch_timestamp": -1,
+    "temporal_text": [
+      "17:06"
+    ],
+    "spatial_text": [],
+    "edit_text": [
+      "put emphasis on 3000 words"
+    ],
+    "params_text": [
+      "3000 words, very big font"
+    ],
+    "temporal": [
+      [
+        1024.0,
+        1028.0
+      ]
+    ],
+    "spatial": [
+      [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 854,
+          "height": 480,
+          "rotation": 0
+        }
+      ]
+    ],
+    "edit": [
+      "text"
+    ]
+  }
+]

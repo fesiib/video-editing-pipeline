@@ -30,5 +30,10 @@ class IndexedIntentParserChain():
     def run(self, command):
         if command == "":
             return IndexedReferences()
-        references = self.chain.predict(command=command)
+        
+        try:
+            references = self.chain.predict(command=command)
+        except:
+            print("ERROR: Failed to parse: ", command)
+            return IndexedReferences()
         return references

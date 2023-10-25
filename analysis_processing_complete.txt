@@ -1,0 +1,1415 @@
+{
+    "email": "sultanidinov0567@gmail.com",
+    "id": 7,
+    "video_id": "video-1",
+    "processing_logs": [
+        {
+            "intent_id": "intent-613e0f4a-831c-4866-9456-3d2fe9ac5cf1",
+            "text": "Whenever the ingredients are mentioned put an image of that ingredient in the right top corner of the frame.",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever the ingredients are mentioned\",\"type\": [\"temporal\"]},{\"text\": \"put an image\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"of that ingredient in the\",\"type\": []},{\"text\": \"right top corner of the frame\",\"type\": [\"spatial\"]},{\"text\": \".\",\"type\": []}]",
+            "formatted_time": "19:31:13",
+            "time": 1695983473979
+        },
+        {
+            "intent_id": "intent-3983b640-205e-41a4-841f-01cc19895775",
+            "text": "whenever the cook starts using the heater zoom in the heater\n",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever the cook starts using\",\"type\": [\"temporal\"]},{\"text\": \"the heater\",\"type\": [\"temporal\",\"spatial\"]},{\"text\": \"zoom in\",\"type\": [\"edit\"]},{\"text\": \"the heater\",\"type\": [\"spatial\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "19:47:20",
+            "time": 1695984440654
+        },
+        {
+            "intent_id": "intent-3983b640-205e-41a4-841f-01cc19895775",
+            "text": "whenever the cook is mixing something zoom in\n",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever the cook is mixing something\",\"type\": [\"temporal\"]},{\"text\": \"zoom in\",\"type\": [\"edit\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "19:51:37",
+            "time": 1695984697298
+        },
+        {
+            "intent_id": "intent-3983b640-205e-41a4-841f-01cc19895775",
+            "text": "whenever the cook is mixing something zoom in the bowl\n",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever the cook is mixing something\",\"type\": [\"temporal\"]},{\"text\": \"zoom in\",\"type\": [\"edit\"]},{\"text\": \"the bowl\",\"type\": [\"spatial\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "19:53:33",
+            "time": 1695984813465
+        },
+        {
+            "intent_id": "intent-3983b640-205e-41a4-841f-01cc19895775",
+            "text": "whenever the cook is mixing something zoom in the bowl\n",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"text\": \"whenever the cook is mixing something zoom in the bowl\\n\",\"type\": []}]",
+            "formatted_time": "19:55:10",
+            "time": 1695984910732
+        },
+        {
+            "intent_id": "intent-fb5f9489-3452-46a1-a44d-2afd362ad198",
+            "text": "every time a person looking at the camera",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time a person looking at the camera\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "20:00:31",
+            "time": 1695985231967
+        },
+        {
+            "intent_id": "intent-fb5f9489-3452-46a1-a44d-2afd362ad198",
+            "text": "every time the cook looking at the camera",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time the cook looking at the camera\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "20:02:13",
+            "time": 1695985333307
+        },
+        {
+            "intent_id": "intent-fb5f9489-3452-46a1-a44d-2afd362ad198",
+            "text": "every time someone is eating",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time someone is eating\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "20:04:42",
+            "time": 1695985482653
+        },
+        {
+            "intent_id": "intent-6dde6494-7e2d-4dea-b65d-1e37ae237a98",
+            "text": "guy in orange t-shirt appears on the screen",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"guy in orange t-shirt appears on the screen\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "20:11:36",
+            "time": 1695985896664
+        },
+        {
+            "intent_id": "intent-615651e5-d5af-46f9-ab86-bdee98ce67db",
+            "text": "every time a women appears on the frame cut\n",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time a women appears on the frame\",\"type\": [\"temporal\"]},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "20:15:35",
+            "time": 1695986135097
+        }
+    ],
+    "task_summary": {
+        "count_intents": 10,
+        "count_edits": 18,
+        "count_history_points": 9,
+        "edit_types_count": {
+            "image": {
+                "count_intents": 3,
+                "count_edits": 6
+            },
+            "text": {
+                "count_intents": 2,
+                "count_edits": 1
+            },
+            "blur": {
+                "count_intents": 1,
+                "count_edits": 2
+            },
+            "zoom": {
+                "count_intents": 2,
+                "count_edits": 7
+            },
+            "crop": {
+                "count_intents": 2,
+                "count_edits": 2
+            }
+        }
+    }
+}
+{
+    "email": "yernaz.akhmetov@gmail.com",
+    "id": 11,
+    "video_id": "video-1",
+    "processing_logs": [
+        {
+            "intent_id": "intent-5e6005db-2bbd-424f-b17a-3a7528e45cf0",
+            "text": "whenever question asked  put the question text near the head of man ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever question asked\",\"type\": [\"temporal\"]},{\"text\": \"put the\",\"type\": [\"edit\"]},{\"text\": \"question text\",\"type\": [\"edit\",\"custom.text\"]},{\"text\": \"near the head of man\",\"type\": [\"spatial\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "21:37:24",
+            "time": 1695991044260
+        },
+        {
+            "intent_id": "intent-11df503a-23c5-47b8-8b54-e0676f2f1616",
+            "text": "whenever ingredientts are mentioned put images of those ingredients",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever ingredientts are mentioned\",\"type\": []},{\"text\": \"put images\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"of those ingredients\",\"type\": []}]",
+            "formatted_time": "21:46:54",
+            "time": 1695991614107
+        },
+        {
+            "intent_id": "intent-72b67d62-d620-4a19-804e-47efe85d7132",
+            "text": "when man ststarts thinking about answer for question pur a boring picture",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"when man ststarts thinking about answer for question pur a\",\"type\": []},{\"text\": \"boring picture\",\"type\": [\"custom.image\"]}]",
+            "formatted_time": "22:01:09",
+            "time": 1695992469735
+        },
+        {
+            "intent_id": "intent-c01552aa-d79b-4ef0-b0d0-2c2c21e4d2e4",
+            "text": "when camera man is showed zoom in",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"when camera man is showed\",\"type\": [\"temporal\"]},{\"text\": \"zoom in\",\"type\": [\"edit\"]}]",
+            "formatted_time": "22:17:55",
+            "time": 1695993475537
+        },
+        {
+            "intent_id": "intent-da9e25c3-9071-48e5-9779-5dc00deb19eb",
+            "text": "put question mark pciture when he is about to describe what is milk day",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"put question mark pciture\",\"type\": []},{\"text\": \"when he is about to describe what is milk day\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "22:22:16",
+            "time": 1695993736548
+        }
+    ],
+    "task_summary": {
+        "count_intents": 5,
+        "count_edits": 19,
+        "count_history_points": 5,
+        "edit_types_count": {
+            "text": {
+                "count_intents": 2,
+                "count_edits": 4
+            },
+            "image": {
+                "count_intents": 2,
+                "count_edits": 14
+            },
+            "zoom": {
+                "count_intents": 1,
+                "count_edits": 1
+            }
+        }
+    }
+}
+{
+    "email": "enlik.tleukulova@gmail.com",
+    "id": 13,
+    "video_id": "video-2",
+    "processing_logs": [
+        {
+            "intent_id": "intent-5d85c3d9-6295-4d39-96e7-a1305fa89788",
+            "text": "at 7 minutes 49 seconds add a rectangle with a text \"What Businesses Do?\"",
+            "sketch": [
+                {
+                    "x": 40.44491740411201,
+                    "stroke": "red",
+                    "width": 767.8971193415638,
+                    "height": 428.49557290403163,
+                    "y": 21.95161746434588,
+                    "lineCap": "round",
+                    "strokeWidth": 2,
+                    "lineJoin": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"at\"},{\"text\": \"7 minutes 49 seconds\",\"type\": [\"temporal\"]},{\"type\": [\"edit\"],\"text\": \"add a\"},{\"text\": \"rectangle\",\"type\": [\"edit\",\"custom.shape\"]},{\"text\": \"with a\",\"type\": []},{\"text\": \"text\",\"type\": [\"edit\"]},{\"text\": \"\\\"\",\"type\": []},{\"text\": \"what businesses do?\",\"type\": [\"custom.text\"]},{\"text\": \"\\\"\",\"type\": []}]",
+            "formatted_time": "14:03:45",
+            "time": 1696136625431
+        },
+        {
+            "intent_id": "intent-25e205ca-ad9e-4eab-bb8d-e08a5bd6ca43",
+            "text": "put an infographic with a transparent background for the outro of the video",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"put an\"},{\"text\": \"infographic\",\"type\": [\"edit\",\"custom.image\"]},{\"type\": [],\"text\": \"with a\"},{\"text\": \"transparent background\",\"type\": [\"edit\",\"custom.image\"]},{\"type\": [],\"text\": \"for the\"},{\"text\": \"outro of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "14:16:08",
+            "time": 1696137368025
+        },
+        {
+            "intent_id": "intent-5db95963-4309-4163-8a32-9988ac2bcc85",
+            "text": "add an image of a lamp at the following frames: 9:04, 14:57, 15:22, 15:43, 18:07",
+            "sketch": [
+                {
+                    "lineCap": "round",
+                    "y": 355.3268029752425,
+                    "lineJoin": "round",
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "x": 707.8808863059762,
+                    "width": 137.34432989690723,
+                    "height": 116.3849577983425
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add an image\"},{\"text\": \"of a\",\"type\": []},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"lamp\"},{\"text\": \"at the following frames:\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"9:04\"},{\"type\": [],\"text\": \",\"},{\"type\": [\"temporal\"],\"text\": \"14:57\"},{\"text\": \",\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"15:22\"},{\"type\": [],\"text\": \",\"},{\"text\": \"15:43\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \",\"},{\"type\": [\"temporal\"],\"text\": \"18:07\"}]",
+            "formatted_time": "14:21:39",
+            "time": 1696137699387
+        },
+        {
+            "intent_id": "intent-5db95963-4309-4163-8a32-9988ac2bcc85",
+            "text": "add a png image of a lamp icon with a transparent background at the following frames: 9:04, 14:57, 15:22, 15:43, 18:07",
+            "sketch": [
+                {
+                    "lineCap": "round",
+                    "x": 707.8808863059762,
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "lineJoin": "round",
+                    "width": 137.34432989690723,
+                    "y": 355.3268029752425,
+                    "height": 116.3849577983425
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add\"},{\"type\": [],\"text\": \"a\"},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"png image\"},{\"text\": \"of a\",\"type\": []},{\"text\": \"lamp icon\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"with a\",\"type\": []},{\"text\": \"transparent background\",\"type\": [\"edit\",\"custom.image\"]},{\"type\": [],\"text\": \"at the following frames:\"},{\"type\": [\"temporal\"],\"text\": \"9:04\"},{\"text\": \",\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"14:57\"},{\"type\": [],\"text\": \",\"},{\"type\": [\"temporal\"],\"text\": \"15:22\"},{\"type\": [],\"text\": \",\"},{\"type\": [\"temporal\"],\"text\": \"15:43\"},{\"text\": \",\",\"type\": []},{\"text\": \"18:07\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "14:25:13",
+            "time": 1696137913128
+        },
+        {
+            "intent_id": "intent-ce1aa7cc-70d4-45d6-b272-98f0f1223658",
+            "text": "whenever a woman mentions a negative word like \"suffering', or 'depressing' put a crying png emoji ",
+            "sketch": [
+                {
+                    "y": 7.935338031705169,
+                    "height": 153.41653527963325,
+                    "x": 14.115937852367912,
+                    "stroke": "red",
+                    "lineJoin": "round",
+                    "lineCap": "round",
+                    "width": 167.27835051546393,
+                    "strokeWidth": 2
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"whenever a woman mentions a negative word like \\\"suffering', or 'depressing'\"},{\"text\": \"put a\",\"type\": [\"edit\"]},{\"text\": \"crying png emoji\",\"type\": [\"edit\",\"custom.image\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:29:39",
+            "time": 1696138179457
+        },
+        {
+            "intent_id": "intent-ce1aa7cc-70d4-45d6-b272-98f0f1223658",
+            "text": "whenever a woman mentions a negative word like \"suffering', or 'depressing' put a crying png emoji ",
+            "sketch": [
+                {
+                    "width": 167.27835051546393,
+                    "stroke": "red",
+                    "y": 7.935338031705169,
+                    "strokeWidth": 2,
+                    "lineCap": "round",
+                    "lineJoin": "round",
+                    "height": 153.41653527963325,
+                    "x": 14.115937852367912
+                }
+            ],
+            "mode": "add-more",
+            "explanation": "[{\"type\": [],\"text\": \"whenever a woman mentions a negative word like \\\"suffering', or 'depressing'\"},{\"type\": [\"edit\"],\"text\": \"put a\"},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"crying png emoji\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:31:00",
+            "time": 1696138260769
+        },
+        {
+            "intent_id": "intent-ce1aa7cc-70d4-45d6-b272-98f0f1223658",
+            "text": "whenever a woman mentions a negative word put a crying png emoji ",
+            "sketch": [
+                {
+                    "y": 7.935338031705169,
+                    "lineJoin": "round",
+                    "stroke": "red",
+                    "x": 14.115937852367912,
+                    "strokeWidth": 2,
+                    "height": 153.41653527963325,
+                    "width": 167.27835051546393,
+                    "lineCap": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever a woman mentions a negative word\"},{\"text\": \"put a\",\"type\": [\"edit\"]},{\"text\": \"crying png emoji\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "14:32:08",
+            "time": 1696138328873
+        },
+        {
+            "intent_id": "intent-4a717f66-4207-44e4-9c18-7917f89ed29d",
+            "text": "cut out all the pauses that last longer than 2 seconds",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"cut out\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"all the\"},{\"text\": \"pauses that last longer than 2 seconds\",\"type\": [\"custom.cut\"]}]",
+            "formatted_time": "14:36:46",
+            "time": 1696138606526
+        }
+    ],
+    "task_summary": {
+        "count_intents": 8,
+        "count_edits": 32,
+        "count_history_points": 9,
+        "edit_types_count": {
+            "image": {
+                "count_intents": 6,
+                "count_edits": 31
+            },
+            "blur": {
+                "count_intents": 1,
+                "count_edits": 1
+            },
+            "cut": {
+                "count_intents": 1,
+                "count_edits": 0
+            }
+        }
+    }
+}
+{
+    "email": "kamila240373@gmail.com",
+    "id": 14,
+    "video_id": "video-2",
+    "processing_logs": [
+        {
+            "intent_id": "intent-0783002c-5f00-429f-a2be-cabb84477b54",
+            "text": "whenever she starts a new topic add a yellow lamp",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever she starts a new topic\"},{\"text\": \"add a\",\"type\": [\"edit\"]},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"yellow lamp\"}]",
+            "formatted_time": "15:47:07",
+            "time": 1696142827597
+        },
+        {
+            "intent_id": "intent-0783002c-5f00-429f-a2be-cabb84477b54",
+            "text": "whenever she starts a new topic add a yellow lamp",
+            "sketch": [
+                {
+                    "strokeWidth": 2,
+                    "x": 28.202535790512243,
+                    "height": 135.78245076473286,
+                    "y": 320.0586339454418,
+                    "stroke": "red",
+                    "width": 184.88659793814435,
+                    "lineJoin": "round",
+                    "lineCap": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever she starts a new topic\"},{\"type\": [\"edit\"],\"text\": \"add a\"},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"yellow lamp\"}]",
+            "formatted_time": "15:47:42",
+            "time": 1696142862150
+        },
+        {
+            "intent_id": "intent-c52f4c12-f3c2-4d94-8554-cb7f0ba73978",
+            "text": "whenever she uses her hand gestures add text \"it is important\" in a thunder like box",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever she uses her hand gestures\"},{\"text\": \"add text\",\"type\": [\"edit\"]},{\"text\": \"\\\"\",\"type\": []},{\"type\": [\"edit\",\"custom.text\"],\"text\": \"it is important\"},{\"text\": \"\\\" in a\",\"type\": []},{\"text\": \"thunder like box\",\"type\": [\"edit\",\"custom.text\"]}]",
+            "formatted_time": "15:56:44",
+            "time": 1696143404750
+        },
+        {
+            "intent_id": "intent-950d8088-b7c4-4a15-8f16-359adcc49114",
+            "text": "whenever she tells a story add a photo related to that story",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever she tells a story\",\"type\": [\"temporal\"]},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"add a photo\"},{\"text\": \"related to that story\",\"type\": []}]",
+            "formatted_time": "16:02:44",
+            "time": 1696143764389
+        },
+        {
+            "intent_id": "intent-950d8088-b7c4-4a15-8f16-359adcc49114",
+            "text": "whenever she tells a real tie example add a photo related to that example",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"whenever she tells a real tie example\"},{\"text\": \"add a photo\",\"type\": [\"edit\",\"custom.image\"]},{\"type\": [],\"text\": \"related to that example\"}]",
+            "formatted_time": "16:04:10",
+            "time": 1696143850541
+        },
+        {
+            "intent_id": "intent-950d8088-b7c4-4a15-8f16-359adcc49114",
+            "text": "whenever she tells a real tie example add a text \"example\" related to that example",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"whenever she tells a real tie example\"},{\"type\": [\"edit\"],\"text\": \"add a text\"},{\"text\": \"\\\"example\\\"\",\"type\": [\"custom.text\"]},{\"type\": [],\"text\": \"related to that example\"}]",
+            "formatted_time": "16:05:32",
+            "time": 1696143932051
+        },
+        {
+            "intent_id": "intent-950d8088-b7c4-4a15-8f16-359adcc49114",
+            "text": "whenever she tells tips or advice add a text \"example\" related to that",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever she tells tips or advice\"},{\"text\": \"add a text\",\"type\": [\"edit\"]},{\"type\": [\"custom.text\"],\"text\": \"\\\"example\\\"\"},{\"type\": [],\"text\": \"related to that\"}]",
+            "formatted_time": "16:07:12",
+            "time": 1696144032746
+        },
+        {
+            "intent_id": "intent-de20cc0b-e26d-405c-b608-45ea15ca7fa1",
+            "text": "add an intro image at the beginning of the video",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add an\"},{\"text\": \"intro image\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"at the\",\"type\": []},{\"text\": \"beginning of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "16:09:12",
+            "time": 1696144152216
+        },
+        {
+            "intent_id": "intent-8fb12b66-5b22-49ff-8dc7-e4af744acb83",
+            "text": "add an outro image at the end of the video",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add an\",\"type\": [\"edit\"]},{\"text\": \"outro image\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"at the\",\"type\": []},{\"text\": \"end of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "16:12:37",
+            "time": 1696144357703
+        },
+        {
+            "intent_id": "intent-aa570d53-3dd9-464f-9b7f-d32f7c70fe7d",
+            "text": "add text which summarizes all advices/tips",
+            "sketch": [
+                {
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "lineJoin": "round",
+                    "y": 30.859647901075654,
+                    "height": 405.58394384270866,
+                    "width": 707.8515463917527,
+                    "lineCap": "round",
+                    "x": 63.419030635873064
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add text\"},{\"type\": [],\"text\": \"which\"},{\"text\": \"summarizes\",\"type\": [\"edit\"]},{\"type\": [\"temporal\",\"custom.text\"],\"text\": \"all advices/tips\"}]",
+            "formatted_time": "16:18:44",
+            "time": 1696144724612
+        },
+        {
+            "intent_id": "intent-85848b80-7bae-4e82-b88e-6843fd042cdb",
+            "text": "whenever the text \"It is important\" zoom in ",
+            "sketch": [
+                {
+                    "lineCap": "round",
+                    "y": 27.33283099809558,
+                    "lineJoin": "round",
+                    "width": 716.6556701030928,
+                    "x": 109.20047393484214,
+                    "stroke": "red",
+                    "height": 419.69121145462896,
+                    "strokeWidth": 2
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever the text \\\"it is important\\\"\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"zoom in\"},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "16:24:45",
+            "time": 1696145085638
+        },
+        {
+            "intent_id": "intent-85848b80-7bae-4e82-b88e-6843fd042cdb",
+            "text": "whenever she uses her hand gestures zoom in ",
+            "sketch": [
+                {
+                    "stroke": "red",
+                    "width": 716.6556701030928,
+                    "y": 27.33283099809558,
+                    "x": 109.20047393484214,
+                    "height": 419.69121145462896,
+                    "strokeWidth": 2,
+                    "lineJoin": "round",
+                    "lineCap": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever she uses her hand gestures\",\"type\": [\"temporal\"]},{\"text\": \"zoom in\",\"type\": [\"edit\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "16:26:10",
+            "time": 1696145170418
+        }
+    ],
+    "task_summary": {
+        "count_intents": 9,
+        "count_edits": 16,
+        "count_history_points": 14,
+        "edit_types_count": {
+            "image": {
+                "count_intents": 3,
+                "count_edits": 6
+            },
+            "text": {
+                "count_intents": 5,
+                "count_edits": 8
+            },
+            "zoom": {
+                "count_intents": 1,
+                "count_edits": 2
+            }
+        }
+    }
+}
+{
+    "email": "ysamargarita2002@gmail.com",
+    "id": 6,
+    "video_id": "video-2",
+    "processing_logs": [
+        {
+            "intent_id": "intent-cf1e69d1-5672-4ac3-bbd1-0be6a58069a0",
+            "text": "Cut parts that she becomes redundant and explains the same situation again ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"parts that she becomes redundant and explains the same situation again \",\"type\": []}]",
+            "formatted_time": "17:51:37",
+            "time": 1696150297020
+        },
+        {
+            "intent_id": "intent-cf1e69d1-5672-4ac3-bbd1-0be6a58069a0",
+            "text": "Cut parts where mentions what happens to people during covid ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"cut parts\"},{\"type\": [\"temporal\"],\"text\": \"where mentions what happens to people during covid\"},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "17:52:40",
+            "time": 1696150360851
+        },
+        {
+            "intent_id": "intent-cf1e69d1-5672-4ac3-bbd1-0be6a58069a0",
+            "text": "Cut parts where mentions what happens to people during covid ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"cut parts\"},{\"text\": \"where mentions what happens to people during covid\",\"type\": [\"temporal\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "17:53:30",
+            "time": 1696150410669
+        },
+        {
+            "intent_id": "intent-cf1e69d1-5672-4ac3-bbd1-0be6a58069a0",
+            "text": "Cut parts where mentions what happens to people during covid ",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"text\": \"cut parts\",\"type\": [\"edit\"]},{\"type\": [\"temporal\"],\"text\": \"where mentions what happens to people during covid\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "17:55:15",
+            "time": 1696150515612
+        },
+        {
+            "intent_id": "intent-ba54c872-4a96-4d5f-8e62-6b7ec0bbb6c5",
+            "text": "add pngs of entrepreneurs when they are mentioned",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add\"},{\"text\": \"pngs\",\"type\": [\"edit\",\"custom.image\"]},{\"text\": \"of\",\"type\": []},{\"type\": [\"custom.image\"],\"text\": \"entrepreneurs\"},{\"text\": \"when they are mentioned\",\"type\": []}]",
+            "formatted_time": "18:09:36",
+            "time": 1696151376134
+        },
+        {
+            "intent_id": "intent-ba54c872-4a96-4d5f-8e62-6b7ec0bbb6c5",
+            "text": "add text when value is mentioned ",
+            "sketch": [
+                {
+                    "lineJoin": "round",
+                    "y": 168.04793458620154,
+                    "height": 147.92524141988608,
+                    "stroke": "red",
+                    "width": 366.5951219512195,
+                    "strokeWidth": 2,
+                    "x": 263.90682291170447,
+                    "lineCap": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add text\"},{\"type\": [\"temporal\"],\"text\": \"when value is mentioned\"},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "18:10:42",
+            "time": 1696151442174
+        },
+        {
+            "intent_id": "intent-ba54c872-4a96-4d5f-8e62-6b7ec0bbb6c5",
+            "text": "add text when value is mentioned ",
+            "sketch": [
+                {
+                    "stroke": "red",
+                    "lineCap": "round",
+                    "height": 147.92524141988608,
+                    "x": 263.90682291170447,
+                    "strokeWidth": 2,
+                    "y": 168.04793458620154,
+                    "lineJoin": "round",
+                    "width": 366.5951219512195
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"add text\"},{\"type\": [\"temporal\"],\"text\": \"when value is mentioned\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "18:14:40",
+            "time": 1696151680380
+        },
+        {
+            "intent_id": "intent-60db87c8-7889-4fe8-b16d-f69fc2a22612",
+            "text": "when person smiles wide, zoom in ",
+            "sketch": [
+                {
+                    "lineJoin": "round",
+                    "strokeWidth": 2,
+                    "lineCap": "round",
+                    "width": 499.9024390243902,
+                    "y": 16.99751200955731,
+                    "height": 313.55984272806836,
+                    "stroke": "red",
+                    "x": 203.50194486292398
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"when person smiles wide\"},{\"text\": \",\",\"type\": []},{\"text\": \"zoom in\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "18:20:42",
+            "time": 1696152042833
+        },
+        {
+            "intent_id": "intent-37b2b798-a2f9-4ef7-9bfd-4e74106b1e6e",
+            "text": "remove quiet parts",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"remove\"},{\"text\": \"quiet parts\",\"type\": []}]",
+            "formatted_time": "18:52:20",
+            "time": 1696153940129
+        },
+        {
+            "intent_id": "intent-37b2b798-a2f9-4ef7-9bfd-4e74106b1e6e",
+            "text": "remove parts where mouth is closed",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"remove\",\"type\": [\"edit\"]},{\"type\": [\"temporal\"],\"text\": \"parts where\"},{\"type\": [\"temporal\",\"spatial\"],\"text\": \"mouth\"},{\"text\": \"is closed\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "18:53:29",
+            "time": 1696154009602
+        }
+    ],
+    "task_summary": {
+        "count_intents": 8,
+        "count_edits": 13,
+        "count_history_points": 9,
+        "edit_types_count": {
+            "cut": {
+                "count_intents": 3,
+                "count_edits": 3
+            },
+            "zoom": {
+                "count_intents": 1,
+                "count_edits": 4
+            },
+            "text": {
+                "count_intents": 2,
+                "count_edits": 2
+            },
+            "image": {
+                "count_intents": 1,
+                "count_edits": 2
+            },
+            "blur": {
+                "count_intents": 1,
+                "count_edits": 2
+            }
+        }
+    }
+}
+{
+    "email": "tomirisnurullo1000@gmail.com",
+    "id": 9,
+    "video_id": "video-1",
+    "processing_logs": [
+        {
+            "intent_id": "intent-39ef2912-d3c4-40f1-8461-2307e8aee66b",
+            "text": "whenever ingredient is mentioned add its name in the corner",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever ingredient is mentioned\"},{\"type\": [\"edit\",\"custom.text\"],\"text\": \"add its name\"},{\"text\": \"in the corner\",\"type\": [\"spatial\"]}]",
+            "formatted_time": "19:50:05",
+            "time": 1696157405222
+        },
+        {
+            "intent_id": "intent-fdbe560f-4727-4224-9793-4ff3d05de06e",
+            "text": "cut out all the parts that are unrelated to food or cooking",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"cut out\"},{\"type\": [],\"text\": \"all the parts that are unrelated to food or cooking\"}]",
+            "formatted_time": "19:57:25",
+            "time": 1696157845900
+        },
+        {
+            "intent_id": "intent-fdbe560f-4727-4224-9793-4ff3d05de06e",
+            "text": "cut out parts about facebook, ratboy or boy,america ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"cut out parts\"},{\"text\": \"about\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"facebook\"},{\"type\": [],\"text\": \",\"},{\"text\": \"ratboy or boy\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \",\"},{\"type\": [\"temporal\"],\"text\": \"america\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "20:00:36",
+            "time": 1696158036015
+        },
+        {
+            "intent_id": "intent-0ca7d350-3a91-4a80-97d9-450c39e770b0",
+            "text": "whenever cooking is mentioned add text",
+            "sketch": [
+                {
+                    "lineJoin": "round",
+                    "lineCap": "round",
+                    "height": 67.58367276614298,
+                    "strokeWidth": 2,
+                    "x": 54.023766505345016,
+                    "stroke": "red",
+                    "width": 213.89318600368327,
+                    "y": 214.53886819950034
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever cooking is mentioned\",\"type\": [\"temporal\"]},{\"text\": \"add text\",\"type\": [\"edit\"]}]",
+            "formatted_time": "20:10:27",
+            "time": 1696158627888
+        },
+        {
+            "intent_id": "intent-0ca7d350-3a91-4a80-97d9-450c39e770b0",
+            "text": "whenever cooking time is mentioned add text",
+            "sketch": [
+                {
+                    "height": 67.58367276614298,
+                    "width": 213.89318600368327,
+                    "lineCap": "round",
+                    "strokeWidth": 2,
+                    "y": 214.53886819950034,
+                    "lineJoin": "round",
+                    "x": 54.023766505345016,
+                    "stroke": "red"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever cooking time is mentioned\"},{\"text\": \"add text\",\"type\": [\"edit\"]}]",
+            "formatted_time": "20:11:07",
+            "time": 1696158667918
+        },
+        {
+            "intent_id": "intent-0ca7d350-3a91-4a80-97d9-450c39e770b0",
+            "text": "whenever cooking time is mentioned add text",
+            "sketch": [
+                {
+                    "lineJoin": "round",
+                    "y": 214.53886819950034,
+                    "lineCap": "round",
+                    "stroke": "red",
+                    "width": 213.89318600368327,
+                    "x": 54.023766505345016,
+                    "strokeWidth": 2,
+                    "height": 67.58367276614298
+                }
+            ],
+            "mode": "add-more",
+            "explanation": "[{\"text\": \"whenever cooking time is mentioned\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"add text\"}]",
+            "formatted_time": "20:12:49",
+            "time": 1696158769573
+        },
+        {
+            "intent_id": "intent-4e5d1e85-cf07-4e93-8361-28e57ba99b0b",
+            "text": "whenever mixing or chopping or opening zoom in",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever mixing or chopping or opening\"},{\"text\": \"zoom in\",\"type\": [\"edit\"]}]",
+            "formatted_time": "20:17:54",
+            "time": 1696159074573
+        },
+        {
+            "intent_id": "intent-4e5d1e85-cf07-4e93-8361-28e57ba99b0b",
+            "text": "whenever mixing or chopping or opening zoom in",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever mixing or chopping or opening\"},{\"text\": \"zoom in\",\"type\": [\"edit\"]}]",
+            "formatted_time": "20:20:56",
+            "time": 1696159256348
+        },
+        {
+            "intent_id": "intent-f918c45b-9dc0-41cd-9f0c-7376aae047b4",
+            "text": "add picture of pasta in the beginning",
+            "sketch": [
+                {
+                    "x": 38.22592869926901,
+                    "lineCap": "round",
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "y": 36.91969688289534,
+                    "height": 160.24719498107766,
+                    "width": 233.90808823529414,
+                    "lineJoin": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add picture\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"of pasta in the\"},{\"type\": [\"temporal\"],\"text\": \"beginning\"}]",
+            "formatted_time": "20:24:20",
+            "time": 1696159460549
+        },
+        {
+            "intent_id": "intent-9d0a98ad-f36d-4407-8ef4-dca1f1776432",
+            "text": "add picture of flour when mentioned",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add picture\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"of flour when mentioned\"}]",
+            "formatted_time": "20:25:50",
+            "time": 1696159550042
+        }
+    ],
+    "task_summary": {
+        "count_intents": 6,
+        "count_edits": 18,
+        "count_history_points": 9,
+        "edit_types_count": {
+            "text": {
+                "count_intents": 2,
+                "count_edits": 5
+            },
+            "cut": {
+                "count_intents": 1,
+                "count_edits": 7
+            },
+            "": {
+                "count_intents": 1,
+                "count_edits": 3
+            },
+            "image": {
+                "count_intents": 2,
+                "count_edits": 3
+            }
+        }
+    }
+}
+{
+    "email": "kh.mukashev@gmail.com",
+    "id": 22,
+    "video_id": "video-2",
+    "processing_logs": [
+        {
+            "intent_id": "intent-3fb5c7f3-482c-44b0-95ae-4b670bbd7397",
+            "text": "at text at timestamps 7:49 as \"What businesses do\", att 9:04 as \"Maintain a positive mindset\", at 14:57 as \"Create a marketing campaing or build a funnel\" and at 15:43 and at 18:07",
+            "sketch": [
+                {
+                    "lineJoin": "round",
+                    "width": 763.0730688935281,
+                    "lineCap": "round",
+                    "strokeWidth": 2,
+                    "y": 202.1816162903095,
+                    "x": 41.03597047682346,
+                    "height": 80.16011218558525,
+                    "stroke": "red"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"at text at timestamps\"},{\"text\": \"7:49\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \"as \\\"\"},{\"type\": [\"edit\",\"custom.text\"],\"text\": \"what businesses do\"},{\"type\": [],\"text\": \"\\\", att\"},{\"type\": [\"temporal\"],\"text\": \"9:04\"},{\"text\": \"as \\\"\",\"type\": []},{\"text\": \"maintain a positive mindset\",\"type\": [\"edit\",\"custom.text\"]},{\"type\": [],\"text\": \"\\\", at\"},{\"text\": \"14:57\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \"as \\\"create a marketing campaing or build a funnel\\\" and at\"},{\"text\": \"15:43\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \"and at\"},{\"type\": [\"temporal\"],\"text\": \"18:07\"}]",
+            "formatted_time": "10:56:07",
+            "time": 1696211767346
+        },
+        {
+            "intent_id": "intent-ed4220e0-09f3-4507-8b96-067e594d36ad",
+            "text": "Add zoom that starts small from the center of the video and zooms out for 8 seconds at the begging of the video",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"add\"},{\"type\": [\"edit\"],\"text\": \"zoom\"},{\"text\": \"that\",\"type\": []},{\"text\": \"starts small\",\"type\": [\"edit\"]},{\"text\": \"from the center of the video and\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"zoom\"},{\"text\": \"s out\",\"type\": []},{\"type\": [\"custom.zoom\"],\"text\": \"for 8 seconds\"},{\"type\": [],\"text\": \"at the\"},{\"text\": \"begging of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "11:20:48",
+            "time": 1696213248265
+        },
+        {
+            "intent_id": "intent-0b1da60d-d89d-4478-8d82-f17dfb5aba3b",
+            "text": "add blur from the mouse selected point until the end of the video",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add blur\",\"type\": [\"edit\"]},{\"type\": [\"spatial\"],\"text\": \"from the mouse selected point\"},{\"text\": \"until the end of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "11:26:32",
+            "time": 1696213592575
+        },
+        {
+            "intent_id": "intent-3a2209ba-3c47-4fa0-a021-e261084aab66",
+            "text": "add text \"Gillian Perkins\" with black blue background and thick white text from the 23:20 until the end of the video",
+            "sketch": [
+                {
+                    "x": 31.988003863614214,
+                    "lineJoin": "round",
+                    "lineCap": "round",
+                    "width": 363.970893970894,
+                    "strokeWidth": 2,
+                    "stroke": "red",
+                    "height": 101.07064341617466,
+                    "y": 355.5204211393512
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add text\",\"type\": [\"edit\"]},{\"text\": \"\\\"gillian perkins\\\"\",\"type\": [\"edit\",\"custom.text\"]},{\"type\": [],\"text\": \"with\"},{\"text\": \"black blue background\",\"type\": [\"custom.text\"]},{\"type\": [],\"text\": \"and\"},{\"text\": \"thick white text\",\"type\": [\"custom.text\"]},{\"text\": \"from the\",\"type\": []},{\"text\": \"23:20\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \"until the\"},{\"text\": \"end of the video\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "11:28:28",
+            "time": 1696213708721
+        },
+        {
+            "intent_id": "intent-4e5ec35a-7611-45d3-b529-ca28c4579751",
+            "text": "add the cut for 2 seconds when the text \"sorry\"",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"add the\"},{\"type\": [\"edit\"],\"text\": \"cut\"},{\"type\": [],\"text\": \"for\"},{\"text\": \"2 seconds\",\"type\": [\"temporal\"]},{\"text\": \"when the text \\\"sorry\\\"\",\"type\": []}]",
+            "formatted_time": "11:30:44",
+            "time": 1696213844845
+        },
+        {
+            "intent_id": "intent-4e5ec35a-7611-45d3-b529-ca28c4579751",
+            "text": "add the cut for 2 seconds when she says \"we're back hopefully\"",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add the cut\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"for\"},{\"type\": [\"temporal\"],\"text\": \"2 seconds\"},{\"type\": [],\"text\": \"when she says \\\"we're back hopefully\\\"\"}]",
+            "formatted_time": "11:32:02",
+            "time": 1696213922328
+        },
+        {
+            "intent_id": "intent-a95ce4e2-0b5d-4c29-87ff-14f04ac65995",
+            "text": "add star shape with yellow color when she says the keywords like \"hardwork\", \"money\", \"smart\"",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add\",\"type\": [\"edit\"]},{\"type\": [\"edit\",\"custom.shape\"],\"text\": \"star shape\"},{\"text\": \"with\",\"type\": []},{\"text\": \"yellow color\",\"type\": [\"edit\",\"custom.shape\"]},{\"text\": \"when she says the keywords like \\\"hardwork\\\", \\\"money\\\", \\\"smart\\\"\",\"type\": []}]",
+            "formatted_time": "11:34:26",
+            "time": 1696214066121
+        }
+    ],
+    "task_summary": {
+        "count_intents": 7,
+        "count_edits": 17,
+        "count_history_points": 11,
+        "edit_types_count": {
+            "image": {
+                "count_intents": 1,
+                "count_edits": 5
+            },
+            "text": {
+                "count_intents": 2,
+                "count_edits": 7
+            },
+            "zoom": {
+                "count_intents": 1,
+                "count_edits": 1
+            },
+            "blur": {
+                "count_intents": 1,
+                "count_edits": 2
+            },
+            "cut": {
+                "count_intents": 1,
+                "count_edits": 1
+            },
+            "shape": {
+                "count_intents": 1,
+                "count_edits": 1
+            }
+        }
+    }
+}
+{
+    "email": "saryalovich@gmail.com",
+    "id": 20,
+    "video_id": "video-1",
+    "processing_logs": [
+        {
+            "intent_id": "intent-295eb063-6074-41d5-a7d3-7ac1f118190f",
+            "text": "every time a woman speaks cut ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"every time a woman speaks\"},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:07:27",
+            "time": 1696223247853
+        },
+        {
+            "intent_id": "intent-295eb063-6074-41d5-a7d3-7ac1f118190f",
+            "text": "every time a woman appears in the frame cut ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time a\",\"type\": [\"temporal\"]},{\"text\": \"woman appears in the frame\",\"type\": [\"temporal\",\"spatial\"]},{\"type\": [\"edit\"],\"text\": \"cut\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:08:51",
+            "time": 1696223331370
+        },
+        {
+            "intent_id": "intent-295eb063-6074-41d5-a7d3-7ac1f118190f",
+            "text": "every time a question is asked cut",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"every time a question is asked\"},{\"text\": \"cut\",\"type\": [\"edit\"]}]",
+            "formatted_time": "14:16:03",
+            "time": 1696223763822
+        },
+        {
+            "intent_id": "intent-a958e44a-d454-455d-8e0e-6c6faee59c19",
+            "text": "every time petition or milk revolution or milkday or food revolution is mentioned cut ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time petition or milk revolution or milkday or food revolution is mentioned\",\"type\": [\"temporal\"]},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:17:51",
+            "time": 1696223871963
+        },
+        {
+            "intent_id": "intent-295eb063-6074-41d5-a7d3-7ac1f118190f",
+            "text": "every time the man doesn't talk about pasta cut ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time the man doesn't talk about pasta\",\"type\": [\"temporal\"]},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "14:20:00",
+            "time": 1696224000546
+        },
+        {
+            "intent_id": "intent-295eb063-6074-41d5-a7d3-7ac1f118190f",
+            "text": "every time the man doesn't talk about pasta cut ",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"every time a woman appears in the frame\"},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:24:34",
+            "time": 1696224274619
+        },
+        {
+            "intent_id": "intent-a958e44a-d454-455d-8e0e-6c6faee59c19",
+            "text": "every time petition or milk revolution or milkday or food revolution is mentioned cut ",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"text\": \"every time petition or milk revolution or milkday or food revolution is mentioned\",\"type\": [\"temporal\"]},{\"type\": [\"edit\"],\"text\": \"cut\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:25:32",
+            "time": 1696224332906
+        },
+        {
+            "intent_id": "intent-69612d9c-18ae-4873-aaec-be70a210c38a",
+            "text": "every time the guys mentions an ingredient insert a text of that ingredient. the text should be white with bold font ",
+            "sketch": [
+                {
+                    "x": 14.086892712753988,
+                    "y": 360.8845911138463,
+                    "width": 323.32510288065845,
+                    "lineJoin": "round",
+                    "stroke": "red",
+                    "strokeWidth": 2,
+                    "height": 107.12389322600794,
+                    "lineCap": "round"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"every time the guys mentions an ingredient\"},{\"text\": \"insert a text\",\"type\": [\"edit\",\"custom.text\"]},{\"text\": \"of that ingredient. the\",\"type\": []},{\"type\": [\"edit\",\"custom.text\"],\"text\": \"text\"},{\"text\": \"should be\",\"type\": []},{\"text\": \"white\",\"type\": [\"custom.text\"]},{\"text\": \"with\",\"type\": []},{\"text\": \"bold font\",\"type\": [\"custom.text\"]},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:34:19",
+            "time": 1696224859299
+        },
+        {
+            "intent_id": "intent-69612d9c-18ae-4873-aaec-be70a210c38a",
+            "text": "every time the guys mentions an ingredient insert a text of that ingredient. the text should be white with bold font and transparent background. Please make the fragments short",
+            "sketch": [
+                {
+                    "y": 360.8845911138463,
+                    "stroke": "red",
+                    "height": 107.12389322600794,
+                    "lineCap": "round",
+                    "x": 14.086892712753988,
+                    "lineJoin": "round",
+                    "strokeWidth": 2,
+                    "width": 323.32510288065845
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"every time the guys mentions an ingredient\",\"type\": [\"temporal\"]},{\"type\": [\"edit\",\"custom.text\"],\"text\": \"insert a text\"},{\"text\": \"of that ingredient. the text should be\",\"type\": []},{\"text\": \"white\",\"type\": [\"custom.text\"]},{\"text\": \"with\",\"type\": []},{\"type\": [\"custom.text\"],\"text\": \"bold font\"},{\"type\": [],\"text\": \"and\"},{\"type\": [\"custom.text\"],\"text\": \"transparent background\"},{\"text\": \". please\",\"type\": []},{\"text\": \"make the fragments short\",\"type\": [\"edit\"]}]",
+            "formatted_time": "14:43:19",
+            "time": 1696225399845
+        },
+        {
+            "intent_id": "intent-09d2c3fc-e37e-4436-8c22-29c8713ddf11",
+            "text": "when he says thick add an image of emoji peach ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"when he says thick\"},{\"type\": [\"edit\"],\"text\": \"add an image\"},{\"type\": [],\"text\": \"of\"},{\"type\": [\"edit\",\"custom.image\"],\"text\": \"emoji peach\"},{\"type\": [],\"text\": \"\"}]",
+            "formatted_time": "14:44:29",
+            "time": 1696225469503
+        }
+    ],
+    "task_summary": {
+        "count_intents": 4,
+        "count_edits": 11,
+        "count_history_points": 8,
+        "edit_types_count": {
+            "cut": {
+                "count_intents": 2,
+                "count_edits": 4
+            },
+            "text": {
+                "count_intents": 1,
+                "count_edits": 6
+            },
+            "image": {
+                "count_intents": 1,
+                "count_edits": 1
+            }
+        }
+    }
+}
+{
+    "email": "samgenius42@gmail.com",
+    "id": 21,
+    "video_id": "video-1",
+    "processing_logs": [
+        {
+            "intent_id": "intent-b9fbfd79-5c12-4102-b6ed-0d41bc6a8720",
+            "text": "whenever a female talks blur the screen",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever a female talks\",\"type\": [\"temporal\"]},{\"text\": \"blur the screen\",\"type\": [\"edit\"]}]",
+            "formatted_time": "17:55:59",
+            "time": 1696236959846
+        },
+        {
+            "intent_id": "intent-b9fbfd79-5c12-4102-b6ed-0d41bc6a8720",
+            "text": "whenever someone says questions, blur the screen",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever someone says questions\",\"type\": [\"temporal\"]},{\"text\": \",\",\"type\": []},{\"text\": \"blur the screen\",\"type\": [\"edit\"]}]",
+            "formatted_time": "17:57:29",
+            "time": 1696237049211
+        },
+        {
+            "intent_id": "intent-b9fbfd79-5c12-4102-b6ed-0d41bc6a8720",
+            "text": "Whenever a female starts talking or, someones says \"questions\", blur the screen",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever a female starts talking\"},{\"type\": [],\"text\": \"or,\"},{\"text\": \"someones says \\\"questions\\\"\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \",\"},{\"text\": \"blur the screen\",\"type\": [\"edit\"]}]",
+            "formatted_time": "17:59:04",
+            "time": 1696237144606
+        },
+        {
+            "intent_id": "intent-de76e1b4-50fc-43ae-ae55-d7266d5f0d03",
+            "text": "cut whenever there's silence for more than 3 seconds",
+            "sketch": [
+                {
+                    "y": 20.27919719213543,
+                    "strokeWidth": 2,
+                    "x": 21.15923682144008,
+                    "height": 447.9057466784695,
+                    "lineCap": "round",
+                    "stroke": "red",
+                    "lineJoin": "round",
+                    "width": 832.8407631785599
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"cut\"},{\"type\": [],\"text\": \"whenever there's silence for more than 3 seconds\"}]",
+            "formatted_time": "18:06:56",
+            "time": 1696237616726
+        },
+        {
+            "intent_id": "intent-de76e1b4-50fc-43ae-ae55-d7266d5f0d03",
+            "text": "cut whenever there's silence for more than 2 seconds",
+            "sketch": [
+                {
+                    "x": 21.15923682144008,
+                    "lineCap": "round",
+                    "y": 20.27919719213543,
+                    "lineJoin": "round",
+                    "strokeWidth": 2,
+                    "height": 447.9057466784695,
+                    "width": 832.8407631785599,
+                    "stroke": "red"
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"whenever there's silence for more than 2 seconds\",\"type\": []}]",
+            "formatted_time": "18:07:31",
+            "time": 1696237651500
+        },
+        {
+            "intent_id": "intent-1f851565-4cc6-433c-853d-cf3a98201f85",
+            "text": "Whenever ingredient is mentioned, put text",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever ingredient is mentioned\"},{\"text\": \",\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"put text\"}]",
+            "formatted_time": "18:08:54",
+            "time": 1696237734373
+        },
+        {
+            "intent_id": "intent-1f851565-4cc6-433c-853d-cf3a98201f85",
+            "text": "Whenever ingredient is mentioned, put text on bottom right",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever ingredient is mentioned\"},{\"text\": \",\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"put text\"},{\"text\": \"on\",\"type\": []},{\"text\": \"bottom right\",\"type\": [\"spatial\"]}]",
+            "formatted_time": "18:10:10",
+            "time": 1696237810258
+        },
+        {
+            "intent_id": "intent-1f851565-4cc6-433c-853d-cf3a98201f85",
+            "text": "Whenever ingredient is mentioned, put text of ingredients on bottom right",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever ingredient is mentioned\"},{\"text\": \",\",\"type\": []},{\"text\": \"put text\",\"type\": [\"edit\"]},{\"text\": \"of ingredients on\",\"type\": []},{\"type\": [\"spatial\"],\"text\": \"bottom right\"}]",
+            "formatted_time": "18:11:47",
+            "time": 1696237907333
+        },
+        {
+            "intent_id": "intent-1dd0b1a0-a846-43c7-bf87-037e275d1ca6",
+            "text": "Whenever rat boy is mentioned, cut",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever rat boy is mentioned\",\"type\": [\"temporal\"]},{\"text\": \",\",\"type\": []},{\"type\": [\"edit\"],\"text\": \"cut\"}]",
+            "formatted_time": "18:18:31",
+            "time": 1696238311654
+        },
+        {
+            "intent_id": "intent-dc95c0e9-a950-45d1-8b88-80e59c389ad0",
+            "text": "Whenever cooking equipment is mentioned place image",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever cooking equipment is mentioned\",\"type\": [\"temporal\"]},{\"text\": \"place image\",\"type\": [\"edit\"]}]",
+            "formatted_time": "18:31:18",
+            "time": 1696239078784
+        },
+        {
+            "intent_id": "intent-c3999808-082a-497d-b69f-0fd5bd214e21",
+            "text": "Whenever there's an explanation, insert textbox",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever there's an explanation\"},{\"type\": [],\"text\": \",\"},{\"type\": [\"edit\"],\"text\": \"insert textbox\"}]",
+            "formatted_time": "18:32:37",
+            "time": 1696239157716
+        },
+        {
+            "intent_id": "intent-57a66dda-979a-4b9a-a43b-f14327299772",
+            "text": "Whenever someone says um cut",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"whenever someone says um\",\"type\": [\"temporal\"]},{\"type\": [\"edit\"],\"text\": \"cut\"}]",
+            "formatted_time": "18:33:25",
+            "time": 1696239205527
+        },
+        {
+            "intent_id": "intent-c3999808-082a-497d-b69f-0fd5bd214e21",
+            "text": "Whenever he's not talking about cooking or cooking related concepts like milk day, cut ",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"temporal\"],\"text\": \"whenever he's not talking about cooking or cooking related concepts like milk day\"},{\"text\": \",\",\"type\": []},{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"\",\"type\": []}]",
+            "formatted_time": "18:36:47",
+            "time": 1696239407455
+        },
+        {
+            "intent_id": "intent-811c38a1-541f-4029-9bdc-4867efff24cf",
+            "text": "cut the segment where they talk about milk day",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"the segment\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"where they talk about milk day\"}]",
+            "formatted_time": "18:37:40",
+            "time": 1696239460915
+        }
+    ],
+    "task_summary": {
+        "count_intents": 6,
+        "count_edits": 16,
+        "count_history_points": 6,
+        "edit_types_count": {
+            "blur": {
+                "count_intents": 1,
+                "count_edits": 5
+            },
+            "text": {
+                "count_intents": 3,
+                "count_edits": 8
+            },
+            "cut": {
+                "count_intents": 2,
+                "count_edits": 3
+            }
+        }
+    }
+}
+{
+    "email": "trangnguyen20062003@gmail.com",
+    "id": 24,
+    "video_id": "video-2",
+    "processing_logs": [
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "Highlight segment that have the orderly word: first, secondly,... lastly",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"highlight\"},{\"text\": \"segment that have the orderly word:\",\"type\": []},{\"type\": [\"temporal\",\"custom.text\"],\"text\": \"first, secondly,... lastly\"}]",
+            "formatted_time": "23:04:08",
+            "time": 1696428248081
+        },
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "Highlight segment that have the main point of the video, usually start with first of all, second of all/ secondly,... , often preceded by a pause",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"highlight\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"segment that have the main point of the video, usually start with\"},{\"text\": \"first of all, second of all/ secondly\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \",... , often preceded by a pause\"}]",
+            "formatted_time": "23:06:55",
+            "time": 1696428415510
+        },
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "Highlight segment that have the main point of the video, usually start with first of all, second of all/ secondly,... , often preceded by a pause",
+            "sketch": [],
+            "mode": "add-more",
+            "explanation": "[{\"type\": [\"edit\"],\"text\": \"highlight\"},{\"type\": [],\"text\": \"segment that have the main point of the video, usually start with\"},{\"text\": \"first of all, second of all/ secondly\",\"type\": [\"temporal\"]},{\"text\": \",... , often preceded by a pause\",\"type\": []}]",
+            "formatted_time": "23:07:48",
+            "time": 1696428468948
+        },
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "Highlight segment that have the word secondly or second",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"highlight\",\"type\": [\"edit\"]},{\"text\": \"segment that have the word secondly or second\",\"type\": [\"custom.text\"]}]",
+            "formatted_time": "23:13:09",
+            "time": 1696428789587
+        },
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "Highlight segment that have the word next",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"highlight\",\"type\": [\"edit\"]},{\"text\": \"segment\",\"type\": [\"temporal\"]},{\"type\": [],\"text\": \"that have\"},{\"type\": [\"custom.text\",\"temporal\"],\"text\": \"the word next\"}]",
+            "formatted_time": "23:15:31",
+            "time": 1696428931024
+        },
+        {
+            "intent_id": "intent-32202dd2-3440-4c17-94e0-6d7234429e73",
+            "text": "find the part mentioning there is problem, there will be oppoturnities",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"find the part mentioning there is problem, there will be oppoturnities\",\"type\": [\"temporal\"]}]",
+            "formatted_time": "23:23:48",
+            "time": 1696429428168
+        },
+        {
+            "intent_id": "intent-28e8f634-af33-40ec-bb30-53fa3ace76a6",
+            "text": "Add an image which show problem goes up, oppoturnity goes up",
+            "sketch": [
+                {
+                    "width": 843.8160136286201,
+                    "lineJoin": "round",
+                    "height": 472.9234554379994,
+                    "strokeWidth": 2,
+                    "stroke": "red",
+                    "x": 8.510911775813193,
+                    "lineCap": "round",
+                    "y": 3.3710939200474326
+                }
+            ],
+            "mode": "from-scratch",
+            "explanation": "[{\"text\": \"add an image\",\"type\": [\"edit\"]},{\"type\": [],\"text\": \"which\"},{\"text\": \"show problem goes up, oppoturnity goes up\",\"type\": [\"custom.image\"]}]",
+            "formatted_time": "23:26:12",
+            "time": 1696429572419
+        },
+        {
+            "intent_id": "intent-9f850e92-5170-40f1-a0f3-6d9992c141f9",
+            "text": "Whenever she is looking to her right for the script",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"whenever she is looking to her right for the script\"}]",
+            "formatted_time": "23:35:48",
+            "time": 1696430148000
+        },
+        {
+            "intent_id": "intent-9f850e92-5170-40f1-a0f3-6d9992c141f9",
+            "text": "Whenever she is looking to her right corner",
+            "sketch": [],
+            "mode": "from-scratch",
+            "explanation": "[{\"type\": [],\"text\": \"whenever she is looking to\"},{\"text\": \"her right corner\",\"type\": [\"spatial\"]}]",
+            "formatted_time": "23:36:22",
+            "time": 1696430182024
+        }
+    ],
+    "task_summary": {
+        "count_intents": 4,
+        "count_edits": 6,
+        "count_history_points": 8,
+        "edit_types_count": {
+            "text": {
+                "count_intents": 1,
+                "count_edits": 2
+            },
+            "image": {
+                "count_intents": 1,
+                "count_edits": 1
+            },
+            "shape": {
+                "count_intents": 1,
+                "count_edits": 2
+            },
+            "zoom": {
+                "count_intents": 1,
+                "count_edits": 1
+            }
+        }
+    }
+}

@@ -277,7 +277,7 @@ class LangChainPipeline():
                 )
                 segments.extend(partial_segments)
             temporal_segments = merge_segments(segments)
-            if len(temporal_segments) == 0 and len(temporal) == 0:
+            if len(temporal_segments) == 0:
                 #### if no temporal reference is found, use default 10 seconds from current player position
                 start, finish = self.__get_non_intersecting_segment(
                     current_player_position, current_player_position + 10, skipped_segments
@@ -470,6 +470,11 @@ class LangChainPipeline():
 
             ### set edit operations
             response["requestParameters"]["editOperations"] = simple_references.edit
+            response["requestParameters"]["relevantText"] = {
+                "temporal": [item.reference for item in references.temporal_references],
+                "spatial": [item.reference for item in references.spatial_references],
+                "edit": [item.reference for item in references.edit_references],
+            }
             response["requestParameters"]["parameters"] = simple_references.get_parameters_short()
             response["requestParameters"]["indexedParameters"] = references.get_parameters_short()
             

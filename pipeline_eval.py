@@ -6,16 +6,60 @@ import json
 def round_number(number):
     return math.floor(number * 1000) / 1000
 
-def evaluate_all():
+def evaluate_all_parsing():
     task_ids = [2, 3, 4, 5, 6]
+    for task_id in task_ids:
+        dataset = get_dataset_for_task(task_id)
+        result = []
+        for index in range(len(dataset)):
+            input, ground_truths = get_data_point_parsing(dataset, index)
+            response = run_langchain_pipeline_references(input)
+
+            comparison = {}
+
+            for key in response:
+                prediction = response[key]
+                ground_truth = ground_truths[key]
+                if key == "editOperations":
+                    f1, precision, recall = get_edit_operation_evaluation(
+                        prediction,
+                        ground_truth,
+                    )
+                    comparison[key] = {
+                        "prediction": prediction,
+                        "ground_truth": ground_truth,
+                        "f1": f1,
+                        "precision": precision,
+                        "recall": recall,
+                    }
+                    continue
+                cosine_scores, top_10_pairs = get_cosine_similarity_scores(
+                    prediction,
+                    ground_truth,
+                )
+                comparison[key] = {
+                    "prediction": prediction,
+                    "ground_truth": ground_truth,
+                    "cosine_scores": cosine_scores,
+                    "top_10_pairs": top_10_pairs,
+                }
+            result.append(comparison)
+        with open(f"results/evaluation_parsing_{str(task_id)}.json", "w") as f:
+            json.dump(result, f, indent=2)
+
+def evaluate_all():
+    task_ids = [6]
     result = run_evaluation(
         task_ids = task_ids,
         data_point_getter = get_data_point_as_request,
         pipeline_runner = run_langchain_pipeline_request,
         # indexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] #[10] - video #[4] - position
-        indexes = [0, 2, 4, 6, 8, 10],
-        # indexes=[0]
+        indexes=[]
     )
+
+
+    with open(f"results/evaluation_result_{str(task_ids)}.json", "w") as f:
+        json.dump(result, f, indent=2)
 
     if (len(result["dataset"]) == 0):
         return
@@ -250,6 +294,7 @@ def summarize_captions(metadata_filename="./metadata/4LdIvyfzoGY_10.txt"):
 
 
 if __name__ == "__main__":
+    # evaluate_all_parsing()
     evaluate_all_spatial()
     # evaluate_all()
     

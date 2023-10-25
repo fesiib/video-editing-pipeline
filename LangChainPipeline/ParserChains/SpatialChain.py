@@ -1,3 +1,5 @@
+import os
+import math
 import ast
 import json
 import cv2
@@ -26,8 +28,8 @@ class SpatialChain():
     ):
         self.visual_metadata = None
         self.transcript_metadata = None
-        self.interval = interval
-        self.video_id = video_id
+        self.interval = None
+        self.video_id = None
         self.set_video(video_id, interval)
         self.position = SpatialPositionChain(verbose)
         self.image_processor = ImageProcessor()
@@ -38,8 +40,18 @@ class SpatialChain():
         print("Initialized SpatialChain")
 
     def set_video(self, video_id, interval):
+        if self.video_id == video_id and self.interval == interval:
+            return
+
         self.video_id = video_id
-        metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+
+        self.is_combined = True
+        metadata_filepath = f"metadata/{video_id}_{str(interval)}_combined.txt"
+        if os.path.exists(metadata_filepath) == False:
+            print("ERROR: Metadata file does not exist: ", metadata_filepath)
+            metadata_filepath = f"metadata/{video_id}_{str(interval)}.txt"
+            self.is_combined = False
+
         self.visual_metadata = []
         self.transcript_metadata = []
         with open(metadata_filepath) as f:
@@ -54,6 +66,19 @@ class SpatialChain():
                 visual_data_str = (interval["synth_caption"].strip() + ", " 
                     + interval["dense_caption"].strip() + ", " 
                     + interval["action_pred"].strip())
+                
+                if self.is_combined:
+                    visual_data = {
+                        "action": interval["action_pred"],
+                        "abstract_caption": interval["synth_caption"],
+                        "objects": interval["objects"],
+                        "dense_caption": interval["dense_caption_2"],
+                    }
+                    visual_data_str = (json.dumps(interval["synth_caption"]).strip() + ", "
+                        + json.dumps(interval["dense_caption_2"]).strip() + ", "
+                        + json.dumps(interval["action_pred"]).strip() + ", "
+                        + json.dumps(interval["objects"]).strip())
+
                 transcript = interval["transcript"].strip()
                 self.visual_metadata.append({
                     "start": interval["start"],
@@ -131,6 +156,14 @@ class SpatialChain():
             "height": y2 - y1,
             "info": ["Union"],
         }
+    
+    def get_candidate_frame_sec(self, start, finish):
+        result = int(start)
+        if result < 0:
+            result = 0
+        if result > finish:
+            print("WARNING: candidate frame sec: start > finish")
+        return result
 
     def get_candidate_bboxes(self,
         start, finish,
@@ -145,6 +178,9 @@ class SpatialChain():
         vs_texts = []
         vs_offsets = []
         for i in range(len(commands)):
+            if len(labels) <= i:
+                print("ERROR: label not found", commands[i])
+                continue
             if labels[i] == "visual-dependent":
                 vs_texts.append(commands[i])
                 vs_offsets.append(offsets[i])
@@ -194,11 +230,10 @@ class SpatialChain():
                 cv2.rectangle(output_ref_image, (bbox[0], bbox[1]), (bbox[0] + bbox[2], bbox[1] + bbox[3]), (0, 0, 255), 2)
             cv2.imwrite("./images/{}_!ref_image.jpg".format(filename_prefix), output_ref_image)
             ref_image = image.copy()
-            
-            frame_sec = int(start + finish) // 2
+
             (
                 _, segmentation_bboxes, _, image
-            ) = self.image_processor.get_candidates_from_frame(frame_sec, self.video_id)
+            ) = self.image_processor.get_candidates_from_frame(self.get_candidate_frame_sec(start, finish), self.video_id)
 
             (
                 candidate_bbox_argmax,
@@ -219,10 +254,9 @@ class SpatialChain():
                 "offsets": vs_offsets,
             }]
         else:
-            frame_sec = int(start + finish) // 2
             (
                 _, segmentation_bboxes, _, image
-            ) = self.image_processor.get_candidates_from_frame(frame_sec, self.video_id)
+            ) = self.image_processor.get_candidates_from_frame(self.get_candidate_frame_sec(start, finish), self.video_id)
             (
                 candidate_bbox_argmax,
                 candidate_bbox_sum,
@@ -263,7 +297,7 @@ class SpatialChain():
                     offsets,
                 ))
         elif label == "visual-dependent":
-            refining_candidates = [self.process_visual_command(command, int((start + finish) // 2), video_shape, offsets)]
+            refining_candidates = [self.process_visual_command(command, self.get_candidate_frame_sec(start, finish), video_shape, offsets)]
             for candidate in candidates:
                 for refinement in refining_candidates:
                     ### if there is intersection, then take the intersection
@@ -321,17 +355,21 @@ class SpatialPositionChain():
         print("Initialized SpatialPositionChain")
 
     def run(self, context, command, candidate, offsets):
-        result = self.chain.predict(
-            context=json.dumps(context),
-            command=json.dumps(command),
-            rectangle=Rectangle.get_instance(
-                x=candidate["x"],
-                y=candidate["y"],
-                width=candidate["width"],
-                height=candidate["height"],
-                rotation=0,
-            ).model_dump_json()
-        )
+        try: 
+            result = self.chain.predict(
+                context=json.dumps(context),
+                command=json.dumps(command),
+                rectangle=Rectangle.get_instance(
+                    x=candidate["x"],
+                    y=candidate["y"],
+                    width=candidate["width"],
+                    height=candidate["height"],
+                    rotation=0,
+                ).model_dump_json()
+            )
+        except:
+            print("ERROR: Failed to parse: ", command)
+            return candidate
 
         candidate["x"] = result.x
         candidate["y"] = result.y

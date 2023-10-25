@@ -25,7 +25,11 @@ class SummarizeRequestChain():
     def run(self, request):
         if request == "":
             return "No Request Given"
-        response = self.chain.predict(
-            request=request,
-        )
+        try:
+            response = self.chain.predict(
+                request=request,
+            )
+        except:
+            print("ERROR: Failed to summarize: ", request)
+            return ""
         return response

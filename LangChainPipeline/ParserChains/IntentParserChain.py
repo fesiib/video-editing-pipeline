@@ -42,5 +42,9 @@ class IntentParserChain():
     def run(self, command):
         if command == "":
             return References()
-        references = self.chain.predict(command=command)
+        try:
+            references = self.chain.predict(command=command)
+        except:
+            print("ERROR: Failed to parse: ", command)
+            return References()
         return references
