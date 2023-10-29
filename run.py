@@ -47,7 +47,7 @@ def format_output(edit_response):
         })
     return {
         "edits": edits,
-        "edit_operations": edit["requestParameters"]["editOperations"],
+        "edit_operations": edit_response["requestParameters"]["editOperations"],
         "parameters": edit_response["requestParameters"]["parameters"],
     }
 
