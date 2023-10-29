@@ -1268,7 +1268,7 @@
             "mode": "from-scratch",
             "explanation": "[{\"text\": \"cut\",\"type\": [\"edit\"]},{\"text\": \"the segment\",\"type\": []},{\"type\": [\"temporal\"],\"text\": \"where they talk about milk day\"}]",
             "formatted_time": "18:37:40",
-            "time": 1696239460915
+            "time": 1696239460915https://docs.google.com/document/d/1DhMM-jO6zKqvDpcgOy4KAyKGVy35uB9Ud-6E9x3eWYU/edit
         }
     ],
     "task_summary": {
