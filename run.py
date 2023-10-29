@@ -9,7 +9,7 @@ from LangChainPipeline import LangChainPipeline
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--text", type=str, default="add text whenever chicken is mentioned")
+    parser.add_argument("-t", "--text", type=str, default="add a text whenever the person is not in the frame")
     parser.add_argument("-s", "--sketch", type=str, default="0,0,854,480")
     parser.add_argument("-sf", "--sketchFrame", type=int, default=10)
     parser.add_argument("-v", "--videoId", type=str, default="kdN41iYTg3U")
