@@ -521,6 +521,9 @@ class LangChainPipeline():
             print(cb)
         return response
 
+    def process_request_propogate(self, request):
+        pass
+    
     def get_summary(self, input):
         with get_openai_callback() as cb:
             summary = self.summarize_request.run(

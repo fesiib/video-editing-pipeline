@@ -3,6 +3,8 @@ import json
 from flask import Flask, request, jsonify, redirect, url_for
 from flask_cors import CORS
 
+from celery import Celery, Task
+
 #from backend.intent_parser import *
 from backend.pipeline import Pipeline
 from LangChainPipeline import LangChainPipeline
@@ -10,10 +12,31 @@ from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_sp
 
 from video_host.processor import process_video, get_video_by_filename, process_clipped_video
 
+def celery_init_app(app):
+    class FlaskTask(Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+    celery_app = Celery(app.import_name, task_cls=FlaskTask)
+    celery_app.config_from_object(app.config["CELERY"])
+    celery_app.set_default()
+    app.extensions["celery"] = celery_app
+    return celery_app
 
 app = Flask(__name__)
-
 CORS(app, origins=["http://localhost:3000", "http://localhost:7777", "http://internal.kixlab.org:7777"])
+app.config.from_mapping(
+    CELERY=dict(
+        broke_url="",
+        result_backend="",
+        task_serializer="json",
+        accept_content=["json"],
+        result_serializer="json",
+        timezone="Asia/Seoul",
+    ),
+)
+
+celery_app = celery_init_app(app)
 
 '''
 Server side for video editing pipline 
@@ -28,12 +51,24 @@ Input:
     State of intent:
 '''
 @app.route("/intent", methods=['GET', 'POST'])
-def parse_intent():
+def process_intent():
     edit_request = request.json
     #pipeline.reset()
 
     videoId = edit_request.get("videoId")
     langchain_pipeline.set_video(videoId, 10)
+    edit_response = langchain_pipeline.process_request_indexed(edit_request)
+
+    return jsonify(edit_response)
+
+@app.route("/intent-propagate", methods=['GET', 'POST'])
+def process_intent_propagate():
+    edit_request = request.json
+    #pipeline.reset()
+
+    videoId = edit_request.get("videoId")
+    langchain_pipeline.set_video(videoId, 10)
+    
     edit_response = langchain_pipeline.process_request_indexed(edit_request)
 
     return jsonify(edit_response)

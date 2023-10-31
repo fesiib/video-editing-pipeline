@@ -1,4 +1,5 @@
 import requests
+import os
 
 
 def get_first_google_search_image(query, placeholder_image_url):
@@ -8,9 +9,8 @@ def get_first_google_search_image(query, placeholder_image_url):
         return placeholder_image_url
     
     # Replace with your API key and CSE ID
-    api_key = 'AIzaSyBQwU6hckpLm5u5VZErkUFvDbRQoz5A_Es'
-    cse_id = 'b36a45c639f08432a'
-
+    api_key = os.getenv("GOOGLE_API_KEY")
+    cse_id = os.getenv("GOOGLE_CSE_ID")
     # Make the API request
     url = f'https://www.googleapis.com/customsearch/v1?key={api_key}&cx={cse_id}&q={query}&searchType=image'
     response = requests.get(url)
