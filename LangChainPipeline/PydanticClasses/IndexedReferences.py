@@ -24,7 +24,8 @@ class SingleReference(BaseModel):
             reference=reference,
         )
     
-    def __init__(self, single_reference):
+    @classmethod
+    def from_object(self, single_reference):
         super().__init__(
             offset=single_reference.offset,
             reference=single_reference.reference,
@@ -96,21 +97,22 @@ class IndexedReferences(BaseModel):
             zoomParameters=zoomParameters,
         )
     
-    def __init__(self, references):
+    @classmethod
+    def from_object(self, references):
         super().__init__(
-            temporal_references=[SingleReference(x) for x in references.temporal_references],
+            temporal_references=[SingleReference.from_object(x) for x in references.temporal_references],
             temporal_labels=references.temporal_labels,
-            spatial_references=[SingleReference(x) for x in references.spatial_references],
+            spatial_references=[SingleReference.from_object(x) for x in references.spatial_references],
             spatial_labels=references.spatial_labels,
-            edit_references=[SingleReference(x) for x in references.edit_references],
+            edit_references=[SingleReference.from_object(x) for x in references.edit_references],
             edit=references.edit,
-            textParameters=[SingleReference(x) for x in references.textParameters],
-            imageParameters=[SingleReference(x) for x in references.imageParameters],
-            shapeParameters=[SingleReference(x) for x in references.shapeParameters],
-            blurParameters=[SingleReference(x) for x in references.blurParameters],
-            cutParameters=[SingleReference(x) for x in references.cutParameters],
-            cropParameters=[SingleReference(x) for x in references.cropParameters],
-            zoomParameters=[SingleReference(x) for x in references.zoomParameters],
+            textParameters=[SingleReference.from_object(x) for x in references.textParameters],
+            imageParameters=[SingleReference.from_object(x) for x in references.imageParameters],
+            shapeParameters=[SingleReference.from_object(x) for x in references.shapeParameters],
+            blurParameters=[SingleReference.from_object(x) for x in references.blurParameters],
+            cutParameters=[SingleReference.from_object(x) for x in references.cutParameters],
+            cropParameters=[SingleReference.from_object(x) for x in references.cropParameters],
+            zoomParameters=[SingleReference.from_object(x) for x in references.zoomParameters],
         )
 
     @validator("temporal_references")

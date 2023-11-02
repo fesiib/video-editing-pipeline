@@ -9,16 +9,42 @@ from LangChainPipeline import LangChainPipeline
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--text", type=str, default="add a text whenever the person is not in the frame")
-    parser.add_argument("-s", "--sketch", type=str, default="0,0,854,480")
-    parser.add_argument("-sf", "--sketchFrame", type=int, default=10)
-    parser.add_argument("-v", "--videoId", type=str, default="kdN41iYTg3U")
-    parser.add_argument("-vd", "--videoDuration", type=int, default=100)
+    parser.add_argument(
+        "-t", "--text",
+        type=str,
+        required=True,
+        help="The text description of the edit")
+    parser.add_argument(
+        "-s", "--sketch", 
+        type=str,
+        default=None,
+        help="The sketch rectangle description of the edit"
+    )
+    parser.add_argument(
+        "-sf", "--sketchTimestamp",
+        type=int,
+        default=-1,
+        help="The timestamp of the sketch rectangle (in seconds)"
+    )
+    parser.add_argument(
+        "-v", "--videoId",
+        type=str,
+        required=True,
+        help="The video-id of the video"
+    )
+    parser.add_argument(
+        "-vd", "--videoDuration",
+        type=int,
+        required=True,
+        help="The duration of the video (in seconds)"
+    )
     args = parser.parse_args()
     return args
 
 def sketchToSketchRectangles(sketch):
     sketchRectangles = []
+    if sketch is None:
+        return sketchRectangles
     rectangle = sketch.split(",")
     rectangle = [int(x.strip()) for x in rectangle]
     sketchRectangles.append({
@@ -46,15 +72,18 @@ def format_output(edit_response):
             "spatial_source": edit["spatialParameters"]["source"],
         })
     return {
+        "parsing_results": {
+            **edit_response["requestParameters"]["relevantText"],
+            "parameters": edit_response["requestParameters"]["parameters"],
+        },
         "edits": edits,
         "edit_operations": edit_response["requestParameters"]["editOperations"],
-        "parameters": edit_response["requestParameters"]["parameters"],
     }
 
 def main(args):
     text = args.text
     sketch = args.sketch
-    sketchFrame = args.sketchFrame
+    sketchTimestamp = args.sketchTimestamp
     videoId = args.videoId
     videoDuration = args.videoDuration
     
@@ -80,10 +109,10 @@ def main(args):
         "requestParameters": {
             "processingMode": "from-scratch",
             "hasText": True,
-            "hasSketch": True,
+            "hasSketch": sketch is not None,
             "text": text,
             "sketchRectangles": sketchToSketchRectangles(sketch),
-            "sketchFrameTimestamp": sketchFrame,
+            "sketchFrameTimestamp": sketchTimestamp,
             "editOperation": ""
         },
     }

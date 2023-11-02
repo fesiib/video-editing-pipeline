@@ -529,7 +529,7 @@ class LangChainPipeline():
         return response
 
     def process_request_edit(self, request):
-        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -570,7 +570,7 @@ class LangChainPipeline():
         return response
     
     def process_request_spatial(self, request):
-        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -611,7 +611,7 @@ class LangChainPipeline():
         return response
 
     def process_request_temporal(self, request):
-        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -662,7 +662,7 @@ class LangChainPipeline():
                 "temporal": [],
                 "spatial": [],
                 "edit": [],
-                "parameters": [],
+                "parameters": {},
             },
             "parsing_results": {},
         }
