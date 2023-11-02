@@ -7,8 +7,10 @@ user-data
 
 metadata/*
 metadata_old
+metadata_all
 
 segmentation-data/*
+segmentation-data_all
 
 llama-data/
 
