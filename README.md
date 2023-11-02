@@ -18,11 +18,16 @@ This is the repository for the pipeline for ExpressEdit: video editing tool base
 
 ## Installation
 
-Create a new [conda](https://docs.conda.io/en/latest/) environment (Python 3.10)
+1. Create a new [conda](https://docs.conda.io/en/latest/) environment (Python 3.10)
 
 ```bash
-conda create --name <env> --file requirements.txt
-conda activate <env>
+conda env create -f environment.yml
+conda activate test-env
+```
+
+2. Install [CLIP](https://github.com/openai/CLIP) package.
+```bash
+pip install git+https://github.com/openai/CLIP.git
 ```
 
 ## Run
@@ -46,11 +51,12 @@ python run.py [-h] [-t TEXT] [-s SKETCH] [-sf SKETCHFRAME] [-v VIDEOID] [-vd VID
 
 For example:
 ```bash
-python run.py -v kdN41iYTg3U -vd 3236 -t "whenever there is no person in the video add white text with the name of the person"
+python run.py -v kdN41iYTg3U -vd 3236 -t "whenever there is no person in the video add picture of a person on the right" -s 0,0,200,200 -sf 100
 ```
 
 Notes:
-- Make sure to export environment variable $OPENAI_API_KEY in your bash with appropriate OPENAI_API_KEY.
+- Export environment variable `$OPENAI_API_KEY` with appropriate OPENAI_API_KEY from [OpenAI](https://openai.com/).
+- Export environment variables `$GOOGLE_API_KEY` and `$GOOGLE_CSE_ID` with appropriate API keys for Image Search [Tutorial](https://developers.google.com/custom-search/v1/overview).
 - Sketch format: `<left-x>,<top-y>,<width>,<height>`
 - Timestamp/Duration must be an integer: `<int>`
 - Video Id must be from available below.
@@ -98,6 +104,15 @@ Notes:
         },
         "spatial_reasoning": [str],
         "spatial_source": [str],
+        "edit_parameters": {
+                "text": dict(),
+                "image": dict(),
+                "shape": dict(),
+                "blur": dict(),
+                "cut": dict(),
+                "crop": dict(),
+                "zoom": dict(),
+            },
     }, ...],
 }
 ```

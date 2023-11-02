@@ -70,6 +70,15 @@ def format_output(edit_response):
             "spatial": edit["spatialParameters"],
             "spatial_reasoning": edit["spatialParameters"]["info"],
             "spatial_source": edit["spatialParameters"]["source"],
+            "edit_parameters": {
+                "text": edit["textParameters"],
+                "image": edit["imageParameters"],
+                "shape": edit["shapeParameters"],
+                "blur": edit["blurParameters"],
+                "cut": edit["cutParameters"],
+                "crop": edit["cropParameters"],
+                "zoom": edit["zoomParameters"],
+            },
         })
     return {
         "parsing_results": {
@@ -116,15 +125,16 @@ def main(args):
             "editOperation": ""
         },
     }
-    pipeline = LangChainPipeline(verbose=True)
+    pipeline = LangChainPipeline(verbose=False)
     pipeline.set_video(edit_request["videoId"], 10)
     edit_response = pipeline.process_request_indexed(
         edit_request
     )
     
     output = format_output(edit_response)
-    print(json.dumps(output, indent=4))
 
+    with open("output.json", "w") as f:
+        json.dump(output, f, indent=4)
 
 if __name__ == "__main__":
     args = parse_args()
