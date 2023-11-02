@@ -24,6 +24,12 @@ class SingleReference(BaseModel):
             reference=reference,
         )
     
+    def __init__(self, single_reference):
+        super().__init__(
+            offset=single_reference.offset,
+            reference=single_reference.reference,
+        )
+    
     @validator("reference")
     def reference_must_be_valid_string(cls, v):
         return v
@@ -88,6 +94,23 @@ class IndexedReferences(BaseModel):
             cutParameters=cutParameters,
             cropParameters=cropParameters,
             zoomParameters=zoomParameters,
+        )
+    
+    def __init__(self, references):
+        super().__init__(
+            temporal_references=[SingleReference(x) for x in references.temporal_references],
+            temporal_labels=references.temporal_labels,
+            spatial_references=[SingleReference(x) for x in references.spatial_references],
+            spatial_labels=references.spatial_labels,
+            edit_references=[SingleReference(x) for x in references.edit_references],
+            edit=references.edit,
+            textParameters=[SingleReference(x) for x in references.textParameters],
+            imageParameters=[SingleReference(x) for x in references.imageParameters],
+            shapeParameters=[SingleReference(x) for x in references.shapeParameters],
+            blurParameters=[SingleReference(x) for x in references.blurParameters],
+            cutParameters=[SingleReference(x) for x in references.cutParameters],
+            cropParameters=[SingleReference(x) for x in references.cropParameters],
+            zoomParameters=[SingleReference(x) for x in references.zoomParameters],
         )
 
     @validator("temporal_references")

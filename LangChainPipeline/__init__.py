@@ -7,6 +7,8 @@ from LangChainPipeline.ParserChains.EditChain import EditChain
 from LangChainPipeline.ParserChains.SpatialChain import SpatialChain
 from LangChainPipeline.ParserChains.SummarizeRequestChain import SummarizeRequestChain
 
+from LangChainPipeline.PydanticClasses.IndexedReferences import IndexedReferences
+
 from langchain.callbacks import get_openai_callback
 
 from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_same_objects
@@ -17,6 +19,9 @@ class LangChainPipeline():
     def __init__(self, verbose=False):
         self.input_parser = IntentParserChain(verbose=verbose)
         self.indexed_input_parser = IndexedIntentParserChain(verbose=verbose)
+
+        self.video_id = "4LdIvyfzoGY"
+        self.interval = 10
 
         self.temporal_interpreter = TemporalChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10
@@ -31,6 +36,8 @@ class LangChainPipeline():
         self.summarize_request = SummarizeRequestChain(verbose=verbose)
 
     def set_video(self, video_id, interval):
+        self.video_id = video_id
+        self.interval = interval
         self.temporal_interpreter.set_video(video_id, interval)
         self.parameters_interpreter.set_video(video_id, interval)
         self.spatial_interpreter.set_video(video_id, interval)
@@ -521,8 +528,173 @@ class LangChainPipeline():
             print(cb)
         return response
 
-    def process_request_propogate(self, request):
-        pass
+    def process_request_edit(self, request):
+        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references_no_index = references.get_references()
+        command = request["requestParameters"]["text"]
+        response = {
+            "edits": [],
+        }
+        prev_edits = request["edits"]
+        sketches = request["requestParameters"]["sketchRectangles"]
+        sketch_timestamp = request["requestParameters"]["sketchFrameTimestamp"]
+        for sketch in sketches:
+            sketch["timestamp"] = sketch_timestamp
+
+        video_shape = [request["projectMetadata"]["height"], request["projectMetadata"]["width"]]
+
+        from_scratch = request["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = request["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = request["requestParameters"]["processingMode"] == "adjust-selected"
+
+        if from_scratch == False and add_more == False and adjust_selected == False:
+            print("ERROR: Invalid processing mode")
+            return response
+        
+        with get_openai_callback() as cb:
+            ### predict edit parameters
+            edits = self.predict_edit_parameters(
+                command,
+                references_no_index.get_parameters(),
+                {},
+                prev_edits, sketches, video_shape,
+                references.edit
+            )   
+
+            response["edits"] = edits
+            print(edits)
+
+            ### Output usage
+            print("'USAGE': Edit parameters:")
+            print(cb)
+        return response
+    
+    def process_request_spatial(self, request):
+        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references_no_index = references.get_references()
+        command = request["requestParameters"]["text"]
+        response = {
+            "edits": [],
+        }
+        prev_edits = request["edits"]
+        sketches = request["requestParameters"]["sketchRectangles"]
+        sketch_timestamp = request["requestParameters"]["sketchFrameTimestamp"]
+        for sketch in sketches:
+            sketch["timestamp"] = sketch_timestamp
+
+        video_shape = [request["projectMetadata"]["height"], request["projectMetadata"]["width"]]
+
+        from_scratch = request["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = request["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = request["requestParameters"]["processingMode"] == "adjust-selected"
+
+        if from_scratch == False and add_more == False and adjust_selected == False:
+            print("ERROR: Invalid processing mode")
+            return response
+        
+        with get_openai_callback() as cb:
+            ### predict spatial positions
+            edits = self.predict_spatial_locations_new(
+                command,
+                references_no_index.spatial, references_no_index.spatial_labels,
+                [item.offset for item in references.spatial_references],
+                prev_edits, sketches, video_shape,
+                sketch_timestamp
+            )
+
+            response["edits"] = edits
+            print(edits)
+
+            ### Output usage
+            print("'USAGE': Spatial parameters:")
+            print(cb)
+        return response
+
+    def process_request_temporal(self, request):
+        references = IndexedReferences(request["requestParameters"]["parsing_results"])
+        references_no_index = references.get_references()
+        command = request["requestParameters"]["text"]
+        response = {
+            "edits": [],
+        }
+
+        skipped_segments = self.build_skipped_segments(request)
+        prev_edits = request["edits"]
+        current_player_position = request["curPlayPosition"]
+        sketch_timestamp = request["requestParameters"]["sketchFrameTimestamp"]
+
+        video_shape = [request["projectMetadata"]["height"], request["projectMetadata"]["width"]]
+        video_duration = request["projectMetadata"]["duration"]
+
+        from_scratch = request["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = request["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = request["requestParameters"]["processingMode"] == "adjust-selected"
+
+        if from_scratch == False and add_more == False and adjust_selected == False:
+            print("ERROR: Invalid processing mode")
+            return response
+        
+        with get_openai_callback() as cb:
+            ### predict temporal segments
+            if from_scratch == True or add_more == True:
+                edits = self.predict_temporal_segments(
+                    command,
+                    references_no_index.temporal, references_no_index.temporal_labels,
+                    [item.offset for item in references.temporal_references],
+                    current_player_position, sketch_timestamp,
+                    video_shape, skipped_segments,
+                    video_duration,
+                )
+            else:
+                edits = prev_edits
+            
+            response["edits"] = edits
+
+            ### Output usage
+            print("'USAGE': Temporal parameters:")
+            print(cb)
+        return response
+
+    def process_request_parse(self, request):
+        response = {
+            "editOperations": [],
+            "relevantText": {
+                "temporal": [],
+                "spatial": [],
+                "edit": [],
+                "parameters": [],
+            },
+            "parsing_results": {},
+        }
+
+        command = request["requestParameters"]["text"]
+
+        from_scratch = request["requestParameters"]["processingMode"] == "from-scratch"
+        add_more = request["requestParameters"]["processingMode"] == "add-more"
+        adjust_selected = request["requestParameters"]["processingMode"] == "adjust-selected"
+
+        if from_scratch == False and add_more == False and adjust_selected == False:
+            print("ERROR: Invalid processing mode")
+            return response
+        
+        with get_openai_callback() as cb:
+            ### parse command
+            references = self.indexed_input_parser.run(command)
+            print(references)
+            ### set edit operations
+            response["editOperations"] = references.edit
+            response["relevantText"] = {
+                "temporal": references.temporal_references.model_dump(),
+                "spatial": references.spatial_references.model_dump(),
+                "edit": references.edit_references.model_dump(),
+                "parameters": references.get_parameters_short(),
+            }
+            response["parsing_results"] = references.model_dump()
+            ### Output usage
+            print("'USAGE': Parsing:")
+            print(cb)
+        return response
+
     
     def get_summary(self, input):
         with get_openai_callback() as cb:
