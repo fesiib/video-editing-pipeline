@@ -4,13 +4,13 @@ This is the repository for the pipeline for ExpressEdit: video editing tool base
 
 ## Repository Structure
 
-- [`backend`](): Helper scripts.
-- [`LangChainPipeline`](): Main Pipeline implementation based on LangChain framework.
-- [`metadata`](): Metadata files for available videos.
-- [`segmentation_data`](): Frame Segmentation data for available videos.
-- [`run.py`](): Script that runs single processing of the pipeline with given parameters.
-- [`requirements.txt`](): Installation packages.
-- [`README.md`](): Instructions file.
+- [`backend`](/backend/): Helper scripts.
+- [`LangChainPipeline`](/LangChainPipeline/): Main Pipeline implementation based on LangChain framework.
+- [`metadata`](/metadata/): Metadata files for available videos.
+- [`segmentation_data`](/segmentation-data/): Frame Segmentation data for available videos.
+- [`run.py`](/run.py): Script that runs single processing of the pipeline with given parameters.
+- [`requirements.txt`](/requirements.txt): Installation packages.
+- [`README.md`](/README.md): Instructions file.
 
 ## Development environment
 

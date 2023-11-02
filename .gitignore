@@ -5,10 +5,10 @@ static
 
 user-data
 
-metadata
+metadata/*
 metadata_old
 
-segmentation-data
+segmentation-data/*
 
 llama-data/
 
