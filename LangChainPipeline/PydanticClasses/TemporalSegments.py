@@ -53,3 +53,13 @@ class TemporalSegments(BaseModel):
         return cls(
             segments=[SingleSegment(start=start, finish=finish)]
         )
+    
+    @classmethod
+    def get_dummy_instance(cls):
+        return cls(
+            segments=[
+                SingleSegment(start="00:00:00", finish="00:00:10"),
+                SingleSegment(start="00:00:30", finish="00:00:35"),
+                SingleSegment(start="00:01:20", finish="00:01:40"),
+            ]
+        )

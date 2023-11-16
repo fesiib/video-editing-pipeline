@@ -62,3 +62,18 @@ class ListElements(BaseModel):
                 ) for index, explanation in zip(indexes, explanations)
             ]
         )
+    
+    @classmethod
+    def get_dummy_instance(cls):
+        return cls(
+            list_elements=[
+                SingleElement(
+                    index=0,
+                    explanation="dummy explanation",
+                ),
+                SingleElement(
+                    index=1,
+                    explanation="dummy explanation",
+                ),
+            ]
+        )

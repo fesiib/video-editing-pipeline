@@ -28,9 +28,13 @@ class IndexedIntentParserChain():
         print("Initialized IndexedIntentParserChain")
 
     def run(self, command):
+        #dummy
+        if command == "test":
+            references = IndexedReferences.get_dummy_instance()
+            return references
+
         if command == "":
             return IndexedReferences()
-        
         try:
             references = self.chain.predict(command=command)
         except:

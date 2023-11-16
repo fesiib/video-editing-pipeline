@@ -350,3 +350,37 @@ class IndexedReferences(BaseModel):
             cropParameters=cropParameters_formatted,
             zoomParameters=zoomParameters_formatted,
         )
+    
+    @classmethod
+    def get_dummy_instance(cls):
+        # Whenever the person engages with the screen, draw a sparkling mark near his head
+        return cls(
+            temporal_references=[
+                SingleReference(offset=0, reference="whenever the person engages with the screen"),
+            ],
+            temporal_labels=[
+                "video",
+            ],
+            spatial_references=[
+                SingleReference(offset=60, reference="near his head"),
+            ],
+            spatial_labels=[
+                "visual-dependent",
+            ],
+            edit_references=[
+                SingleReference(offset=40, reference="draw a sparkling mark"),
+            ],
+            edit=[
+                "shape",
+            ],
+            textParameters=[],
+            imageParameters=[],
+            shapeParameters=[
+                SingleReference(offset=45, reference="sparkling"),
+                SingleReference(offset=53, reference="mark"),
+            ],
+            blurParameters=[],
+            cutParameters=[],
+            cropParameters=[],
+            zoomParameters=[],
+        )

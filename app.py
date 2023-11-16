@@ -8,7 +8,10 @@ from backend.pipeline import Pipeline
 from LangChainPipeline import LangChainPipeline
 from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
-from video_host.processor import process_video, get_video_by_filename, process_clipped_video
+from video_host.processor import process_video, get_video_by_filename, process_clipped_video, yt_metadata
+
+import datetime
+from datetime import timezone
 
 
 app = Flask(__name__)
@@ -270,6 +273,16 @@ def create_clip(idx):
 
     print(filename)
 
+def experiment():
+    link_video = "https://www.youtube.com/watch?v=IojX8rCOUD8"
+    link_playlist = "https://www.youtube.com/playlist?list=PLTzMGnJjrsSyGvV87-ux922n2GXyeDsRo"
+    link_channel = "https://www.youtube.com/GordonRamsay"
+    link_channel_2 = "https://www.youtube.com/channel/UCKvOWWTQd4Im6xC2ED4Mwlw"
+    link_channel_3 = "https://www.youtube.com/@kaiworldofficial"
+    metadata = yt_metadata(link_channel_3)
+    with open("output.txt", "w") as f:
+        f.write(json.dumps(metadata, indent=2))
+    
 if __name__ == "__main__":
     # test_processor("https://www.youtube.com/live/4LdIvyfzoGY?feature=share")
     launch_server()
@@ -277,3 +290,4 @@ if __name__ == "__main__":
     # test_langchain_pipeline()
 
     # create_clip(0)
+    # experiment()

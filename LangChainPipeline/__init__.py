@@ -529,7 +529,7 @@ class LangChainPipeline():
         return response
 
     def process_request_edit(self, request):
-        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -570,7 +570,7 @@ class LangChainPipeline():
         return response
     
     def process_request_spatial(self, request):
-        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -611,7 +611,7 @@ class LangChainPipeline():
         return response
 
     def process_request_temporal(self, request):
-        references = IndexedReferences.from_object(request["requestParameters"]["parsing_results"])
+        references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
         references_no_index = references.get_references()
         command = request["requestParameters"]["text"]
         response = {
@@ -664,7 +664,7 @@ class LangChainPipeline():
                 "edit": [],
                 "parameters": {},
             },
-            "parsing_results": {},
+            "parsingResults": {},
         }
 
         command = request["requestParameters"]["text"]
@@ -689,7 +689,7 @@ class LangChainPipeline():
                 "edit": references.edit_references.model_dump(),
                 "parameters": references.get_parameters_short(),
             }
-            response["parsing_results"] = references.model_dump()
+            response["parsingResults"] = references.model_dump()
             ### Output usage
             print("'USAGE': Parsing:")
             print(cb)

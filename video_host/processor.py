@@ -68,6 +68,38 @@ def download_video(video_link):
             print(f"Video '{video_title}' already exists in the directory.")
         return metadata
 
+def yt_metadata(video_link):
+    options = {
+        'flat_playlist': True,
+        'extract_flat': True,
+        'quiet': False,  # Set to True if you want less console output
+        'simulate': False,  # Set to True if you want to simulate the download
+        'postprocessors': [{
+            'key': 'ExecAfterDownload',
+            'exec_cmd': 'pre_process:yt-dlp %(url)q --flat-playlist --print "Video - %(title)s - %(id)s"'
+        }]
+    }
+
+    # Create the YouTubeDL object
+    with YoutubeDL(options) as ydl:
+
+        # Download the metadata for the main playlist
+        result = ydl.extract_info(video_link, download=False)
+        playlists = {}
+        # Check if the extraction was successful
+        if 'entries' in result:
+            # Iterate over each playlist and download its metadata
+            for entry in result['entries']:
+                if 'url' in entry:
+                    playlist_url = entry['url']
+                    print(f"Processing Playlist: {playlist_url}")
+                    
+                    # Download the playlist metadata
+                    metadata = ydl.download([playlist_url])
+                    playlists[playlist_url] = metadata
+        return playlists
+    return {}
+
 def get_alternative_transcript(audio_path):
     output_path = audio_path.replace(".mp3", ".alt.json")
     if os.path.exists(output_path):

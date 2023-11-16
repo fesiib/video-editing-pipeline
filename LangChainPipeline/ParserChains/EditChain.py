@@ -232,13 +232,15 @@ class AllParametersChain():
         
         if total_references == 0:
             return initial_edit_parameters
-        
         try:
-            result = self.chain.predict(
-                context=json.dumps(context),
-                command=json.dumps(filtered_parameters),
-                initial_parameters=json.dumps(filtered_edit_parameters),
-            )
+            #dummy
+            return initial_edit_parameters
+
+            # result = self.chain.predict(
+            #     context=json.dumps(context),
+            #     command=json.dumps(filtered_parameters),
+            #     initial_parameters=json.dumps(filtered_edit_parameters),
+            # )
         except:
             print("ERROR: Failed to adjust parameters: ", filtered_parameters)
             return initial_edit_parameters
