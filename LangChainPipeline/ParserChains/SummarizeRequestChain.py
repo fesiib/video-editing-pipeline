@@ -23,6 +23,9 @@ class SummarizeRequestChain():
         print("Initialized SummarizeRequestChain")
 
     def run(self, request):
+        #dummy
+        return "Some long summary"
+
         if request == "":
             return "No Request Given"
         try:

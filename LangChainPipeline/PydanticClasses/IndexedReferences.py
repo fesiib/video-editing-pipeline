@@ -25,10 +25,10 @@ class SingleReference(BaseModel):
         )
     
     @classmethod
-    def from_object(self, single_reference):
-        super().__init__(
-            offset=single_reference.offset,
-            reference=single_reference.reference,
+    def from_object(cls, single_reference):
+        return cls(
+            offset=single_reference["offset"],
+            reference=single_reference["reference"],
         )
     
     @validator("reference")
@@ -98,22 +98,23 @@ class IndexedReferences(BaseModel):
         )
     
     @classmethod
-    def from_object(self, references):
-        super().__init__(
-            temporal_references=[SingleReference.from_object(x) for x in references.temporal_references],
-            temporal_labels=references.temporal_labels,
-            spatial_references=[SingleReference.from_object(x) for x in references.spatial_references],
-            spatial_labels=references.spatial_labels,
-            edit_references=[SingleReference.from_object(x) for x in references.edit_references],
-            edit=references.edit,
-            textParameters=[SingleReference.from_object(x) for x in references.textParameters],
-            imageParameters=[SingleReference.from_object(x) for x in references.imageParameters],
-            shapeParameters=[SingleReference.from_object(x) for x in references.shapeParameters],
-            blurParameters=[SingleReference.from_object(x) for x in references.blurParameters],
-            cutParameters=[SingleReference.from_object(x) for x in references.cutParameters],
-            cropParameters=[SingleReference.from_object(x) for x in references.cropParameters],
-            zoomParameters=[SingleReference.from_object(x) for x in references.zoomParameters],
+    def from_object(cls, references):
+        return cls(
+            temporal_references=[SingleReference.from_object(x) for x in references["temporal_references"]],
+            temporal_labels=references["temporal_labels"],
+            spatial_references=[SingleReference.from_object(x) for x in references["spatial_references"]],
+            spatial_labels=references["spatial_labels"],
+            edit_references=[SingleReference.from_object(x) for x in references["edit_references"]],
+            edit=references["edit"],
+            textParameters=[SingleReference.from_object(x) for x in references["textParameters"]],
+            imageParameters=[SingleReference.from_object(x) for x in references["imageParameters"]],
+            shapeParameters=[SingleReference.from_object(x) for x in references["shapeParameters"]],
+            blurParameters=[SingleReference.from_object(x) for x in references["blurParameters"]],
+            cutParameters=[SingleReference.from_object(x) for x in references["cutParameters"]],
+            cropParameters=[SingleReference.from_object(x) for x in references["cropParameters"]],
+            zoomParameters=[SingleReference.from_object(x) for x in references["zoomParameters"]],
         )
+
 
     @validator("temporal_references")
     def check_temporal_references(cls, v):
@@ -353,7 +354,16 @@ class IndexedReferences(BaseModel):
     
     @classmethod
     def get_dummy_instance(cls):
-        # Whenever the person engages with the screen, draw a sparkling mark near his head
+        '''
+        Whenever t| -> 10
+        he person | -> 20
+        engages wi| -> 30
+        th the scr| -> 40
+        een, draw | -> 50
+        a sparklin| -> 60
+        g mark nea| -> 70
+        r his head| -> 80
+        '''
         return cls(
             temporal_references=[
                 SingleReference(offset=0, reference="whenever the person engages with the screen"),
@@ -362,13 +372,13 @@ class IndexedReferences(BaseModel):
                 "video",
             ],
             spatial_references=[
-                SingleReference(offset=60, reference="near his head"),
+                SingleReference(offset=67, reference="near his head"),
             ],
             spatial_labels=[
                 "visual-dependent",
             ],
             edit_references=[
-                SingleReference(offset=40, reference="draw a sparkling mark"),
+                SingleReference(offset=45, reference="draw"),
             ],
             edit=[
                 "shape",
@@ -376,8 +386,8 @@ class IndexedReferences(BaseModel):
             textParameters=[],
             imageParameters=[],
             shapeParameters=[
-                SingleReference(offset=45, reference="sparkling"),
-                SingleReference(offset=53, reference="mark"),
+                SingleReference(offset=52, reference="sparkling"),
+                SingleReference(offset=62, reference="mark"),
             ],
             blurParameters=[],
             cutParameters=[],

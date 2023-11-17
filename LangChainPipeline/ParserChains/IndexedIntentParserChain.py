@@ -29,9 +29,8 @@ class IndexedIntentParserChain():
 
     def run(self, command):
         #dummy
-        if command == "test":
-            references = IndexedReferences.get_dummy_instance()
-            return references
+        references = IndexedReferences.get_dummy_instance()
+        return references
 
         if command == "":
             return IndexedReferences()

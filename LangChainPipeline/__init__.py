@@ -613,6 +613,7 @@ class LangChainPipeline():
     def process_request_temporal(self, request):
         references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
         references_no_index = references.get_references()
+        print(references.model_dump())
         command = request["requestParameters"]["text"]
         response = {
             "edits": [],
@@ -683,13 +684,14 @@ class LangChainPipeline():
             print(references)
             ### set edit operations
             response["editOperations"] = references.edit
+            json_references = references.model_dump()
             response["relevantText"] = {
-                "temporal": references.temporal_references.model_dump(),
-                "spatial": references.spatial_references.model_dump(),
-                "edit": references.edit_references.model_dump(),
+                "temporal": json_references["temporal_references"],
+                "spatial": json_references["spatial_references"],
+                "edit": json_references["edit_references"],
                 "parameters": references.get_parameters_short(),
             }
-            response["parsingResults"] = references.model_dump()
+            response["parsingResults"] = json_references
             ### Output usage
             print("'USAGE': Parsing:")
             print(cb)

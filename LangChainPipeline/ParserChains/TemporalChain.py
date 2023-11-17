@@ -300,16 +300,17 @@ class TemporalVisualChain():
             neighbors_right=self.neighbors_right,
         )
 
+        print("HERE: ", command)
+
         try:
             #dummy
-            if command == "test":
-                result = ListElements.get_dummy_instance()
-            else:
-                result = self.chain.predict(
-                    context=json.dumps(context),
-                    metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
-                    command=json.dumps(command),
-                )
+            
+            result = ListElements.get_dummy_instance()
+            # result = self.chain.predict(
+            #     context=json.dumps(context),
+            #     metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
+            #     command=json.dumps(command),
+            # )
         except:
             print("ERROR: Failed to parse command: ", command)
             return []
