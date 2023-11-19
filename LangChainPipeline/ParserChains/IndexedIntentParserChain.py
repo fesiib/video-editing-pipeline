@@ -12,7 +12,7 @@ class IndexedIntentParserChain():
         self,
         verbose,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=IndexedReferences)
 
         self.prompt_template = get_parser_prompt({
@@ -28,9 +28,9 @@ class IndexedIntentParserChain():
         print("Initialized IndexedIntentParserChain")
 
     def run(self, command):
-        #dummy
-        references = IndexedReferences.get_dummy_instance()
-        return references
+        # #dummy
+        # references = IndexedReferences.get_dummy_instance()
+        # return references
 
         if command == "":
             return IndexedReferences()

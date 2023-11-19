@@ -200,7 +200,7 @@ class AllParametersChain():
             verbose=False,
     ):
         self.skip_parameters = ["imageParameters", "cutParameters", "cropParameters"]
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=EditParameters)
 
         self.prompt_template = get_all_parameters_prompt({
@@ -233,14 +233,14 @@ class AllParametersChain():
         if total_references == 0:
             return initial_edit_parameters
         try:
-            #dummy
-            return initial_edit_parameters
+            # #dummy
+            # return initial_edit_parameters
 
-            # result = self.chain.predict(
-            #     context=json.dumps(context),
-            #     command=json.dumps(filtered_parameters),
-            #     initial_parameters=json.dumps(filtered_edit_parameters),
-            # )
+            result = self.chain.predict(
+                context=json.dumps(context),
+                command=json.dumps(filtered_parameters),
+                initial_parameters=json.dumps(filtered_edit_parameters),
+            )
         except:
             print("ERROR: Failed to adjust parameters: ", filtered_parameters)
             return initial_edit_parameters
@@ -257,7 +257,7 @@ class TextContentChain():
         neighbors_left = 0,
         neighbors_right = 0,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
 
         self.prompt_template = get_text_content_prompt()
 
@@ -315,7 +315,7 @@ class ImageQueryChain():
         neighbors_left = 0,
         neighbors_right = 0,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
 
         self.prompt_template = get_image_query_prompt()
 

@@ -154,7 +154,7 @@ class TemporalPositionChain():
             self,
             verbose=False,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=TemporalSegments)
 
         self.prompt_template = get_temporal_position_prompt({
@@ -198,7 +198,7 @@ class TemporalTranscriptChain():
             neighbors_left = 0,
             neighbors_right = 0,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=ListElements)
 
         self.prompt_template = get_temporal_transcript_prompt({
@@ -267,7 +267,7 @@ class TemporalVisualChain():
             neighbors_left = 0,
             neighbors_right = 0,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=ListElements)
 
         self.prompt_template = get_temporal_visual_prompt({
@@ -303,14 +303,14 @@ class TemporalVisualChain():
         print("HERE: ", command)
 
         try:
-            #dummy
+            # #dummy
             
-            result = ListElements.get_dummy_instance()
-            # result = self.chain.predict(
-            #     context=json.dumps(context),
-            #     metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
-            #     command=json.dumps(command),
-            # )
+            # result = ListElements.get_dummy_instance()
+            result = self.chain.predict(
+                context=json.dumps(context),
+                metadata=json.dumps([data["structured_data"] for data in filtered_metadata]),
+                command=json.dumps(command),
+            )
         except:
             print("ERROR: Failed to parse command: ", command)
             return []

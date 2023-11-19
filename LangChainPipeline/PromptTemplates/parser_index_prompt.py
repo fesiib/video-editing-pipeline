@@ -11,7 +11,7 @@ from LangChainPipeline.PydanticClasses.IndexedReferences import IndexedReference
 
 ### TODO: Add audio temporal references. 
 PREFIX_INTENT_PARSER= """
-You are a video editor's assistant who is trying to understand the natural language command in the context of a given video. You will do it step-by-step.
+You are a video editor's assistant that is trying to understand the natural language command in the context of a given video. Let's do this step-by-step.
 
 Step 1: You have to identify 4 types of references from the natural language command:
 1. Temporal reference: any information in the command that could refer to a segment of the video:
@@ -54,7 +54,7 @@ Step 3-2: Classify each spatial reference you have recognized into one of the fo
 2. "independent": reference to specific locations or positions relative to the frame independent of the visual content of the video
 3. "other": any other spatial information that does not fall into the above categories
 
-Step 4: Format the output based on the result of each step.
+Step 4: Format the output based on the result of each step. Make sure to include the offset of the reference in the given natural language command. For example, if the command is "Zoom into the pan at around 1:31 when he is saying "Make sure to flip chicken after about 6 minutes", the temporal reference "1:31" has an offset of 28. The final output should be:
 
 {format_instructions}
 """

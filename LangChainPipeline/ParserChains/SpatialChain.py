@@ -339,7 +339,7 @@ class SpatialPositionChain():
             self,
             verbose=False,
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4")
+        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
         self.parser = PydanticOutputParser(pydantic_object=Rectangle)
 
         self.prompt_template = get_spatial_position_prompt({
