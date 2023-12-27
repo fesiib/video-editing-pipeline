@@ -1,4 +1,0 @@
-Instruction: Optimize the size of the given prompt that is used to detect relevant segments of the transcript:
-Make the prompt concise and clear. Avoid using long sentences and complex words. And enforce the format mentioned and keep all the examples.
-
-Format: Omit any of the following characters (\n, \) in the output.
