@@ -6,11 +6,12 @@ from analysis.analysis_constants import (
     REPLACE_LIST, USER_DATA_PATH, EDIT_TYPES,
     MSG_TYPES, HIGH_LEVEL_PROCESS, EDITING_PROCESS,
     PARTICIPANT_DATABASE, EDIT_TYPES,
+    NAVIGATION_LOGS,
 )
 
 class Participant:
-    def __init__(self, email, id, order, study, videos, baseline):
-        self.email = email
+    def __init__(self, file_ref, is_baseline, id, order, study, videos, baseline):
+        self.file_ref = file_ref
         self.id = id
         self.order = order
         self.study_id = study
@@ -18,9 +19,10 @@ class Participant:
         self.baseline = baseline
         self.json_files = []
         self.found_file = False
+        self.is_baseline = is_baseline
         for filename in os.listdir(USER_DATA_PATH):
             if filename.endswith(".json"):
-                if filename.startswith(email):
+                if file_ref in filename:
                     self.json_files.append(os.path.join(USER_DATA_PATH, filename))
 
         self.data = {}
@@ -43,7 +45,18 @@ class Participant:
         return self.found_file
     
     def video_id(self):
-        return self.videos[0]
+        # check the baseline first
+        if self.is_baseline:
+            return self.baseline
+        for video in self.videos:
+            if video != self.baseline:
+                return video
+        return None
+    
+    def study_order(self):
+        for i, video in enumerate(self.videos):
+            if video == self.video_id():
+                return i + 1
     
     def video_name(self):
         if self.video_id() == "video-1":
@@ -86,22 +99,38 @@ class Participant:
             unique_msg_types[msg_type].append(msg)
         return unique_msg_types
     
-    def adjust_data(self):
+    def adjust_data(self, task_idx = 0):
         logs = self.logs()
         new_logs = []
         for log in logs:
-            if self.email == "kh.mukashev@gmail.com":
+            if self.id == 22:
                 ## skip logs after 12:00:00
                 date = datetime.datetime.fromtimestamp(log["time"] / 1000)
                 if date.hour >= 12:
                     continue
-            if self.email == "ysamargarita2002@gmail.com":
+            if self.id == 6:
                 date = datetime.datetime.fromtimestamp(log["time"] / 1000)
                 if date.hour >= 18 and date.minute >= 30:
                     continue
-            if self.email == "kamila240373@gmail.com":
+            if self.id == 14:
                 date = datetime.datetime.fromtimestamp(log["time"] / 1000)
                 if date.month < 10 or date.day < 1 or date.day > 3 or date.hour < 15 or date.hour > 17:
+                    continue
+            if self.id == 25:
+                date = datetime.datetime.fromtimestamp(log["time"] / 1000)
+                if date.minute >= 30:
+                    continue
+            if self.id == 27:
+                date = datetime.datetime.fromtimestamp(log["time"] / 1000)
+                if date.month != 12 or date.day != 20 or date.hour != 12:
+                    continue
+            if self.id == 28:
+                date = datetime.datetime.fromtimestamp(log["time"] / 1000)
+                if date.minute > 8 and date.hour >= 12:
+                    log["time"] = log["time"] - 1000*(20*60+40 - 8*60)
+            if self.id == 29:
+                date = datetime.datetime.fromtimestamp(log["time"] / 1000)
+                if date.month != 12 or date.day != 20 or date.hour != 15:
                     continue
             if log["msg"] in REPLACE_LIST:
                 if REPLACE_LIST[log["msg"]] == None:
@@ -313,7 +342,7 @@ class Participant:
             #"intents": intents_data,
         }
     
-    def get_edit_process(self, high_level = False):
+    def get_edit_process(self, based_on="low_level"):
         logs = self.logs()
         process = []
         for log in logs:
@@ -328,26 +357,37 @@ class Participant:
         
         # combine the same logs near each other
         for log in process:
-            found_edit_types = []
-            for edit_type in EDITING_PROCESS.keys():
-                if log["msg"] in EDITING_PROCESS[edit_type]:
-                    found_edit_types.append(edit_type)
-            if len(found_edit_types) == 0:
-                log["msg"] = "unknown"
-            else:
-                found_edit_type = ""
-                if len(found_edit_types) > 1:
-                    if "suggested" in log["data"] and log["data"]["suggested"] == True:
-                        found_edit_type = "examine"
+            if based_on == "navigation":
+                if log["msg"] in EDITING_PROCESS["admin"]:
+                    log["msg"] = "admin"
+                elif log["msg"] in NAVIGATION_LOGS:
+                    log["msg"] = "navigation"
+                else:
+                    log["msg"] = "not_navigation"
+                continue
+            if based_on.endswith("_level"):
+                found_edit_types = []
+                for edit_type in EDITING_PROCESS.keys():
+                    if log["msg"] in EDITING_PROCESS[edit_type]:
+                        found_edit_types.append(edit_type)
+                if len(found_edit_types) == 0:
+                    log["msg"] = "unknown"
+                else:
+                    found_edit_type = ""
+                    if len(found_edit_types) > 1:
+                        if "suggested" in log["data"] and log["data"]["suggested"] == True:
+                            found_edit_type = "examine"
+                        else:
+                            found_edit_type = "manual"
+                        #print("!!!", log["msg"], found_edit_types)
                     else:
-                        found_edit_type = "manual"
-                    #print("!!!", log["msg"], found_edit_types)
-                else:
-                    found_edit_type = found_edit_types[0]
-                if high_level:
-                    log["msg"] = HIGH_LEVEL_PROCESS[found_edit_type]
-                else:
-                    log["msg"] = found_edit_type
+                        found_edit_type = found_edit_types[0]
+                    if based_on == "high_level":
+                        log["msg"] = HIGH_LEVEL_PROCESS[found_edit_type]
+                    else:
+                        log["msg"] = found_edit_type
+            else:
+                log["msg"] = log["msg"].strip()
         
         # filter out anything or unknown
         new_process = []

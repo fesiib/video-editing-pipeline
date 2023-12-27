@@ -17,8 +17,237 @@ from analysis.plotter import timeline_plot, pie_plot, bar_plot
 
 from evaluation.sentence_embedder import get_cosine_similarity_score
 
+def get_comparative_study_results(
+    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    study_id=3,
+):
+    treatment = {}
+    control = {}
+    sorted_participants = []
+    for i, file_ref in enumerate(PARTICIPANT_DATABASE):
+        sorted_participants.append({
+            "file_ref": file_ref,
+            "id": PARTICIPANT_DATABASE[file_ref]["id"],
+        })
+
+    sorted_participants.sort(key=lambda x: x["id"])
+
+    # treatment
+    for s_p in sorted_participants:
+        file_ref = s_p["file_ref"]
+        participant = Participant(
+            file_ref,
+            False,
+            **PARTICIPANT_DATABASE[file_ref])
+        if participant.exists():
+            if participant.study_id != study_id or participant.order not in participants_of_interest:
+                continue
+            results = {
+                "study_order": participant.study_order(),
+                "file_ref": participant.file_ref,
+                "id": participant.id,
+                "video": participant.video_name(),
+                "total_logs": len(participant.logs()),
+                "count_unique_msgs": len(participant.get_unique_msgs()),
+                "count_unique_msg_types": len(participant.get_unqiue_msg_types()),
+                "processing_logs": participant.count_processing_logs(),
+                "decision_logs": participant.count_decision(),
+                "task_summary": participant.get_task_summary(participant.video_id()),
+                "process": participant.get_edit_process("navigation"),
+            }
+            for edit_type in EDIT_TYPES:
+                if edit_type not in results["task_summary"]["edit_types_count"]:
+                    results["task_summary"]["edit_types_count"][edit_type] = {
+                        "count_intents": 0,
+                        "count_edits": 0,
+                        "count_history_points": 0,
+                        "count_edits_from_suggestion": 0,
+                        "edit_type": edit_type,
+                    }
+        treatment[participant.id] = results
+    
+    # control
+    for s_p in sorted_participants:
+        file_ref = s_p["file_ref"]
+        participant = Participant(
+            file_ref,
+            True,
+            **PARTICIPANT_DATABASE[file_ref])
+        if participant.exists():
+            if participant.study_id != study_id or participant.order not in participants_of_interest:
+                continue
+            results = {
+                "study_order": participant.study_order(),
+                "file_ref": participant.file_ref,
+                "id": participant.id,
+                "video": participant.video_name(),
+                "total_logs": len(participant.logs()),
+                "count_unique_msgs": len(participant.get_unique_msgs()),
+                "count_unique_msg_types": len(participant.get_unqiue_msg_types()),
+                "processing_logs": participant.count_processing_logs(),
+                "decision_logs": participant.count_decision(),
+                "task_summary": participant.get_task_summary(participant.video_id()),
+                "process": participant.get_edit_process("navigation"),
+                
+            }
+            for edit_type in EDIT_TYPES:
+                if edit_type not in results["task_summary"]["edit_types_count"]:
+                    results["task_summary"]["edit_types_count"][edit_type] = {
+                        "count_intents": 0,
+                        "count_edits": 0,
+                        "count_history_points": 0,
+                        "count_edits_from_suggestion": 0,
+                        "edit_type": edit_type,
+                    }
+        control[participant.id] = results    
+
+    # print important info
+    for s_p in sorted_participants:
+        id = s_p["id"]
+        print("participant Id: ", id)
+        if id not in treatment or id not in control:
+            print("\tNOTHING")
+            continue
+        print("\tstudy order: ", treatment[id]["study_order"], control[id]["study_order"])
+        print("\tprocessing_requests: ", treatment[id]["processing_logs"]["total"], control[id]["processing_logs"]["total"])
+        print("\t\ttext: ", treatment[id]["processing_logs"]["count_has_text"], control[id]["processing_logs"]["count_has_text"])
+        print("\t\tskecth: ", treatment[id]["processing_logs"]["count_has_sketch"], control[id]["processing_logs"]["count_has_sketch"])
+        print("\t\ttotal_suggested: ", treatment[id]["processing_logs"]["total_count_suggested"], control[id]["processing_logs"]["total_count_suggested"])
+        print("\t\tdecision_accept: ", treatment[id]["decision_logs"]["accept"], control[id]["decision_logs"]["accept"])
+        print("\t\tdecision_reject: ", treatment[id]["decision_logs"]["reject"], control[id]["decision_logs"]["reject"])
+        print("\tintents: ", treatment[id]["task_summary"]["count_intents"], control[id]["task_summary"]["count_intents"])
+        print("\t\tedits: ", treatment[id]["task_summary"]["count_edits"], control[id]["task_summary"]["count_edits"])
+        print("\t\t\tfrom_suggestion: ", treatment[id]["task_summary"]["count_edits_from_suggestion"], control[id]["task_summary"]["count_edits_from_suggestion"])
+    
+    # save as csv
+    with open("analysis_results/comparative_study_for_starlab.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            "participant_id",
+            "condition",
+            "study_order",
+            "video",
+            "processing_requests",
+            "processing_requests_text",
+            "processing_requests_sketch",
+            "processing_requests_suggested",
+            "processing_requests_decision_accept",
+            "processing_requests_decision_reject",
+            "intents",
+            "edits",
+            "edits_from_suggestion",
+        ])
+        for s_p in sorted_participants:
+            id = s_p["id"]
+            if id not in treatment or id not in control:
+                continue
+            writer.writerow([
+                id,
+                "treatment",
+                treatment[id]["study_order"],
+                treatment[id]["video"],
+                treatment[id]["processing_logs"]["total"],
+                treatment[id]["processing_logs"]["count_has_text"],
+                treatment[id]["processing_logs"]["count_has_sketch"],
+                treatment[id]["processing_logs"]["total_count_suggested"],
+                treatment[id]["decision_logs"]["accept"],
+                treatment[id]["decision_logs"]["reject"],
+                treatment[id]["task_summary"]["count_intents"],
+                treatment[id]["task_summary"]["count_edits"],
+                treatment[id]["task_summary"]["count_edits_from_suggestion"],
+            ])
+            writer.writerow([
+                id,
+                "control",
+                control[id]["study_order"],
+                control[id]["video"],
+                control[id]["processing_logs"]["total"],
+                control[id]["processing_logs"]["count_has_text"],
+                control[id]["processing_logs"]["count_has_sketch"],
+                control[id]["processing_logs"]["total_count_suggested"],
+                control[id]["decision_logs"]["accept"],
+                control[id]["decision_logs"]["reject"],
+                control[id]["task_summary"]["count_intents"],
+                control[id]["task_summary"]["count_edits"],
+                control[id]["task_summary"]["count_edits_from_suggestion"],
+            ])
+
+    results = {
+        "treatment": {
+            "durations": [],
+            "events": [],
+            "navigation_durations": [],
+            "not_navigation_durations": [],
+        },
+        "control": {
+            "durations": [],
+            "events": [],
+            "navigation_durations": [],
+            "not_navigation_durations": [],
+        }
+    }
+    for s_p in sorted_participants:
+        id = s_p["id"]
+        if id not in treatment or id not in control:
+            continue
+        for condition, result in zip(["treatment", "control"], [treatment[id], control[id]]):
+            csv_filename = f'analysis_results/P{id}_{condition}_process.csv'
+            with open(csv_filename, "w") as f:
+                print(f'date, msg', file=f)
+                for log in result["process"]:
+                    print(f'{log["date"]}, {log["msg"]}', file=f)
+            events = [""]
+            start_times = [0]
+            durations = []
+            prev_time = 0
+            for log in result["process"]:
+                if log["msg"] == "admin":
+                    continue
+                events.append(log["msg"])
+                start_times.append(log["date"])
+                cur_time = log["time"] / 1000
+                durations.append(cur_time - prev_time)
+                prev_time = cur_time
+            
+            event_duration = {
+                "navigation": 0,
+                "not_navigation": 0,
+            }
+            for event, duration in zip(events[1:], durations[1:]):
+                if event not in event_duration:
+                    continue
+                event_duration[event] += duration
+
+            results[condition]["navigation_durations"].append(event_duration["navigation"])
+            results[condition]["not_navigation_durations"].append(event_duration["not_navigation"])
+            sum_duration = sum(durations[1:])
+            scaled_durations = [duration / sum_duration * 100 for duration in durations[1:]]
+            results[condition]["durations"].extend(scaled_durations)
+            #video_events.extend([f"{event}_{participant['id']}" for event in events[1:]])
+            results[condition]["events"].extend(events[1:])
+
+            timeline_plot_filename = f'analysis_results/P{id}_{condition}_timeline.png'
+            timeline_plot(timeline_plot_filename, events[1:], start_times[1:])
+            pie_plot_filename = f'analysis_results/P{id}_{condition}_pie.png'
+            pie_plot(pie_plot_filename, durations[1:], events[1:])
+            bar_plot_filename = f'analysis_results/P{id}_{condition}_bar.png'
+            bar_plot(bar_plot_filename, durations[1:], events[1:])
+    for condition in ["treatment", "control"]:
+        pie_plot_filename = f'analysis_results/summary_{condition}_pie.png'
+        pie_plot(pie_plot_filename, results[condition]["durations"], results[condition]["events"])
+        bar_plot_filename = f'analysis_results/summary_{condition}_bar.png'
+        bar_plot(bar_plot_filename, results[condition]["durations"], results[condition]["events"])
+        print(condition, "navigation")
+        for i in results[condition]["navigation_durations"]:
+            print(i / 60)
+        print(condition, "not navigation")
+        for i in results[condition]["not_navigation_durations"]:
+            print(i / 60)
+
 def get_simple_numbers(
-    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    study_id=3,
+    is_baseline=False,
 ):
     analysis_per_video = {
         "video-1": {},
@@ -27,22 +256,25 @@ def get_simple_numbers(
     data_points = []
 
     sorted_participants = []
-    for i, email in enumerate(PARTICIPANT_DATABASE):
+    for i, file_ref in enumerate(PARTICIPANT_DATABASE):
         sorted_participants.append({
-            "email": email,
-            "id": PARTICIPANT_DATABASE[email]["id"],
+            "file_ref": file_ref,
+            "id": PARTICIPANT_DATABASE[file_ref]["id"],
         })
 
     sorted_participants.sort(key=lambda x: x["id"])
 
     for s_p in sorted_participants:
-        email = s_p["email"]
-        participant = Participant(email, **PARTICIPANT_DATABASE[email])
+        file_ref = s_p["file_ref"]
+        participant = Participant(
+            file_ref,
+            is_baseline,
+            **PARTICIPANT_DATABASE[file_ref])
         if participant.exists():
-            if participant.study_id != 2 or participant.order not in participants_of_interest:
+            if participant.study_id != study_id or participant.order not in participants_of_interest:
                 continue
             results = {
-                "email": participant.email,
+                "file_ref": participant.file_ref,
                 "id": participant.id,
                 "video": participant.video_name(),
                 "total_logs": len(participant.logs()),
@@ -114,10 +346,13 @@ def get_simple_numbers(
         csv.writer(f).writerow(data_points[0].keys())
         for data_point in data_points:
             csv.writer(f).writerow(data_point.values())
-    
+
     for video_id in analysis_per_video:
         print(video_id)
         results = analysis_per_video[video_id]
+        if "id_str" not in results:
+            print("NOTHING")
+            continue
         print("participant Ids: ", "`" + results["id_str"] + "`")
         
         print("\tprocessed descriptions")
@@ -169,47 +404,56 @@ def get_simple_numbers(
         print("\t\t\tempty-edits", "`" + results["task_summary"]["edit_types_count"][""]["count_edits_str"] + " = " + str(results["task_summary"]["edit_types_count"][""]["count_edits"]) + "`")
 
 def get_commands(
-    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    study_id=3,
+    is_baseline=False,
 ):
     analysis_per_video = {
         "video-1": {},
         "video-2": {},
     }
 
-    for email in PARTICIPANT_DATABASE:
-        participant = Participant(email, **PARTICIPANT_DATABASE[email])
+    for file_ref in PARTICIPANT_DATABASE:
+        participant = Participant(
+            file_ref,
+            is_baseline,
+            **PARTICIPANT_DATABASE[file_ref])
         if participant.exists():
-            if participant.study_id != 2 or participant.order not in participants_of_interest:
+            if participant.study_id != study_id or participant.order not in participants_of_interest:
                 continue
             results = {
-                "email": participant.email,
+                "file_ref": participant.file_ref,
                 "id": participant.id,
                 "video_id": participant.video_id(),
                 "processing_logs": participant.get_processing_logs(),
                 "task_summary": participant.get_task_summary(participant.video_id()),
-                #"process": participant.get_high_level_process(),
             }
             print(json.dumps(results, indent=4))
 
 def get_process(
-    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    participants_of_interest=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    study_id=3,
+    is_baseline=False,
 ):
     analysis_per_video = {
         "video-1": [],
         "video-2": [],
     }
     unique_msgs = set()
-    for email in PARTICIPANT_DATABASE:
-        participant = Participant(email, **PARTICIPANT_DATABASE[email])
+    for file_ref in PARTICIPANT_DATABASE:
+        participant = Participant(
+            file_ref,
+            is_baseline,
+            **PARTICIPANT_DATABASE[file_ref])
         if participant.exists():
-            if participant.study_id != 2 or participant.order not in participants_of_interest:
+            if participant.study_id != study_id or participant.order not in participants_of_interest:
                 continue
             unique_msgs.update(participant.get_unique_msgs())
             results = {
-                "email": participant.email,
+                "file_ref": participant.file_ref,
                 "id": participant.id,
                 "video_id": participant.video_id(),
-                "process": participant.get_edit_process(high_level=False),
+                "process": participant.get_edit_process("low_leve"),
             }
             if results["video_id"] in analysis_per_video == False:
                 analysis_per_video[results["video_id"]] = []
@@ -227,7 +471,7 @@ def get_process(
         video_events = []
         print("\t\t", video_id, "-----"*5)
         for participant in analysis_per_video[video_id]:
-            print("\t", participant["email"])
+            print("\t", participant["file_ref"])
             csv_filename = f'analysis_results/P{participant["id"]}_process.csv'
             with open(csv_filename, "w") as f:
                 print(f'date, msg', file=f)
@@ -551,7 +795,9 @@ def main():
     # combine_evaluation_results()
     # get_simple_numbers()
     # get_commands()
-    get_process()
+    # get_process()
+    # get_simple_numbers()
+    get_comparative_study_results()
 
 if __name__ == '__main__':
     main()

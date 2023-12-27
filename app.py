@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, request, jsonify, redirect, url_for
+from flask import Flask, request, jsonify, redirect, url_for, send_file
 from flask_cors import CORS
 
 #from backend.intent_parser import *
@@ -175,6 +175,10 @@ def display_video(filename):
     video_path = get_video_by_filename(filename)
     print(filename, video_path)
     return redirect(video_path, code=301)
+
+@app.route("/annotation_image/<participantId>/<intenId>", methods=["GET"])
+def annotation_image(participantId, intenId):
+    return send_file(f"static/annotations/{participantId}_{intenId}.jpg")
 
 def test(edit_request):
     pipeline.reset()
