@@ -1,8 +1,8 @@
-analysis_results
+study-results
 
 annotations
 
-results
+pipeline-results
 study-recordings
 study-transcripts
 static
@@ -15,10 +15,6 @@ metadata_all
 
 segmentation-data
 segmentation-data_all
-
-llama-data/
-
-images/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
