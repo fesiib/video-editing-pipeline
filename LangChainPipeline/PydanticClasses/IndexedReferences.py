@@ -243,7 +243,7 @@ class IndexedReferences(BaseModel):
             "zoom": [item.get_object() for item in self.zoomParameters],
         }
     
-    def get_references(self):
+    def get_simple_references(self):
         return References(
             temporal=[x.reference for x in self.temporal_references],
             temporal_labels=self.temporal_labels,

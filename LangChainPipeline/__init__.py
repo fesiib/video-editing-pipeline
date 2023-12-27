@@ -472,7 +472,7 @@ class LangChainPipeline():
         with get_openai_callback() as cb:
             ### parse command
             references = self.indexed_input_parser.run(command)
-            simple_references = references.get_references()
+            simple_references = references.get_simple_references()
             print(references)
 
             ### set edit operations
@@ -530,7 +530,7 @@ class LangChainPipeline():
 
     def process_request_edit(self, request):
         references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
-        references_no_index = references.get_references()
+        references_no_index = references.get_simple_references()
         command = request["requestParameters"]["text"]
         response = {
             "edits": [],
@@ -571,7 +571,7 @@ class LangChainPipeline():
     
     def process_request_spatial(self, request):
         references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
-        references_no_index = references.get_references()
+        references_no_index = references.get_simple_references()
         command = request["requestParameters"]["text"]
         response = {
             "edits": [],
@@ -612,7 +612,7 @@ class LangChainPipeline():
 
     def process_request_temporal(self, request):
         references = IndexedReferences.from_object(request["requestParameters"]["parsingResults"])
-        references_no_index = references.get_references()
+        references_no_index = references.get_simple_references()
         print(references.model_dump())
         command = request["requestParameters"]["text"]
         response = {

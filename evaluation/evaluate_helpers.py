@@ -1,4 +1,5 @@
 import json
+import math
 
 from copy import deepcopy
 
@@ -331,15 +332,6 @@ def get_data_point(dataset, index):
     }
     return input, ground_truth
 
-
-def get_temporal_text_evaluation():
-    # temporal_text
-    pass
-
-def get_spatial_text_evaluation():
-    # spatial_text
-    pass
-
 def get_temporal_evaluation(prediction, ground_truth):
     # prediction: list [start, end], ground_truth: list [start, end]
     # start - end: float (seconds)
@@ -432,6 +424,48 @@ def get_edit_operation_evaluation(prediction, ground_truth):
 def get_edit_params_evaluation():
     # extra params
     pass
+
+def round_number(number):
+    return math.floor(number * 1000) / 1000
+
+def sum(arr):
+    sum = 0
+    for i in arr:
+        sum += i
+    return sum
+
+def avg_std(arr):
+    if len(arr) == 0:
+        return 0, 0
+
+    avg = sum(arr) / len(arr)
+    std = 0
+    for i in arr:
+        std += (i - avg) ** 2
+    std = (std / len(arr)) ** 0.5
+    return avg, std
+
+def append_dict(main_dict, new_dict):
+    for key in new_dict:
+        if key not in main_dict:
+            if isinstance(new_dict[key], dict):
+                main_dict[key] = {}
+                main_dict = append_dict(main_dict[key], new_dict[key])
+            elif isinstance(new_dict[key], list):
+                main_dict[key] = []
+                main_dict[key].extend(new_dict[key])
+            else:
+                main_dict[key] = new_dict[key]
+            continue
+
+        if isinstance(new_dict[key], dict):
+            main_dict = append_dict(main_dict[key], new_dict[key])
+        elif isinstance(new_dict[key], list):
+            main_dict[key].extend(new_dict[key])
+        else:
+            main_dict[key] += new_dict[key]
+    return main_dict
+
 
 def main():
     dataset = get_dataset_for_task(6)
