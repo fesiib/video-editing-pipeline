@@ -3,6 +3,8 @@ import math
 
 from copy import deepcopy
 
+from evaluation.sentence_embedder import get_cosine_similarity_scores
+
 VIDEO_DATABASE = {
     "2": {
         "videoUrl": "https://www.youtube.com/watch?v=kdN41iYTg3U",
@@ -274,7 +276,7 @@ def get_data_point_as_request(dataset, index):
     ground_truth = {
         "editOperations": dataset[index]["edit"],
         "parameters": {},
-        "edits": dataset[index]["temporal"],
+        "edits_temporal": dataset[index]["temporal"],
         "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
@@ -321,7 +323,7 @@ def get_data_point(dataset, index):
     ground_truth = {
         "editOperations": dataset[index]["edit"],
         "parameters": {},
-        "edits": dataset[index]["temporal"],
+        "edits_temporal": dataset[index]["temporal"],
         "edits_spatial": dataset[index]["spatial"],
         "relevant_text": {
             "temporal": dataset[index]["temporal_text"],
@@ -424,6 +426,63 @@ def get_edit_operation_evaluation(prediction, ground_truth):
 def get_edit_params_evaluation():
     # extra params
     pass
+
+def get_references_evaluation(prediction, ground_truth):
+    # agg_score, cosine_scores_expanded, top_10_pairs_expanded, cosine_scores, top_10_pairs
+    cosine_scores, top_10_pairs = get_cosine_similarity_scores(
+        prediction,
+        ground_truth,
+    )
+    # Expanded Ground Truth
+    expanded_ground_truth = []
+    for item in ground_truth:
+        expanded_ground_truth.extend(item.split(", "))
+    cosine_scores_expanded, top_10_pairs_expanded = get_cosine_similarity_scores(
+        prediction,
+        expanded_ground_truth,
+    )
+    precision_expanded = 0
+    recall_expanded = 0
+    f1_expanded = 0
+
+    precision = 0
+    recall = 0
+    f1 = 0
+
+    for single_cosine_scores in cosine_scores_expanded:
+        if len(single_cosine_scores) > 0:
+            precision_expanded += max([item.item() for item in single_cosine_scores])
+    precision_expanded = precision_expanded / len(cosine_scores_expanded)
+    for single_cosine_scores in cosine_scores_expanded.transpose(0, 1):
+        if len(single_cosine_scores) > 0:
+            recall_expanded += max([item.item() for item in single_cosine_scores])
+    recall_expanded = recall_expanded / len(cosine_scores_expanded.transpose(0, 1))
+    if precision_expanded + recall_expanded > 0:
+        f1_expanded = 2 * precision_expanded * recall_expanded / (precision_expanded + recall_expanded)
+    
+    for single_cosine_scores in cosine_scores:
+        if len(single_cosine_scores) > 0:
+            precision += max([item.item() for item in single_cosine_scores])
+    precision = precision / len(cosine_scores)
+    for single_cosine_scores in cosine_scores.transpose(0, 1):
+        if len(single_cosine_scores) > 0:
+            recall += max([item.item() for item in single_cosine_scores])
+    recall = recall / len(cosine_scores.transpose(0, 1))
+    if precision + recall > 0:
+        f1 = 2 * precision * recall / (precision + recall)
+
+    return (
+        f1,
+        precision,
+        recall,
+        f1_expanded,
+        precision_expanded,
+        recall_expanded,
+        cosine_scores_expanded,
+        top_10_pairs_expanded,
+        cosine_scores,
+        top_10_pairs,
+    )
 
 def round_number(number):
     return math.floor(number * 1000) / 1000

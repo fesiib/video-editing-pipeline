@@ -137,14 +137,126 @@ def get_response_langchain(edit_request):
     }
     return response
 
-# Evaluate the pipeline on a single task (i.e data points from a single video)
-def run_evaluation_for_task(
+### Evaluate the parsing on a single task (i.e data points from a single video)
+def run_evaulation_for_task_parsing(
+    task_id = 6,
+    indexes = [],
+    data_point_getter = get_data_point_parsing,
+):
+    general = {
+        "inputs": [],
+        "predictions": [],
+        "ground_truths": [],
+    }
+    comparison = {
+        "editOperations": [],
+        "temporal": [],
+        "spatial": [],
+        "edit": [],
+        "parameters": [],
+    }
+
+    evaluated_dataset = []
+    dataset = get_dataset_for_task(task_id)
+
+    if len(indexes) == 0:
+        indexes = range(len(dataset))
+
+    for index in indexes:
+        data_point = data_point_getter(dataset, index)
+        if data_point == None:
+            continue
+        input = data_point[0]
+        ground_truth = data_point[1]
+        prediction = get_references_langchain(input)
+        
+        general["inputs"].append(input)
+        general["predictions"].append(prediction)
+        general["ground_truths"].append(ground_truth)
+
+        evaluated_dataset.append(dataset[index])
+
+        print("--------------------")
+        print("!!!input!!!: ", input)
+        print("--------------------")
+
+        for key in prediction.keys():
+            if key not in comparison:
+                comparison[key] = []
+            print(f"{key}:")
+            print("\t!!!prediction!!!:\t", prediction[key])
+            print("\t!!!ground_truth!!!:\t", ground_truth[key])
+            
+            if key == "editOperations":
+                f1, precision, recall = get_edit_operation_evaluation(
+                    prediction[key],
+                    ground_truth[key],
+                )
+                comparison[key].append({
+                    "prediction": prediction[key],
+                    "ground_truth": ground_truth[key],
+                    "f1": f1,
+                    "precision": precision,
+                    "recall": recall,
+                })
+                print("\t\tf1:\t", f1)
+                print("\t\tprecision:\t", precision)
+                print("\t\trecall:\t", recall)
+            else:
+                # expand the ground truth and calculate a final score
+                (
+                    f1,
+                    precision,
+                    recall,
+                    f1_expanded,
+                    precision_expanded,
+                    recall_expanded,
+                    cosine_scores_expanded,
+                    top_10_pairs_expanded,
+                    cosine_scores,
+                    top_10_pairs,
+                ) = get_references_evaluation(
+                    prediction[key],
+                    ground_truth[key],
+                )
+                comparison[key].append({
+                    "prediction": prediction[key],
+                    "ground_truth": ground_truth[key],
+                    "f1": f1,
+                    "precision": precision,
+                    "recall": recall,
+                    "f1_expanded": f1_expanded,
+                    "precision_expanded": precision_expanded,
+                    "recall_expanded": recall_expanded,
+                    "cosine_scores_expanded": cosine_scores_expanded,
+                    "top_10_pairs_expanded": top_10_pairs_expanded,
+                    "cosine_scores": cosine_scores,
+                    "top_10_pairs": top_10_pairs,
+                })
+                print("\t\tcosine_similarity:\t", cosine_scores)
+                print("\t\ttop_4_cosine_similarity:\t", json.dumps(top_10_pairs[0:4], indent=1))
+            print("--------------------")
+    return {
+        "general": general,
+        "comparison": comparison,
+        "dataset": evaluated_dataset,
+    }
+        
+### Evaluate the pipeline on a single task (i.e data points from a single video)
+def run_evaluation_for_task_full(
     task_id = 6,
     data_point_getter = get_data_point_as_request,
     pipeline_runner = get_response_langchain,
     indexes = [],
     iou_threshold = 0.5,
 ):
+    
+    general = {
+        "inputs": [],
+        "predictions": [],
+        "ground_truths": [],
+    }
+
     temporal = {
         "count": {
             "predicted": [],
@@ -206,24 +318,20 @@ def run_evaluation_for_task(
 
     dataset = get_dataset_for_task(task_id)
 
-    if (len(dataset) == 0):
-        return {
-            "temporal": temporal,
-            "spatial": spatial,
-            "references": references,
-            "dataset": evaluated_dataset,
-        }
-    
     if (len(indexes) == 0):
         indexes = range(len(dataset))
 
-    indexes = [i for i in indexes if i < len(dataset)]
-
     for index in indexes:
         data_point = data_point_getter(dataset, index)
+        if data_point == None:
+            continue
         input = data_point[0]
         ground_truth = data_point[1]
         prediction = pipeline_runner(input)
+
+        general["inputs"].append(input)
+        general["predictions"].append(prediction)
+        general["ground_truths"].append(ground_truth)
 
         evaluated_dataset.append(dataset[index])
 
@@ -293,60 +401,45 @@ def run_evaluation_for_task(
         print("!!!input!!!: ", input)
         print("!!!prediction!!!: ", prediction)
         print("!!!ground_truth!!!: ", ground_truth)
+        print("--------------------")
         print("\ttemporal evaluation count: ", "prediction: ", len(prediction["edits_temporal"]), "ground_truth: ", len(ground_truth["edits_temporal"]))
         print("\t\tmargin=0:\t", "f1: ", f1_0, "precision: ", precision_0, "recall: ", recall_0)
         print("\t\tmargin=5:\t", "f1: ", f1_5, "precision: ", precision_5, "recall: ", recall_5)
         print("\t\tmargin=10:\t", "f1: ", f1_10, "precision: ", precision_10, "recall: ", recall_10)
+        print("--------------------")
         print("\tspatial evaluation count: ", "prediction: ", len(prediction["edits_spatial"]), "ground_truth: ", len(ground_truth["edits_spatial"]))
         print("\t\tmargin=0:\t", "miou: ", miou_0, "thresholded: ", thresholded_0)
         print("\t\tmargin=5:\t", "miou: ", miou_5, "thresholded: ", thresholded_5)
         print("\t\tmargin=10:\t", "miou: ", miou_10, "thresholded: ", thresholded_10)
-
+        print("--------------------")
         print("\tedit_op evaluation count: ", "prediction: ", len(prediction["editOperations"]), "ground_truth: ", len(ground_truth["editOperations"]))
         print("\t\tsummary:\t", "f1", f1, "precision", precision, "recall", recall)
         print("--------------------")
         print("\t(temporal)cosine_similarity:\t", cosine_scores_temporal)
         print("\t(temporal)top_4_cosine_similarity:\t", json.dumps(top_10_pairs_temporal[0:4], indent=1))
-        print("--------------------")
         print("\t(spatial)cosine_similarity:\t", cosine_scores_spatial)
         print("\t(spatial)top_4_cosine_similarity:\t", json.dumps(top_10_pairs_spatial[0:4], indent=1))
         print("--------------------")
 
     return {
+        "general": general,
         "temporal": temporal,
         "spatial": spatial,
         "references": references,
         "dataset": evaluated_dataset,
     }
 
-# Evaluate the pipeline on `task_ids` tasks
-def run_evaluation( 
-    task_ids,
-    data_point_getter = get_data_point_as_request,
-    pipeline_runner = get_response_langchain,
+### spatial evaluation in isolation (given ground_truth segments)
+def run_evaluatoin_for_task_spatial(
+    task_id = 6,
     indexes = [],
-    iou_threshold = 0.5,
+    data_point_getter = get_data_point,
+    iou_threshold = 0.5, 
 ):
-    temporal = {
-        "count": {
-            "predicted": [],
-            "ground_truth": [],
-        },
-        "f1": {
-            "0": [],
-            "5": [],
-            "10": [],
-        },
-        "precision": {
-            "0": [],
-            "5": [],
-            "10": [],
-        },
-        "recall": {
-            "0": [],
-            "5": [],
-            "10": [],
-        },
+    general = {
+        "inputs": [],
+        "predictions": [],
+        "ground_truths": [],
     }
     spatial = {
         "count": {
@@ -354,292 +447,160 @@ def run_evaluation(
             "ground_truth": [],
         },
         "miou": {
+            "pairs": [],
             "0": [],
             "5": [],
             "10": [],
         },
         "thresholded": {
+            "pairs": [],
             "0": [],
             "5": [],
             "10": [],
         },
     }
 
-    references = {
-        "edit_operation": {
-            "count": {
-                "predicted": [],
-                "ground_truth": [],
-            },
-            "f1": [],
-            "precision": [],
-            "recall": [],
-        },
-        "temporal": {
-            "cos_sim": [],
-            "top_10": [],
-        },
-        "spatial": {
-            "cos_sim": [],
-            "top_10": [],
-        }
-    }
     evaluated_dataset = []
+
+    dataset = get_dataset_for_task(task_id)
     
-    for task_id in task_ids:
-        task_results = run_evaluation_for_task(
-            task_id,
-            data_point_getter,
-            pipeline_runner,
-            indexes,
+    if (len(indexes) == 0):
+        indexes = range(len(dataset))
+
+    for index in indexes:
+        data_point = data_point_getter(dataset, index)
+        if data_point == None:
+            continue
+        input = data_point[0]
+        ground_truth = data_point[1]
+
+        general["inputs"].append(input)
+        general["ground_truths"].append(ground_truth)
+
+        count_spatial_gt = 0
+        for spatial_gts in ground_truth["edits_spatial"]:
+            if len(spatial_gts) > 0:
+                count_spatial_gt += 1
+
+        if count_spatial_gt == 0:
+            continue
+        
+        evaluated_dataset.append(dataset[index])
+        langchain_pipeline.set_video(input["videoId"], 10)
+
+        sketches = input["sketch"]
+        sketch_timestamp = input["sketch_timestamp"]
+        for sketch in sketches:
+            sketch["timestamp"] = sketch_timestamp
+        video_shape = input["video_shape"]
+
+        edits = []
+        for edit in ground_truth["edits"]:
+            start = edit[0]
+            finish = edit[1]
+            explanation = ["ground_truth"]
+            source = ["ground_truth"]
+            offsets = [-1]
+            edit = get_edit_segment(start, finish, explanation, source, offsets, video_shape)
+            edits.append(edit)       
+
+        references = langchain_pipeline.indexed_input_parser.run(input["text"])
+        simple_references = references.get_simple_references()
+        edits = langchain_pipeline.predict_spatial_locations_new(
+            input["text"],
+            simple_references.spatial, simple_references.spatial_labels,
+            [item.offset for item in references.spatial_references],
+            edits, sketches, video_shape,
+            sketch_timestamp
+        )
+        edits_temporal = []
+        edits_temporal_reasoning = []
+        edits_spatial = []
+        edits_spatial_reasoning = []
+        for edit in edits:
+            edits_temporal.append([
+                edit["temporalParameters"]["start"],
+                edit["temporalParameters"]["finish"],
+            ])
+            edits_temporal_reasoning.append([
+                edit["temporalParameters"]["info"],
+                edit["temporalParameters"]["source"],
+                edit["temporalParameters"]["offsets"],
+            ])
+            edits_spatial.append(edit["spatialParameters"])
+            edits_spatial_reasoning.append([
+                edit["spatialParameters"]["info"],
+                edit["spatialParameters"]["source"],
+                edit["temporalParameters"]["offsets"],
+            ])
+        prediction = {
+            "editOperations": simple_references.edit,
+            "parameters": simple_references.get_parameters_short(),
+            "edits_temporal": edits_temporal,
+            "edits_temporal_reasoning": edits_temporal_reasoning,
+            "edits_spatial": edits_spatial,
+            "edits_spatial_reasoning": edits_spatial_reasoning,
+            "relevant_text": {
+                "temporal": simple_references.temporal,
+                "spatial": simple_references.spatial,
+                "edit": [item.reference for item in references.edit_references],
+                "parameters": simple_references.get_parameters(),
+            },
+        }
+
+        (
+            (miou_0, thresholded_0),
+            (miou_5, thresholded_5),
+            (miou_10, thresholded_10),
+        ) = get_spatial_evaluation(
+            prediction["edits_spatial"],
+            ground_truth["edits_spatial"],
+            prediction["edits_temporal"],
+            ground_truth["edits_temporal"],
             iou_threshold,
         )
 
-        print("Statistics for task:\t", task_id)
-        print("\tdata points count:\t", len(task_results["dataset"]))
-        print("--------------------")
-        print("\ttemporal evaluation count:\t",
-                "prediction_avg_std", avg_std(task_results["temporal"]["count"]["prediction"]),
-                "ground_truth_avg_std: ", avg_std(task_results["temporal"]["count"]["ground_truth"]),
+        (miou, thresholded) = get_spatial_evaluation_pairs(
+            prediction["edits_spatial"],
+            ground_truth["edits_spatial"],
+            iou_threshold,
         )
-        for evaluation_parameters in ["0", "5", "10"]:
-            print(f"\t\tmargin={evaluation_parameters}:\t", "f1: ", avg_std(task_results["temporal"]["f1"][evaluation_parameters]),
-                "precision: ", avg_std(task_results["temporal"]["precision"][evaluation_parameters]),
-                "recall: ", avg_std(task_results["temporal"]["recall"][evaluation_parameters])
-            )
-        
-        print("\tspatial evaluation count:\t",
-                "prediction_avg_std", avg_std(task_results["spatial"]["count"]["prediction"]),
-                "ground_truth_avg_std: ", avg_std(task_results["spatial"]["count"]["ground_truth"]),
-        )
-        for evaluation_parameters in ["0", "5", "10"]:
-            print(f"\t\tmargin={evaluation_parameters}:\t", "miou: ", avg_std(task_results["spatial"]["miou"][evaluation_parameters]),
-                "thresholded: ", avg_std(task_results["spatial"]["thresholded"][evaluation_parameters])
-            )
-        
-        print("\tedit_op evaluation count:\t",
-                "prediction_avg_std", avg_std(task_results["references"]["edit_operation"]["count"]["prediction"]),
-                "ground_truth_avg_std: ", avg_std(task_results["references"]["edit_operation"]["count"]["ground_truth"]),
-        )
-        print("\t\tsummary:\t", "f1", avg_std(task_results["edit"]["operation"]["f1"]),
-            "precision", avg_std(task_results["edit"]["operation"]["precision"]),
-            "recall", avg_std(task_results["edit"]["operation"]["recall"])
-        )
-        print("--------------------")
 
-        temporal = append_dict(temporal, task_results["temporal"])
-        spatial = append_dict(spatial, task_results["spatial"])
-        references = append_dict(references, task_results["references"])
-        evaluated_dataset.extend(task_results["dataset"])
 
+        general["predictions"].append(prediction)
+
+        spatial["miou"]["0"].append(miou_0)
+        spatial["thresholded"]["0"].append(thresholded_0)
+        spatial["miou"]["5"].append(miou_5)
+        spatial["thresholded"]["5"].append(thresholded_5)
+        spatial["miou"]["10"].append(miou_10)
+        spatial["thresholded"]["10"].append(thresholded_10)
+
+        spatial["miou"]["pairs"].append(miou)
+        spatial["thresholded"]["pairs"].append(thresholded)
+
+        spatial["count"]["predicted"].append(len(prediction["edits_spatial"]))
+        spatial["count"]["ground_truth"].append(len(ground_truth["edits_spatial"]))
+
+        print("--------------------")
+        print("!!!input!!!:\t", input)
+        print("!!!prediction!!!:\t", prediction)
+        print("!!!ground_truth!!!:\t", ground_truth)
+        print("--------------------")
+        print("\tspatial evaluation count:\t", "prediction: ", len(prediction["edits_spatial"]), "ground_truth: ", len(ground_truth["edits_spatial"]))
+        print("\t\tmargin=0:\t", "miou: ", miou_0, "thresholded: ", thresholded_0)
+        print("\t\tmargin=5:\t", "miou: ", miou_5, "thresholded: ", thresholded_5)
+        print("\t\tmargin=10:\t", "miou: ", miou_10, "thresholded: ", thresholded_10)
+        print("\t\tpairs:\t", "miou: ", miou, "thresholded: ", thresholded)
+        print("--------------------")
     return {
-        "temporal": temporal,
+        "general": general,
         "spatial": spatial,
-        "references": references,    
-        "dataset": evaluated_dataset,
-    }
-
-### spatial evaluation in isolation (given ground_truth segments)
-def run_evaluation_spatial(
-    task_ids,
-    indexes = [],
-    iou_threshold = 0.5, 
-):
-    results = {
-        "count": {
-            "predicted": [],
-            "ground_truth": [],
-        },
-        "miou": {
-            "pairs": [],
-            "0": [],
-            "5": [],
-            "10": [],
-        },
-        "thresholded": {
-            "pairs": [],
-            "0": [],
-            "5": [],
-            "10": [],
-        },
-    }
-
-    evaluated_dataset = []
-
-    for task_id in task_ids:
-        dataset = get_dataset_for_task(task_id)
-        if (len(dataset) == 0):
-            continue
-        cur_indexes = []
-        if (len(indexes) == 0):
-            cur_indexes = range(len(dataset))
-        else:
-            for index in indexes:
-                if index < len(dataset):
-                    cur_indexes.append(index)
-
-        if (len(cur_indexes) == 0):
-            continue
-
-        task_results = {
-            "count": {
-                "predicted": [],
-                "ground_truth": [],
-            },
-            "miou": {
-                "pairs": [],
-                "0": [],
-                "5": [],
-                "10": [],
-            },
-            "thresholded": {
-                "pairs": [],
-                "0": [],
-                "5": [],
-                "10": [],
-            },
-        }
-
-        for index in cur_indexes:
-            data_point = get_data_point(dataset, index)
-            input = data_point[0]
-            ground_truth = data_point[1]
-            count_spatial_gt = 0
-            for spatial_gts in ground_truth["edits_spatial"]:
-                if len(spatial_gts) > 0:
-                    count_spatial_gt += 1
-
-            if count_spatial_gt == 0:
-                continue
-            
-            evaluated_dataset.append(dataset[index])
-            langchain_pipeline.set_video(input["videoId"], 10)
-
-            sketches = input["sketch"]
-            sketch_timestamp = input["sketch_timestamp"]
-            for sketch in sketches:
-                sketch["timestamp"] = sketch_timestamp
-            video_shape = input["video_shape"]
-
-            edits = []
-            for edit in ground_truth["edits"]:
-                start = edit[0]
-                finish = edit[1]
-                explanation = ["ground_truth"]
-                source = ["ground_truth"]
-                offsets = [-1]
-                edit = get_edit_segment(start, finish, explanation, source, offsets, video_shape)
-                edits.append(edit)       
-
-            references = langchain_pipeline.indexed_input_parser.run(input["text"])
-            simple_references = references.get_simple_references()
-            edits = langchain_pipeline.predict_spatial_locations_new(
-                input["text"],
-                simple_references.spatial, simple_references.spatial_labels,
-                [item.offset for item in references.spatial_references],
-                edits, sketches, video_shape,
-                sketch_timestamp
-            )
-            edits_temporal = []
-            edits_temporal_reasoning = []
-            edits_spatial = []
-            edits_spatial_reasoning = []
-            for edit in edits:
-                edits_temporal.append([
-                    edit["temporalParameters"]["start"],
-                    edit["temporalParameters"]["finish"],
-                ])
-                edits_temporal_reasoning.append([
-                    edit["temporalParameters"]["info"],
-                    edit["temporalParameters"]["source"],
-                    edit["temporalParameters"]["offsets"],
-                ])
-                edits_spatial.append(edit["spatialParameters"])
-                edits_spatial_reasoning.append([
-                    edit["spatialParameters"]["info"],
-                    edit["spatialParameters"]["source"],
-                    edit["temporalParameters"]["offsets"],
-                ])
-            prediction = {
-                "editOperations": simple_references.edit,
-                "parameters": simple_references.get_parameters_short(),
-                "edits_temporal": edits_temporal,
-                "edits_temporal_reasoning": edits_temporal_reasoning,
-                "edits_spatial": edits_spatial,
-                "edits_spatial_reasoning": edits_spatial_reasoning,
-                "relevant_text": {
-                    "temporal": simple_references.temporal,
-                    "spatial": simple_references.spatial,
-                    "edit": [item.reference for item in references.edit_references],
-                    "parameters": simple_references.get_parameters(),
-                },
-            }
-
-            (
-                (miou_0, thresholded_0),
-                (miou_5, thresholded_5),
-                (miou_10, thresholded_10),
-            ) = get_spatial_evaluation(
-                prediction["edits_spatial"],
-                ground_truth["edits_spatial"],
-                prediction["edits_temporal"],
-                ground_truth["edits_temporal"],
-                iou_threshold,
-            )
-
-            (miou, thresholded) = get_spatial_evaluation_pairs(
-                prediction["edits_spatial"],
-                ground_truth["edits_spatial"],
-                iou_threshold,
-            )
-
-            task_results["miou"]["0"].append(miou_0)
-            task_results["thresholded"]["0"].append(thresholded_0)
-            task_results["miou"]["5"].append(miou_5)
-            task_results["thresholded"]["5"].append(thresholded_5)
-            task_results["miou"]["10"].append(miou_10)
-            task_results["thresholded"]["10"].append(thresholded_10)
-
-            task_results["miou"]["pairs"].append(miou)
-            task_results["thresholded"]["pairs"].append(thresholded)
-
-            task_results["count"]["predicted"].append(len(prediction["edits_spatial"]))
-            task_results["count"]["ground_truth"].append(len(ground_truth["edits_spatial"]))
-
-            print("--------------------")
-            print("!!!input!!!:\t", input)
-            print("!!!prediction!!!:\t", prediction)
-            print("!!!ground_truth!!!:\t", ground_truth)
-            print("\tspatial evaluation count:\t", "prediction: ", len(prediction["edits_spatial"]), "ground_truth: ", len(ground_truth["edits_spatial"]))
-            print("\t\tmargin=0:\t", "miou: ", miou_0, "thresholded: ", thresholded_0)
-            print("\t\tmargin=5:\t", "miou: ", miou_5, "thresholded: ", thresholded_5)
-            print("\t\tmargin=10:\t", "miou: ", miou_10, "thresholded: ", thresholded_10)
-            print("\t\tpairs:\t", "miou: ", miou, "thresholded: ", thresholded)
-            print("--------------------")
-
-        print("Spatial Statistics for task: ", task_id)
-        print("\tdata points count:\t", len(evaluated_dataset))
-        print("--------------------")
-        print("\tspatial evaluation count:\t",
-                "prediction_avg_std", avg_std(task_results["count"]["predicted"]),
-                "ground_truth_avg_std: ", avg_std(task_results["count"]["ground_truth"]),
-        )
-        for evaluation_parameters in ["0", "5", "10", "pairs"]:
-            label = ("margin=" + evaluation_parameters) if evaluation_parameters != "pairs" else "pairs"
-            print(f"\t\t{label}:\t", "miou: ", avg_std(task_results["miou"][evaluation_parameters]),
-                "thresholded: ", avg_std(task_results["threshold"][evaluation_parameters])
-            )
-        print("--------------------")
-        # append results for task
-        results = append_dict(results, task_results)
-        
-    return {
-        "results": results,
         "dataset": evaluated_dataset,
     }
 
 def main():
-    run_evaluation_for_task()
+    run_evaluation_for_task_full()
     pass
 
 if __name__ == "__main__":
