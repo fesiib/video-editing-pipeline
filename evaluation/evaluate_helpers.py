@@ -6,11 +6,8 @@ from copy import deepcopy
 from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 SKIP_DATAPOINTS = {
-    "2": [10, 7, ],
-    "3": [4, ],
-    "4": [],
-    "5": [],
-    "6": [],
+    "9": [10, 7, ],
+    "1": [4, ],
 }
 
 VIDEO_DATABASE = {
@@ -229,10 +226,11 @@ def get_dataset():
         dataset = json.load(f)
         ret_dataset = []
         for data in dataset:
-            task_id = str(data["task_id"])
-            intent_id = data["intent_id"]
-            if intent_id in SKIP_DATAPOINTS[task_id]:
-                continue
+            # SKIP SKIP_DATAPOINTS
+            # participant_id = str(data["participant_id"])
+            # intent_id = data["intent_id"]
+            # if intent_id in SKIP_DATAPOINTS[participant_id]:
+            #     continue
             ret_dataset.append(data)
         return ret_dataset
     
@@ -570,6 +568,20 @@ def append_dict(main_dict, new_dict):
         else:
             main_dict[key] += new_dict[key]
     return main_dict
+
+def skip_dict(d, is_skipped):
+    if isinstance(d, dict):
+        for key in d:
+            d[key] = skip_dict(d[key], is_skipped)
+    elif isinstance(d, list):
+        new_list = []
+        for i in range(len(d)):
+            if is_skipped[i] == False:
+                continue
+            new_list.append(d[i])
+        return new_list
+    return d
+            
 
 
 def main():
