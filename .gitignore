@@ -1,19 +1,31 @@
 llama-data
 
-study-results
-pipeline-results
-pipeline-results-old
-study-recordings
-study-transcripts
-static
+study-results/*
+!study-results/all_*.png
 
-user-data
+pipeline-results/*
+!pipeline-results/full_summary.txt
+
+pipeline-results-old
+
+study-recordings
+
+study-transcripts/*
+!study-transcripts/
+
+static/*
+static/database/*
+!static/database/
+
+user-data/*
+!user-data/
 
 metadata
 metadata_old
 metadata_all
 
-segmentation-data
+segmentation-data/*
+!segmentation-data/
 segmentation-data_all
 
 # Byte-compiled / optimized / DLL files
