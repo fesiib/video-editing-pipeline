@@ -218,5 +218,5 @@ def summarize_pipeline_results():
     summarize_pipeline_results_spatial()
 
 if __name__ == "__main__":
-    evaluate_all_tasks_full()
+    #evaluate_all_tasks_full()
     summarize_pipeline_results_full()
