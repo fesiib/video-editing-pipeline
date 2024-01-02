@@ -26,7 +26,10 @@ class EditChain():
         neighbors_left = 0,
         neighbors_right = 0,
         video_id="4LdIvyfzoGY",
-        interval=10
+        interval=10,
+
+        temperature=0.1,
+        model_name="gpt-4-1106-preview",
     ):
         self.visual_metadata = None
         self.transcript_metadata = None
@@ -36,6 +39,8 @@ class EditChain():
         
         self.all_parameters = AllParametersChain(
             verbose=verbose,
+            temperature=temperature,
+            model_name=model_name,
         )
 
         self.text_content = TextContentChain(
@@ -43,6 +48,8 @@ class EditChain():
             top_k=top_k,
             neighbors_left=neighbors_left,
             neighbors_right=neighbors_right,
+            temperature=temperature,
+            model_name=model_name,
         )
 
         self.image_query = ImageQueryChain(
@@ -50,6 +57,8 @@ class EditChain():
             top_k=top_k,
             neighbors_left=neighbors_left,
             neighbors_right=neighbors_right,
+            temperature=temperature,
+            model_name=model_name,
         )
 
         self.top_k = top_k
@@ -196,11 +205,13 @@ class EditChain():
 
 class AllParametersChain():
     def __init__(
-            self,
-            verbose=False,
+        self,
+        verbose=False,
+        temperature=0.1,
+        model_name="gpt-4-1106-preview",
     ):
         self.skip_parameters = ["imageParameters", "cutParameters", "cropParameters"]
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
+        self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
         self.parser = PydanticOutputParser(pydantic_object=EditParameters)
 
         self.prompt_template = get_all_parameters_prompt({
@@ -256,8 +267,10 @@ class TextContentChain():
         top_k = 10,
         neighbors_left = 0,
         neighbors_right = 0,
+        temperature=0.1,
+        model_name="gpt-4-1106-preview",
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
+        self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
 
         self.prompt_template = get_text_content_prompt()
 
@@ -314,8 +327,10 @@ class ImageQueryChain():
         top_k = 10,
         neighbors_left = 0,
         neighbors_right = 0,
+        temperature=0.1,
+        model_name="gpt-4-1106-preview",
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
+        self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
 
         self.prompt_template = get_image_query_prompt()
 

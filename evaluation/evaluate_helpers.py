@@ -5,6 +5,14 @@ from copy import deepcopy
 
 from evaluation.sentence_embedder import get_cosine_similarity_scores
 
+SKIP_DATAPOINTS = {
+    "2": [10, 7, ],
+    "3": [4, ],
+    "4": [],
+    "5": [],
+    "6": [],
+}
+
 VIDEO_DATABASE = {
     "2": {
         "videoUrl": "https://www.youtube.com/watch?v=kdN41iYTg3U",
@@ -59,6 +67,8 @@ VIDEO_DATABASE = {
 }
 
 def __get_temporal_evaluation_margin(prediction, ground_truth, margin = 5):
+    if len(prediction) == 0 and len(ground_truth) == 0:
+        return -1, -1, -1
     ground_truth_covered = [False for _ in ground_truth]
     prediction_covered = [False for _ in prediction]
 
@@ -73,11 +83,15 @@ def __get_temporal_evaluation_margin(prediction, ground_truth, margin = 5):
                 prediction_covered[i] = True
                 ground_truth_covered[j] = True
                 break
-    
-    precision = sum(prediction_covered) / max(1, len(prediction))
-    recall = sum(ground_truth_covered) / max(1, len(ground_truth))
-
+    precision = 0
+    recall = 0
     f1_score = 0
+
+    if len(prediction) > 0:
+        precision = sum(prediction_covered) / len(prediction)
+    if len(ground_truth) > 0:
+        recall = sum(ground_truth_covered) / len(ground_truth)
+
     if precision + recall > 0:
         f1_score = 2 * precision * recall / (precision + recall)
     return f1_score, precision, recall
@@ -89,6 +103,9 @@ def __get_temporal_evaluation_f1(prediction, ground_truth):
     # temporal
     # F1 score: 2 * intersection / (length_prediction + length_ground_truth)
     
+    if len(prediction) == 0 and len(ground_truth) == 0:
+        return -1, -1, -1
+
     total_intersection = 0
     total_length_prediction = 0
     total_length_ground_truth = 0
@@ -116,8 +133,8 @@ def __get_temporal_evaluation_traditional(prediction, ground_truth):
     # temporal
     # Traditional: precision * recall / (precision + recall)
 
-    if (len(prediction) == 0 or len(ground_truth) == 0):
-        return 0
+    if len(prediction) == 0 and len(ground_truth) == 0:
+        return -1, -1, -1
 
     precision = 0
     recall = 0
@@ -134,11 +151,15 @@ def __get_temporal_evaluation_traditional(prediction, ground_truth):
             else:
                 recall += intersection / (ground_truth_segment[1] - ground_truth_segment[0])
     
-    precision /= len(prediction)
-    recall /= len(ground_truth)
-    if precision + recall == 0:
-        return 0
-    return precision * recall / (precision + recall), precision, recall
+    if len(prediction) > 0:
+        precision /= len(prediction)
+    if len(ground_truth) > 0:
+        recall /= len(ground_truth)
+    f1_score = 0
+    if precision + recall > 0:
+        f1_score = precision * recall / (precision + recall)
+
+    return f1_score, precision, recall
 
 def __get_single_edit_operation_evaluation(prediction, ground_truth):
     if isinstance(ground_truth, list):
@@ -206,15 +227,22 @@ def get_dataset():
     filename = "./gt_data/parsed_gt-v3.json"
     with open(filename, "r") as f:
         dataset = json.load(f)
-        return dataset
+        ret_dataset = []
+        for data in dataset:
+            task_id = str(data["task_id"])
+            intent_id = data["intent_id"]
+            if intent_id in SKIP_DATAPOINTS[task_id]:
+                continue
+            ret_dataset.append(data)
+        return ret_dataset
     
 def get_dataset_for_task(task_id=6):
     dataset = get_dataset()
-    output = []
+    ret_dataset = []
     for data in dataset:
-        if data["task_id"] == task_id:
-            output.append(data)
-    return output
+        if data["task_id"] == task_id: 
+            ret_dataset.append(data)
+    return ret_dataset
 
 def get_data_point_info(dataset, index):
     if (index >= len(dataset) or index < 0):
@@ -405,20 +433,18 @@ def get_edit_operation_evaluation(prediction, ground_truth):
     recall = 0
     f1 = 0
     if isinstance(prediction, list):
+        if len(prediction) == 0 and len(ground_truth) == 0:
+            return -1, -1, -1
         for single_prediction in prediction:
             result = __get_single_edit_operation_evaluation(single_prediction, ground_truth)
             total += result
     else:
         total = __get_single_edit_operation_evaluation(prediction, ground_truth)
-    
+
     if len(prediction) > 0:
         precision = total / len(prediction)
-    else:
-        precision = 1
     if len(ground_truth) > 0:
         recall = total / len(ground_truth)
-    else:
-        recall = 1
     if precision + recall > 0:
         f1 = 2 * precision * recall / (precision + recall)
     return f1, precision, recall
@@ -428,6 +454,12 @@ def get_edit_params_evaluation():
     pass
 
 def get_references_evaluation(prediction, ground_truth):
+    if len(prediction) == 0 and len(ground_truth) == 0:
+        return (-1, -1, -1,
+            -1, -1, -1,
+            [], [], [], [],
+        )
+
     # agg_score, cosine_scores_expanded, top_10_pairs_expanded, cosine_scores, top_10_pairs
     cosine_scores, top_10_pairs = get_cosine_similarity_scores(
         prediction,
@@ -451,23 +483,31 @@ def get_references_evaluation(prediction, ground_truth):
 
     for single_cosine_scores in cosine_scores_expanded:
         if len(single_cosine_scores) > 0:
-            precision_expanded += max([item.item() for item in single_cosine_scores])
-    precision_expanded = precision_expanded / len(cosine_scores_expanded)
-    for single_cosine_scores in cosine_scores_expanded.transpose(0, 1):
+            precision_expanded += max([item for item in single_cosine_scores])
+    if len(cosine_scores_expanded) > 0:
+        precision_expanded = precision_expanded / len(cosine_scores_expanded)
+
+    cosine_scores_expanded_t = [list(l) for l in zip(*cosine_scores_expanded)]
+    for single_cosine_scores in cosine_scores_expanded_t:
         if len(single_cosine_scores) > 0:
-            recall_expanded += max([item.item() for item in single_cosine_scores])
-    recall_expanded = recall_expanded / len(cosine_scores_expanded.transpose(0, 1))
+            recall_expanded += max([item for item in single_cosine_scores])
+    if len(cosine_scores_expanded_t) > 0:
+        recall_expanded = recall_expanded / len(cosine_scores_expanded_t)
     if precision_expanded + recall_expanded > 0:
         f1_expanded = 2 * precision_expanded * recall_expanded / (precision_expanded + recall_expanded)
     
     for single_cosine_scores in cosine_scores:
         if len(single_cosine_scores) > 0:
-            precision += max([item.item() for item in single_cosine_scores])
-    precision = precision / len(cosine_scores)
-    for single_cosine_scores in cosine_scores.transpose(0, 1):
+            precision += max([item for item in single_cosine_scores])
+    if len(cosine_scores) > 0:
+        precision = precision / len(cosine_scores)
+
+    cosine_scores_t = [list(l) for l in zip(*cosine_scores)]
+    for single_cosine_scores in cosine_scores_t:
         if len(single_cosine_scores) > 0:
-            recall += max([item.item() for item in single_cosine_scores])
-    recall = recall / len(cosine_scores.transpose(0, 1))
+            recall += max([item for item in single_cosine_scores])
+    if len(cosine_scores_t) > 0:
+        recall = recall / len(cosine_scores_t)
     if precision + recall > 0:
         f1 = 2 * precision * recall / (precision + recall)
 
@@ -485,7 +525,11 @@ def get_references_evaluation(prediction, ground_truth):
     )
 
 def round_number(number):
-    return math.floor(number * 1000) / 1000
+    # return with trailing 3 digits
+    number = math.floor(number * 1000) / 1000
+    # add trailing zeros
+    number = str(number) + "0" * (3 - len(str(number).split(".")[1]))
+    return number
 
 def sum(arr):
     sum = 0
@@ -496,6 +540,8 @@ def sum(arr):
 def avg_std(arr):
     if len(arr) == 0:
         return 0, 0
+
+    arr = [x for x in arr if x >= 0]
 
     avg = sum(arr) / len(arr)
     std = 0
@@ -509,7 +555,7 @@ def append_dict(main_dict, new_dict):
         if key not in main_dict:
             if isinstance(new_dict[key], dict):
                 main_dict[key] = {}
-                main_dict = append_dict(main_dict[key], new_dict[key])
+                main_dict[key] = append_dict(main_dict[key], new_dict[key])
             elif isinstance(new_dict[key], list):
                 main_dict[key] = []
                 main_dict[key].extend(new_dict[key])
@@ -518,7 +564,7 @@ def append_dict(main_dict, new_dict):
             continue
 
         if isinstance(new_dict[key], dict):
-            main_dict = append_dict(main_dict[key], new_dict[key])
+            main_dict[key] = append_dict(main_dict[key], new_dict[key])
         elif isinstance(new_dict[key], list):
             main_dict[key].extend(new_dict[key])
         else:

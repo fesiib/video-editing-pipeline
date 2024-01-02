@@ -24,14 +24,20 @@ class SpatialChain():
         neighbors_left = 0,
         neighbors_right = 0,
         video_id="4LdIvyfzoGY",
-        interval=10
+        interval=10,
+        temperature=0.1,
+        model_name="gpt-4-1106-preview",
     ):
         self.visual_metadata = None
         self.transcript_metadata = None
         self.interval = None
         self.video_id = None
         self.set_video(video_id, interval)
-        self.position = SpatialPositionChain(verbose)
+        self.position = SpatialPositionChain(
+            verbose,
+            temperature=temperature,
+            model_name=model_name,
+        )
         self.image_processor = ImageProcessor()
         
         self.top_k = top_k
@@ -338,8 +344,10 @@ class SpatialPositionChain():
     def __init__(
             self,
             verbose=False,
+            temperature=0.1,
+            model_name="gpt-4-1106-preview",
     ):
-        self.llm = ChatOpenAI(temperature=0.1, model_name="gpt-4-1106-preview")
+        self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
         self.parser = PydanticOutputParser(pydantic_object=Rectangle)
 
         self.prompt_template = get_spatial_position_prompt({

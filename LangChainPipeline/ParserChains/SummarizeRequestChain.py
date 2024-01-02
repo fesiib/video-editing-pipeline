@@ -10,8 +10,10 @@ class SummarizeRequestChain():
     def __init__(
         self,
         verbose,
+        temperature=0.7,
+        model_name="gpt-3.5-turbo-16k-0613",
     ):
-        self.llm = ChatOpenAI(temperature=0.7, model_name="gpt-3.5-turbo-16k-0613")
+        self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
 
         self.prompt_template = get_summarize_request_prompt()    
 

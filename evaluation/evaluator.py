@@ -495,7 +495,7 @@ def run_evaluatoin_for_task_spatial(
         video_shape = input["video_shape"]
 
         edits = []
-        for edit in ground_truth["edits"]:
+        for edit in ground_truth["edits_temporal"]:
             start = edit[0]
             finish = edit[1]
             explanation = ["ground_truth"]

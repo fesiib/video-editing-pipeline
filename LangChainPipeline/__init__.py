@@ -23,17 +23,26 @@ class LangChainPipeline():
         self.video_id = "4LdIvyfzoGY"
         self.interval = 10
 
+        MODEL_NAME = "gpt-4"
+        MODEL_NAME_2 = "gpt-4-1106-preview"
+        TEMPERATURE = 1.0
+
         self.temporal_interpreter = TemporalChain(
-            verbose=verbose, video_id="4LdIvyfzoGY", interval=10
+            verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
+            temperature=TEMPERATURE, model_name=MODEL_NAME,
         )
         self.parameters_interpreter = EditChain(
-            verbose=verbose, video_id="4LdIvyfzoGY", interval=10
+            verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
+            temperature=TEMPERATURE, model_name=MODEL_NAME,
         )
         self.spatial_interpreter = SpatialChain(
-            verbose=verbose, video_id="4LdIvyfzoGY", interval=10
+            verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
+            temperature=TEMPERATURE, model_name=MODEL_NAME,
         )
         self.set_parameters_interpreter = None
-        self.summarize_request = SummarizeRequestChain(verbose=verbose)
+        self.summarize_request = SummarizeRequestChain(verbose=verbose,
+            temperature=0.7, model_name="gpt-3.5-turbo-16k-0613",
+        )
 
     def set_video(self, video_id, interval):
         self.video_id = video_id
