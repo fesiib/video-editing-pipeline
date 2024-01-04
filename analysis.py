@@ -15,8 +15,6 @@ from backend.helpers import Timecode
 
 from analysis.plotter import timeline_plot, pie_plot, bar_plot
 
-from evaluation.sentence_embedder import get_cosine_similarity_score
-
 STUDY_RESULTS_FOLDER = "study-results"
 
 # Transcribe study recordings

@@ -1,4 +1,4 @@
-from evaluation.sentence_embedder import get_cosine_similarity_score
+from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 def filter_metadata_by_semantic_similarity(targets, candidates, k, neighbors_left, neighbors_right):
     """
@@ -13,16 +13,14 @@ def filter_metadata_by_semantic_similarity(targets, candidates, k, neighbors_lef
     
     if len(candidates) == 0 or k == 0:
         return []
+    
+    candidate_texts = [candidate["data"] for candidate in candidates]
+    cosine_scores, top_10_pairs = get_cosine_similarity_scores(candidate_texts, targets)
 
     # remove transcript segments that are in the skipped segments
     for i, candidate in enumerate(candidates):
-        candidate["score"] = 0
+        candidate["score"] = max(cosine_scores[i])
         candidate["index"] = i
-
-        for target in targets:
-            candidate["score"] = max(
-                get_cosine_similarity_score(target, candidate["data"]), candidate["score"]
-            )
 
     candidates.sort(key=lambda x: x["score"], reverse=True)
     keep_indexes = [candidate["index"] for candidate in candidates[0:int(k)]]

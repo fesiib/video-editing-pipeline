@@ -9,6 +9,7 @@ PIPELINE_RESULTS_FOLDER = "pipeline-results"
 PARSING_RESULTS_PREFIX = "parsing"
 SPATIAL_ONLY_RESULTS_PREFIX = "spatial_only"
 TEMPORAL_ONLY_RESULTS_PREFIX = "temporal_only"
+# FULL_RESULTS_PREFIX = "full_openai"
 FULL_RESULTS_PREFIX = "full"
 LOGS_PREFIX = "log"
 SUMMARY_FILENAME = "combined_full_results"
@@ -240,5 +241,5 @@ def summarize_pipeline_results():
     summarize_pipeline_results_spatial()
 
 if __name__ == "__main__":
-    # evaluate_all_tasks_full(task_ids=[3])
+    # evaluate_all_tasks_full(task_ids=[2])
     summarize_pipeline_results_full(skip=True)
