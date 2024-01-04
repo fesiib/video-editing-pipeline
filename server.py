@@ -3,15 +3,10 @@ import json
 from flask import Flask, request, jsonify, redirect, url_for, send_file
 from flask_cors import CORS
 
-#from backend.intent_parser import *
-from backend.pipeline import Pipeline
 from LangChainPipeline import LangChainPipeline
 from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
 from video_host.processor import process_video, get_video_by_filename, process_clipped_video, yt_metadata
-
-import datetime
-from datetime import timezone
 
 
 app = Flask(__name__)
@@ -20,8 +15,6 @@ CORS(app, origins=["http://localhost:3000", "http://localhost:7777", "http://int
 '''
 Server side for video editing pipline 
 '''
-#intent_parser = IntentParser(40, 80)
-pipeline = Pipeline(50, 0)
 langchain_pipeline = LangChainPipeline(verbose=False)
 
 '''
@@ -82,7 +75,7 @@ def fetch_ambiguous():
     input = data.get("input")
     return jsonify({"ambiguousParts": extract_adverbs_of_space(input)})
 
-@app.route("/ambiguous-gpt", methods=['POST'])
+# TODO: @app.route("/ambiguous-gpt", methods=['POST'])
 def fetch_ambiguous_gpt():
     data = request.json
     input = data.get("input")
@@ -179,22 +172,6 @@ def display_video(filename):
 @app.route("/annotation_image/<participantId>/<intenId>", methods=["GET"])
 def annotation_image(participantId, intenId):
     return send_file(f"static/annotations/{participantId}_{intenId}.jpg")
-
-def test(edit_request):
-    pipeline.reset()
-    print("!!!response!!!", json.dumps(pipeline.process_request({
-        "requestParameters": {
-            "text": edit_request,
-            "editOperation": "text",
-            "processingMode": "from-scratch",
-        },
-        "edits": [{
-            "temporalParameters": {
-                "start": "0:00",
-                "finish": "5:00",
-            }
-        }],
-    }), indent=1))
 
 def launch_server():
     app.run(host="0.0.0.0", port=7778)
