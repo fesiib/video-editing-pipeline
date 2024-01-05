@@ -327,3 +327,18 @@ def process_clipped_video(video_link, clipStart, clipFinish):
         clip_segmentation_data(clip_video_title, video_title, clipStart, clipFinish)
 
     return process_video(clip_video_link)
+
+
+def get_frame_by_timestamp(video_path, timestamp):
+    print (video_path, timestamp)
+    ## read mp4 video
+    video_cap = cv2.VideoCapture(str(video_path))
+    frame_rate = video_cap.get(cv2.CAP_PROP_FPS)
+    frame = int(float(timestamp) * frame_rate)
+    video_cap.set(cv2.CAP_PROP_POS_FRAMES, frame)  
+    res, frame = video_cap.read()
+    if (res == False):
+        return None
+    ## convert to binary in jpeg format
+    image_binary = cv2.imencode('.jpg', frame)[1].tobytes()
+    return image_binary

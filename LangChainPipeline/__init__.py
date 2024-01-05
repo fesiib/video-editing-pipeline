@@ -238,12 +238,12 @@ class LangChainPipeline():
                         edit_parameters,
                         start, finish,
                     )
-                if "crop" in edit_operations or len(parameters["cropParameters"]) > 0:
-                    edit_parameters = self.parameters_interpreter.run_crop_parameters(
-                        edit["spatialParameters"],
-                        edit_parameters,
-                        video_shape,
-                    )
+                
+                edit_parameters = self.parameters_interpreter.run_crop_parameters(
+                    edit["spatialParameters"],
+                    edit_parameters,
+                    video_shape,
+                )
 
                 edit["textParameters"] = edit_parameters["textParameters"].copy()
                 edit["imageParameters"] = edit_parameters["imageParameters"].copy()

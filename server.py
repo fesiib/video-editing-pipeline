@@ -1,4 +1,5 @@
 import json
+import io
 
 from flask import Flask, request, jsonify, redirect, url_for, send_file
 from flask_cors import CORS
@@ -6,7 +7,9 @@ from flask_cors import CORS
 from LangChainPipeline import LangChainPipeline
 from backend.quick_parser import extract_adverbs_of_space, extract_adverbs_of_space_gpt3
 
-from video_host.processor import process_video, get_video_by_filename, process_clipped_video, yt_metadata
+from video_host.processor import (
+    process_video, get_video_by_filename, process_clipped_video, yt_metadata, get_frame_by_timestamp
+)
 
 
 app = Flask(__name__)
@@ -163,10 +166,25 @@ def process_youtube_link():
     }
     return json.dumps(responseJSON)
 
+# http://internal.kixlab.org:7778/display_video/b3TVLNNqgdc.mp4/0
+@app.route('/display_video/<filename>/<timestamp>', methods=["GET"])
+def display_video_frame(filename, timestamp):
+    # decoded = request.data.decode('utf-8')
+    # request_json = json.loads(decoded)
+    # filename = request_json["filename"]
+    # timestamp = request_json["timestamp"]
+    timestamp = float(timestamp)
+    video_path = get_video_by_filename(filename)
+    image_binary = get_frame_by_timestamp(video_path, timestamp)
+    if image_binary is None:
+        return fail_with("invalid timestamp")
+    return send_file(io.BytesIO(image_binary), mimetype='image/jpeg')
+
+
 @app.route('/display_video/<filename>', methods=["GET"])
 def display_video(filename):
-    video_path = get_video_by_filename(filename)
     print(filename, video_path)
+    video_path = get_video_by_filename(filename)
     return redirect(video_path, code=301)
 
 @app.route("/annotation_image/<participantId>/<intenId>", methods=["GET"])
