@@ -196,7 +196,7 @@ class TemporalPositionChain():
             segments.append({
                 "start": segment.start,
                 "finish": segment.finish,
-                "explanation": ["Explicit reference to time"],
+                "explanation": [f"Explicit temporal reference: {command.copy()}"],
                 "source": command.copy(),
                 "offsets": offsets.copy(),
             })

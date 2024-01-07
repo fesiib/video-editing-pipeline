@@ -200,7 +200,7 @@ class SpatialChain():
                         "width": round(bbox["width"]), 
                         "height": round(bbox["height"]), 
                         "rotation": 0,
-                        "info": ["Sketch"],
+                        "info": ["Location from Sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     } for bbox in ref_bboxes
@@ -255,7 +255,7 @@ class SpatialChain():
                 "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
                 "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
-                "info": ["Visual Dependent"],
+                "info": ["Depends on the Visual information in the Video"],
                 "source": vs_texts,
                 "offsets": vs_offsets,
             }]
@@ -277,7 +277,7 @@ class SpatialChain():
                 "width": round(final_candidate[2] / image.shape[1] * video_shape[1]),
                 "height": round(final_candidate[3] / image.shape[0] * video_shape[0]),
                 "rotation": 0,
-                "info": ["Visual Dependent"],
+                "info": ["Depends on the Visual information in the Video"],
                 "source": vs_texts,
                 "offsets": vs_offsets,
             }]
@@ -384,7 +384,7 @@ class SpatialPositionChain():
         candidate["width"] = result.width
         candidate["height"] = result.height
         candidate["rotation"] = result.rotation
-        candidate["info"].append("gpt")
+        candidate["info"].append(f"Adjusted based on explicit spatial info: {command.copy()}")
         candidate["source"] = candidate["source"].copy() + command.copy()
         candidate["offsets"] = candidate["offsets"].copy() + offsets.copy()
         return candidate

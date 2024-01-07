@@ -76,7 +76,7 @@ class LangChainPipeline():
                             "width": round(sketch["width"]),
                             "height": round(sketch["height"]),
                             "rotation": 0,
-                            "info": ["Sketch"],
+                            "info": ["Location from Sketch"],
                             "source": ["sketch"],
                             "offsets": [-1],
                         }
@@ -103,7 +103,7 @@ class LangChainPipeline():
                         "width": round(sketch["width"]),
                         "height": round(sketch["height"]),
                         "rotation": 0,
-                        "info": ["Sketch"],
+                        "info": ["Location from Sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     })
@@ -147,7 +147,7 @@ class LangChainPipeline():
                         "width": round(sketches[0]["width"]),
                         "height": round(sketches[0]["height"]),
                         "rotation": 0,
-                        "info": ["Sketch Location"],
+                        "info": ["Location from Sketch"],
                         "source": ["sketch"],
                         "offsets": [-1],
                     }
@@ -302,7 +302,7 @@ class LangChainPipeline():
                     temporal_segments.append({
                         "start": start,
                         "finish": finish,
-                        "explanation": ["Current player timestamp"],
+                        "explanation": ["Current playback position"],
                         "source": ["default"],
                         "offsets": [-1],
                     })
@@ -324,7 +324,7 @@ class LangChainPipeline():
                         temporal_segments.append({
                             "start": start,
                             "finish": finish,
-                            "explanation": ["Sketch timestamp"],
+                            "explanation": ["Sketched frame's playback position"],
                             "source": ["sketch"],
                             "offsets": [-1],
                         })

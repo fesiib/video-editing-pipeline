@@ -114,7 +114,7 @@ def get_edit_segment(start, finish, explanation, source, offsets, video_shape):
     edit_instance["temporalParameters"]["source"] = source
     edit_instance["temporalParameters"]["offsets"] = offsets
     
-    edit_instance["spatialParameters"]["info"] = ["default"]
+    edit_instance["spatialParameters"]["info"] = ["Default location"]
     edit_instance["spatialParameters"]["source"] = ["default"]
     edit_instance["spatialParameters"]["offsets"] = [-1]
     
