@@ -16,7 +16,7 @@ from LangChainPipeline.utils import merge_segments, timecode_to_seconds, are_sam
 from backend.operations import get_edit_segment
 
 class LangChainPipeline():
-    def __init__(self, verbose=False):
+    def __init__(self, temperature=0.7, verbose=False):
         self.input_parser = IntentParserChain(verbose=verbose)
         self.indexed_input_parser = IndexedIntentParserChain(verbose=verbose)
 
@@ -25,19 +25,18 @@ class LangChainPipeline():
 
         MODEL_NAME = "gpt-4"
         MODEL_NAME_2 = "gpt-4-1106-preview"
-        TEMPERATURE = 1.0
 
         self.temporal_interpreter = TemporalChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
-            temperature=TEMPERATURE, model_name=MODEL_NAME,
+            temperature=temperature, model_name=MODEL_NAME,
         )
         self.parameters_interpreter = EditChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
-            temperature=TEMPERATURE, model_name=MODEL_NAME,
+            temperature=temperature, model_name=MODEL_NAME,
         )
         self.spatial_interpreter = SpatialChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10,
-            temperature=TEMPERATURE, model_name=MODEL_NAME,
+            temperature=temperature, model_name=MODEL_NAME,
         )
         self.set_parameters_interpreter = None
         self.summarize_request = SummarizeRequestChain(verbose=verbose,

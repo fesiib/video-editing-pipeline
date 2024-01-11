@@ -11,7 +11,7 @@ class IndexedIntentParserChain():
     def __init__(
         self,
         verbose,
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)

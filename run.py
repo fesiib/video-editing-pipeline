@@ -125,7 +125,7 @@ def main(args):
             "editOperation": ""
         },
     }
-    pipeline = LangChainPipeline(verbose=False)
+    pipeline = LangChainPipeline(temperature=0.7, verbose=False)
     pipeline.set_video(edit_request["videoId"], 10)
     edit_response = pipeline.process_request_indexed(
         edit_request

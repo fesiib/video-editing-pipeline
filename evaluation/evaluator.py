@@ -7,7 +7,7 @@ from evaluation.sentence_embedder import get_cosine_similarity_scores
 
 
 # Using all metadata
-langchain_pipeline = LangChainPipeline(verbose=True)
+langchain_pipeline = LangChainPipeline(temperature=0.0, verbose=True)
 
 
 def get_references_langchain(input):

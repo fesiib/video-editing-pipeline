@@ -18,7 +18,7 @@ CORS(app, origins=["http://localhost:3000", "http://localhost:7777", "http://int
 '''
 Server side for video editing pipline 
 '''
-langchain_pipeline = LangChainPipeline(verbose=False)
+langchain_pipeline = LangChainPipeline(temperature=0.7, verbose=False)
 
 '''
 Input:
@@ -200,7 +200,7 @@ def test_processor(video_link):
         json.dump(transcript, f, indent=2)
 
 def test_langchain_pipeline():
-    pipeline = LangChainPipeline(verbose=True)
+    pipeline = LangChainPipeline(temperature=0.7, verbose=True)
     
     EXAMPLE_REQUEST = {
         "projectId": "test",

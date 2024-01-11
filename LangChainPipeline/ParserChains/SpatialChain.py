@@ -25,7 +25,7 @@ class SpatialChain():
         neighbors_right = 0,
         video_id="4LdIvyfzoGY",
         interval=10,
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.visual_metadata = None
@@ -344,7 +344,7 @@ class SpatialPositionChain():
     def __init__(
             self,
             verbose=False,
-            temperature=0.1,
+            temperature=0.7,
             model_name="gpt-4-1106-preview",
     ):
         self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)

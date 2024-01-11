@@ -28,7 +28,7 @@ class EditChain():
         video_id="4LdIvyfzoGY",
         interval=10,
 
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.visual_metadata = None
@@ -207,7 +207,7 @@ class AllParametersChain():
     def __init__(
         self,
         verbose=False,
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.skip_parameters = ["imageParameters", "cutParameters", "cropParameters"]
@@ -267,7 +267,7 @@ class TextContentChain():
         top_k = 10,
         neighbors_left = 0,
         neighbors_right = 0,
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
@@ -327,7 +327,7 @@ class ImageQueryChain():
         top_k = 10,
         neighbors_left = 0,
         neighbors_right = 0,
-        temperature=0.1,
+        temperature=0.7,
         model_name="gpt-4-1106-preview",
     ):
         self.llm = ChatOpenAI(temperature=temperature, model_name=model_name)
