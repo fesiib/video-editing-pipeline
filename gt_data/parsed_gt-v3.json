@@ -1390,7 +1390,7 @@
     "participant_id": 4,
     "task_id": 6,
     "intent_id": 14,
-    "description": "Trim from 7:20 to 7:40 where he opens the box and says there is a manua",
+    "description": "Trim from 7:20 to 7:40 where he opens the box and says there is a manual",
     "sketch": [
       {
         "x": 298.73,
@@ -1402,7 +1402,7 @@
     ],
     "sketch_timestamp": 412.6,
     "temporal_text": [
-      "from 7:20 to 7:40, where he opens the box and says there is a manua"
+      "from 7:20 to 7:40, where he opens the box and says there is a manual"
     ],
     "spatial_text": [],
     "edit_text": [

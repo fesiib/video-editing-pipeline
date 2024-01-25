@@ -66,20 +66,20 @@ Response:
 """
 
 def get_examples():
-    command1 = 'Zoom into the pan at around 1:31 when he is saying "Make sure to flip chicken after about 6 minutes'
+    command1 = 'Do 2 seconds long zoom out at the beginning of the video and add shorter text with flashy shape.'
     response1 = References(
-        ["1:31", "make sure to flip chicken after about 6 minutes"],
-        ["position", "transcript"],
-        ["pan"],
-        ["visual-dependent"],
-        ["zoom"],
+        ["2 seconds long", "beginning of the video"],
+        ["position", "position"],
+        [],
+        [],
+        ["shape", "text", "zoom"],
+        ["shorter text"],
+        [],
+        ["flashy shape"],
         [],
         [],
         [],
-        [],
-        [],
-        [],
-        [],
+        ["2 seconds long zoom out"],
     )
 
     command2 = '27:32 - start video where he is talking about the chicken again - end the cut when he puts chicken into the oven.'
@@ -98,14 +98,14 @@ def get_examples():
         [],
     )
 
-    command3 = 'Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn’t obstruct his movements for five seconds at which point the text disappears'
+    command3 = 'For each moment where the speaker is talking about learning points, add a text with bigger font and red background.'
     response3 = References(
-        ["whenever instructor introduces new ingredient and cooking instruction", "for five seconds"],
-        ["transcript", "other"],
-        ["top left corner", "doesn't obstruct instructor's movements"],
-        ["independent", "other"],
+        ["each moment where the speaker is talking about learning points"],
+        ["transcript"],
+        [],
+        [],
         ["text"],
-        ["arial font", "slightly smaller"],
+        ["text with bigger font", "red background"],
         [],
         [],
         [],
@@ -114,9 +114,9 @@ def get_examples():
         [],
     )
 
-    command4 = '9:22 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
+    command4 = '15:20 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
     response4 = References(
-        ["9:22"],
+        ["15:20"],
         ["position"],
         ["either side of subject"],
         ["visual-dependent"],

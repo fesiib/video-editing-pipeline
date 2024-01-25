@@ -70,27 +70,32 @@ Response:
 """
 
 def get_examples():
-    command1 = 'Zoom into the pan at around 1:31 when he is saying "Make sure to flip chicken after about 6 minutes'
+
+    command1 = 'Do 2 seconds long zoom out at the beginning of the video and add shorter text with flashy shape.'
     response1 = IndexedReferences.get_instance(
         [
-            [28, "1:31"], [52, "make sure to flip chicken after about 6 minutes"]
+            [3, "2 seconds long"], [34, "beginning of the video"]
         ],
-        ["position", "transcript"],
+        ["position", "position"],
+        [],
+        [],
         [
-            [14, "pan"]
+            [18, "zoom out"], [73, "text"], [90, "shape"]
         ],
-        ["visual-dependent"],
+        ["zoom", "text", "shape"],
         [
-            [0, "zoom into"]
+            [65, "shorter text"]
         ],
-        ["zoom"],
+        [],
+        [
+            [83, "flashy shape"]
+        ],
         [],
         [],
         [],
-        [],
-        [],
-        [],
-        [],
+        [
+            [3, "2 seconds long zoom out"]
+        ],
     )
 
     command2 = '27:32 - start video where he is talking about the chicken again - end the cut when he puts chicken into the oven.'
@@ -114,24 +119,21 @@ def get_examples():
         [],
     )
 
-    command3 = 'Whenever he introduces new ingredient and cooking instruction have it listed up in the top left corner in the same arial font but slightly smaller and make sure it doesn’t obstruct his movements for five seconds at which point the text disappears'
+    command3 = 'For each moment where the speaker is talking about learning points, add a text with bigger font and red background.'
     response3 = IndexedReferences.get_instance(
         [
-            [0, "whenever he introduces new ingredient and cooking instruction"], [195, "for five seconds"]
+            [4, "each moment where the speaker is talking about learning points"]
         ],
-        ["transcript", "other"],
+        ["transcript"],
+        [],
+        [],
         [
-            [87, "top left corner"], [164, "doesn't obstruct his movements"],
-        ],
-        ["independent", "other"],
-        [
-            [12, "introduces new ingredient and cooking instruction"], [70, "listed up"], [231, "text"],
+            [74, "text"],
         ],
         ["text"],
         [
-            [23, "new ingredient and cooking instruction"],
-            [115, "arial font"],
-            [130, "slightly smaller"],
+            [45, 'about learning points'],
+            [74, "text with bigger font"], [100, "red background"],
         ],
         [],
         [],
@@ -141,10 +143,10 @@ def get_examples():
         [],
     )
 
-    command4 = '9:22 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
+    command4 = '4:38 - Animate graphics of a book and headphones to either side of subject to engage audience and emphasis point.'
     response4 = IndexedReferences.get_instance(
         [
-            [0, "9:22"]
+            [0, "4:38"]
         ],
         ["position"],
         [
