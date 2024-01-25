@@ -63,17 +63,6 @@ def evaluate_all_tasks_full(task_ids = [2, 3, 4, 5, 6]):
         with open(f"{PIPELINE_RESULTS_FOLDER}/{FULL_RESULTS_PREFIX}_{str(task_id)}.json", "w") as f:
             json.dump(result, f, indent=2)
 
-def skip_datapoints(result):
-    is_skipped = []
-    for data in result["dataset"]:
-        participant_id = str(data["participant_id"])
-        intent_id = data["intent_id"]
-        if participant_id in SKIP_DATAPOINTS and intent_id in SKIP_DATAPOINTS[participant_id]:
-            is_skipped.append(False)
-        else:
-            is_skipped.append(True)
-    return skip_dict(result, is_skipped)
-
 def print_func_all(result, dim, metric, key):
         cur_list = []
         if key.endswith(SPATIAL_SUFFIX) and dim == "spatial":
@@ -171,8 +160,7 @@ def print_evaluation_summary(result):
                 print("AVG:\t", round_number(avg), "STD:\t", round_number(std), f"\t{metric[0:4]}:\t",  " <-- ", [round_number(x) for x in local_result[metric]])
 
 def summarize_pipeline_results_full(
-    task_ids = [2, 3, 4, 5, 6],
-    skip=False,
+    task_ids = [2, 3, 4, 5, 6]
 ):
     file_prefix = f"{PIPELINE_RESULTS_FOLDER}/{FULL_RESULTS_PREFIX}_"
     combined_results = {}
@@ -182,9 +170,6 @@ def summarize_pipeline_results_full(
         print("----------"*5)
         with open(filename, "r") as f:
             result = json.load(f)
-            # Skip SKIP_DATAPOINTS
-            if skip:
-                result = skip_datapoints(result)
 
             print_evaluation_summary(result)
             combined_results = append_dict(combined_results, result)
@@ -194,7 +179,6 @@ def summarize_pipeline_results_full(
 
 def summarize_pipeline_results_parsing(
     task_ids = [2, 3, 4, 5, 6],
-    skip=False,
 ):
 
     file_prefix = f"{PIPELINE_RESULTS_FOLDER}/{PARSING_RESULTS_PREFIX}_"
@@ -205,8 +189,6 @@ def summarize_pipeline_results_parsing(
         print("----------"*5)
         with open(filename, "r") as f:
             result = json.load(f)
-            if skip:
-                result = skip_datapoints(result)
             print_evaluation_summary(result)
             combined_results = append_dict(combined_results, result)
             print("----------"*5)
@@ -215,7 +197,6 @@ def summarize_pipeline_results_parsing(
 
 def summarize_pipeline_results_spatial(
     task_ids = [2, 3, 4, 5, 6],
-    skip=False,
 ):
     file_prefix = f"{PIPELINE_RESULTS_FOLDER}/{SPATIAL_ONLY_RESULTS_PREFIX}_"
     combined_results = {}
@@ -225,8 +206,6 @@ def summarize_pipeline_results_spatial(
         print("----------"*5)
         with open(filename, "r") as f:
             result = json.load(f)
-            if skip:
-                result = skip_datapoints(result)
             print_evaluation_summary(result)
             combined_results = append_dict(combined_results, result)
             print("----------"*5)
@@ -242,4 +221,4 @@ def summarize_pipeline_results():
 
 if __name__ == "__main__":
     # evaluate_all_tasks_full(task_ids=[2])
-    summarize_pipeline_results_full(skip=True)
+    summarize_pipeline_results_full()

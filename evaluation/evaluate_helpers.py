@@ -5,10 +5,6 @@ from copy import deepcopy
 
 from evaluation.sentence_embedder import get_cosine_similarity_scores
 
-SKIP_DATAPOINTS = {
-    "9": [10, 7, ],
-    "1": [4, ],
-}
 
 VIDEO_DATABASE = {
     "2": {
@@ -226,11 +222,6 @@ def get_dataset():
         dataset = json.load(f)
         ret_dataset = []
         for data in dataset:
-            # SKIP SKIP_DATAPOINTS
-            # participant_id = str(data["participant_id"])
-            # intent_id = data["intent_id"]
-            # if intent_id in SKIP_DATAPOINTS[participant_id]:
-            #     continue
             ret_dataset.append(data)
         return ret_dataset
     
