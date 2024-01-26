@@ -23,8 +23,8 @@ class LangChainPipeline():
         self.video_id = "4LdIvyfzoGY"
         self.interval = 10
 
-        MODEL_NAME = "gpt-4"
-        MODEL_NAME_2 = "gpt-4-1106-preview"
+        MODEL_NAME = "gpt-4-1106-preview"
+        #MODEL_NAME_2 = "gpt-4-1106-preview"
 
         self.temporal_interpreter = TemporalChain(
             verbose=verbose, video_id="4LdIvyfzoGY", interval=10,

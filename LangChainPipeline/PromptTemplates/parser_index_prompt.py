@@ -71,18 +71,22 @@ Response:
 
 def get_examples():
 
-    command1 = 'Do 2 seconds long zoom out at the beginning of the video and add shorter text with flashy shape.'
+    command1 = 'Do 2 seconds long zoom out at the beginning of the video and add shorter text with flashy shape on the top-right corner.'
     response1 = IndexedReferences.get_instance(
         [
             [3, "2 seconds long"], [34, "beginning of the video"]
         ],
         ["position", "position"],
-        [],
-        [],
+        [
+            [96, "on the top-right corner"]
+        ],
+        [
+            "visual-independent",
+        ],
         [
             [18, "zoom out"], [73, "text"], [90, "shape"]
         ],
-        ["zoom", "text", "shape"],
+        ["text", "shape", "zoom"],
         [
             [65, "shorter text"]
         ],
@@ -119,14 +123,18 @@ def get_examples():
         [],
     )
 
-    command3 = 'For each moment where the speaker is talking about learning points, add a text with bigger font and red background.'
+    command3 = 'For each moment where the speaker is talking about learning points, add a text with bigger font and red background around his head.'
     response3 = IndexedReferences.get_instance(
         [
             [4, "each moment where the speaker is talking about learning points"]
         ],
         ["transcript"],
-        [],
-        [],
+        [
+            [125, "around his head"]
+        ],
+        [
+            "visual-dependent",
+        ],
         [
             [74, "text"],
         ],

@@ -60,7 +60,7 @@ VIDEO_DATABASE = {
 }
 
 def __get_temporal_evaluation_margin(prediction, ground_truth, margin = 5):
-    if len(prediction) == 0 and len(ground_truth) == 0:
+    if len(ground_truth) == 0:
         return -1, -1, -1
     ground_truth_covered = [False for _ in ground_truth]
     prediction_covered = [False for _ in prediction]
@@ -96,7 +96,7 @@ def __get_temporal_evaluation_f1(prediction, ground_truth):
     # temporal
     # F1 score: 2 * intersection / (length_prediction + length_ground_truth)
     
-    if len(prediction) == 0 and len(ground_truth) == 0:
+    if len(ground_truth) == 0:
         return -1, -1, -1
 
     total_intersection = 0
@@ -126,7 +126,7 @@ def __get_temporal_evaluation_traditional(prediction, ground_truth):
     # temporal
     # Traditional: precision * recall / (precision + recall)
 
-    if len(prediction) == 0 and len(ground_truth) == 0:
+    if len(ground_truth) == 0:
         return -1, -1, -1
 
     precision = 0
@@ -421,9 +421,10 @@ def get_edit_operation_evaluation(prediction, ground_truth):
     precision = 0
     recall = 0
     f1 = 0
-    if isinstance(prediction, list):
-        if len(prediction) == 0 and len(ground_truth) == 0:
+    if len(ground_truth) == 0:
             return -1, -1, -1
+    if isinstance(prediction, list):
+        prediction = list(set(prediction))
         for single_prediction in prediction:
             result = __get_single_edit_operation_evaluation(single_prediction, ground_truth)
             total += result
@@ -443,7 +444,7 @@ def get_edit_params_evaluation():
     pass
 
 def get_references_evaluation(prediction, ground_truth):
-    if len(prediction) == 0 and len(ground_truth) == 0:
+    if len(ground_truth) == 0:
         return (-1, -1, -1,
             -1, -1, -1,
             [], [], [], [],
