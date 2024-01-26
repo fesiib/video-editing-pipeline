@@ -463,6 +463,9 @@ def get_references_evaluation(prediction, ground_truth):
         prediction,
         expanded_ground_truth,
     )
+    #aggregate
+    cosine_scores_agg, top_10_paris_agg = get_cosine_similarity_scores([", ".join(prediction)], [", ".join(ground_truth)])
+
     precision_expanded = 0
     recall_expanded = 0
     f1_expanded = 0
@@ -486,20 +489,24 @@ def get_references_evaluation(prediction, ground_truth):
     if precision_expanded + recall_expanded > 0:
         f1_expanded = 2 * precision_expanded * recall_expanded / (precision_expanded + recall_expanded)
     
-    for single_cosine_scores in cosine_scores:
-        if len(single_cosine_scores) > 0:
-            precision += max([item for item in single_cosine_scores])
-    if len(cosine_scores) > 0:
-        precision = precision / len(cosine_scores)
+    precision = cosine_scores_agg[0][0]
+    recall = cosine_scores_agg[0][0]
+    f1 = cosine_scores_agg[0][0]
 
-    cosine_scores_t = [list(l) for l in zip(*cosine_scores)]
-    for single_cosine_scores in cosine_scores_t:
-        if len(single_cosine_scores) > 0:
-            recall += max([item for item in single_cosine_scores])
-    if len(cosine_scores_t) > 0:
-        recall = recall / len(cosine_scores_t)
-    if precision + recall > 0:
-        f1 = 2 * precision * recall / (precision + recall)
+    # for single_cosine_scores in cosine_scores:
+    #     if len(single_cosine_scores) > 0:
+    #         precision += max([item for item in single_cosine_scores])
+    # if len(cosine_scores) > 0:
+    #     precision = precision / len(cosine_scores)
+
+    # cosine_scores_t = [list(l) for l in zip(*cosine_scores)]
+    # for single_cosine_scores in cosine_scores_t:
+    #     if len(single_cosine_scores) > 0:
+    #         recall += max([item for item in single_cosine_scores])
+    # if len(cosine_scores_t) > 0:
+    #     recall = recall / len(cosine_scores_t)
+    # if precision + recall > 0:
+    #     f1 = 2 * precision * recall / (precision + recall)
 
     return (
         f1,
